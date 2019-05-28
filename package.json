@@ -1,0 +1,10 @@
+{
+  "name": "amp-performance-visualization",
+  "version": "0.0.1",
+  "description": "visualizations for AMP",
+  "main": "index.js",
+  "repository": "https://github.com/kristoferbaxter/amp-performance-visualization",
+  "author": "The AMP HTML Authors",
+  "license": "Apache-2.0",
+  "private": true
+}
