@@ -1,0 +1,17 @@
+.home {
+	padding: 56px 20px;
+	min-height: 100%;
+	width: 100%;
+}
+.graph{
+	padding: 40px;
+	margin: 40px;
+}
+html, body {
+	font: 14px/1.21 'Helvetica Neue', arial, sans-serif;
+	font-weight: 400;
+}
+
+h1 {
+	text-align: center;
+}
