@@ -1,5 +1,5 @@
 import { Component,h } from "preact";
-import LineChart from './LineChart';
+import BarChart from './BarChart';
 import * as style from "./style.css";
 
 interface Props {}
@@ -9,18 +9,12 @@ export default class Home extends Component<Props> {
             <div class={style.home}>
                 <h1>Home</h1>
                 <p>This is the Home component.</p>
-            			<LineChart data={{
-            				a: 92,
-            				b: 5,
-            				c: 56,
-            				d: 7,
-            				e: 67,
-            				f: 3,
-            				g:23,
-            				h:5,
-            				i:23,
-            				j:2,
-            				k:45
+            			<BarChart data={{
+            				timeToFirstByte: 92,
+            				timeToFirstContentfulPaint: 5,
+            				timeToInteractive: 56,
+            				timeToPageLoad: 7,
+            				ampResourceWgt: 67
             			}}/>
             </div>
         );

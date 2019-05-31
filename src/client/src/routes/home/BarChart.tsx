@@ -1,15 +1,20 @@
 import { Component, h } from 'preact';
-import style from "./LineChart.css";
+import style from "./BarChart.css";
 
 interface Props{
-  data: object;
+  data: {
+    timeToFirstByte: number,
+    timeToFirstContentfulPaint: number,
+    timeToInteractive: number,
+    timeToPageLoad: number,
+    ampResourceWgt: number
+  }
   svgWidth: number;
   svgHeight:number;
   barOffset:number;
 }
-class LineChart extends Component<Props, {}> {
+class BarChart extends Component<Props, {}> {
   public static defaultProps = {
-      data: [],
       svgHeight: 800,
       svgWidth: 800,
       barOffset: 30,
@@ -33,16 +38,16 @@ class LineChart extends Component<Props, {}> {
     return svgHeight - (y / this.getMaxValue() * svgHeight);
   }
   public makeRects(){
-    const { data, svgHeight, barOffset } = this.props;
+    const { data, svgHeight, svgWidth, barOffset } = this.props;
     const valueArr = Object.values(data);
     return (
-      <g className={style.lineChartRects}>
+      <g className={style.barChartRects}>
       {
         valueArr.map((value, index) => (
           <rect
             x={this.getSvgX(index+1)-barOffset}
             y={this.getSvgY(value)}
-            width={barOffset*2}
+            width={(svgWidth*2/3)/this.getNumOfMetrics()}
             height={svgHeight-this.getSvgY(value)}
           />
         ))
@@ -66,14 +71,14 @@ class LineChart extends Component<Props, {}> {
       </g>
     )
   }
-  public makeXAxisLabels(){
+  public makeKeyLabels(){
       const { data, svgHeight, barOffset } = this.props;
       const keyArr = Object.keys(data);
       return (
         <g>
         {
           keyArr.map((key, index) => (
-            <text
+            <text transform="rotate(1 0,0)"
               x={this.getSvgX(index+1)-barOffset}
               y={svgHeight+20}
             >{key}</text>
@@ -88,7 +93,7 @@ class LineChart extends Component<Props, {}> {
       const minY = 0
       const maxY = this.getMaxValue()
       return (
-          <g className={style.lineChartAxis}>
+          <g className={style.barChartAxis}>
               <line
                   x1={this.getSvgX(minX)}
                   y1={this.getSvgY(minY)}
@@ -111,10 +116,10 @@ class LineChart extends Component<Props, {}> {
               {this.makeRects()}
               {this.makeAxis()}
               {this.makeValueLabels()}
-              {this.makeXAxisLabels()}
+              {this.makeKeyLabels()}
           </svg>
       )
   }
 }
 
-export default LineChart
+export default BarChart
