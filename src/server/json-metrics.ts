@@ -3,6 +3,34 @@
  */
 const puppeteer = require('puppeteer');
 
+//===============Metrics Methods===============
+//Time Until First Byte
+
+const getTimeToFirstByte = async (results:PerformanceTiming) => {
+
+    let timeToFirstByte = (results.responseStart - results.navigationStart);
+
+    return timeToFirstByte
+}
+
+//Time Until Fully Loaded
+
+const getTimeToPageLoaded = async (results:PerformanceTiming) => {
+    let timeToPageLoaded = (results.loadEventEnd - results.navigationStart);
+
+    return timeToPageLoaded
+}
+
+//AMP Resource Weight
+/*let ampResourceWgt = async (results:PerformanceTiming) => {
+    let weight = 0;
+    let weightArray = performance.getEntriesByType('resource').filter(item => {
+        return (item as PerformanceResourceTiming).initiatorType === 'script' && item.name.startsWith('https://cdn.ampproject.org/')})
+    weightArray.forEach(element => {
+        weight += (element as PerformanceResourceTiming).transferSize
+    });
+    return weight
+}*/
 
 module.exports = async (webpage: string, downSpeed: number, upSpeed: number, lat: number) => {
     const browser = await puppeteer.launch();
@@ -26,42 +54,18 @@ module.exports = async (webpage: string, downSpeed: number, upSpeed: number, lat
         waitUntil: 'networkidle0'
     })
     
-    //============================URL Portion============================
+    //URL Portion
     const url = page.url();
-    
-    //============================Time Until First Byte============================
-    let navigationStart = await page.evaluate(function() {
-       return JSON.stringify(performance.timing.navigationStart);
-    })
-    let responseStart = await page.evaluate(function() {
-        return JSON.stringify(performance.timing.responseStart);
-    })
-    let timeToFirstByte = (responseStart - navigationStart);
 
-    //============================Time Until Fully Loaded============================
-    let fullyLoadedPage = await page.evaluate(function() {
-        return JSON.stringify(performance.timing.loadEventEnd)
-    })
-    let timeToPageLoaded = (fullyLoadedPage - navigationStart);
-
-    //============================AMP Resource Weight============================
-    let ampResourceWgt = await page.evaluate(function() {
-        let weight = 0;
-        let weightArray = performance.getEntriesByType('resource').filter(item => {
-            return (item as PerformanceResourceTiming).initiatorType === 'script' && item.name.startsWith('https://cdn.ampproject.org/')})
-        weightArray.forEach(element => {
-            weight += (element as PerformanceResourceTiming).transferSize
-        });
-        return weight
-    })
-
+    const results = JSON.parse(await page.evaluate(function() {
+        return JSON.stringify(performance.timing);
+     }))
 
     //Setting up for JSON Stringify
     return {
         url: url,
-        timeToFirstByte: timeToFirstByte,
-        timeToPageLoaded: timeToPageLoaded,
-        ampResourceWgt: ampResourceWgt
+        timeToFirstByte: getTimeToFirstByte(results),
+        timeToPageLoaded: getTimeToPageLoaded(results),
     }
 }
  
