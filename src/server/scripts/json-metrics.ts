@@ -32,7 +32,7 @@ const getTimeToPageLoaded = async (results:PerformanceTiming) => {
     return weight
 }*/
 
-module.exports = async (webpage: string, downSpeed: number, upSpeed: number, lat: number) => {
+export default async (webpage: string, downSpeed: number, upSpeed: number, lat: number) => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     //Sets the navigation timeout to 2 minutes
