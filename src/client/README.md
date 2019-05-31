@@ -1,4 +1,4 @@
-# client-app
+# Client-app
 
 ## CLI Commands
 
