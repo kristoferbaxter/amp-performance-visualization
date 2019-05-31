@@ -9,6 +9,7 @@
   "private": true,
   "dependencies": {},
   "devDependencies": {
+    "prettier": "^1.17.1",
     "typescript": "^3.5.1"
   }
 }
