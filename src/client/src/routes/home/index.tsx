@@ -1,4 +1,4 @@
-import { Component, h } from "preact";
+import { Component,h } from "preact";
 import LineChart from './LineChart';
 import * as style from "./style.css";
 
@@ -22,7 +22,7 @@ export default class Home extends Component<Props> {
             				i:23,
             				j:2,
             				k:45
-            			}} barColor="abcdef"/>
+            			}}/>
             		</svg>
             </div>
         );
