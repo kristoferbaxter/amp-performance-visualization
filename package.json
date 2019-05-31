@@ -7,7 +7,6 @@
   "author": "The AMP HTML Authors",
   "license": "Apache-2.0",
   "private": true,
-<<<<<<< HEAD
   "dependencies": {
     "typescript": "^3.5.1"
   },
@@ -17,12 +16,7 @@
     "typescript": "^3.5.1"
   },
   "scripts": {
-    "build-server": "tsc --project server",
-    "start-server": "node ./server/dist/testAMP.js"
-=======
-  "dependencies": {},
-  "devDependencies": {
-    
->>>>>>> master
+    "build-server": "tsc --project src/server",
+    "start-server": "node ./src/server/dist/testAMP.js"
   }
 }
