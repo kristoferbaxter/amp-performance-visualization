@@ -3,7 +3,8 @@
  */
 const puppeteer = require('puppeteer');
 
- const jsonInfo = async () => {
+
+module.exports = async (webpage: string, downSpeed: number, upSpeed: number, lat: number) => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     //Sets the navigation timeout to 2 minutes
@@ -15,13 +16,13 @@ const puppeteer = require('puppeteer');
     const client = await page.target().createCDPSession()
     await client.send('Network.emulateNetworkConditions', {
         'offline': false,
-        'downloadThroughput': 30 * 1024 * 1024 /8, 
-        'uploadThroughput': 15 * 1024 * 1024 /8,
-        'latency': 2
+        'downloadThroughput':  downSpeed * 1024 * 1024 /8, 
+        'uploadThroughput': upSpeed*1024 * 1024 /8,
+        'latency': 0
       })
 
     //waits until the page is fully loaded
-    await page.goto('https://amp.dev/', {
+    await page.goto(webpage, {
         waitUntil: 'networkidle0'
     })
     
@@ -30,16 +31,16 @@ const puppeteer = require('puppeteer');
     
     //============================Time Until First Byte============================
     let navigationStart = await page.evaluate(function() {
-       return JSON.stringify(window.performance.timing.navigationStart);
+       return JSON.stringify(performance.timing.navigationStart);
     })
     let responseStart = await page.evaluate(function() {
-        return JSON.stringify(window.performance.timing.responseStart);
+        return JSON.stringify(performance.timing.responseStart);
     })
     let timeToFirstByte = (responseStart - navigationStart);
 
     //============================Time Until Fully Loaded============================
     let fullyLoadedPage = await page.evaluate(function() {
-        return JSON.stringify(window.performance.timing.loadEventEnd)
+        return JSON.stringify(performance.timing.loadEventEnd)
     })
     let timeToPageLoaded = (fullyLoadedPage - navigationStart);
 
@@ -56,22 +57,11 @@ const puppeteer = require('puppeteer');
 
 
     //Setting up for JSON Stringify
-    let metrics = {
+    return {
         url: url,
         timeToFirstByte: timeToFirstByte,
         timeToPageLoaded: timeToPageLoaded,
         ampResourceWgt: ampResourceWgt
     }
-
-    //Prints the information in a JSON format
-    let json = JSON.stringify(metrics)
-    console.log(`Metrics: ${json}`)
-    
-
-
-    
-    
 }
-
-jsonInfo();
-
+ 
