@@ -1,0 +1,9 @@
+.lineChartPath {
+    stroke-width: 2;
+    fill: none;
+}
+.lineChartAxis {
+    margin: 50px;
+    stroke-width: 4;
+    stroke: #000000;
+}
