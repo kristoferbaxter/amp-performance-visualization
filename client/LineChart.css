@@ -1,8 +1,9 @@
-.linechart_path {
+.lineChartPath {
   stroke-width: 2;
   fill: none;
 }
-.linechart_axis {
+.lineChartAxis {
   margin: 50px;
+  stroke-width: 4;
   stroke: #000000;
 }

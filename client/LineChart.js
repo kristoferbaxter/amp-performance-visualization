@@ -2,12 +2,6 @@ import { Component } from 'preact';
 import './LineChart.css';
 
 class LineChart extends Component {
-    getMinValue() {
-        let { data } = this.props;
-        let onlyMetrics = Object.values(data);
-        let minValue = Math.min.apply(null, onlyMetrics);
-        return minValue;
-    }
     getMaxValue() {
         let { data } = this.props;
         let onlyMetrics = Object.values(data);
@@ -34,25 +28,23 @@ class LineChart extends Component {
             pathD += ` L${this.getSvgX(i+1)} ${this. getSvgY(valueArr[i])}`
         }
         return (
-            <path className="lineChartPath" d={pathD} style={{ stroke: color, fill:"none"}} />
+            <path className="lineChartPath" d={pathD} style={{ stroke: color }} />
         )
     }
-
-    makeAxis() {//TODO have to change this. It will put the axis at the smallest points
+    makeAxis() {
         let minX = 0
         let maxX = this.getNumOfMetrics()
-        let minY = this.getMinValue()
+        let minY = 0
         let maxY = this.getMaxValue()
-        let { heightOffset } = this.props
         return (
-            <g className="linechart_axis">
-                <line stroke="black" stroke-width="3"
+            <g className="lineChartAxis">
+                <line
                     x1={this.getSvgX(minX)}
                     y1={this.getSvgY(minY)}
                     x2={this.getSvgX(maxX)}
                     y2={this.getSvgY(minY)}
                 />
-                <line stroke="black" stroke-width="4"
+                <line
                     x1={this.getSvgX(minX)}
                     y1={this.getSvgY(minY)}
                     x2={this.getSvgX(minX)}
@@ -61,14 +53,19 @@ class LineChart extends Component {
             </g>
         )
     }
-
-
+    makeAxisLabels(){
+      let maxValue = this.getMaxValue();
+      return(
+          <text x="0" y="0" fill="red">{maxValue}</text>
+      )
+    }
     render() {
         let { svgHeight, svgWidth } = this.props;
         return (
             <svg viewbox={`0 0 ${svgWidth} ${svgHeight}`}>
                 {this.makePath()}
                 {this.makeAxis()}
+                {this.makeAxisLabels()}
             </svg>
         )
     }
@@ -77,7 +74,7 @@ LineChart.defaultProps = {
     data: [],
     color: '#1174d1',
     svgHeight: 800,
-    svgWidth: 800,
-    heightOffset: 200,
+    svgWidth: 1200,
+    barOffset: 20,
 }
 export default LineChart

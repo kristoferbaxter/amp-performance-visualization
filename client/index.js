@@ -1,6 +1,6 @@
 import { h } from 'preact';
-import style from './index';
-import {Chart} from './chart';
+import style from './index.css';
+import LineChart from './LineChart';
 const Home = () => (
 	<div class={style.home}>
 		<h1>Home</h1>
@@ -20,14 +20,21 @@ const Home = () => (
 		</select>
 
 		<br></br>
-		<Chart className = "graph" data={{
-			timeTilStartRender: 923,
-			timeTilPagePainted: 1200,
-			timeTilInteractive: 560,
-			timeTilFullyLoaded: 700,
-			ampResourceWeight: 670
-		}}/>
-
+		<svg className="graph" width="90%" height="1000">
+			<LineChart data={{
+				a: 92,
+				b: 5,
+				c: 56,
+				d: 7,
+				e: 67,
+				f: 3,
+				g:23,
+				h:5,
+				i:23,
+				j:2,
+				k:45
+			}}/>
+		</svg>
 	</div>
 );
 
