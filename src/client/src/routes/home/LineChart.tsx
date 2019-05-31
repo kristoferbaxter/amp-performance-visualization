@@ -1,22 +1,15 @@
 import { Component, h } from 'preact';
-import "./LineChart.css";
+import style from "./LineChart.css";
 
 interface Props{
   data: object;
-  barColor: string;
-  labelColor: string;
   svgWidth: number;
   svgHeight:number;
   barOffset:number;
 }
-interface State{
-
-}
-class LineChart extends Component<Props, State> {
+class LineChart extends Component<Props, {}> {
   public static defaultProps = {
       data: [],
-      barColor: 'blue',
-      labelColor: 'red',
       svgHeight: 800,
       svgWidth: 800,
       barOffset: 30,
@@ -40,55 +33,53 @@ class LineChart extends Component<Props, State> {
     return svgHeight - (y / this.getMaxValue() * svgHeight);
   }
   public makeRects(){
-      const { data, svgHeight, barColor, barOffset } = this.props;
-      let htmlString: string = '';
-      const valueArr = Object.values(data);
-      let height:number;
-      for(let i = 0; i < valueArr.length; i++){
-        height = this.getSvgY(valueArr[i]);
-        htmlString+=`<rect
-                        x=${this.getSvgX(i+1)-barOffset}
-                        y=${height}
-                        width=${barOffset*2}
-                        height=${svgHeight-height}
-                        style="fill:${barColor}"
-                      />`
+    const { data, svgHeight, barOffset } = this.props;
+    const valueArr = Object.values(data);
+    return (
+      <g className={style.lineChartRects}>
+      {
+        valueArr.map((value, index) => (
+          <rect
+            x={this.getSvgX(index+1)-barOffset}
+            y={this.getSvgY(value)}
+            width={barOffset*2}
+            height={svgHeight-this.getSvgY(value)}
+          />
+        ))
       }
-      return (
-        <g dangerouslySetInnerHTML={{__html: htmlString}}/>
-      )
+      </g>
+    )
   }
   public makeValueLabels(){
-      const { data, svgHeight, labelColor, barOffset } = this.props;
-      let htmlString: string = '';
-      const valueArr = Object.values(data);
-      let height: number;
-      for(let i = 0; i < valueArr.length; i++){
-        height = this.getSvgY(valueArr[i]);
-        htmlString+=`<text
-                        x="${this.getSvgX(i+1)-barOffset}"
-                        y="${height-1}"
-                        style="fill:${labelColor}"
-                      >${valueArr[i]}</text>`
+    const { data, barOffset } = this.props;
+    const valueArr = Object.values(data);
+    return (
+      <g>
+      {
+        valueArr.map((value, index) => (
+          <text
+            x={this.getSvgX(index+1)-barOffset}
+            y={this.getSvgY(value)}
+          >{value}</text>
+        ))
       }
-      return (
-        <g dangerouslySetInnerHTML={{__html: htmlString}}/>
-      )
+      </g>
+    )
   }
   public makeXAxisLabels(){
-      const { data, svgHeight, labelColor, barOffset } = this.props;
-      let htmlString: string ='';
+      const { data, svgHeight, barOffset } = this.props;
       const keyArr = Object.keys(data);
-      for(let i = 0; i < keyArr.length; i++){
-        htmlString+=`<text
-                        x="${this.getSvgX(i+1)-barOffset}"
-                        y="${svgHeight+20}"
-                        style="fill:${labelColor}"
-                      >${keyArr[i]}</text>`
-      }
       return (
-        <g dangerouslySetInnerHTML={{__html: htmlString}}/>
-      )
+        <g>
+        {
+          keyArr.map((key, index) => (
+            <text
+              x={this.getSvgX(index+1)-barOffset}
+              y={svgHeight+20}
+            >{key}</text>
+          ))
+        }
+        </g>      )
   }
 
   public makeAxis() {
@@ -97,7 +88,7 @@ class LineChart extends Component<Props, State> {
       const minY = 0
       const maxY = this.getMaxValue()
       return (
-          <g className="lineChartAxis">
+          <g className={style.lineChartAxis}>
               <line
                   x1={this.getSvgX(minX)}
                   y1={this.getSvgY(minY)}
@@ -116,7 +107,7 @@ class LineChart extends Component<Props, State> {
   public render() {
       const { svgHeight, svgWidth } = this.props;
       return (
-          <svg viewBox={`0 0 ${svgWidth} ${svgHeight}`}>
+          <svg viewBox={`0 0 ${svgWidth} ${svgHeight}`} className="graph" width="90%" height="1000">
               {this.makeRects()}
               {this.makeAxis()}
               {this.makeValueLabels()}

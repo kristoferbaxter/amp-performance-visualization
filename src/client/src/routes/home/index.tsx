@@ -9,7 +9,6 @@ export default class Home extends Component<Props> {
             <div class={style.home}>
                 <h1>Home</h1>
                 <p>This is the Home component.</p>
-                <svg className="graph" width="90%" height="1000">
             			<LineChart data={{
             				a: 92,
             				b: 5,
@@ -23,7 +22,6 @@ export default class Home extends Component<Props> {
             				j:2,
             				k:45
             			}}/>
-            		</svg>
             </div>
         );
     }

@@ -1,8 +1,8 @@
-body {
-    background: white;
-}
 .lineChartAxis {
-    margin: 0px;
+    margin: 50px;
     stroke-width: 4;
     stroke: black;
+}
+.lineChartRects {
+    fill: blue;
 }
