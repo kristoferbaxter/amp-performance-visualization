@@ -7,6 +7,8 @@ interface PagePerformance {
     url: string;
     firstByte: number; 
     pageLoad: number;
+    interactive: number;
+    firstContentfulPaint: number;
   }
 
 //===============Metrics Methods===============
@@ -16,10 +18,16 @@ const getTimeToFirstByte = (results:PerformanceTiming):number => (results.respon
 //Time Until Fully Loaded
 const getTimeToPageLoaded = (results:PerformanceTiming):number => (results.loadEventEnd - results.navigationStart);
 
+//Time Until Interactive
+const getTimeToInteractive = (results:PerformanceTiming) => (results.domInteractive - results.navigationStart);
+
+//Time Until the First Contentful Paint
+const getTimeToFirstContentfulPaint = (results:PerformanceTiming) => (results.domLoading - results.navigationStart);
+
 //AMP Resource Weight
 /*let ampResourceWgt = async (results:PerformanceTiming) => {
     let weight = 0;
-    let weightArray = performance.getEntriesByType('resource').filter(item => {
+    const weightArray = performance.getEntriesByType('resource').filter(item => {
         return (item as PerformanceResourceTiming).initiatorType === 'script' && item.name.startsWith('https://cdn.ampproject.org/')})
     weightArray.forEach(element => {
         weight += (element as PerformanceResourceTiming).transferSize
@@ -58,6 +66,8 @@ export default async (webpage: string, downSpeed: number, upSpeed: number, lat: 
         url:page.url(),
         firstByte: getTimeToFirstByte(results),
         pageLoad: getTimeToPageLoaded(results),
+        interactive: getTimeToInteractive(results),
+        firstContentfulPaint: getTimeToFirstContentfulPaint(results)
     }
 }
  
