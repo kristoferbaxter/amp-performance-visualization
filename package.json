@@ -12,11 +12,12 @@
   },
   "devDependencies": {
     "@types/node": "^12.0.4",
+    "esm": "^3.2.25",
     "prettier": "^1.17.1",
     "typescript": "^3.5.1"
   },
   "scripts": {
-    "build": "tsc --project src/server/scripts",
+    "build": "tsc --project src/server",
     "start": "node ./src/server/dist/testAMP.js"
   }
 }
