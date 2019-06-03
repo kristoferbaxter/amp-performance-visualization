@@ -11,15 +11,10 @@ interface PagePerformance {
 
 //===============Metrics Methods===============
 //Time Until First Byte
-
 const getTimeToFirstByte = (results:PerformanceTiming):number => (results.responseStart - results.navigationStart);
 
-
-
 //Time Until Fully Loaded
-
 const getTimeToPageLoaded = (results:PerformanceTiming):number => (results.loadEventEnd - results.navigationStart);
-
 
 //AMP Resource Weight
 /*let ampResourceWgt = async (results:PerformanceTiming) => {
