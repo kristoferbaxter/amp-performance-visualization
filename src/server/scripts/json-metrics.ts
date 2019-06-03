@@ -3,23 +3,23 @@
  */
 const puppeteer = require('puppeteer');
 
+interface PagePerformance {
+    url: string;
+    firstByte: number; 
+    pageLoad: number;
+  }
+
 //===============Metrics Methods===============
 //Time Until First Byte
 
-const getTimeToFirstByte = async (results:PerformanceTiming) => {
+const getTimeToFirstByte = (results:PerformanceTiming):number => (results.responseStart - results.navigationStart);
 
-    let timeToFirstByte = (results.responseStart - results.navigationStart);
 
-    return timeToFirstByte
-}
 
 //Time Until Fully Loaded
 
-const getTimeToPageLoaded = async (results:PerformanceTiming) => {
-    let timeToPageLoaded = (results.loadEventEnd - results.navigationStart);
+const getTimeToPageLoaded = (results:PerformanceTiming):number => (results.loadEventEnd - results.navigationStart);
 
-    return timeToPageLoaded
-}
 
 //AMP Resource Weight
 /*let ampResourceWgt = async (results:PerformanceTiming) => {
@@ -32,7 +32,7 @@ const getTimeToPageLoaded = async (results:PerformanceTiming) => {
     return weight
 }*/
 
-export default async (webpage: string, downSpeed: number, upSpeed: number, lat: number) => {
+export default async (webpage: string, downSpeed: number, upSpeed: number, lat: number):Promise<PagePerformance> => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     //Sets the navigation timeout to 2 minutes
@@ -54,18 +54,15 @@ export default async (webpage: string, downSpeed: number, upSpeed: number, lat: 
         waitUntil: 'networkidle0'
     })
     
-    //URL Portion
-    const url = page.url();
-
-    const results = JSON.parse(await page.evaluate(function() {
+    //Returning info
+    const results = JSON.parse(await page.evaluate(() => {
         return JSON.stringify(performance.timing);
      }))
 
-    //Setting up for JSON Stringify
     return {
-        url: url,
-        timeToFirstByte: getTimeToFirstByte(results),
-        timeToPageLoaded: getTimeToPageLoaded(results),
+        url:page.url(),
+        firstByte: getTimeToFirstByte(results),
+        pageLoad: getTimeToPageLoaded(results),
     }
 }
  
