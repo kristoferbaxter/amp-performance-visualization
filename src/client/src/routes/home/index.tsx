@@ -1,5 +1,5 @@
 import { Component,h } from "preact";
-import BarChart from './BarChart';
+import BarChart from '../../components/graph/BarChart';
 import * as style from "./style.css";
 
 interface Props {}
