@@ -17,6 +17,6 @@
   },
   "scripts": {
     "build": "tsc --project src/server",
-    "start": "node ./src/server/dist/testAMP.js"
+    "start": "node ./src/server/dist/dummyRun.js"
   }
 }
