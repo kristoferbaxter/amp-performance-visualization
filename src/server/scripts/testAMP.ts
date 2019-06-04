@@ -1,5 +1,5 @@
-import getMetricsFromURL from './json-metrics';
-const metricsArray: Promise<any>[] = [];
+import getResults from './json-metrics';
+
 
 interface PagePerf {
     device: string;
@@ -7,15 +7,18 @@ interface PagePerf {
     metrics: string[];
 }
 
+
+
 export default async function getMetricsFromURLs(urls: Array<string>, downSpeed: number, upSpeed: number, lat: number): Promise<PagePerf> {
     
-    let device ='iPhone 8'
+    const device ='iPhone 8'
+    const metricsArray: Promise<any>[] = [];
 
     urls.forEach(async element => {
-        metricsArray.push(getMetricsFromURL(element, downSpeed, upSpeed, lat));
+        metricsArray.push(getResults(element, downSpeed, upSpeed, lat));
     });
 
-    const result = await Promise.all(metricsArray);
+    const result: string[] = await Promise.all(metricsArray);
 
     return {
         device,
@@ -23,3 +26,6 @@ export default async function getMetricsFromURLs(urls: Array<string>, downSpeed:
         metrics: result
     };
 }
+
+
+    
