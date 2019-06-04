@@ -3,6 +3,7 @@
  */
 const puppeteer = require('puppeteer');
 
+
 interface PagePerformance {
     url: string;
     firstByte: number; 
@@ -35,7 +36,7 @@ const getTimeToFirstContentfulPaint = (results:PerformanceTiming) => (results.do
     return weight
 }*/
 
-export default async (webpage: string, downSpeed: number, upSpeed: number, lat: number):Promise<PagePerformance> => {
+const getMetrics = async (webpage: string, downSpeed: number, upSpeed: number, lat: number):Promise<PagePerformance> => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     //Sets the navigation timeout to 2 minutes
@@ -47,16 +48,19 @@ export default async (webpage: string, downSpeed: number, upSpeed: number, lat: 
     const client = await page.target().createCDPSession()
     await client.send('Network.emulateNetworkConditions', {
         'offline': false,
-        'downloadThroughput':  downSpeed * 1024 * 1024 /8, 
-        'uploadThroughput': upSpeed*1024 * 1024 /8,
-        'latency': 0
+        'downloadThroughput':  downSpeed * 1024 /8, 
+        'uploadThroughput': upSpeed * 1024 /8,
+        'latency': lat
       })
 
     //waits until the page is fully loaded
-    await page.goto(webpage, {
-        waitUntil: 'networkidle0'
-    })
-    
+    try {
+        await page.goto(webpage, {
+            waitUntil: 'networkidle0'
+        })
+    } catch (e) {
+        //console.log(e);
+    }
     //Returning info
     const results = JSON.parse(await page.evaluate(() => {
         return JSON.stringify(performance.timing);
@@ -70,4 +74,23 @@ export default async (webpage: string, downSpeed: number, upSpeed: number, lat: 
         firstContentfulPaint: getTimeToFirstContentfulPaint(results)
     }
 }
+
+const getResults = async (webpage: string, downSpeed: number, upSpeed: number, lat: number) => {
+    const slowURL = new Promise (resolve => {
+        setTimeout(() => {
+            resolve({
+                url: webpage,
+                firstByte: -1,
+                pageLoad: -1,
+                interactive: -1,
+                firstContentfulPaint: -1
+            } as PagePerformance)
+        },100000)
+    })
+
+    const pageMetrics = getMetrics(webpage, downSpeed, upSpeed, lat);
+
+    return await Promise.race([slowURL, pageMetrics]);
+}
  
+export default getResults
