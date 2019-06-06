@@ -26,6 +26,3 @@ export default async function getMetricsFromURLs(urls: Array<string>, downSpeed:
         metrics: result
     };
 }
-
-
-    
