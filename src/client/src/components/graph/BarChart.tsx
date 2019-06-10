@@ -2,7 +2,8 @@ import { Component, h } from 'preact';
 import Axis from './Axis'
 import Bar from './Bar'
 import style from "./BarChart.css";
-import Label from './Label'
+import XLabel from './XLabel'
+import YLabel from './YLabel'
 
 interface Props{
   data: {
@@ -53,7 +54,7 @@ class BarChart extends Component<Props, {}> {
         {
           valueArr.map((value, index) => (
             <Bar
-              x={getSvgX(index, this.props)+barOffset}
+              x={getSvgX(index, this.props)}
               y={getSvgY(value, this.props)}
               width={(svgWidth/3)/getNumOfMetrics(this.props)}// the 2/3 scales the bars so they will always fit on the graph for "N" number of metrics
               height={svgHeight-getSvgY(value, this.props)}
@@ -70,7 +71,7 @@ class BarChart extends Component<Props, {}> {
         <g>
         {
           valueArr.map((value, index) => (
-            <Label
+            <XLabel
               x={getSvgX(index, this.props)+barOffset}
               y={getSvgY(value, this.props)}
               value={value}
@@ -81,7 +82,7 @@ class BarChart extends Component<Props, {}> {
         <g>
         {
           keyArr.map((value, index) => (
-            <Label
+            <YLabel
               x={getSvgX(index, this.props)+barOffset}
               y={svgHeight}
               value={value}
