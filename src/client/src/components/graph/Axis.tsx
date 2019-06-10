@@ -1,9 +1,8 @@
 import { h } from 'preact';
-import style from './Axis.css'
 
 export const Axis = (props:{minX:number,minY:number,maxX:number,maxY:number}) => {
   return (
-    <g className = {style.barChartAxis}>
+    <g>
         <line
             x1={props.minX}
             y1={props.minY}
@@ -15,6 +14,18 @@ export const Axis = (props:{minX:number,minY:number,maxX:number,maxY:number}) =>
             y1={props.minY}
             x2={props.minX}
             y2={props.maxY}
+        />
+        <line
+            x1={props.minX}
+            y1={props.maxY}
+            x2={props.maxX}
+            y2={props.maxY}
+        />
+        <line
+            x1={props.maxX}
+            y1={props.maxY}
+            x2={props.maxX}
+            y2={props.minY}
         />
     </g>
   );

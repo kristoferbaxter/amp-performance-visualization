@@ -7,7 +7,7 @@ export const XLabel = (props:{x:number,y:number,value:string | number}) => {
 
   }*/
   return (
-      <text
+      <text alignment-baseline="middle"
         x={props.x}
         y={props.y}>
         {props.value}
