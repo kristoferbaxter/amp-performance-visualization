@@ -1,15 +1,9 @@
 import { h } from 'preact';
 
-export const XDivision = (props:{maxX:number,minX:number, y:number}) => {
-  return (
-
-        <line
-            x1={props.minX}
-            y1={props.y}
-            x2={props.maxX}
-            y2={props.y}
-        />
-  );
+interface Props {
+  maxX: number;
+  minX: number;
+  y: number;
 }
 
-export default XDivision
+export const XDivision = ({ maxX, minX, y }: Props): JSX.Element => <line x1={minX} y1={y} x2={maxX} y2={y} />;

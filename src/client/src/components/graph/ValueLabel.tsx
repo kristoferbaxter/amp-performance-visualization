@@ -1,18 +1,21 @@
 import { h } from 'preact';
 
-export const ValueLabel = (props:{x:number,y:number,value:string | number}) => {
-  let newY = props.y
-  let color = "black"
-  if(props.y < 17){
-    newY = props.y+17;
-    color = "white"
-  }
-  return (
-    <text fill = {color}
-      x={props.x}
-      y={newY}
-    >{props.value}</text>
-  );
+interface Props {
+  x: number;
+  y: number;
+  value: string | number;
 }
 
-export default ValueLabel
+export const ValueLabel = ({ x, y, value }: Props): JSX.Element => {
+  let newY = y;
+  let color = 'black';
+  if (y < 17) {
+    newY = y + 17;
+    color = 'white';
+  }
+  return (
+    <text fill={color} x={x} y={newY}>
+      {value}
+    </text>
+  );
+};
