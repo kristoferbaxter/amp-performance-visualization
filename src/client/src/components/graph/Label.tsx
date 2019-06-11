@@ -1,12 +1,14 @@
 import { h } from 'preact';
 
-export const ValueLabel = (props:{x:number,y:number,value:string | number}) => {
-  return (
-    <text
-      x={props.x}
-      y={props.y}
-    >{props.value}</text>
-  );
+interface Props{
+  x: number,
+  y: number,
+  value: number | string
 }
 
-export default ValueLabel
+export const Label = ({x, y, value}: Props): JSX.Element => (
+  <text
+    x={x}
+    y={y}
+  >{value}</text>
+);

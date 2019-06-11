@@ -8,7 +8,7 @@ interface Props{
   maxY: number
 }
 
-export const Axis = ({minX, minY, maxX, maxY}: Props) => (
+export const Axis = ({minX, minY, maxX, maxY}: Props): JSX.Element => (
     <g className = {style.barChartAxis}>
         <line
             x1={minX}

@@ -1,8 +1,8 @@
 import { Component, h } from 'preact';
 import {Axis} from './Axis'
-import Bar from './Bar'
+import {Bar} from './Bar'
 import style from "./BarChart.css";
-import Label from './Label'
+import {Label} from './Label'
 
 interface Props{
   data: {
