@@ -15,10 +15,11 @@
   },
   "lint-staged": {
     "*.{js,jsx,css,md,scss}": [
-      "prettier --write",
+      "prettier --write --config ../../.prettierrc",
       "git add"
     ],
     "*.{ts,tsx}": [
+      "prettier --write --config ../../.prettierrc",
       "tslint --fix",
       "git add"
     ]

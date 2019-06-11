@@ -1,14 +1,10 @@
 import { h } from 'preact';
 
-export const Bar = (props:{x:number,y:number,width:number,height:number}) => {
-  return (
-    <rect
-      x={props.x}
-      y={props.y}
-      width={props.width}
-      height={props.height}
-    />
-  );
+interface Props {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
 }
 
-export default Bar
+export const Bar = ({ x, y, width, height }: Props): JSX.Element => <rect x={x} y={y} width={width} height={height} />;
