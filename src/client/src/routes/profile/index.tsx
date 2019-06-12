@@ -13,6 +13,7 @@ export default class Profile extends Component<Props, State> {
   public state = {
     time: Date.now(),
     count: 11,
+    name: 'abc',
   };
 
   public timer?: number;
