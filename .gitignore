@@ -63,3 +63,10 @@ typings/
 # lock file
 **/yarn.lock
 **/package-lock.json
+
+# mac files
+.DS_Store
+
+
+# build folder
+build
