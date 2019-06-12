@@ -1,2 +1,2 @@
-const uname = 'prateek';
+const uname = 'prateeks';
 console.log(uname);
