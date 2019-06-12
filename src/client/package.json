@@ -19,7 +19,7 @@
       "git add"
     ],
     "*.{ts,tsx}": [
-      "prettier --write --config ../../.prettierrc",
+      "prettier --write --config ../../.prettierrc-typescript",
       "tslint --fix",
       "git add"
     ]

@@ -1,20 +1,18 @@
 .barChartRects {
-    fill: blue;
+  fill: blue;
 }
 .barChartAxis {
-    stroke: black;
-    stroke-width: 4px;
+  stroke: black;
+  stroke-width: 4px;
 }
 .graph {
-    float: left;
-    padding-top: 40px;
+  float: left;
+  padding-top: 40px;
 }
 .xLabel {
-    alignment-baseline: middle;
-    fill: blue;
-}
-.graphMinusXLabel {
+  text-anchor: end;
+  fill: black;
 }
 .divisions {
-    stroke: grey;
+  stroke: grey;
 }

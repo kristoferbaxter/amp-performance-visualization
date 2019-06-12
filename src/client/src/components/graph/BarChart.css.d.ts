@@ -3,5 +3,4 @@ export const barChartRects: string;
 export const barChartAxis: string;
 export const graph: string;
 export const xLabel: string;
-export const graphMinusXLabel: string;
 export const divisions: string;
