@@ -1,2 +1,6 @@
-tabWidth: 4
-singleQuote: true
+{
+  "printWidth": 150,
+  "trailingComma": "all",
+  "parser": "typescript",
+  "singleQuote": true
+}
