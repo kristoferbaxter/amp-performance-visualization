@@ -4,8 +4,7 @@
   "description": "This hosts all the server side code.  - Server to host the visualization app itself  - Server side code to fetch performance numbers from URLs",
   "main": "index.js",
   "scripts": {
-    "lint": "tslint -c ../../tslint.json --project src",
-    "precommit": "lint-staged"
+    "lint": "tslint -c ../../tslint.json --project src"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +19,11 @@
     "tslint-eslint-rules": "^5.4.0",
     "tslint-react": "^3.6.0",
     "typescript": "^3.5.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
     "*.{ts,tsx}": [
