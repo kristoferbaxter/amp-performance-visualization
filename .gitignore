@@ -70,3 +70,6 @@ typings/
 
 # build folder
 build
+
+#built files in server
+server/**/*.js
