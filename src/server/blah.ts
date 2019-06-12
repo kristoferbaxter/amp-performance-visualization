@@ -1,2 +1,1 @@
-const uname = 'prateek';
-console.log(uname);
+const uname = "prateek";
