@@ -12,7 +12,7 @@ interface State {
 export default class Profile extends Component<Props, State> {
   public state = {
     time: Date.now(),
-    count: 11,
+    count: 10,
   };
 
   public timer?: number;
