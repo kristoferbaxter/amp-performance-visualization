@@ -11,6 +11,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "husky": "^1.2.0",
+    "lint-staged": "^8.1.0",
+    "prettier": "^1.18.2",
+    "tslint": "^5.11.0",
+    "typescript": "^3.5.1"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
