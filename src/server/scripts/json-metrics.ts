@@ -22,6 +22,8 @@ interface PagePerformance {
   }
   //URL provided is not AMP
   const NOT_AMP = -2;
+  //networkidle0 means that there are no more than 0 network connections for atleast 500 milliseconds
+  const NAVIGATION_COMPLETE = 'networkidle0'; 
 //===============Metrics Methods===============
 //Time Until First Byte
 const getTimeToFirstByte = (results:PerformanceTiming):number => (results.responseStart - results.navigationStart);
@@ -76,7 +78,7 @@ const getMetrics = async (webpage: string, downSpeed: number, upSpeed: number, l
     try {
         await page.goto(webpage, {
             timeout: 0,
-            waitUntil: 'networkidle0'
+            waitUntil: NAVIGATION_COMPLETE
         })
     } catch (e) {
         // return {
