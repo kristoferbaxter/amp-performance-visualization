@@ -1,4 +1,4 @@
-import getResults from './json-metrics';
+import getResults from './jsonMetrics';
 
 
 interface PagePerf {
