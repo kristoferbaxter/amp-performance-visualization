@@ -1,7 +1,7 @@
 /**
  * @fileoverview Description of this file.
  */
-const puppeteer = require('puppeteer');
+import puppeteer from 'puppeteer';
 
 interface PagePerformance {
     url: string;
