@@ -1,4 +1,4 @@
-import getResults from './jsonMetrics';
+import getResults from './json-metrics';
 
 interface PagePerf {
   device: string;
