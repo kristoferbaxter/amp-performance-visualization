@@ -73,3 +73,7 @@ build
 
 #built files in server
 server/**/*.js
+
+
+# CSS typedefinition files
+**/*.css.d.ts

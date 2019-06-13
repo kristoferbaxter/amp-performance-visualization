@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "amp-performance-visualization",
   "version": "0.0.1",
   "license": "Apache-2.0",
@@ -20,7 +19,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,css,md,scss}": [
-      "prettier --write",
+      "prettier --write --config ./.prettierrc",
       "git add"
     ],
     "*.{ts,tsx}": [
