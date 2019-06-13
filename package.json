@@ -16,7 +16,7 @@
     "typescript": "^3.5.1"
   },
   "scripts": {
-    "build": "tsc --project src/server",
+    "build": "tsc --project src/server/scripts",
     "start": "node ./src/server/dist/testAMP.js"
   }
 }
