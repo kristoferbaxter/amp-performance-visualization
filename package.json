@@ -13,6 +13,9 @@
     "dev": "preact watch",
     "lint": "tslint --project src",
     "test": "jest ./tests",
+    "build:server": "tsc --project ./server/",
+    "prestart:server": "yarn build:server",
+    "start:server": "echo nothing to start",
     "precommit": "lint-staged"
   },
   "lint-staged": {
@@ -21,7 +24,7 @@
       "git add"
     ],
     "*.{ts,tsx}": [
-      "prettier --write",
+      "prettier --write --config ./.prettierrc-typescript",
       "tslint --fix",
       "git add"
     ]
@@ -34,6 +37,8 @@
   ],
   "devDependencies": {
     "@types/jest": "^23.3.10",
+    "@types/node": "^12.0.4",
+    "@types/puppeteer": "^1.12.4",
     "@types/webpack-env": "^1.13.9",
     "css-loader": "^1.0.1",
     "esm": "^3.2.25",
@@ -45,6 +50,7 @@
     "preact-cli": "^3.0.0-rc.2",
     "preact-render-spy": "^1.3.0",
     "prettier": "^1.15.3",
+    "puppeteer": "^1.17.0",
     "ts-jest": "^23.10.5",
     "ts-loader": "^3.5.0",
     "tslint": "^5.11.0",
