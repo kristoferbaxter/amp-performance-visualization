@@ -20,7 +20,8 @@ interface PagePerformance {
     windowLoadEvent: number;
     firstViewportReady: number
   }
-
+  //URL provided is not AMP
+  const NOT_AMP = -2;
 //===============Metrics Methods===============
 //Time Until First Byte
 const getTimeToFirstByte = (results:PerformanceTiming):number => (results.responseStart - results.navigationStart);
@@ -40,12 +41,19 @@ const getMetrics = async (webpage: string, downSpeed: number, upSpeed: number, l
     if(!(await isAMP(webpage))) {
         return {
             url: webpage,
-            firstByte: -2,
-            pageLoad: -2,
-            interactive: -2,
-            firstContentfulPaint: -2,
-            ampWeight: -2
-        } as PagePerformance
+            firstByte: NOT_AMP,
+            pageLoad: NOT_AMP,
+            interactive: NOT_AMP,
+            firstContentfulPaint: NOT_AMP,
+            ampWeight: NOT_AMP,
+            installStyles: NOT_AMP,
+            endInstallStyles: NOT_AMP,
+            visible: NOT_AMP,
+            onFirstVisible: NOT_AMP,
+            makeBodyVisible: NOT_AMP,
+            windowLoadEvent: NOT_AMP,
+            firstViewportReady: NOT_AMP,
+        }
     }
     
     const browser = await puppeteer.launch();
