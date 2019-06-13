@@ -7,22 +7,17 @@ interface PagePerf {
     metrics: string[];
 }
 
-
+const DEVICE_NAME ='iPhone 8'
+//haven't figured out how to get device info from user, so its hardcoded for now
 
 export default async function getMetricsFromURLs(urls: Array<string>, downSpeed: number, upSpeed: number, lat: number): Promise<PagePerf> {
-    
-    const device ='iPhone 8'
     const metricsArray: Promise<any>[] = [];
 
-    urls.forEach(async element => {
-        metricsArray.push(getResults(element, downSpeed, upSpeed, lat));
-    });
-
-    const result: string[] = await Promise.all(metricsArray);
+    urls.forEach(url =>  metricsArray.push(getResults(url, downSpeed, upSpeed, lat)));
 
     return {
-        device,
+        device: DEVICE_NAME,
         networkSpeed: `downspeed: ${downSpeed}kbps`,
-        metrics: result
+        metrics: await Promise.all(metricsArray),
     };
 }
