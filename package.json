@@ -8,8 +8,7 @@
   "license": "Apache-2.0",
   "private": true,
   "dependencies": {
-    "node-fetch": "^2.6.0",
-    "typescript": "^3.5.1"
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "@types/node": "^12.0.4",
@@ -18,6 +17,7 @@
   },
   "scripts": {
     "build": "tsc --project src/server",
+    "prestart": "yarn build",
     "start": "node ./src/server/dist/testRun.js"
   }
 }
