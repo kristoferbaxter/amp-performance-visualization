@@ -7,9 +7,7 @@
   "author": "The AMP HTML Authors",
   "license": "Apache-2.0",
   "private": true,
-  "dependencies": {
-    "typescript": "^3.5.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "^12.0.4",
     "prettier": "^1.17.1",
@@ -17,6 +15,7 @@
   },
   "scripts": {
     "build": "tsc --project src/server/scripts",
+    "prestart": "yarn build",
     "start": "node ./src/server/dist/testAMP.js"
   }
 }
