@@ -60,5 +60,20 @@ typings/
 # next.js build output
 .next
 
-#TS output folder
-dist
+# lock file
+**/yarn.lock
+**/package-lock.json
+
+# mac files
+.DS_Store
+
+
+# build folder
+build
+
+#built files in server
+server/**/*.js
+
+
+# CSS typedefinition files
+**/*.css.d.ts

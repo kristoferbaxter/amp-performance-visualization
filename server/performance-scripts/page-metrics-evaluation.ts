@@ -1,11 +1,11 @@
-//===============Metrics Methods===============
-//Time Until First Byte
-export const getTimeToFirstByte = (results:PerformanceTiming):number => (results.responseStart - results.navigationStart);
+// ===============Metrics Methods===============
+// Time Until First Byte
+export const getTimeToFirstByte = (results: PerformanceTiming): number => results.responseStart - results.navigationStart;
 
-//Time Until Fully Loaded
-export const getTimeToPageLoaded = (results:PerformanceTiming):number => (results.loadEventEnd - results.navigationStart);
+// Time Until Fully Loaded
+export const getTimeToPageLoaded = (results: PerformanceTiming): number => results.loadEventEnd - results.navigationStart;
 
-//AMP Resource Weight
+// AMP Resource Weight
 /*let ampResourceWgt = async (results:PerformanceTiming) => {
     let weight = 0;
     let weightArray = performance.getEntriesByType('resource').filter(item => {
