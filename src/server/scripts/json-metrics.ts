@@ -2,32 +2,15 @@
  * @fileoverview Description of this file.
  */
 import puppeteer from 'puppeteer';
+import {getTimeToFirstByte, getTimeToPageLoaded} from './pageMetricsEvaluation';
 
-interface PagePerformance {
+export interface PagePerformance {
     url: string;
     firstByte: number; 
     pageLoad: number;
   }
 
-//===============Metrics Methods===============
-//Time Until First Byte
-const getTimeToFirstByte = (results:PerformanceTiming):number => (results.responseStart - results.navigationStart);
-
-//Time Until Fully Loaded
-const getTimeToPageLoaded = (results:PerformanceTiming):number => (results.loadEventEnd - results.navigationStart);
-
-//AMP Resource Weight
-/*let ampResourceWgt = async (results:PerformanceTiming) => {
-    let weight = 0;
-    let weightArray = performance.getEntriesByType('resource').filter(item => {
-        return (item as PerformanceResourceTiming).initiatorType === 'script' && item.name.startsWith('https://cdn.ampproject.org/')})
-    weightArray.forEach(element => {
-        weight += (element as PerformanceResourceTiming).transferSize
-    });
-    return weight
-}*/
-
-export default async (webpage: string, downSpeed: number, upSpeed: number, lat: number):Promise<PagePerformance> => {
+export default async (url: string, downSpeed: number, upSpeed: number, lat: number):Promise<PagePerformance> => {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     //Sets the navigation timeout to 2 minutes
@@ -45,7 +28,8 @@ export default async (webpage: string, downSpeed: number, upSpeed: number, lat: 
       })
 
     //waits until the page is fully loaded
-    await page.goto(webpage, {
+    //TODO: handle navigationTimeouts
+    await page.goto(url, {
         waitUntil: 'networkidle0'
     })
     
@@ -55,7 +39,7 @@ export default async (webpage: string, downSpeed: number, upSpeed: number, lat: 
      }))
 
     return {
-        url:page.url(),
+        url: url,
         firstByte: getTimeToFirstByte(results),
         pageLoad: getTimeToPageLoaded(results),
     }
