@@ -1,5 +1,3 @@
-import { results } from './result';
-
 interface Metrics {
   url: string;
   firstByte: number;
@@ -32,7 +30,5 @@ function aggregateMetrics(metricsArr: Metrics[]) {
 }
 
 export const data = {
-  device: results.device,
-  networkSpeed: results.networkSpeed,
-  metrics: aggregateMetrics(results.metrics),
+  // aggregated results allong with the device and network speed
 };
