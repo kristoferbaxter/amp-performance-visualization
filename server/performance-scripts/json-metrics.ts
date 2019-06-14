@@ -2,13 +2,18 @@
  * @fileoverview Description of this file.
  */
 import { launch } from 'puppeteer';
-import { getTimeToFirstByte, getTimeToPageLoaded } from './page-metrics-evaluation';
+import { getTimeToFirstByte, getTimeToPageLoaded, getTimeToFirstContentfulPaint, getTimeToInteractive} from './page-metrics-evaluation';
 
 export interface PagePerformance {
   url: string;
   firstByte: number;
   pageLoad: number;
+  interactive: number;
+  firstContentfulPaint: number;
 }
+
+//networkidle0 means that there are no more than 0 network connections for atleast 500 milliseconds
+const NAVIGATION_COMPLETE = 'networkidle0';
 
 export default async (url: string, downSpeed: number, upSpeed: number, lat: number): Promise<PagePerformance> => {
   const browser = await launch();
@@ -30,7 +35,7 @@ export default async (url: string, downSpeed: number, upSpeed: number, lat: numb
   // waits until the page is fully loaded
   // TODO: handle navigationTimeouts
   await page.goto(url, {
-    waitUntil: 'networkidle0',
+    waitUntil: NAVIGATION_COMPLETE,
   });
 
   // Returning info
@@ -44,5 +49,7 @@ export default async (url: string, downSpeed: number, upSpeed: number, lat: numb
     url,
     firstByte: getTimeToFirstByte(results),
     pageLoad: getTimeToPageLoaded(results),
+    interactive: getTimeToInteractive(results),
+    firstContentfulPaint: getTimeToFirstContentfulPaint(results),
   };
 };
