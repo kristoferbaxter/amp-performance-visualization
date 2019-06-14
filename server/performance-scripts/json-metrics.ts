@@ -25,9 +25,9 @@ export default async (url: string, downSpeed: number, upSpeed: number, lat: numb
   const client = await page.target().createCDPSession();
   await client.send('Network.emulateNetworkConditions', {
     offline: false,
-    downloadThroughput: (downSpeed * 1024 * 1024) / 8,
-    uploadThroughput: (upSpeed * 1024 * 1024) / 8,
-    latency: 0,
+    downloadThroughput: (downSpeed * 1024) / 8,
+    uploadThroughput: (upSpeed * 1024) / 8,
+    latency: lat,
   });
 
   // waits until the page is fully loaded
