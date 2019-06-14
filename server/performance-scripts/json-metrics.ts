@@ -10,7 +10,7 @@ export interface PagePerformance {
   pageLoad: number;
 }
 
-export default async (url: string, downSpeed: number, upSpeed: number, lat: number): Promise<PagePerformance> => {
+const getMetrics = async (url: string, downSpeed: number, upSpeed: number, lat: number): Promise<PagePerformance> => {
   const browser = await launch();
   const page = await browser.newPage();
   // Sets the navigation timeout to 2 minutes
@@ -22,9 +22,9 @@ export default async (url: string, downSpeed: number, upSpeed: number, lat: numb
   const client = await page.target().createCDPSession();
   await client.send('Network.emulateNetworkConditions', {
     offline: false,
-    downloadThroughput: (downSpeed * 1024 * 1024) / 8,
-    uploadThroughput: (upSpeed * 1024 * 1024) / 8,
-    latency: 0,
+    downloadThroughput: (downSpeed * 1024) / 8,
+    uploadThroughput: (upSpeed * 1024) / 8,
+    latency: lat,
   });
 
   // waits until the page is fully loaded
@@ -46,3 +46,24 @@ export default async (url: string, downSpeed: number, upSpeed: number, lat: numb
     pageLoad: getTimeToPageLoaded(results),
   };
 };
+
+const getResults = async (webpage: string, downSpeed: number, upSpeed: number, lat: number) => {
+  const slowURL = new Promise (resolve => {
+      setTimeout(() => {
+          resolve({
+              url: webpage,
+              firstByte: -1,
+              pageLoad: -1,
+          })
+      },115000)
+  })
+
+  const pageMetrics = getMetrics(webpage, downSpeed, upSpeed, lat);
+
+  return await Promise.race([
+      slowURL,
+      pageMetrics
+  ]);
+}
+
+export default getResults;
