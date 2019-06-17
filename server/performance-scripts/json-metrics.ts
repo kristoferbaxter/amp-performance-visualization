@@ -5,6 +5,9 @@ import { launch } from 'puppeteer';
 import { getTimeToFirstByte, getTimeToPageLoaded } from './page-metrics-evaluation';
 import Statistics, { notAMP, snailURL, failedPageGoTo } from './performance-data';
 
+//Temporary output. Only to show new interface, not the actual output
+const TEMP_OUTPUT = 0;
+
 export default async (url: string, downSpeed: number, upSpeed: number, lat: number): Promise<Statistics> => {
   const browser = await launch();
   const page = await browser.newPage();
@@ -39,18 +42,18 @@ export default async (url: string, downSpeed: number, upSpeed: number, lat: numb
     url: url,
     responseStart: getTimeToFirstByte(results),
     loadEventEnd: getTimeToPageLoaded(results),
-    domInteractive: 0,
-    firstPaint: 0,
-    firstContentfulPaint: 0, //still working on adding these metrics
-    firstMeaningfulPaint: 0,
+    domInteractive: TEMP_OUTPUT,
+    firstPaint: TEMP_OUTPUT,
+    firstContentfulPaint: TEMP_OUTPUT, //still working on adding these metrics
+    firstMeaningfulPaint: TEMP_OUTPUT,
     custom: {
       ampJavascriptSize: [],
-      installStyles: [0, 0],
-      visible: 0,
-      onFirstVisible: 0,
-      makeBodyVisible: 0,
-      windowLoadEvent: 0,
-      firstViewportReady: 0,
+      installStyles: [TEMP_OUTPUT, TEMP_OUTPUT],
+      visible: TEMP_OUTPUT,
+      onFirstVisible: TEMP_OUTPUT,
+      makeBodyVisible: TEMP_OUTPUT,
+      windowLoadEvent: TEMP_OUTPUT,
+      firstViewportReady: TEMP_OUTPUT,
     },
   };
 };
