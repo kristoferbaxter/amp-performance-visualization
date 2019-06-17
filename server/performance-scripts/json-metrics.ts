@@ -10,6 +10,9 @@ export interface PagePerformance {
   pageLoad: number;
 }
 
+//const for line 58
+const NAV_TIMEOUT = 120000;
+
 const getMetrics = async (url: string, downSpeed: number, upSpeed: number, lat: number): Promise<PagePerformance> => {
   const browser = await launch();
   const page = await browser.newPage();
@@ -55,7 +58,7 @@ const getResults = async (webpage: string, downSpeed: number, upSpeed: number, l
               firstByte: -1,
               pageLoad: -1,
           })
-      },115000)
+      },NAV_TIMEOUT-100)
   })
 
   const pageMetrics = getMetrics(webpage, downSpeed, upSpeed, lat);
