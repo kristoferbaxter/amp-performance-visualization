@@ -3,6 +3,7 @@
  */
 import { launch } from 'puppeteer';
 import { getTimeToFirstByte, getTimeToPageLoaded } from './page-metrics-evaluation';
+import isAMP from './is-AMP';
 
 export interface PagePerformance {
   url: string;
@@ -12,8 +13,18 @@ export interface PagePerformance {
 
 //const for line 58
 const NAV_TIMEOUT = 120000;
+//URL provided is not AMP
+const NOT_AMP = -2;
 
 const getMetrics = async (url: string, downSpeed: number, upSpeed: number, lat: number): Promise<PagePerformance> => {
+  
+  if(!(await isAMP(url))) {
+    return {
+        url,
+        firstByte: NOT_AMP,
+        pageLoad: NOT_AMP,
+    }
+}
   const browser = await launch();
   const page = await browser.newPage();
   
