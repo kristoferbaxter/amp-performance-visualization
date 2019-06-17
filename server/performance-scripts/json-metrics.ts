@@ -16,8 +16,7 @@ const NAV_TIMEOUT = 120000;
 const getMetrics = async (url: string, downSpeed: number, upSpeed: number, lat: number): Promise<PagePerformance> => {
   const browser = await launch();
   const page = await browser.newPage();
-  // Sets the navigation timeout to 2 minutes
-  await page.setDefaultNavigationTimeout(120000);
+  
 
   /*Emulating a Wifi connection
     "/8" is included because network speed is commonly measured in bits/s
