@@ -18,7 +18,7 @@ export default async (url: string, downSpeed: number, upSpeed: number, lat: numb
 
   if(!(await isAMP(url))) {
     return {
-        url: url,
+        url,
         firstByte: NOT_AMP,
         pageLoad: NOT_AMP,
     }
