@@ -13,6 +13,8 @@ export interface PagePerformance {
 //networkidle0 means that there are no more than 0 network connections for atleast 500 milliseconds
 const NAVIGATION_COMPLETE = 'networkidle0';
 
+const SLOW_URL = -2;
+
 export default async (url: string, downSpeed: number, upSpeed: number, lat: number): Promise<PagePerformance> => {
   const browser = await launch();
   const page = await browser.newPage();
@@ -39,9 +41,9 @@ export default async (url: string, downSpeed: number, upSpeed: number, lat: numb
     })
 } catch (e) {
    return {
-       url: url,
-       firstByte: -1,
-       pageLoad: -1,
+       url,
+       firstByte: SLOW_URL,
+       pageLoad: SLOW_URL,
    }
 }
 
