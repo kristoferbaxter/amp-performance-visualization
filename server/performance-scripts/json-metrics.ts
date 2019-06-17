@@ -11,18 +11,21 @@ export interface PagePerformance {
   pageLoad: number;
 }
 
-//URL provided is not AMP
+// networkidle0 means that there are no more than 0 network connections for atleast 500 milliseconds
+const NAVIGATION_COMPLETE = 'networkidle0';
+// URL provided is not AMP
 const NOT_AMP = -2;
+// URL took too long to process.
+const SLOW_URL = -1;
 
 export default async (url: string, downSpeed: number, upSpeed: number, lat: number): Promise<PagePerformance> => {
-
-  if(!(await isAMP(url))) {
+  if (!(await isAMP(url))) {
     return {
-        url,
-        firstByte: NOT_AMP,
-        pageLoad: NOT_AMP,
-    }
-}
+      url,
+      firstByte: NOT_AMP,
+      pageLoad: NOT_AMP,
+    };
+  }
 
   const browser = await launch();
   const page = await browser.newPage();
@@ -35,16 +38,25 @@ export default async (url: string, downSpeed: number, upSpeed: number, lat: numb
   const client = await page.target().createCDPSession();
   await client.send('Network.emulateNetworkConditions', {
     offline: false,
-    downloadThroughput: (downSpeed * 1024 * 1024) / 8,
-    uploadThroughput: (upSpeed * 1024 * 1024) / 8,
-    latency: 0,
+    downloadThroughput: (downSpeed * 1024) / 8,
+    uploadThroughput: (upSpeed * 1024) / 8,
+    latency: lat,
   });
 
   // waits until the page is fully loaded
   // TODO: handle navigationTimeouts
-  await page.goto(url, {
-    waitUntil: 'networkidle0',
-  });
+  try {
+    await page.goto(url, {
+      timeout: 0, //disables navigation timeout
+      waitUntil: NAVIGATION_COMPLETE,
+    });
+  } catch (e) {
+    return {
+      url,
+      firstByte: SLOW_URL,
+      pageLoad: SLOW_URL,
+    };
+  }
 
   // Returning info
   const results = JSON.parse(
