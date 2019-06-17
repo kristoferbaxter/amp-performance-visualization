@@ -3,14 +3,9 @@
  */
 import { launch } from 'puppeteer';
 import { getTimeToFirstByte, getTimeToPageLoaded } from './page-metrics-evaluation';
+import Statistics, { notAMP, snailURL, failedPageGoTo } from './performance-data';
 
-export interface PagePerformance {
-  url: string;
-  firstByte: number;
-  pageLoad: number;
-}
-
-export default async (url: string, downSpeed: number, upSpeed: number, lat: number): Promise<PagePerformance> => {
+export default async (url: string, downSpeed: number, upSpeed: number, lat: number): Promise<Statistics> => {
   const browser = await launch();
   const page = await browser.newPage();
   // Sets the navigation timeout to 2 minutes
@@ -41,8 +36,21 @@ export default async (url: string, downSpeed: number, upSpeed: number, lat: numb
   );
 
   return {
-    url,
-    firstByte: getTimeToFirstByte(results),
-    pageLoad: getTimeToPageLoaded(results),
+    url: url,
+    responseStart: getTimeToFirstByte(results),
+    loadEventEnd: getTimeToPageLoaded(results),
+    domInteractive: 0,
+    firstPaint: 0,
+    firstContentfulPaint: 0, //still working on adding these metrics
+    firstMeaningfulPaint: 0,
+    custom: {
+      ampJavascriptSize: [],
+      installStyles: [0, 0],
+      visible: 0,
+      onFirstVisible: 0,
+      makeBodyVisible: 0,
+      windowLoadEvent: 0,
+      firstViewportReady: 0,
+    },
   };
 };
