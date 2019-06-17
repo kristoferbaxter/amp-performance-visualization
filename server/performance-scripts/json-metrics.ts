@@ -36,16 +36,16 @@ export default async (url: string, downSpeed: number, upSpeed: number, lat: numb
   // TODO: handle navigationTimeouts
   try {
     await page.goto(url, {
-        timeout: 0, //disables navigation timeout
-        waitUntil: NAVIGATION_COMPLETE
-    })
-} catch (e) {
-   return {
-       url,
-       firstByte: SLOW_URL,
-       pageLoad: SLOW_URL,
-   }
-}
+      timeout: 0, //disables navigation timeout
+      waitUntil: NAVIGATION_COMPLETE,
+    });
+  } catch (e) {
+    return {
+      url,
+      firstByte: SLOW_URL,
+      pageLoad: SLOW_URL,
+    };
+  }
 
   // Returning info
   const results = JSON.parse(
