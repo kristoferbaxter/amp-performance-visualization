@@ -11,22 +11,21 @@ export interface PagePerformance {
   pageLoad: number;
 }
 
-//networkidle0 means that there are no more than 0 network connections for atleast 500 milliseconds
+// networkidle0 means that there are no more than 0 network connections for atleast 500 milliseconds
 const NAVIGATION_COMPLETE = 'networkidle0';
-//URL provided is not AMP
+// URL provided is not AMP
 const NOT_AMP = -2;
-
-const SLOW_URL = -2;
+// URL took too long to process.
+const SLOW_URL = -1;
 
 export default async (url: string, downSpeed: number, upSpeed: number, lat: number): Promise<PagePerformance> => {
-
-  if(!(await isAMP(url))) {
+  if (!(await isAMP(url))) {
     return {
-        url,
-        firstByte: NOT_AMP,
-        pageLoad: NOT_AMP,
-    }
-}
+      url,
+      firstByte: NOT_AMP,
+      pageLoad: NOT_AMP,
+    };
+  }
 
   const browser = await launch();
   const page = await browser.newPage();
