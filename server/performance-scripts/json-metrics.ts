@@ -1,6 +1,3 @@
-/**
- * @fileoverview Description of this file.
- */
 import { launch } from 'puppeteer';
 import isAMP from './is-AMP';
 import { getTimeToFirstByte, getTimeToPageLoaded } from './page-metrics-evaluation';
@@ -72,17 +69,13 @@ const getMetrics: ResultsCalculator = async (url: string, downSpeed: number, upS
   };
 };
 
-const getResults = async (url: string, downSpeed: number, upSpeed: number, lat: number) => {
-  const slowURLReturn = snailURL(url);
-  const slowURL = new Promise(resolve => {
+const getResults: ResultsCalculator = async (url: string, downSpeed: number, upSpeed: number, lat: number) => {
+  const pageMetrics = getMetrics(url, downSpeed, upSpeed, lat);
+  const slowURL: Promise<Statistics> = new Promise(resolve => {
     setTimeout(() => {
-      resolve({
-        slowURLReturn,
-      });
+      resolve(snailURL(url));
     }, NAV_TIMEOUT - 100);
   });
-
-  const pageMetrics = getMetrics(url, downSpeed, upSpeed, lat);
 
   return await Promise.race([slowURL, pageMetrics]);
 };

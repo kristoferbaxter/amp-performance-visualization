@@ -12,9 +12,9 @@
     "dev": "preact watch",
     "lint": "tslint --project src",
     "test": "jest ./tests",
-    "build:server": "tsc --project ./server/",
+    "build:server": "tsc --project ./server",
     "prestart:server": "yarn build:server",
-    "start:server": "echo nothing to start",
+    "start:server": "node ./server/performance-scripts/test-file.js",
     "precommit": "lint-staged"
   },
   "lint-staged": {
