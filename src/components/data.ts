@@ -30,5 +30,5 @@ function aggregateMetrics(metricsArr: Metrics[]) {
 }
 
 export const data = {
-  // aggregated results allong with the device and network speed
+  // aggregated results aslong with the device and network speed
 };
