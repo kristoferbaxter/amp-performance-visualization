@@ -2,6 +2,7 @@
  * @fileoverview Description of this file.
  */
 import { launch } from 'puppeteer';
+
 import generate from './generate-statistics';
 import isAMP from './is-AMP';
 import { getTimeToFirstByte, getTimeToPageLoaded } from './page-metrics-evaluation';
@@ -9,14 +10,16 @@ import Statistics, { failedPageEval, failedPageGoTo, notAMP, snailURL } from './
 
 // Temporary output. Only to show new interface, not the actual output
 const TEMP_OUTPUT = 0;
-// const for line 58
+
 const NAV_TIMEOUT = 120000;
+
 // networkidle0 means that there are no more than 0 network connections for atleast 500 milliseconds
 const NAVIGATION_COMPLETE = 'networkidle0';
 
 const getMetrics = async (url: string, downSpeed: number, upSpeed: number, latency: number): Promise<Statistics> => {
   if (!(await isAMP(url))) {
-    return notAMP(url);
+    return invalidAMP(url);
+
   }
 
   const browser = await launch();
@@ -49,6 +52,7 @@ const getMetrics = async (url: string, downSpeed: number, upSpeed: number, laten
   // Returning info
   let statistics: Statistics = failedPageEval(url);
 
+
   // Returning info
   try {
     statistics = await generate(page);
@@ -60,6 +64,7 @@ const getMetrics = async (url: string, downSpeed: number, upSpeed: number, laten
   await browser.close();
 
   return statistics;
+
 };
 
 const getResults = async (url: string, downSpeed: number, upSpeed: number, lat: number) => {

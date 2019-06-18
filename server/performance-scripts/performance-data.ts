@@ -24,6 +24,7 @@ export interface AMPCustomStatistics {
   firstViewportReady: number;
 }
 
+
 // Failed page.evaluate
 const EVALUATE_FAILED = 0;
 // The webpage loaded too slow
@@ -33,7 +34,8 @@ const NOT_AMP = -2;
 // page.goto has failed
 const GO_TO_FAILED = -3;
 
-export const notAMP = (url: string): Statistics => ({
+
+export const invalidAMP = (url: string): Statistics => ({
   url,
   responseStart: NOT_AMP, // firstByte
   loadEventEnd: NOT_AMP, // pageLoad
@@ -105,6 +107,7 @@ export const failedPageGoTo = (url: string): Statistics => ({
   },
 });
 
+
 export const failedPageEval = (url: string): Statistics => ({
   url,
   responseStart: EVALUATE_FAILED, // firstByte
@@ -128,3 +131,4 @@ export const failedPageEval = (url: string): Statistics => ({
     firstViewportReady: EVALUATE_FAILED,
   },
 });
+
