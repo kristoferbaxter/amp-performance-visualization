@@ -9,20 +9,20 @@ import isAMP from './is-AMP';
 
 //Temporary output. Only to show new interface, not the actual output
 const TEMP_OUTPUT = 0;
-
-
+//const for line 58
+const NAV_TIMEOUT = 120000;
 // networkidle0 means that there are no more than 0 network connections for atleast 500 milliseconds
 const NAVIGATION_COMPLETE = 'networkidle0';
 
-export default async (url: string, downSpeed: number, upSpeed: number, lat: number): Promise<Statistics> => {
+const getMetrics = async (url: string, downSpeed: number, upSpeed: number, lat: number): Promise<Statistics> => {
+  
   if (!(await isAMP(url))) {
     return notAMP(url);
   }
-
+  
   const browser = await launch();
   const page = await browser.newPage();
-  // Sets the navigation timeout to 2 minutes
-  await page.setDefaultNavigationTimeout(120000);
+  
 
   /*Emulating a Wifi connection
     "/8" is included because network speed is commonly measured in bits/s
@@ -54,7 +54,7 @@ export default async (url: string, downSpeed: number, upSpeed: number, lat: numb
   );
 
   return {
-    url: url,
+    url,
     responseStart: getTimeToFirstByte(results),
     loadEventEnd: getTimeToPageLoaded(results),
     domInteractive: TEMP_OUTPUT,
@@ -72,3 +72,24 @@ export default async (url: string, downSpeed: number, upSpeed: number, lat: numb
     },
   };
 };
+
+const getResults = async (webpage: string, downSpeed: number, upSpeed: number, lat: number) => {
+  const slowURL = new Promise (resolve => {
+      setTimeout(() => {
+          resolve({
+              url: webpage,
+              firstByte: -1,
+              pageLoad: -1,
+          })
+      },NAV_TIMEOUT-100)
+  })
+
+  const pageMetrics = getMetrics(webpage, downSpeed, upSpeed, lat);
+
+  return await Promise.race([
+      slowURL,
+      pageMetrics
+  ]);
+}
+
+export default getResults;
