@@ -26,6 +26,8 @@ export interface AMPCustomStatistics {
   firstViewportReady: number;
 }
 
+// Failed page.evaluate
+const EVALUATE_FAILED = 0;
 // The webpage loaded too slow
 const SLOW_URL = -1;
 // The url entered is not amp
@@ -102,5 +104,29 @@ export const failedPageGoTo = (url: string): Statistics => ({
     makeBodyVisible: GO_TO_FAILED,
     windowLoadEvent: GO_TO_FAILED,
     firstViewportReady: GO_TO_FAILED,
+  },
+});
+
+export const failedPageEval = (url: string): Statistics => ({
+  url,
+  responseStart: EVALUATE_FAILED, // firstByte
+  loadEventEnd: EVALUATE_FAILED, // pageLoad
+  domInteractive: EVALUATE_FAILED, // interactive
+  firstPaint: EVALUATE_FAILED,
+  firstContentfulPaint: EVALUATE_FAILED, // use Performance.metrics injected into webpage
+  firstMeaningfulPaint: EVALUATE_FAILED,
+  custom: {
+    ampJavascriptSize: [
+      {
+        url,
+        size: EVALUATE_FAILED,
+      },
+    ],
+    installStyles: [EVALUATE_FAILED, EVALUATE_FAILED],
+    visible: EVALUATE_FAILED,
+    onFirstVisible: EVALUATE_FAILED,
+    makeBodyVisible: EVALUATE_FAILED,
+    windowLoadEvent: EVALUATE_FAILED,
+    firstViewportReady: EVALUATE_FAILED,
   },
 });

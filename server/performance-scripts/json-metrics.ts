@@ -1,12 +1,13 @@
 import { launch } from 'puppeteer';
+import generate from './generate-statistics';
 import isAMP from './is-AMP';
-import { getTimeToFirstByte, getTimeToPageLoaded } from './page-metrics-evaluation';
-import Statistics, { failedPageGoTo, invalidAMP, ResultsCalculator, snailURL } from './performance-data';
+import Statistics, { failedPageEval, failedPageGoTo, invalidAMP, ResultsCalculator, snailURL } from './performance-data';
 
 // Temporary output. Only to show new interface, not the actual output
 const TEMP_OUTPUT = 0;
-// const for line 58
+
 const NAV_TIMEOUT = 120000;
+
 // networkidle0 means that there are no more than 0 network connections for atleast 500 milliseconds
 const NAVIGATION_COMPLETE = 'networkidle0';
 
@@ -43,30 +44,19 @@ const getMetrics: ResultsCalculator = async (url: string, downSpeed: number, upS
   }
 
   // Returning info
-  const results = JSON.parse(
-    await page.evaluate(() => {
-      return JSON.stringify(performance.timing);
-    }),
-  );
+  let statistics: Statistics = failedPageEval(url);
 
-  return {
-    url,
-    responseStart: getTimeToFirstByte(results),
-    loadEventEnd: getTimeToPageLoaded(results),
-    domInteractive: TEMP_OUTPUT,
-    firstPaint: TEMP_OUTPUT,
-    firstContentfulPaint: TEMP_OUTPUT, // still working on adding these metrics
-    firstMeaningfulPaint: TEMP_OUTPUT,
-    custom: {
-      ampJavascriptSize: [],
-      installStyles: [TEMP_OUTPUT, TEMP_OUTPUT],
-      visible: TEMP_OUTPUT,
-      onFirstVisible: TEMP_OUTPUT,
-      makeBodyVisible: TEMP_OUTPUT,
-      windowLoadEvent: TEMP_OUTPUT,
-      firstViewportReady: TEMP_OUTPUT,
-    },
-  };
+  // Returning info
+  try {
+    statistics = await generate(page);
+  } catch (e) {
+    console.log(e);
+    return failedPageEval(url);
+  } finally {
+    await browser.close();
+  }
+
+  return statistics;
 };
 
 const getResults: ResultsCalculator = async (url: string, downSpeed: number, upSpeed: number, lat: number) => {
