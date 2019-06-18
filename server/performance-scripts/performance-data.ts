@@ -1,3 +1,5 @@
+export type ResultsCalculator = (url: string, downSpeed: number, upSpeed: number, latency: number) => Promise<Statistics>;
+
 export default interface Statistics {
   url: string;
   responseStart: number; // firstByte

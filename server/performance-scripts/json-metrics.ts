@@ -4,7 +4,7 @@
 import { launch } from 'puppeteer';
 import isAMP from './is-AMP';
 import { getTimeToFirstByte, getTimeToPageLoaded } from './page-metrics-evaluation';
-import Statistics, { failedPageGoTo, invalidAMP, snailURL } from './performance-data';
+import Statistics, { failedPageGoTo, invalidAMP, ResultsCalculator, snailURL } from './performance-data';
 
 // Temporary output. Only to show new interface, not the actual output
 const TEMP_OUTPUT = 0;
@@ -13,7 +13,7 @@ const NAV_TIMEOUT = 120000;
 // networkidle0 means that there are no more than 0 network connections for atleast 500 milliseconds
 const NAVIGATION_COMPLETE = 'networkidle0';
 
-const getMetrics = async (url: string, downSpeed: number, upSpeed: number, latency: number): Promise<Statistics> => {
+const getMetrics: ResultsCalculator = async (url: string, downSpeed: number, upSpeed: number, latency: number): Promise<Statistics> => {
   if (!(await isAMP(url))) {
     return invalidAMP(url);
   }
