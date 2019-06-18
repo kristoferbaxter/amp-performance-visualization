@@ -46,7 +46,7 @@ function makeFrequencyArray(data: number[]): number[] {
 export class BarChart extends Component<Props, State> {
   public static defaultProps = {
     svgHeight: 800,
-    svgWidth: 800,
+    svgWidth: 1000,
     xLabelWidth: 50,
     axisOffset: 10,
   };
@@ -93,6 +93,11 @@ export class BarChart extends Component<Props, State> {
           </g>
           <g class={style.barChartAxis}>
             <Axis minX={svgX(0)} minY={svgY(0)} maxX={svgX(numOfBars)} maxY={svgY(maxValue)} />
+          </g>
+          <g>
+            {newData.map((value, index) => (
+              <ValueLabel x={svgX(index + 1) - barWidth / 2} y={svgY(value)} value={Math.round(value)} />
+            ))}
           </g>
         </svg>
         <svg width="100%">
