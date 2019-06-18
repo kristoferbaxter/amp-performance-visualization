@@ -9,13 +9,13 @@ import { YLabel } from './YLabel';
 
 interface Props {
   data: Array<{ [k: string]: number }>;
+  graphChoice: string;
   svgWidth: number;
   svgHeight: number;
+  axisWidth: number;
+  axisHeight: number;
   xLabelWidth: number;
   axisOffset: number;
-}
-interface State {
-  graphChoice: string;
 }
 
 function sortNeededData(data: Array<{ [k: string]: number }>, graphChoice: string): number[] {
@@ -43,30 +43,23 @@ function makeFrequencyArray(data: number[]): number[] {
   return freqArray;
 }
 
-export class BarChart extends Component<Props, State> {
+export class BarChart extends Component<Props> {
   public static defaultProps = {
-    svgHeight: 800,
+    svgHeight: 1000,
     svgWidth: 1000,
+    axisHeight: 950,
+    axisWidth: 950,
     xLabelWidth: 50,
     axisOffset: 10,
   };
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      graphChoice: 'firstByte', //  firstByte, pageLoad, interactive, firstContentfulPaint
-    };
-  }
 
-  public render({ data, svgHeight, svgWidth, xLabelWidth, axisOffset }: Props): JSX.Element {
-    const sortedData = sortNeededData(data, this.state.graphChoice);
-    console.log(sortedData);
+  public render({ data, svgHeight, svgWidth, axisHeight, axisWidth, xLabelWidth, axisOffset, graphChoice }: Props): JSX.Element {
+    const sortedData = sortNeededData(data, graphChoice);
     const newData = makeFrequencyArray(sortedData);
-    console.log(newData);
     const maxValue = Math.ceil(Math.max.apply(null, Object.values(newData)) / 100) * 100;
-    console.log(maxValue);
     const numOfBars = newData.length + 1;
-    const svgX = (x: number): number => (x / numOfBars) * svgWidth;
-    const svgY = (y: number): number => svgHeight - (y / maxValue) * svgHeight;
+    const axisX = (x: number): number => (x / numOfBars) * axisWidth;
+    const axisY = (y: number): number => axisHeight - (y / maxValue) * axisHeight;
     const barWidth = svgWidth / 2 / numOfBars;
     const divisions = [];
     const numOfDivisions = maxValue / 50;
@@ -75,35 +68,41 @@ export class BarChart extends Component<Props, State> {
     }
     return (
       <div class={style.graph}>
-        <svg width={xLabelWidth} height={svgHeight} class={style.xLabel}>
-          {divisions.map(value => (
-            <XLabel x={xLabelWidth - 5} y={svgY(value)} value={value} />
-          ))}
-        </svg>
         <svg width={svgWidth} height={svgHeight}>
+          <g class={style.xLabel}>
+            {divisions.map(value => (
+              <XLabel x={xLabelWidth} y={axisY(value)} value={value} />
+            ))}
+          </g>
           <g class={style.divisions}>
             {divisions.map(value => (
-              <XDivision minX={0} maxX={svgWidth} y={svgY(value)} />
+              <XDivision minX={svgWidth - axisWidth} maxX={svgWidth} y={axisY(value)} />
             ))}
           </g>
           <g class={style.barChartRects}>
             {newData.map((value, index) => (
-              <Bar x={svgX(index + 1) - barWidth / 2} y={svgY(value)} width={barWidth} height={svgHeight - svgY(value)} />
+              <Bar
+                x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)}
+                y={axisY(value)}
+                width={barWidth}
+                height={axisHeight - axisY(value)}
+              />
             ))}
           </g>
           <g class={style.barChartAxis}>
-            <Axis minX={svgX(0)} minY={svgY(0)} maxX={svgX(numOfBars)} maxY={svgY(maxValue)} />
+            <Axis minX={svgWidth - axisWidth} minY={axisHeight} maxX={svgWidth} maxY={axisY(maxValue)} />
           </g>
           <g>
             {newData.map((value, index) => (
-              <ValueLabel x={svgX(index + 1) - barWidth / 2} y={svgY(value)} value={Math.round(value)} />
+              <ValueLabel x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisY(value)} value={Math.round(value)} />
             ))}
           </g>
-        </svg>
-        <svg width="100%">
-          {newData.map((value, index) => (
-            <YLabel x={svgX(index + 1)} y={axisOffset} value={index * 1000} />
-          ))}
+
+          <g>
+            {newData.map((value, index) => (
+              <YLabel x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisHeight + axisOffset} value={(index + 1) * 1000} />
+            ))}
+          </g>
         </svg>
       </div>
     );
@@ -123,42 +122,42 @@ export class BarChart extends Component<Props, State> {
 //   <div class={style.graph}>
 //     <svg width={xLabelWidth} height={svgHeight} class={style.xLabel}>
 //       {divisions.map(value => (
-//         <XLabel x={xLabelWidth - 5} y={svgY(value, this.props)} value={value} />
+//         <XLabel x={xLabelWidth - 5} y={axisY(value, this.props)} value={value} />
 //       ))}
 //     </svg>
 //     <svg width={svgWidth} height={svgHeight}>
 //       <g class={style.divisions}>
 //         {divisions.map(value => (
-//           <XDivision minX={0} maxX={svgWidth} y={svgY(value, this.props)} />
+//           <XDivision minX={0} maxX={svgWidth} y={axisY(value, this.props)} />
 //         ))}
 //       </g>
 //       <g class={style.barChartRects}>
 //         {valueArr.map((value, index) => (
 //           <Bar
-//             x={svgX(index + 1, this.props) - barWidth / 2}
-//             y={svgY(value, this.props)}
+//             x={axisX(index + 1, this.props) - barWidth / 2}
+//             y={axisY(value, this.props)}
 //             width={barWidth}
-//             height={svgHeight - svgY(value, this.props)}
+//             height={svgHeight - axisY(value, this.props)}
 //           />
 //         ))}
 //       </g>
 //       <g class={style.barChartAxis}>
 //         <Axis
-//           minX={svgX(0, this.props)}
-//           minY={svgY(0, this.props)}
-//           maxX={svgX(numOfMetrics(this.props), this.props)}
-//           maxY={svgY(maxValue(this.props), this.props)}
+//           minX={axisX(0, this.props)}
+//           minY={axisY(0, this.props)}
+//           maxX={axisX(numOfMetrics(this.props), this.props)}
+//           maxY={axisY(maxValue(this.props), this.props)}
 //         />
 //       </g>
 //       <g>
 //         {valueArr.map((value, index) => (
-//           <ValueLabel x={svgX(index + 1, this.props) - barWidth / 2} y={svgY(value, this.props)} value={Math.round(value) + ' ms'} />
+//           <ValueLabel x={axisX(index + 1, this.props) - barWidth / 2} y={axisY(value, this.props)} value={Math.round(value) + ' ms'} />
 //         ))}
 //       </g>
 //     </svg>
 //     <svg width="100%">
 //       {keyArr.map((value, index) => (
-//         <YLabel x={svgX(index + 1, this.props) + barWidth / 2} y={axisOffset} value={value} />
+//         <YLabel x={axisX(index + 1, this.props) + barWidth / 2} y={axisOffset} value={value} />
 //       ))}
 //     </svg>
 //   </div>

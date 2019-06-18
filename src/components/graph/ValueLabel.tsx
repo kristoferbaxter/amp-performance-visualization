@@ -13,6 +13,9 @@ export const ValueLabel = ({ x, y, value }: Props): JSX.Element => {
     newY = y + 17;
     color = 'white';
   }
+  if (value === 0) {
+    value = '';
+  }
   return (
     <text fill={color} x={x} y={newY}>
       {value}
