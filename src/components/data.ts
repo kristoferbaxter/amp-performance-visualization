@@ -8,7 +8,7 @@ interface ParsedData {
 }
 
 function filterBadData(metricsArr: Metrics[]) {
-  return metricsArr.filter(metrics => !(Object.values(metrics)[1] < 50));
+  return metricsArr.filter(metrics => !(Object.values(metrics)[1] <= 0));
 }
 
 function parseMetrics(metricsArr: Metrics[]) {
