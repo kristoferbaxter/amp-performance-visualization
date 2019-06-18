@@ -7,7 +7,6 @@ interface Props {
 }
 
 export const YLabel = ({ x, y, value }: Props): JSX.Element => {
-  const transOrigin: string = `${x} ${y}`;
   return (
     <text transform-origin={`${x} ${y}`} transform="rotate(40)" x={x} y={y}>
       {value}
