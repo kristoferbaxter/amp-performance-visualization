@@ -2,7 +2,6 @@
  * @fileoverview Description of this file.
  */
 import { launch } from 'puppeteer';
-
 import generate from './generate-statistics';
 import isAMP from './is-AMP';
 import Statistics, { failedPageEval, failedPageGoTo, invalidAMP, snailURL } from './performance-data';
