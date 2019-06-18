@@ -11,8 +11,8 @@ function getMetricNames(metrics: Array<{ [k: string]: number }>) {
 
 export const DropDown = ({ metrics, onSelection }: Props): JSX.Element => {
   const metricNames = getMetricNames(metrics);
-  const event = document.querySelector('dropDown')!;
-  event.addEventListener('change', onSelection);
+  //  const event = document.querySelector('dropDown')!;
+  //  event.addEventListener('change', onSelection);
   return (
     <select id="dropDown">
       <option value="all" selected={true}>
