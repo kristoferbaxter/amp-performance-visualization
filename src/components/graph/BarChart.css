@@ -3,7 +3,7 @@
 }
 .barChartAxis {
   stroke: black;
-  stroke-width: 4px;
+  stroke-width: 2px;
 }
 .graph {
   float: left;
