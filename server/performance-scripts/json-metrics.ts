@@ -13,11 +13,8 @@ export interface PagePerformance {
 
 // const for line 58
 const NAV_TIMEOUT = 120000;
-// URL provided is not AMP
-
 // networkidle0 means that there are no more than 0 network connections for atleast 500 milliseconds
 const NAVIGATION_COMPLETE = 'networkidle0';
-
 // URL provided is not AMP
 const NOT_AMP = -2;
 // URL took too long to process.
