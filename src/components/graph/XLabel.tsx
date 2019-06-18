@@ -7,7 +7,7 @@ interface Props {
 }
 
 export const XLabel = ({ x, y, value }: Props): JSX.Element => (
-  <text alignment-baseline="middle" x={x} y={y}>
+  <text x={x} y={y}>
     {value}
   </text>
 );

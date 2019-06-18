@@ -59,17 +59,14 @@ export class BarChart extends Component<Props, State> {
 
   public render({ data, svgHeight, svgWidth, xLabelWidth, axisOffset }: Props): JSX.Element {
     const sortedData = sortNeededData(data, this.state.graphChoice);
-    console.log(sortedData);
     const newData = makeFrequencyArray(sortedData);
-    console.log(newData);
-    const maxValue = Math.ceil(Math.max.apply(null, Object.values(newData)) / 100) * 100;
-    console.log(maxValue);
-    const numOfBars = newData.length + 1;
+    const maxValue = Math.ceil(Math.max.apply(null, Object.values(newData)) / 100) * 100; // Finds the largest data point and rounds it up to the nearest hundred
+    const numOfBars = newData.length + 1; // Adding 1 puts a necessary buffer to the end of the graph so all bars will be able to be seen
     const svgX = (x: number): number => (x / numOfBars) * svgWidth;
     const svgY = (y: number): number => svgHeight - (y / maxValue) * svgHeight;
     const barWidth = svgWidth / 2 / numOfBars;
     const divisions = [];
-    const numOfDivisions = maxValue / 50;
+    const numOfDivisions = maxValue / 50; // This is the number of divisions needed if the graph is to be split every 50 units
     for (let i = 1; i <= numOfDivisions - 1; i++) {
       divisions.push((maxValue * i) / numOfDivisions);
     }
