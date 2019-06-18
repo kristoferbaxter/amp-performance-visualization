@@ -6,7 +6,7 @@ import { launch } from 'puppeteer';
 import generate from './generate-statistics';
 import isAMP from './is-AMP';
 import { getTimeToFirstByte, getTimeToPageLoaded } from './page-metrics-evaluation';
-import Statistics, { failedPageEval, failedPageGoTo, notAMP, snailURL } from './performance-data';
+import Statistics, { failedPageEval, failedPageGoTo, invalidAMP, snailURL } from './performance-data';
 
 // Temporary output. Only to show new interface, not the actual output
 const TEMP_OUTPUT = 0;
@@ -19,7 +19,6 @@ const NAVIGATION_COMPLETE = 'networkidle0';
 const getMetrics = async (url: string, downSpeed: number, upSpeed: number, latency: number): Promise<Statistics> => {
   if (!(await isAMP(url))) {
     return invalidAMP(url);
-
   }
 
   const browser = await launch();
@@ -52,7 +51,6 @@ const getMetrics = async (url: string, downSpeed: number, upSpeed: number, laten
   // Returning info
   let statistics: Statistics = failedPageEval(url);
 
-
   // Returning info
   try {
     statistics = await generate(page);
@@ -64,7 +62,6 @@ const getMetrics = async (url: string, downSpeed: number, upSpeed: number, laten
   await browser.close();
 
   return statistics;
-
 };
 
 const getResults = async (url: string, downSpeed: number, upSpeed: number, lat: number) => {
