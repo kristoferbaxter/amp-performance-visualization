@@ -2,9 +2,10 @@
  * @fileoverview Description of this file.
  */
 import { launch } from 'puppeteer';
+import generate from './generate-statistics';
 import isAMP from './is-AMP';
 import { getTimeToFirstByte, getTimeToPageLoaded } from './page-metrics-evaluation';
-import Statistics, { failedPageGoTo, notAMP, snailURL } from './performance-data';
+import Statistics, { failedPageEval, failedPageGoTo, notAMP, snailURL } from './performance-data';
 
 // Temporary output. Only to show new interface, not the actual output
 const TEMP_OUTPUT = 0;
@@ -46,30 +47,19 @@ const getMetrics = async (url: string, downSpeed: number, upSpeed: number, laten
   }
 
   // Returning info
-  const results = JSON.parse(
-    await page.evaluate(() => {
-      return JSON.stringify(performance.timing);
-    }),
-  );
+  let statistics: Statistics = failedPageEval(url);
 
-  return {
-    url,
-    responseStart: getTimeToFirstByte(results),
-    loadEventEnd: getTimeToPageLoaded(results),
-    domInteractive: TEMP_OUTPUT,
-    firstPaint: TEMP_OUTPUT,
-    firstContentfulPaint: TEMP_OUTPUT, // still working on adding these metrics
-    firstMeaningfulPaint: TEMP_OUTPUT,
-    custom: {
-      ampJavascriptSize: [],
-      installStyles: [TEMP_OUTPUT, TEMP_OUTPUT],
-      visible: TEMP_OUTPUT,
-      onFirstVisible: TEMP_OUTPUT,
-      makeBodyVisible: TEMP_OUTPUT,
-      windowLoadEvent: TEMP_OUTPUT,
-      firstViewportReady: TEMP_OUTPUT,
-    },
-  };
+  // Returning info
+  try {
+    statistics = await generate(page);
+  } catch (e) {
+    console.log(e);
+    throw new Error('Page failed to evaluate functions within browser');
+  }
+
+  await browser.close();
+
+  return statistics;
 };
 
 const getResults = async (url: string, downSpeed: number, upSpeed: number, lat: number) => {
