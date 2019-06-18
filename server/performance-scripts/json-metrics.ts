@@ -5,7 +5,6 @@ import { launch } from 'puppeteer';
 
 import generate from './generate-statistics';
 import isAMP from './is-AMP';
-import { getTimeToFirstByte, getTimeToPageLoaded } from './page-metrics-evaluation';
 import Statistics, { failedPageEval, failedPageGoTo, invalidAMP, snailURL } from './performance-data';
 
 // Temporary output. Only to show new interface, not the actual output
