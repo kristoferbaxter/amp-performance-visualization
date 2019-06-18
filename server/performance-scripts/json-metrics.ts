@@ -56,10 +56,10 @@ const getMetrics = async (url: string, downSpeed: number, upSpeed: number, laten
     statistics = await generate(page);
   } catch (e) {
     console.log(e);
-    throw new Error('Page failed to evaluate functions within browser');
+    return failedPageEval(url);
+  } finally {
+    await browser.close();
   }
-
-  await browser.close();
 
   return statistics;
 };
