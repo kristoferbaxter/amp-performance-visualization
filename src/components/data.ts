@@ -15,7 +15,7 @@ function getMedian(numArray: number[]): number {
 }
 
 function filterBadData(metricsArr: Metrics[]) {
-  return metricsArr.filter(metrics => !(Object.values(metrics)[1] < 50 || Object.values(metrics)[0].includes('chrome-error:')));
+  return metricsArr.filter(metrics => !(Object.values(metrics)[1] <= 0));
 }
 
 function aggregateMetrics(metricsArr: Metrics[]) {
