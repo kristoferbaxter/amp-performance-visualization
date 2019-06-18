@@ -28,7 +28,9 @@ function aggregateMetrics(metricsArr: Metrics[]) {
   }
   return aggregate;
 }
+function getDevice(metricsArr: Metrics[]) {}
+function getNetworkSpeed(metricsArr: Metrics[]) {}
 
 export const data = {
-  // aggregated results aslong with the device and network speed
+  device: getDevice(),
 };

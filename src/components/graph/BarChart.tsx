@@ -15,8 +15,8 @@ interface Props {
 
 interface State {}
 
-const maxValue = ({ data }: Props): number => Math.ceil(Math.max.apply(null, Object.values(data)) / 1000) * 1000;
-const numOfMetrics = ({ data }: Props): number => Object.keys(data).length + 1;
+const maxValue = ({ data }: Props): number => Math.ceil(Math.max.apply(null, Object.values(data)) / 1000) * 1000; // Finds the largest data point and rounds it up to the nearest 1000
+const numOfMetrics = ({ data }: Props): number => Object.keys(data).length + 1; // Adding 1 puts a necessary buffer between the last bar and the edge of the graph
 const svgX = (x: number, props: Props): number => (x / numOfMetrics(props)) * props.svgWidth;
 const svgY = (y: number, props: Props): number => props.svgHeight - (y / maxValue(props)) * props.svgHeight;
 
@@ -33,7 +33,7 @@ class BarChart extends Component<Props, State> {
     const xLabelWidth = 50;
     const barWidth = svgWidth / 2 / numOfMetrics(this.props);
     const divisions = [];
-    const numOfDivisions = maxValue(this.props) / 1000;
+    const numOfDivisions = maxValue(this.props) / 1000; // Finds the number of divisions necessary to put horizontgal divisions every 1000 units
     for (let i = 1; i <= numOfDivisions - 1; i++) {
       divisions.push((maxValue(this.props) * i) / numOfDivisions);
     }
