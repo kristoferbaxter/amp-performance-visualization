@@ -28,6 +28,11 @@
       "git add"
     ]
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "eslintConfig": {
     "extends": "eslint-config-aerian"
   },
@@ -61,6 +66,7 @@
     "typings-for-css-modules-loader": "^1.7.0"
   },
   "dependencies": {
+    "@types/node-fetch": "^2.3.7",
     "preact": "^8.3.1",
     "preact-compat": "^3.18.4",
     "preact-render-to-string": "^4.1.0",
