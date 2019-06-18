@@ -31,7 +31,7 @@ const NOT_AMP = -2;
 // page.goto has failed
 const GO_TO_FAILED = -3;
 
-export const notAMP = (url: string): Statistics => ({
+export const invalidAMP = (url: string): Statistics => ({
   url,
   responseStart: NOT_AMP, // firstByte
   loadEventEnd: NOT_AMP, // pageLoad
