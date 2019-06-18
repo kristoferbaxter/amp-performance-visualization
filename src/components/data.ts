@@ -1,3 +1,5 @@
+import { results } from './results';
+
 interface Metrics {
   url: string;
   firstByte: number;
@@ -28,9 +30,10 @@ function aggregateMetrics(metricsArr: Metrics[]) {
   }
   return aggregate;
 }
-function getDevice(metricsArr: Metrics[]) {}
-function getNetworkSpeed(metricsArr: Metrics[]) {}
 
 export const data = {
-  device: getDevice(),
+  // gets the device, network speed, and metrics from the results json
+  device: results.device,
+  networkSpeed: results.networkSpeed,
+  metrics: aggregateMetrics(results.metrics),
 };
