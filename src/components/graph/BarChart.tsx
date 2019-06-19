@@ -1,7 +1,7 @@
 import { Component, h } from 'preact';
 import { Axis } from './Axis';
 import { Bar } from './Bar';
-import style from './BarChart.css';
+import style from './Chart.css';
 import { ValueLabel } from './ValueLabel';
 import { XDivision } from './XDivision';
 import { XLabel } from './XLabel';
@@ -56,13 +56,14 @@ export class BarChart extends Component<Props> {
   public render({ data, svgHeight, svgWidth, axisHeight, axisWidth, xLabelWidth, axisOffset, graphChoice }: Props): JSX.Element {
     const sortedData = sortNeededData(data, graphChoice);
     const newData = makeFrequencyArray(sortedData);
-    const maxValue = Math.ceil(Math.max.apply(null, Object.values(newData)) / 100) * 100;
+    const maxValue = Math.ceil(Math.max.apply(null, Object.values(newData)) / 10) * 10;
+    console.log(maxValue);
     const numOfBars = newData.length + 1;
     const axisX = (x: number): number => (x / numOfBars) * axisWidth;
     const axisY = (y: number): number => axisHeight - (y / maxValue) * axisHeight;
     const barWidth = svgWidth / 2 / numOfBars;
     const divisions = [];
-    const numOfDivisions = maxValue / 50;
+    const numOfDivisions = maxValue / 10;
     for (let i = 1; i <= numOfDivisions - 1; i++) {
       divisions.push((maxValue * i) / numOfDivisions);
     }
@@ -99,7 +100,7 @@ export class BarChart extends Component<Props> {
           </g>
 
           <g>
-            {newData.map(index => (
+            {newData.map((value, index) => (
               <YLabel x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisHeight + axisOffset} value={(index + 1) * 1000} />
             ))}
           </g>

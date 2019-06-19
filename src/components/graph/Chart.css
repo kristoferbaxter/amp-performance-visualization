@@ -3,7 +3,7 @@
 }
 .barChartAxis {
   stroke: black;
-  stroke-width: 2px;
+  stroke-width: 4px;
 }
 .graph {
   float: left;
@@ -16,4 +16,8 @@
 }
 .divisions {
   stroke: grey;
+}
+.confidenceLines {
+  stroke: red;
+  stroke-width: 4px;
 }

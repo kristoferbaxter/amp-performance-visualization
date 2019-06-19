@@ -2,6 +2,7 @@ import { Component, h } from 'preact';
 import { data } from '../../components/data';
 import { DropDown } from '../../components/DropDown';
 import { BarChart } from '../../components/graph/BarChart';
+import { ConfidenceChart } from '../../components/graph/ConfidenceChart';
 import * as style from './style.css';
 
 interface Props {}
@@ -27,6 +28,7 @@ export default class Home extends Component<Props, State> {
         <p>Network Speed: {data.networkSpeed}</p>
         <DropDown metrics={data.metrics} onSelection={this.updateGraph} />
         <BarChart data={data.metrics} graphChoice={this.state.graphChoice} />
+        <ConfidenceChart data={data.metrics} />
       </div>
     );
   }
