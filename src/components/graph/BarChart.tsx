@@ -56,6 +56,7 @@ export class BarChart extends Component<Props> {
   public render({ data, svgHeight, svgWidth, axisHeight, axisWidth, xLabelWidth, axisOffset, graphChoice }: Props): JSX.Element {
     const sortedData = sortNeededData(data, graphChoice);
     const newData = makeFrequencyArray(sortedData);
+    console.log(sortedData);
     const maxValue = Math.ceil(Math.max.apply(null, Object.values(newData)) / 10) * 10;
     console.log(maxValue);
     const numOfBars = newData.length + 1;
@@ -99,7 +100,7 @@ export class BarChart extends Component<Props> {
             ))}
           </g>
 
-          <g>
+          <g class={style.yLabel}>
             {newData.map((value, index) => (
               <YLabel x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisHeight + axisOffset} value={(index + 1) * 1000} />
             ))}

@@ -5,23 +5,15 @@ interface Props {
   onSelection: (choice: string) => void;
 }
 
-function getMetricNames(metrics: Array<{ [k: string]: number }>) {
-  return Object.keys(metrics[0]);
-}
-
 export class DropDown extends Component<Props> {
   public handleSelection = (): void => {
     this.props.onSelection((this.base as HTMLSelectElement).selectedOptions[0].value);
   };
 
   public render({ metrics }: Props): JSX.Element {
-    const metricNames = getMetricNames(metrics);
     return (
       <select onChange={this.handleSelection}>
-        <option value="all" selected={true}>
-          All Metrics
-        </option>
-        {metricNames.map(value => (
+        {Object.keys(metrics[0]).map(value => (
           <option value={value}>{value}</option>
         ))}
       </select>

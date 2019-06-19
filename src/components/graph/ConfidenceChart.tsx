@@ -70,7 +70,6 @@ export class ConfidenceChart extends Component<Props> {
   public render({ data, svgHeight, svgWidth, axisHeight, axisWidth, xLabelWidth, axisOffset }: Props): JSX.Element {
     const newData = aggregateMetrics(data);
     const confidence = createConfidenceArray(data);
-    console.log(confidence);
     const maxDataArr = [];
     for (let i = 0; i < Object.values(newData).length; i++) {
       maxDataArr[i] = Object.values(newData)[i] + Object.values(confidence)[i];
@@ -83,7 +82,7 @@ export class ConfidenceChart extends Component<Props> {
     const keyArr = Object.keys(newData);
     const barWidth = svgWidth / 2 / numOfBars;
     const divisions = [];
-    const numOfDivisions = maxValue / 1000;
+    const numOfDivisions = maxValue / 100;
     for (let i = 1; i <= numOfDivisions - 1; i++) {
       divisions.push((maxValue * i) / numOfDivisions);
     }
@@ -113,7 +112,7 @@ export class ConfidenceChart extends Component<Props> {
           <g class={style.confidenceLines}>
             {Object.values(confidence).map((value, index) => (
               <ConfidenceLines
-                x={axisX(index + 1) + barWidth / 2}
+                x={axisX(index + 1) + (svgWidth - axisWidth)}
                 minY={axisY(valueArr[index] - value)}
                 maxY={axisY(valueArr[index] + value)}
                 endLineLength={50}
@@ -128,7 +127,7 @@ export class ConfidenceChart extends Component<Props> {
               <ValueLabel x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisY(value)} value={Math.round(value)} />
             ))}
           </g>
-          <g>
+          <g class={style.yLabel}>
             {keyArr.map((value, index) => (
               <YLabel x={axisX(index + 1) + (svgWidth - axisWidth)} y={axisHeight + axisOffset} value={value} />
             ))}

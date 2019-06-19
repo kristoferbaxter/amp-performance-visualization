@@ -1,21 +1,52 @@
 import { results } from './results';
 
 interface Metrics {
-  [k: string]: any;
+  url: string;
+  responseStart: number; // firstByte
+  loadEventEnd: number; // pageLoad
+  domInteractive: number; // interactive
+  firstPaint: number;
+  firstContentfulPaint: number; // use Performance.metrics injected into webpage
+  firstMeaningfulPaint: number;
+  custom: AMPCustomStatistics;
+}
+
+export interface AMPJavaScriptSizeEntry {
+  url: string;
+  size: number;
+}
+
+export interface AMPCustomStatistics {
+  ampJavascriptSize: AMPJavaScriptSizeEntry[];
+  installStyles: number[];
+  visible: number;
+  onFirstVisible: number;
+  makeBodyVisible: number;
+  windowLoadEvent: number;
+  firstViewportReady: number;
+}
+interface ParsedData {
+  responseStart: number; // firstByte
+  loadEventEnd: number; // pageLoad
+  domInteractive: number; // interactive
+  firstPaint: number;
+  firstContentfulPaint: number; // use Performance.metrics injected into webpage
+  firstMeaningfulPaint: number;
 }
 
 function filterBadData(metricsArr: Metrics[]) {
-  return metricsArr.filter(metrics => !(Object.values(metrics)[1] < 50));
+  return metricsArr.filter(metrics => !(metrics.responseStart <= 0));
 }
 
 function parseMetrics(metricsArr: Metrics[]) {
+  const parsed: ParsedData[] = [];
   const goodMetrics = filterBadData(metricsArr);
-  for (let i = 1; i < Object.keys(goodMetrics[0]).length; i++) {
-    for (const metrics of goodMetrics) {
-      delete metrics.url;
-    }
+  for (const metrics of goodMetrics) {
+    delete metrics.url;
+    delete metrics.custom;
+    parsed.push(metrics);
   }
-  return goodMetrics;
+  return parsed;
 }
 
 export const data = {

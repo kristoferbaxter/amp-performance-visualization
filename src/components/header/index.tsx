@@ -6,8 +6,8 @@ export default class Header extends Component {
   public render() {
     return (
       <header class={style.header}>
-        <h1>AMP Performance Visualization</h1>
-        <nav>
+        <h1 class={style.title}>AMP Performance Visualization</h1>
+        <nav class={style.home}>
           <Link activeClassName={style.active} href="/">
             Home
           </Link>
