@@ -1,4 +1,4 @@
-import { launch } from 'puppeteer';
+import puppeteer from 'puppeteer';
 import generate from './generate-statistics';
 import isAMP from './is-AMP';
 import Statistics, { failedPageEval, failedPageGoTo, invalidAMP, ResultsCalculator, snailURL } from './performance-data';
@@ -12,7 +12,7 @@ const getMetrics: ResultsCalculator = async (url: string, downSpeed: number, upS
     return invalidAMP(url);
   }
 
-  const browser = await launch();
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   // Sets the navigation timeout to 2 minutes
   await page.setDefaultNavigationTimeout(NAV_TIMEOUT);
