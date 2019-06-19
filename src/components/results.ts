@@ -1,3 +1,4 @@
+// sample results to test the client. Need to implement a way to generate this from the server
 export const results = {
   device: 'iPhone 8',
   networkSpeed: 'downspeed: 30720kbps',
