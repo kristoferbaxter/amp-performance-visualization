@@ -1,26 +1,18 @@
-/**
- * @fileoverview Description of this file.
- */
-import { launch } from 'puppeteer';
-
+import puppeteer from 'puppeteer';
 import generate from './generate-statistics';
 import isAMP from './is-AMP';
-import Statistics, { failedPageEval, failedPageGoTo, invalidAMP, snailURL } from './performance-data';
-
-// Temporary output. Only to show new interface, not the actual output
-const TEMP_OUTPUT = 0;
+import Statistics, { failedPageEval, failedPageGoTo, invalidAMP, ResultsCalculator, snailURL } from './performance-data';
 
 const NAV_TIMEOUT = 120000;
-
 // networkidle0 means that there are no more than 0 network connections for atleast 500 milliseconds
 const NAVIGATION_COMPLETE = 'networkidle0';
 
-const getMetrics = async (url: string, downSpeed: number, upSpeed: number, latency: number): Promise<Statistics> => {
+const getMetrics: ResultsCalculator = async (url: string, downSpeed: number, upSpeed: number, latency: number): Promise<Statistics> => {
   if (!(await isAMP(url))) {
     return invalidAMP(url);
   }
 
-  const browser = await launch();
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   // Sets the navigation timeout to 2 minutes
   await page.setDefaultNavigationTimeout(NAV_TIMEOUT);
@@ -63,17 +55,13 @@ const getMetrics = async (url: string, downSpeed: number, upSpeed: number, laten
   return statistics;
 };
 
-const getResults = async (url: string, downSpeed: number, upSpeed: number, lat: number) => {
-  const slowURLReturn = snailURL(url);
-  const slowURL = new Promise(resolve => {
+const getResults: ResultsCalculator = async (url: string, downSpeed: number, upSpeed: number, lat: number) => {
+  const pageMetrics = getMetrics(url, downSpeed, upSpeed, lat);
+  const slowURL: Promise<Statistics> = new Promise(resolve => {
     setTimeout(() => {
-      resolve({
-        slowURLReturn,
-      });
+      resolve(snailURL(url));
     }, NAV_TIMEOUT - 100);
   });
-
-  const pageMetrics = getMetrics(url, downSpeed, upSpeed, lat);
 
   return await Promise.race([slowURL, pageMetrics]);
 };
