@@ -100,7 +100,7 @@ export class BarChart extends Component<Props> {
             ))}
           </g>
 
-          <g class={style.yLabel}>
+          <g>
             {newData.map((value, index) => (
               <YLabel x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisHeight + axisOffset} value={(index + 1) * 1000} />
             ))}

@@ -1,4 +1,5 @@
 import { h } from 'preact';
+import style from './Chart.css';
 
 interface Props {
   x: number;
@@ -8,7 +9,7 @@ interface Props {
 
 export const YLabel = ({ x, y, value }: Props): JSX.Element => {
   return (
-    <text transform-origin={`${x} ${y}`} x={x} y={y}>
+    <text class={style.yLabel} transform-origin={`${x} ${y}`} x={x} y={y}>
       {value}
     </text>
   );

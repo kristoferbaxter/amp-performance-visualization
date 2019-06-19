@@ -22,5 +22,5 @@
   stroke-width: 4px;
 }
 .yLabel {
-  transform: rotate(30);
+  transform: rotate(30deg);
 }

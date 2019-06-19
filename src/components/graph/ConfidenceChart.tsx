@@ -127,7 +127,7 @@ export class ConfidenceChart extends Component<Props> {
               <ValueLabel x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisY(value)} value={Math.round(value)} />
             ))}
           </g>
-          <g class={style.yLabel}>
+          <g>
             {keyArr.map((value, index) => (
               <YLabel x={axisX(index + 1) + (svgWidth - axisWidth)} y={axisHeight + axisOffset} value={value} />
             ))}
