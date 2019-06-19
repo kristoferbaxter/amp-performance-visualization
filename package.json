@@ -79,7 +79,7 @@
   },
   "jest": {
     "transform": {
-      ".+\\.tsx?$": "ts-jest"
+      "^.+\\.tsx?$": "ts-jest"
     },
     "verbose": true,
     "setupFiles": [
