@@ -5,15 +5,9 @@ interface Props {
   y: number;
   value: string | number;
 }
-
-export const ValueLabel = ({ x, y, value }: Props): JSX.Element => {
-  let newY = y;
-  if (y < 17) {
-    newY = y + 17;
-  } // Puts the label under the top of the bar if the bar is too close to the top
-  return (
-    <text x={x} y={newY}>
-      {value}
-    </text>
-  );
-};
+// Changing y puts the label under the top of the bar if the bar is too close to the top
+export const ValueLabel = ({ x, y, value }: Props): JSX.Element => (
+  <text x={x} y={y < 17 ? y + 17 : y}>
+    {value}
+  </text>
+);

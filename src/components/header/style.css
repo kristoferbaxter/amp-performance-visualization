@@ -10,7 +10,7 @@
   z-index: 50;
 }
 
-.header h1 {
+.title {
   float: left;
   margin: 0;
   padding: 0 15px;
@@ -20,12 +20,12 @@
   color: #fff;
 }
 
-.header nav {
+.home {
   float: right;
   font-size: 100%;
 }
 
-.header nav a {
+.home a {
   display: inline-block;
   height: 56px;
   line-height: 56px;
@@ -38,11 +38,11 @@
   will-change: background-color;
 }
 
-.header nav a:hover,
-.header nav a:active {
+.home a:hover,
+.home a:active {
   background: rgba(0, 0, 0, 0.2);
 }
 
-.header nav a.active {
+.home a.active {
   background: rgba(0, 0, 0, 0.4);
 }

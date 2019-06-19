@@ -74,10 +74,12 @@ class BarChart extends Component<Props, State> {
             ))}
           </g>
         </svg>
-        <svg width="100%">
-          {keyArr.map((value, index) => (
-            <YLabel x={svgX(index + 1, this.props) + barWidth / 2} y={axisOffset} value={value} />
-          ))}
+        <svg class={style.yLabelSvg}>
+          <g class={style.yLabel}>
+            {keyArr.map((value, index) => (
+              <YLabel x={svgX(index + 1, this.props) + barWidth / 2} y={axisOffset} value={value} />
+            ))}
+          </g>
         </svg>
       </div>
     );

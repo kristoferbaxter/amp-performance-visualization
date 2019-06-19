@@ -17,3 +17,9 @@
 .divisions {
   stroke: grey;
 }
+.yLabelSvg {
+  width: 100%;
+}
+.yLabel {
+  transform: rotate(30);
+}
