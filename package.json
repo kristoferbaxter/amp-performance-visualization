@@ -14,7 +14,7 @@
     "test": "jest ./tests",
     "build:server": "tsc --project ./server",
     "prestart:server": "yarn build:server",
-    "start:server": "node -r esm ./server/performance-scripts/test-run.js",
+    "start:server": "node -r esm ./server/performance-scripts/polka-test.js",
     "precommit": "lint-staged"
   },
   "lint-staged": {
@@ -66,6 +66,7 @@
   },
   "dependencies": {
     "@types/node-fetch": "2.3.7",
+    "polka": "^0.5.2",
     "preact": "8.3.1",
     "preact-compat": "3.18.4",
     "preact-render-to-string": "4.1.0",
