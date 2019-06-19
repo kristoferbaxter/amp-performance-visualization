@@ -1008,13 +1008,11 @@ const urlArray: string[] = [
 // Metrics returning all -1 means the url took longer than 1 minute 40 seconds to load
 // Metrics returning all -2 means the url is not AMP
 
-console.log(Date.now());
 getMetricsFromURLs(urlArray, 30720, 15360, 2).then(data => {
   fs.writeFile('AMPMetrics.json', JSON.stringify(data, null, 2), err => {
     if (err) {
-      console.log(err);
+      throw err;
     }
-    console.log(Date.now());
     process.exit(0);
   });
 });
