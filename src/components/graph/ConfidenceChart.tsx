@@ -82,7 +82,7 @@ export class ConfidenceChart extends Component<Props> {
     const keyArr = Object.keys(newData);
     const barWidth = svgWidth / 2 / numOfBars;
     const divisions = [];
-    const numOfDivisions = maxValue / 100;
+    const numOfDivisions = maxValue / 1000;
     for (let i = 1; i <= numOfDivisions - 1; i++) {
       divisions.push((maxValue * i) / numOfDivisions);
     }

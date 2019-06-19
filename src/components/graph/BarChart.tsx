@@ -56,9 +56,7 @@ export class BarChart extends Component<Props> {
   public render({ data, svgHeight, svgWidth, axisHeight, axisWidth, xLabelWidth, axisOffset, graphChoice }: Props): JSX.Element {
     const sortedData = sortNeededData(data, graphChoice);
     const newData = makeFrequencyArray(sortedData);
-    console.log(sortedData);
     const maxValue = Math.ceil(Math.max.apply(null, Object.values(newData)) / 10) * 10;
-    console.log(maxValue);
     const numOfBars = newData.length + 1;
     const axisX = (x: number): number => (x / numOfBars) * axisWidth;
     const axisY = (y: number): number => axisHeight - (y / maxValue) * axisHeight;
