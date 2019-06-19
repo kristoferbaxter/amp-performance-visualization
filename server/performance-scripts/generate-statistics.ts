@@ -6,6 +6,8 @@ export default async function generate(page: puppeteer.Page): Promise<Statistics
     (): Statistics => {
       // Don't have the information on how to properly retrieve these metrics
       const TEMP_OUTPUT = 0;
+      // to detect transfer sizes
+      const tSizeURL = 'https://cdn.ampproject.org/';
 
       // Performance Metric results
       const results = JSON.parse(JSON.stringify(performance.timing));
@@ -14,7 +16,7 @@ export default async function generate(page: puppeteer.Page): Promise<Statistics
       const ampTransferSizes: AMPJavaScriptSizeEntry[] = [];
       (performance.getEntriesByType('resource') as PerformanceResourceTiming[]).forEach(
         (item: PerformanceResourceTiming): void => {
-          if (item.initiatorType === 'script' && item.name.startsWith('https://cdn.ampproject.org/')) {
+          if (item.initiatorType === 'script' && item.name.startsWith(tSizeURL)) {
             ampTransferSizes.push({
               url: item.name,
               size: item.transferSize,

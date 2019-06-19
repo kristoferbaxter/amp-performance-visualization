@@ -1,7 +1,7 @@
 import getResults from './json-metrics';
 import Statistics from './performance-data';
 
-interface Results {
+export interface Results {
   device: string;
   networkSpeed: string;
   metrics: Statistics[];
