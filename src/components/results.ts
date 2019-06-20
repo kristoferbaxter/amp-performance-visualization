@@ -365,10 +365,6 @@ export const results: { metrics: Metrics[] } = {
             size: 4181,
           },
           {
-            url: 'https://cdn.ampproject.org/v0/amp-sticky-ad-1.0.js',
-            size: 2821,
-          },
-          {
             url: 'https://cdn.ampproject.org/rtv/011906111828200/v0/amp-auto-lightbox-0.1.js',
             size: 3448,
           },
@@ -454,6 +450,83 @@ export const results: { metrics: Metrics[] } = {
         makeBodyVisible: -2,
         windowLoadEvent: -2,
         firstViewportReady: -2,
+      },
+    },
+    {
+      url: 'http://v99.siteindir.com/amp/',
+      responseStart: -2,
+      loadEventEnd: -2,
+      domInteractive: -2,
+      firstPaint: -2,
+      firstContentfulPaint: -2,
+      firstMeaningfulPaint: -2,
+      custom: {
+        ampJavascriptSize: [
+          {
+            url: 'https://cdn.ampproject.org/v0/amp-user-notification-0.1.js',
+            size: 5689,
+          },
+        ],
+        installStyles: [null, null],
+      },
+    },
+    {
+      url: 'https://www.babble.com/pregnancy/1000-most-popular-girl-names/amp/',
+      responseStart: -2,
+      loadEventEnd: -2,
+      domInteractive: -2,
+      firstPaint: -2,
+      firstContentfulPaint: -2,
+      firstMeaningfulPaint: -2,
+      custom: {
+        ampJavascriptSize: [
+          {
+            url: 'https://www.babble.com/pregnancy/1000-most-popular-girl-names/amp/',
+            size: -2,
+          },
+        ],
+        installStyles: [-2, -2],
+        visible: -2,
+        onFirstVisible: -2,
+        makeBodyVisible: -2,
+        windowLoadEvent: -2,
+        firstViewportReady: -2,
+      },
+    },
+    {
+      url: 'http://www.okuryazar.biz/amp-index.php',
+      responseStart: -2,
+      loadEventEnd: -2,
+      domInteractive: -2,
+      firstPaint: -2,
+      firstContentfulPaint: -2,
+      firstMeaningfulPaint: -2,
+      custom: {
+        ampJavascriptSize: [
+          {
+            url: 'http://www.okuryazar.biz/amp-index.php',
+            size: -2,
+          },
+        ],
+        installStyles: [-2, -2],
+        visible: -2,
+        onFirstVisible: -2,
+        makeBodyVisible: -2,
+        windowLoadEvent: -2,
+        firstViewportReady: -2,
+      },
+    },
+    {
+      url: 'http://aa11.turkeycom.com/amp-default.php',
+      responseStart: 602,
+      loadEventEnd: 29651,
+      domInteractive: 0,
+      firstPaint: 0,
+      firstContentfulPaint: 0,
+      firstMeaningfulPaint: 0,
+      custom: {
+        ampJavascriptSize: [],
+        installStyles: [null, null],
       },
     },
     {
@@ -634,6 +707,108 @@ export const results: { metrics: Metrics[] } = {
       firstMeaningfulPaint: 0,
       custom: {
         ampJavascriptSize: [
+          {
+            url: 'https://cdn.ampproject.org/v0.js',
+            size: 75627,
+          },
+          {
+            url: 'https://cdn.ampproject.org/v0/amp-analytics-latest.js',
+            size: 40005,
+          },
+        ],
+        installStyles: [11477.685, 11655.735],
+        visible: 11701.47,
+        onFirstVisible: 11701.5,
+        makeBodyVisible: 11748.625,
+        windowLoadEvent: 12265.17,
+        firstViewportReady: 18728.58,
+      },
+    },
+    {
+      url: 'https://www.kooora2day.com/',
+      responseStart: 10570,
+      loadEventEnd: 11730,
+      domInteractive: 0,
+      firstPaint: 0,
+      firstContentfulPaint: 0,
+      firstMeaningfulPaint: 0,
+      custom: {
+        ampJavascriptSize: [
+          {
+            url: 'https://cdn.ampproject.org/v0.js',
+            size: 76744,
+          },
+          {
+            url: 'https://cdn.ampproject.org/v0/amp-form-0.1.js',
+            size: 13931,
+          },
+          {
+            url: 'https://cdn.ampproject.org/v0/amp-analytics-0.1.js',
+            size: 40001,
+          },
+          {
+            url: 'https://cdn.ampproject.org/rtv/011906111828200/v0/amp-auto-lightbox-0.1.js',
+            size: 3425,
+          },
+        ],
+        installStyles: [11277.71, 11360.685],
+        visible: 11474.195,
+        onFirstVisible: 11474.22,
+        makeBodyVisible: 11485.015,
+        windowLoadEvent: 11673.8,
+        firstViewportReady: 11729.795,
+      },
+    },
+    {
+      url: 'http://ww3.catnepal.com/amp/',
+      responseStart: 1086,
+      loadEventEnd: 11843,
+      domInteractive: 0,
+      firstPaint: 0,
+      firstContentfulPaint: 0,
+      firstMeaningfulPaint: 0,
+      custom: {
+        ampJavascriptSize: [],
+        installStyles: [null, null],
+      },
+    },
+    {
+      url: 'https://www.kamimutsukawa.com/blog/2017_03/10/5285/amp/',
+      responseStart: -3,
+      loadEventEnd: -3,
+      domInteractive: -3,
+      firstPaint: -3,
+      firstContentfulPaint: -3,
+      firstMeaningfulPaint: -3,
+      custom: {
+        ampJavascriptSize: [
+          {
+            url: 'https://www.kamimutsukawa.com/blog/2017_03/10/5285/amp/',
+            size: -3,
+          },
+        ],
+        installStyles: [-3, -3],
+        visible: -3,
+        onFirstVisible: -3,
+        makeBodyVisible: -3,
+        windowLoadEvent: -3,
+        firstViewportReady: -3,
+      },
+    },
+    {
+      url: 'https://horo.mail.ru/amp/prediction/today/',
+      responseStart: 11587,
+      loadEventEnd: 14830,
+      domInteractive: 0,
+      firstPaint: 0,
+      firstContentfulPaint: 0,
+      firstMeaningfulPaint: 0,
+      custom: {
+        ampJavascriptSize: [
+          {
+            url: 'https://cdn.ampproject.org/v0/amp-subscriptions-0.1.js',
+            size: 18719,
+          },
           {
             url: 'https://cdn.ampproject.org/v0.js',
             size: 75627,
