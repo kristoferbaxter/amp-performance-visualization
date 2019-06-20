@@ -1,5 +1,6 @@
 import { Component, h } from 'preact';
 import { data } from '../../components/data';
+import { ParsedData } from '../../components/data';
 import { DropDown } from '../../components/DropDown';
 import { BarChart } from '../../components/graph/BarChart';
 import { ConfidenceChart } from '../../components/graph/ConfidenceChart';
@@ -7,7 +8,12 @@ import * as style from './style.css';
 
 interface Props {}
 interface State {
-  graphChoice: string;
+  graphChoice: keyof ParsedData;
+}
+
+function isKeyOfParsedData(str: string): str is keyof ParsedData {
+  // TODO: This check could use the actual key names from ParsedData.
+  return typeof str === 'string';
 }
 
 export default class Home extends Component<Props, State> {
@@ -18,7 +24,10 @@ export default class Home extends Component<Props, State> {
     };
   }
   public updateGraph = (choice: string) => {
-    this.setState({ graphChoice: choice });
+    // Validate that choice is a keyof ParsedData.
+    if (isKeyOfParsedData(choice)) {
+      this.setState({ graphChoice: choice });
+    }
   };
   public render() {
     return (

@@ -1,4 +1,5 @@
 import { Component, h } from 'preact';
+import { ParsedData } from '../data';
 import { Axis } from './Axis';
 import { Bar } from './Bar';
 import style from './Chart.css';
@@ -8,8 +9,8 @@ import { XLabel } from './XLabel';
 import { YLabel } from './YLabel';
 
 interface Props {
-  data: Array<{ [k: string]: number }>;
-  graphChoice: string;
+  data: ParsedData[];
+  graphChoice: keyof ParsedData;
   svgWidth: number;
   svgHeight: number;
   axisWidth: number;
@@ -18,7 +19,7 @@ interface Props {
   axisOffset: number;
 }
 
-function sortNeededData(data: Array<{ [k: string]: number }>, graphChoice: string): number[] {
+function sortNeededData(data: ParsedData[], graphChoice: keyof ParsedData): number[] {
   const numArray: number[] = [];
   for (const metric of data) {
     numArray.push(metric[graphChoice]);
@@ -56,9 +57,7 @@ export class BarChart extends Component<Props> {
   public render({ data, svgHeight, svgWidth, axisHeight, axisWidth, xLabelWidth, axisOffset, graphChoice }: Props): JSX.Element {
     const sortedData = sortNeededData(data, graphChoice);
     const newData = makeFrequencyArray(sortedData);
-    console.log(sortedData);
     const maxValue = Math.ceil(Math.max.apply(null, Object.values(newData)) / 10) * 10;
-    console.log(maxValue);
     const numOfBars = newData.length + 1;
     const axisX = (x: number): number => (x / numOfBars) * axisWidth;
     const axisY = (y: number): number => axisHeight - (y / maxValue) * axisHeight;

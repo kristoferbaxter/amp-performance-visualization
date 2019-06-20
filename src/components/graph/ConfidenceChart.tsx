@@ -1,4 +1,5 @@
 import { Component, h } from 'preact';
+import { ParsedData } from '../data';
 import { Axis } from './Axis';
 import { Bar } from './Bar';
 import style from './Chart.css';
@@ -9,7 +10,7 @@ import { XLabel } from './XLabel';
 import { YLabel } from './YLabel';
 
 interface Props {
-  data: Array<{ [k: string]: number }>;
+  data: ParsedData[];
   svgWidth: number;
   svgHeight: number;
   axisWidth: number;
@@ -26,7 +27,7 @@ function getAverage(numArray: number[]): number {
   return sum / numArray.length;
 }
 
-function aggregateMetrics(data: Array<{ [k: string]: number }>) {
+function aggregateMetrics(data: ParsedData[]) {
   const aggregate: { [k: string]: number } = {};
   for (let i = 0; i < Object.keys(data[0]).length; i++) {
     const metrics: number[] = [];
@@ -37,7 +38,7 @@ function aggregateMetrics(data: Array<{ [k: string]: number }>) {
   }
   return aggregate;
 }
-function createConfidenceArray(data: Array<{ [k: string]: number }>) {
+function createConfidenceArray(data: ParsedData[]) {
   const confidence: { [k: string]: number } = {};
   for (let i = 0; i < Object.keys(data[0]).length; i++) {
     const metrics: number[] = [];
@@ -82,7 +83,7 @@ export class ConfidenceChart extends Component<Props> {
     const keyArr = Object.keys(newData);
     const barWidth = svgWidth / 2 / numOfBars;
     const divisions = [];
-    const numOfDivisions = maxValue / 100;
+    const numOfDivisions = maxValue / 1000;
     for (let i = 1; i <= numOfDivisions - 1; i++) {
       divisions.push((maxValue * i) / numOfDivisions);
     }

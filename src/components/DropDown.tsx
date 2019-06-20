@@ -1,7 +1,8 @@
 import { Component, h } from 'preact';
+import { ParsedData } from './data';
 
 interface Props {
-  metrics: Array<{ [k: string]: number }>;
+  metrics: ParsedData[];
   onSelection: (choice: string) => void;
 }
 
