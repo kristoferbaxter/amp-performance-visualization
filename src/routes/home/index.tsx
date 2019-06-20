@@ -14,7 +14,7 @@ export default class Home extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      graphChoice: 'responseStart', //  firstByte, pageLoad, interactive, firstContentfulPaint
+      graphChoice: 'responseStart',
     };
   }
   public updateGraph = (choice: string) => {
@@ -24,8 +24,6 @@ export default class Home extends Component<Props, State> {
     return (
       <div class={style.home}>
         <h1>Performance Graph</h1>
-        <p>Device: {data.device}</p>
-        <p>Network Speed: {data.networkSpeed}</p>
         <DropDown metrics={data.metrics} onSelection={this.updateGraph} />
         <BarChart data={data.metrics} graphChoice={this.state.graphChoice} />
         <ConfidenceChart data={data.metrics} />
