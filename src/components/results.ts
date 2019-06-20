@@ -453,24 +453,6 @@ export const results: { metrics: Metrics[] } = {
       },
     },
     {
-      url: 'http://v99.siteindir.com/amp/',
-      responseStart: -2,
-      loadEventEnd: -2,
-      domInteractive: -2,
-      firstPaint: -2,
-      firstContentfulPaint: -2,
-      firstMeaningfulPaint: -2,
-      custom: {
-        ampJavascriptSize: [
-          {
-            url: 'https://cdn.ampproject.org/v0/amp-user-notification-0.1.js',
-            size: 5689,
-          },
-        ],
-        installStyles: [null, null],
-      },
-    },
-    {
       url: 'https://www.babble.com/pregnancy/1000-most-popular-girl-names/amp/',
       responseStart: -2,
       loadEventEnd: -2,
@@ -514,19 +496,6 @@ export const results: { metrics: Metrics[] } = {
         makeBodyVisible: -2,
         windowLoadEvent: -2,
         firstViewportReady: -2,
-      },
-    },
-    {
-      url: 'http://aa11.turkeycom.com/amp-default.php',
-      responseStart: 602,
-      loadEventEnd: 29651,
-      domInteractive: 0,
-      firstPaint: 0,
-      firstContentfulPaint: 0,
-      firstMeaningfulPaint: 0,
-      custom: {
-        ampJavascriptSize: [],
-        installStyles: [null, null],
       },
     },
     {
@@ -757,19 +726,6 @@ export const results: { metrics: Metrics[] } = {
         makeBodyVisible: 11485.015,
         windowLoadEvent: 11673.8,
         firstViewportReady: 11729.795,
-      },
-    },
-    {
-      url: 'http://ww3.catnepal.com/amp/',
-      responseStart: 1086,
-      loadEventEnd: 11843,
-      domInteractive: 0,
-      firstPaint: 0,
-      firstContentfulPaint: 0,
-      firstMeaningfulPaint: 0,
-      custom: {
-        ampJavascriptSize: [],
-        installStyles: [null, null],
       },
     },
     {
