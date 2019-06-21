@@ -1,73 +1,69 @@
-/**
- * @fileoverview Description of this file.
- */
-import { launch } from 'puppeteer';
+import puppeteer from 'puppeteer';
+import generate from './generate-statistics';
 import isAMP from './is-AMP';
-import { getTimeToFirstByte, getTimeToPageLoaded } from './page-metrics-evaluation';
+import Statistics, { failedPageEval, failedPageGoTo, invalidAMP, ResultsCalculator, snailURL } from './performance-data';
 
-export interface PagePerformance {
-  url: string;
-  firstByte: number;
-  pageLoad: number;
-}
-
+const NAV_TIMEOUT = 120000;
 // networkidle0 means that there are no more than 0 network connections for atleast 500 milliseconds
 const NAVIGATION_COMPLETE = 'networkidle0';
-// URL provided is not AMP
-const NOT_AMP = -2;
-// URL took too long to process.
-const SLOW_URL = -1;
 
-export default async (url: string, downSpeed: number, upSpeed: number, lat: number): Promise<PagePerformance> => {
+const getMetrics: ResultsCalculator = async (url: string, downSpeed: number, upSpeed: number, latency: number): Promise<Statistics> => {
   if (!(await isAMP(url))) {
-    return {
-      url,
-      firstByte: NOT_AMP,
-      pageLoad: NOT_AMP,
-    };
+    return invalidAMP(url);
   }
 
-  const browser = await launch();
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   // Sets the navigation timeout to 2 minutes
-  await page.setDefaultNavigationTimeout(120000);
+  await page.setDefaultNavigationTimeout(NAV_TIMEOUT);
 
-  /*Emulating a Wifi connection
+  /*
+    Emulating a Wifi connection
     "/8" is included because network speed is commonly measured in bits/s
-    DevTools expects throughputs in bytes/s*/
+    DevTools expects throughputs in bytes/s
+  */
   const client = await page.target().createCDPSession();
   await client.send('Network.emulateNetworkConditions', {
     offline: false,
     downloadThroughput: (downSpeed * 1024) / 8,
     uploadThroughput: (upSpeed * 1024) / 8,
-    latency: lat,
+    latency,
   });
 
   // waits until the page is fully loaded
-  // TODO: handle navigationTimeouts
   try {
     await page.goto(url, {
-      timeout: 0, // disables navigation timeout
       waitUntil: NAVIGATION_COMPLETE,
     });
   } catch (e) {
-    return {
-      url,
-      firstByte: SLOW_URL,
-      pageLoad: SLOW_URL,
-    };
+    return failedPageGoTo(url);
   }
 
   // Returning info
-  const results = JSON.parse(
-    await page.evaluate(() => {
-      return JSON.stringify(performance.timing);
-    }),
-  );
+  let statistics: Statistics = failedPageEval(url);
 
-  return {
-    url,
-    firstByte: getTimeToFirstByte(results),
-    pageLoad: getTimeToPageLoaded(results),
-  };
+  // Returning info
+  try {
+    statistics = await generate(page);
+  } catch (e) {
+    console.log(e);
+    return failedPageEval(url);
+  } finally {
+    await browser.close();
+  }
+
+  return statistics;
 };
+
+const getResults: ResultsCalculator = async (url: string, downSpeed: number, upSpeed: number, lat: number) => {
+  const pageMetrics = getMetrics(url, downSpeed, upSpeed, lat);
+  const slowURL: Promise<Statistics> = new Promise(resolve => {
+    setTimeout(() => {
+      resolve(snailURL(url));
+    }, NAV_TIMEOUT - 100);
+  });
+
+  return await Promise.race([slowURL, pageMetrics]);
+};
+
+export default getResults;
