@@ -1,5 +1,5 @@
 import { Component, h } from 'preact';
-import { ParsedData } from '../../../shared-interfaces/metricsResults';
+import { ParsedData } from '../../../shared-interfaces/metrics-results';
 import { Axis } from './Axis';
 import { Bar } from './Bar';
 import style from './Chart.css';

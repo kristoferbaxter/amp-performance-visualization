@@ -1,9 +1,9 @@
 import puppeteer from 'puppeteer';
-import Statistics, { AMPJavaScriptSizeEntry } from './performance-data';
+import { AMPJavaScriptSizeEntry, Metrics } from '../../shared-interfaces/metrics-results';
 
-export default async function generate(page: puppeteer.Page): Promise<Statistics> {
+export default async function generate(page: puppeteer.Page): Promise<Metrics> {
   return await page.evaluate(
-    (): Statistics => {
+    (): Metrics => {
       // Don't have the information on how to properly retrieve these metrics
       const TEMP_OUTPUT = 0;
       // to detect transfer sizes
@@ -14,26 +14,30 @@ export default async function generate(page: puppeteer.Page): Promise<Statistics
 
       // Transfer Size for all AMP Javascript Resources
       const ampTransferSizes: AMPJavaScriptSizeEntry[] = [];
-      (performance.getEntriesByType('resource') as PerformanceResourceTiming[]).forEach((item: PerformanceResourceTiming): void => {
-        if (item.initiatorType === 'script' && item.name.startsWith(tSizeURL)) {
-          ampTransferSizes.push({
-            url: item.name,
-            size: item.transferSize,
-          });
-        }
-      });
+      (performance.getEntriesByType('resource') as PerformanceResourceTiming[]).forEach(
+        (item: PerformanceResourceTiming): void => {
+          if (item.initiatorType === 'script' && item.name.startsWith(tSizeURL)) {
+            ampTransferSizes.push({
+              url: item.name,
+              size: item.transferSize,
+            });
+          }
+        },
+      );
 
       // Custom AMP Performance Marks
       const markNames: string[] = ['is', 'e_is', 'visible', 'ofv', 'mbv', 'ol', 'pc'];
       const performanceMarkArray: number[] = [];
-      (performance.getEntriesByType('mark') as PerformanceMark[]).forEach((element: PerformanceMark): void => {
-        for (const item of markNames) {
-          if (element.name.startsWith(item)) {
-            const markTime = Math.round(element.startTime * 1000) / 1000;
-            performanceMarkArray.push(markTime);
+      (performance.getEntriesByType('mark') as PerformanceMark[]).forEach(
+        (element: PerformanceMark): void => {
+          for (const item of markNames) {
+            if (element.name.startsWith(item)) {
+              const markTime = Math.round(element.startTime * 1000) / 1000;
+              performanceMarkArray.push(markTime);
+            }
           }
-        }
-      });
+        },
+      );
 
       return {
         url: document.location.href,

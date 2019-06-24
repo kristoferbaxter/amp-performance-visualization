@@ -1,5 +1,5 @@
-import { Metrics } from '../../shared-interfaces/metricsResults';
-import { ParsedData } from '../../shared-interfaces/metricsResults';
+import { Metrics } from '../../shared-interfaces/metrics-results';
+import { ParsedData } from '../../shared-interfaces/metrics-results';
 import { results } from './results';
 
 function filterBadData(metricsArr: Metrics[]): Metrics[] {
