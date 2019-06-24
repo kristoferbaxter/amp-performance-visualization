@@ -12,12 +12,19 @@ async function getMetricsFromURLs(urls: string[], downSpeed: number, upSpeed: nu
   return await Promise.all(metricsArray);
 }
 
-export default async function multiRunMetrics(urls: string[], downSpeed: number, upSpeed: number, latency: number): Promise<Results> {
-  const results = await Promise.all([
-    getMetricsFromURLs(urls, downSpeed, upSpeed, latency),
-    getMetricsFromURLs(urls, downSpeed, upSpeed, latency),
-    getMetricsFromURLs(urls, downSpeed, upSpeed, latency),
-  ]);
+export default async function multiRunMetrics(
+  urls: string[],
+  downSpeed: number,
+  upSpeed: number,
+  latency: number,
+  numberOfRuns: number = 3,
+): Promise<Results> {
+  const resultsArr = [];
+  for (let i = 0; i < numberOfRuns; i++) {
+    resultsArr.push(getMetricsFromURLs(urls, downSpeed, upSpeed, latency));
+  }
+
+  const results = await Promise.all(resultsArr);
 
   const allURLArray: MultipleRuns[] = [];
 
