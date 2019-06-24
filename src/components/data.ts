@@ -1,4 +1,4 @@
-import { Metrics } from '../../shared-interfaces/metricsResults';
+import { Metrics } from '../../shared-interfaces/metrics-results';
 import { results } from './results';
 
 function getMedian(numArray: number[]): number {

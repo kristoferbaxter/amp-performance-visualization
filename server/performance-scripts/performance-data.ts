@@ -1,30 +1,6 @@
-export type ResultsCalculator = (url: string, downSpeed: number, upSpeed: number, latency: number) => Promise<Statistics>;
+import { Metrics } from '../../shared-interfaces/metrics-results';
 
-export default interface Statistics {
-  url: string;
-  responseStart: number; // firstByte
-  loadEventEnd: number; // pageLoad
-  domInteractive: number; // interactive
-  firstPaint: number;
-  firstContentfulPaint: number; // use Performance.metrics injected into webpage
-  firstMeaningfulPaint: number;
-  custom: AMPCustomStatistics;
-}
-
-export interface AMPJavaScriptSizeEntry {
-  url: string;
-  size: number;
-}
-
-export interface AMPCustomStatistics {
-  ampJavascriptSize: AMPJavaScriptSizeEntry[];
-  installStyles: [number, number];
-  visible: number;
-  onFirstVisible: number;
-  makeBodyVisible: number;
-  windowLoadEvent: number;
-  firstViewportReady: number;
-}
+export type ResultsCalculator = (url: string, downSpeed: number, upSpeed: number, latency: number) => Promise<Metrics>;
 
 // Failed page.evaluate
 const EVALUATE_FAILED = 0;
@@ -35,7 +11,7 @@ const NOT_AMP = -2;
 // page.goto has failed
 const GO_TO_FAILED = -3;
 
-export const invalidAMP = (url: string): Statistics => ({
+export const invalidAMP = (url: string): Metrics => ({
   url,
   responseStart: NOT_AMP, // firstByte
   loadEventEnd: NOT_AMP, // pageLoad
@@ -59,7 +35,7 @@ export const invalidAMP = (url: string): Statistics => ({
   },
 });
 
-export const snailURL = (url: string): Statistics => ({
+export const snailURL = (url: string): Metrics => ({
   url,
   responseStart: SLOW_URL, // firstByte
   loadEventEnd: SLOW_URL, // pageLoad
@@ -83,7 +59,7 @@ export const snailURL = (url: string): Statistics => ({
   },
 });
 
-export const failedPageGoTo = (url: string): Statistics => ({
+export const failedPageGoTo = (url: string): Metrics => ({
   url,
   responseStart: GO_TO_FAILED, // firstByte
   loadEventEnd: GO_TO_FAILED, // pageLoad
@@ -107,7 +83,7 @@ export const failedPageGoTo = (url: string): Statistics => ({
   },
 });
 
-export const failedPageEval = (url: string): Statistics => ({
+export const failedPageEval = (url: string): Metrics => ({
   url,
   responseStart: EVALUATE_FAILED, // firstByte
   loadEventEnd: EVALUATE_FAILED, // pageLoad
