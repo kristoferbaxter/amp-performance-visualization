@@ -88,40 +88,22 @@ export class BarChart extends Component<Props> {
     return (
       <div class={style.graph}>
         <svg width={svgWidth} height={svgHeight}>
-          <g class={style.xLabel}>
-            {divisions.map(value => (
-              <XLabel x={xLabelWidth} y={axisY(value)} value={value} />
-            ))}
-          </g>
-          <g class={style.divisions}>
-            {divisions.map(value => (
-              <XDivision minX={svgWidth - axisWidth} maxX={svgWidth} y={axisY(value)} />
-            ))}
-          </g>
-          <g class={style.barChartRects}>
-            {newData.map((value, index) => (
-              <Bar
-                x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)}
-                y={axisY(value)}
-                width={barWidth}
-                height={axisHeight - axisY(value)}
-              />
-            ))}
-          </g>
-          <g class={style.barChartAxis}>
-            <Axis minX={svgWidth - axisWidth} minY={axisHeight} maxX={svgWidth} maxY={axisY(maxValue)} />
-          </g>
-          <g>
-            {newData.map((value, index) => (
-              <ValueLabel x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisY(value)} value={Math.round(value)} />
-            ))}
-          </g>
-
-          <g>
-            {newData.map((value, index) => (
-              <YLabel x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisHeight + axisOffset} value={(index + 1) * 1000} />
-            ))}
-          </g>
+          {divisions.map(value => (
+            <XLabel x={xLabelWidth} y={axisY(value)} value={value} />
+          ))}
+          {divisions.map(value => (
+            <XDivision minX={svgWidth - axisWidth} maxX={svgWidth} y={axisY(value)} />
+          ))}
+          {newData.map((value, index) => (
+            <Bar x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisY(value)} width={barWidth} height={axisHeight - axisY(value)} />
+          ))}
+          <Axis minX={svgWidth - axisWidth} minY={axisHeight} maxX={svgWidth} maxY={axisY(maxValue)} />
+          {newData.map((value, index) => (
+            <ValueLabel x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisY(value)} value={Math.round(value)} />
+          ))}
+          {newData.map((value, index) => (
+            <YLabel x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisHeight + axisOffset} value={(index + 1) * 1000} />
+          ))}
         </svg>
       </div>
     );

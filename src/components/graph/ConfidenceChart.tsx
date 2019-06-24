@@ -93,17 +93,17 @@ export class ConfidenceChart extends Component<Props> {
     return (
       <div class={style.graph}>
         <svg width={svgWidth} height={svgHeight}>
-          <g class={style.xLabel}>
+          <g>
             {divisions.map(value => (
               <XLabel x={xLabelWidth} y={axisY(value)} value={value} />
             ))}
           </g>
-          <g class={style.divisions}>
+          <g>
             {divisions.map(value => (
               <XDivision minX={svgWidth - axisWidth} maxX={svgWidth} y={axisY(value)} />
             ))}
           </g>
-          <g class={style.barChartRects}>
+          <g>
             {valueArr.map((value, index) => (
               <Bar
                 x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)}
@@ -113,7 +113,7 @@ export class ConfidenceChart extends Component<Props> {
               />
             ))}
           </g>
-          <g class={style.confidenceLines}>
+          <g>
             {Object.values(confidence).map((value, index) => (
               <ConfidenceLines
                 x={axisX(index + 1) + (svgWidth - axisWidth)}
@@ -123,7 +123,7 @@ export class ConfidenceChart extends Component<Props> {
               />
             ))}
           </g>
-          <g class={style.barChartAxis}>
+          <g>
             <Axis minX={svgWidth - axisWidth} minY={axisHeight} maxX={svgWidth} maxY={axisY(maxValue)} />
           </g>
           <g>
