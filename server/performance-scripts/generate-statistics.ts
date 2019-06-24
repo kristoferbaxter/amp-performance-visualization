@@ -1,9 +1,9 @@
 import puppeteer from 'puppeteer';
-import Statistics, { AMPJavaScriptSizeEntry } from './performance-data';
+import { AMPJavaScriptSizeEntry, Metrics } from '../../shared-interfaces/metrics-results';
 
-export default async function generate(page: puppeteer.Page): Promise<Statistics> {
+export default async function generate(page: puppeteer.Page): Promise<Metrics> {
   return await page.evaluate(
-    (): Statistics => {
+    (): Metrics => {
       // Don't have the information on how to properly retrieve these metrics
       const TEMP_OUTPUT = 0;
       // to detect transfer sizes

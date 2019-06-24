@@ -6,7 +6,7 @@ export interface Metrics {
   firstPaint: number;
   firstContentfulPaint: number; // use Performance.metrics injected into webpage
   firstMeaningfulPaint: number;
-  custom: AMPCustomStatistics;
+  custom: AMPCustomMetrics;
 }
 
 export interface AMPJavaScriptSizeEntry {
@@ -14,7 +14,7 @@ export interface AMPJavaScriptSizeEntry {
   size: number;
 }
 
-export interface AMPCustomStatistics {
+export interface AMPCustomMetrics {
   ampJavascriptSize: AMPJavaScriptSizeEntry[];
   installStyles: [number, number];
   visible: number;
@@ -22,4 +22,15 @@ export interface AMPCustomStatistics {
   makeBodyVisible: number;
   windowLoadEvent: number;
   firstViewportReady: number;
+}
+
+export interface MultipleRuns {
+  url: string;
+  runs: Metrics[];
+}
+
+export interface Results {
+  device: string;
+  networkSpeed: string;
+  metrics: MultipleRuns[];
 }
