@@ -6,7 +6,7 @@ export interface Metrics {
   firstPaint: number;
   firstContentfulPaint: number; // use Performance.metrics injected into webpage
   firstMeaningfulPaint: number;
-  custom: AMPCustomStatistics;
+  custom: AMPCustomMetrics;
 }
 
 export interface AMPJavaScriptSizeEntry {
