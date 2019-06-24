@@ -1,13 +1,14 @@
 import puppeteer from 'puppeteer';
+import { Metrics } from '../../shared-interfaces/metrics-results';
 import generate from './generate-statistics';
 import isAMP from './is-AMP';
-import Statistics, { failedPageEval, failedPageGoTo, invalidAMP, ResultsCalculator, snailURL } from './performance-data';
+import { failedPageEval, failedPageGoTo, invalidAMP, ResultsCalculator, snailURL } from './performance-data';
 
 const NAV_TIMEOUT = 120000;
 // networkidle0 means that there are no more than 0 network connections for atleast 500 milliseconds
 const NAVIGATION_COMPLETE = 'networkidle0';
 
-const getMetrics: ResultsCalculator = async (url: string, downSpeed: number, upSpeed: number, latency: number): Promise<Statistics> => {
+const getMetrics: ResultsCalculator = async (url: string, downSpeed: number, upSpeed: number, latency: number): Promise<Metrics> => {
   if (!(await isAMP(url))) {
     return invalidAMP(url);
   }
@@ -40,7 +41,7 @@ const getMetrics: ResultsCalculator = async (url: string, downSpeed: number, upS
   }
 
   // Returning info
-  let statistics: Statistics = failedPageEval(url);
+  let statistics: Metrics = failedPageEval(url);
 
   // Returning info
   try {
@@ -57,7 +58,7 @@ const getMetrics: ResultsCalculator = async (url: string, downSpeed: number, upS
 
 const getResults: ResultsCalculator = async (url: string, downSpeed: number, upSpeed: number, lat: number) => {
   const pageMetrics = getMetrics(url, downSpeed, upSpeed, lat);
-  const slowURL: Promise<Statistics> = new Promise(resolve => {
+  const slowURL: Promise<Metrics> = new Promise(resolve => {
     setTimeout(() => {
       resolve(snailURL(url));
     }, NAV_TIMEOUT - 100);

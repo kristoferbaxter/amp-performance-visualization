@@ -1,4 +1,5 @@
 import { Component, h } from 'preact';
+import { data } from '../../components/data';
 import BarChart from '../../components/graph/BarChart';
 import * as style from './style.css';
 
@@ -7,17 +8,10 @@ export default class Home extends Component<Props> {
   public render() {
     return (
       <div class={style.home}>
-        <h1>Home</h1>
-        <p>This is the Home component.</p>
-        <BarChart
-          data={{
-            timeToFirstByte: 93,
-            timeToFirstContentfulPaint: 5,
-            timeToInteractive: 56,
-            timeToPageLoad: 7,
-            ampResourceWgt: 64,
-          }}
-        />
+        <h1>Performance Graph</h1>
+        <p>Device: {data.device}</p>
+        <p>Network Speed: {data.networkSpeed}</p>
+        <BarChart data={data.metrics} />
       </div>
     );
   }
