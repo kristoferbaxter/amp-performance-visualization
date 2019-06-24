@@ -1,6 +1,6 @@
 import { Component, h } from 'preact';
-import { data } from '../../components/data';
-import { ParsedData } from '../../components/data';
+import { data } from '../../../server/results/data';
+import { ParsedData } from '../../../shared-interfaces/metricsResults';
 import { DropDown } from '../../components/DropDown';
 import { BarChart } from '../../components/graph/BarChart';
 import { ConfidenceChart } from '../../components/graph/ConfidenceChart';

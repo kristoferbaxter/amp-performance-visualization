@@ -23,3 +23,12 @@ export interface AMPCustomStatistics {
   windowLoadEvent: number;
   firstViewportReady: number;
 }
+
+export interface ParsedData {
+  responseStart: number;
+  loadEventEnd: number;
+  domInteractive: number;
+  firstPaint: number;
+  firstContentfulPaint: number;
+  firstMeaningfulPaint: number;
+}
