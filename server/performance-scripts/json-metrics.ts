@@ -60,7 +60,7 @@ const getResults: ResultsCalculator = async (url: string, downSpeed: number, upS
   const slowURL: Promise<Statistics> = new Promise(resolve => {
     setTimeout(() => {
       resolve(snailURL(url));
-    }, NAV_TIMEOUT - 1000);
+    }, NAV_TIMEOUT - 100);
   });
 
   return await Promise.race([slowURL, pageMetrics]);
