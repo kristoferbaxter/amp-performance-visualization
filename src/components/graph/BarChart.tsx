@@ -19,6 +19,7 @@ interface Props {
   axisOffset: number;
 }
 
+// grabs the values of the data the user wants and sorts them from least to greatest
 function sortNeededData(data: ParsedData[], graphChoice: keyof ParsedData): number[] {
   const numArray: number[] = [];
   for (const metric of data) {
@@ -26,6 +27,7 @@ function sortNeededData(data: ParsedData[], graphChoice: keyof ParsedData): numb
   }
   return numArray.sort((a, b) => a - b);
 }
+// makes an array based on the frequency of the numbers every 1000
 function makeFrequencyArray(data: number[]): number[] {
   const freqArray: number[] = [];
   let previousInterval = 0;
@@ -57,14 +59,15 @@ export class BarChart extends Component<Props> {
   public render({ data, svgHeight, svgWidth, axisHeight, axisWidth, xLabelWidth, axisOffset, graphChoice }: Props): JSX.Element {
     const sortedData = sortNeededData(data, graphChoice);
     const newData = makeFrequencyArray(sortedData);
-    const maxValue = Math.ceil(Math.max.apply(null, Object.values(newData)) / 10) * 10;
-    const numOfBars = newData.length + 1;
-    const axisX = (x: number): number => (x / numOfBars) * axisWidth;
-    const axisY = (y: number): number => axisHeight - (y / maxValue) * axisHeight;
-    const barWidth = svgWidth / 2 / numOfBars;
+    const maxValue = Math.ceil(Math.max.apply(null, Object.values(newData)) / 10) * 10; // sets maxvalue to be the largest number in the array raised to the nearest 10
+    const numOfBars = newData.length + 1; // sets numOfBars to the number of frequency bar required for the graph
+    const axisX = (x: number): number => (x / numOfBars) * axisWidth; // manipulates an x value to fit into the frame of the graph
+    const axisY = (y: number): number => axisHeight - (y / maxValue) * axisHeight; // manipulates a y value to fit into the frame of the graph
+    const barWidth = svgWidth / numOfBars / 2; // changing the 2 to another number will manipulate the width of the bars
     const divisions = [];
     const numOfDivisions = maxValue / 10;
     for (let i = 1; i <= numOfDivisions - 1; i++) {
+      // makes an array with the x values for where the divisions should be placed
       divisions.push((maxValue * i) / numOfDivisions);
     }
     return (
