@@ -1,4 +1,5 @@
 import { h } from 'preact';
+import style from './Chart.css';
 
 interface Props {
   x: number;
@@ -7,7 +8,7 @@ interface Props {
 }
 
 export const XLabel = ({ x, y, value }: Props): JSX.Element => (
-  <text x={x} y={y}>
+  <text class={style.xLabel} x={x} y={y}>
     {value}
   </text>
 );
