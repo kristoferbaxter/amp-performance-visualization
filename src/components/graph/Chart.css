@@ -1,26 +1,3 @@
-.barChartRects {
-  fill: blue;
-}
-.barChartAxis {
-  stroke: black;
-  stroke-width: 4px;
-}
 .graph {
-  float: left;
   padding-top: 40px;
-}
-.xLabel {
-  text-anchor: end;
-  alignment-baseline: middle;
-  fill: blue;
-}
-.divisions {
-  stroke: grey;
-}
-.confidenceLines {
-  stroke: red;
-  stroke-width: 4px;
-}
-.yLabel {
-  transform: rotate(30deg);
 }

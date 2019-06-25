@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import style from './Chart.css';
+import style from './XLabel.css';
 
 interface Props {
   x: number;
