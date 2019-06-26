@@ -34,3 +34,11 @@ export interface Results {
   networkSpeed: string;
   metrics: MultipleRuns[];
 }
+export interface ParsedData {
+  responseStart: number;
+  loadEventEnd: number;
+  domInteractive: number;
+  firstPaint: number;
+  firstContentfulPaint: number;
+  firstMeaningfulPaint: number;
+}

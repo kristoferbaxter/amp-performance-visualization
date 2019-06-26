@@ -17,8 +17,9 @@
 .divisions {
   stroke: grey;
 }
-.yLabelSvg {
-  width: 100%;
+.confidenceLines {
+  stroke: red;
+  stroke-width: 4px;
 }
 .yLabel {
   transform: rotate(30deg);

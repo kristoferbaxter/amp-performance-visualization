@@ -1,4 +1,5 @@
 import { h } from 'preact';
+import style from './Chart.css';
 
 interface Props {
   x: number;
@@ -7,4 +8,4 @@ interface Props {
   height: number;
 }
 
-export const Bar = ({ x, y, width, height }: Props): JSX.Element => <rect x={x} y={y} width={width} height={height} />;
+export const Bar = ({ x, y, width, height }: Props): JSX.Element => <rect class={style.barChartRects} x={x} y={y} width={width} height={height} />;
