@@ -1,9 +1,9 @@
 export interface Metrics {
-  graphableData: NumberMetrics;
+  graphableData: TimeMetrics;
   tableData: AMPJavaScriptSizeEntry[];
 }
 
-export interface NumberMetrics {
+export interface TimeMetrics {
   responseStart: number; // firstByte
   loadEventEnd: number; // pageLoad
   domInteractive: number; // interactive
