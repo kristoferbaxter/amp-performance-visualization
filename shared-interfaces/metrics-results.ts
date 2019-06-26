@@ -1,27 +1,27 @@
 export interface Metrics {
-  url: string;
+  graphableData: TimeMetrics;
+  tableData: AMPJavaScriptSizeEntry[];
+}
+
+export interface TimeMetrics {
   responseStart: number; // firstByte
   loadEventEnd: number; // pageLoad
   domInteractive: number; // interactive
   firstPaint: number;
   firstContentfulPaint: number; // use Performance.metrics injected into webpage
   firstMeaningfulPaint: number;
-  custom: AMPCustomMetrics;
-}
-
-export interface AMPJavaScriptSizeEntry {
-  url: string;
-  size: number;
-}
-
-export interface AMPCustomMetrics {
-  ampJavascriptSize: AMPJavaScriptSizeEntry[];
-  installStyles: [number, number];
+  installStyles: number;
+  installStylesDuration: number;
   visible: number;
   onFirstVisible: number;
   makeBodyVisible: number;
   windowLoadEvent: number;
   firstViewportReady: number;
+}
+
+export interface AMPJavaScriptSizeEntry {
+  url: string;
+  size: number;
 }
 
 export interface MultipleRuns {
@@ -33,4 +33,12 @@ export interface Results {
   device: string;
   networkSpeed: string;
   metrics: MultipleRuns[];
+}
+export interface ParsedData {
+  responseStart: number;
+  loadEventEnd: number;
+  domInteractive: number;
+  firstPaint: number;
+  firstContentfulPaint: number;
+  firstMeaningfulPaint: number;
 }

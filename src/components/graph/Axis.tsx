@@ -1,4 +1,5 @@
 import { h } from 'preact';
+import style from './Chart.css';
 
 interface Props {
   minX: number;
@@ -8,7 +9,7 @@ interface Props {
 }
 
 export const Axis = ({ minX, minY, maxX, maxY }: Props): JSX.Element => (
-  <g>
+  <g class={style.barChartAxis}>
     <line x1={minX} y1={minY} x2={maxX} y2={minY} />
     <line x1={minX} y1={minY} x2={minX} y2={maxY} />
     <line x1={maxX} y1={maxY} x2={minX} y2={maxY} />

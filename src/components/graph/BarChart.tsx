@@ -1,89 +1,111 @@
 import { Component, h } from 'preact';
+import { ParsedData } from '../../../shared-interfaces/metrics-results';
 import { Axis } from './Axis';
 import { Bar } from './Bar';
-import style from './BarChart.css';
+import style from './Chart.css';
 import { ValueLabel } from './ValueLabel';
 import { XDivision } from './XDivision';
 import { XLabel } from './XLabel';
 import { YLabel } from './YLabel';
 
 interface Props {
-  data: { [k: string]: number };
+  data: ParsedData[];
+  graphChoice: keyof ParsedData;
   svgWidth: number;
   svgHeight: number;
+  axisWidth: number;
+  axisHeight: number;
+  xLabelWidth: number;
+  axisOffset: number;
+  frequencyInterval: number;
+  barWidthRatio: number;
 }
 
-interface State {}
+// grabs the values of the data the user wants and sorts them from least to greatest
+function sortNeededData(data: ParsedData[], graphChoice: keyof ParsedData): number[] {
+  const numArray: number[] = [];
+  for (const metric of data) {
+    numArray.push(metric[graphChoice]);
+  }
+  return numArray.sort((a, b) => a - b);
+}
+// makes an array based on the frequency of the numbers every 1000
+function makeFrequencyArray(data: number[], frequencyInterval: number): number[] {
+  const freqArray: number[] = [];
+  let previousInterval = 0;
+  let currentInterval = frequencyInterval;
+  while (currentInterval <= data[data.length - 1] + frequencyInterval) {
+    let count = 0;
+    for (const num of data) {
+      if (num > previousInterval && num <= currentInterval) {
+        count++;
+      }
+    }
+    previousInterval = currentInterval;
+    currentInterval += frequencyInterval;
+    freqArray.push(count);
+  }
+  return freqArray;
+}
 
-const maxValue = ({ data }: Props): number => Math.ceil(Math.max.apply(null, Object.values(data)) / 1000) * 1000; // Finds the largest data point and rounds it up to the nearest 1000
-const numOfMetrics = ({ data }: Props): number => Object.keys(data).length + 1; // Adding 1 puts a necessary buffer between the last bar and the edge of the graph
-const svgX = (x: number, props: Props): number => (x / numOfMetrics(props)) * props.svgWidth;
-const svgY = (y: number, props: Props): number => props.svgHeight - (y / maxValue(props)) * props.svgHeight;
-
-class BarChart extends Component<Props, State> {
+export class BarChart extends Component<Props> {
   public static defaultProps = {
-    svgHeight: 800,
-    svgWidth: 800,
+    svgHeight: 1000,
+    svgWidth: 1000,
+    axisHeight: 950,
+    axisWidth: 950,
+    xLabelWidth: 50,
+    axisOffset: 10,
+    frequencyInterval: 1000,
+    barWidthRatio: 2,
   };
 
-  public render({ data, svgHeight, svgWidth }: Props): JSX.Element {
-    const valueArr = Object.values(data);
-    const keyArr = Object.keys(data);
-    const axisOffset = 10;
-    const xLabelWidth = 50;
-    const barWidth = svgWidth / 2 / numOfMetrics(this.props);
+  public render({
+    data,
+    svgHeight,
+    svgWidth,
+    axisHeight,
+    axisWidth,
+    xLabelWidth,
+    axisOffset,
+    graphChoice,
+    frequencyInterval,
+    barWidthRatio,
+  }: Props): JSX.Element {
+    const sortedData = sortNeededData(data, graphChoice);
+    const newData = makeFrequencyArray(sortedData, frequencyInterval);
+    const maxValue = Math.ceil(Math.max.apply(null, Object.values(newData)) / 10) * 10; // sets maxvalue to be the largest number in the array raised to the nearest 10
+    const numOfBars = newData.length + 1; // sets numOfBars to the number of frequency bar required for the graph
+    const axisX = (x: number): number => (x / numOfBars) * axisWidth; // manipulates an x value to fit into the frame of the graph
+    const axisY = (y: number): number => axisHeight - (y / maxValue) * axisHeight; // manipulates a y value to fit into the frame of the graph
+    const barWidth = svgWidth / numOfBars / barWidthRatio; // changing the 2 to another number will manipulate the width of the bars
     const divisions = [];
-    const numOfDivisions = maxValue(this.props) / 1000; // Finds the number of divisions necessary to put horizontgal divisions every 1000 units
+    const numOfDivisions = maxValue / 10;
     for (let i = 1; i <= numOfDivisions - 1; i++) {
-      divisions.push((maxValue(this.props) * i) / numOfDivisions);
+      // makes an array with the x values for where the divisions should be placed
+      divisions.push((maxValue * i) / numOfDivisions);
     }
     return (
       <div class={style.graph}>
-        <svg width={xLabelWidth} height={svgHeight} class={style.xLabel}>
-          {divisions.map(value => (
-            <XLabel x={xLabelWidth - 5} y={svgY(value, this.props)} value={value} />
-          ))}
-        </svg>
         <svg width={svgWidth} height={svgHeight}>
-          <g class={style.divisions}>
-            {divisions.map(value => (
-              <XDivision minX={0} maxX={svgWidth} y={svgY(value, this.props)} />
-            ))}
-          </g>
-          <g class={style.barChartRects}>
-            {valueArr.map((value, index) => (
-              <Bar
-                x={svgX(index + 1, this.props) - barWidth / 2}
-                y={svgY(value, this.props)}
-                width={barWidth}
-                height={svgHeight - svgY(value, this.props)}
-              />
-            ))}
-          </g>
-          <g class={style.barChartAxis}>
-            <Axis
-              minX={svgX(0, this.props)}
-              minY={svgY(0, this.props)}
-              maxX={svgX(numOfMetrics(this.props), this.props)}
-              maxY={svgY(maxValue(this.props), this.props)}
-            />
-          </g>
-          <g>
-            {valueArr.map((value, index) => (
-              <ValueLabel x={svgX(index + 1, this.props) - barWidth / 2} y={svgY(value, this.props)} value={Math.round(value) + ' ms'} />
-            ))}
-          </g>
-        </svg>
-        <svg class={style.yLabelSvg}>
-          <g>
-            {keyArr.map((value, index) => (
-              <YLabel x={svgX(index + 1, this.props) + barWidth / 2} y={axisOffset} value={value} />
-            ))}
-          </g>
+          {divisions.map(value => (
+            <XLabel x={xLabelWidth} y={axisY(value)} value={value} />
+          ))}
+          {divisions.map(value => (
+            <XDivision minX={svgWidth - axisWidth} maxX={svgWidth} y={axisY(value)} />
+          ))}
+          {newData.map((value, index) => (
+            <Bar x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisY(value)} width={barWidth} height={axisHeight - axisY(value)} />
+          ))}
+          <Axis minX={svgWidth - axisWidth} minY={axisHeight} maxX={svgWidth} maxY={axisY(maxValue)} />
+          {newData.map((value, index) => (
+            <ValueLabel x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisY(value)} value={Math.round(value)} />
+          ))}
+          {newData.map((value, index) => (
+            <YLabel x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisHeight + axisOffset} value={(index + 1) * 1000} />
+          ))}
         </svg>
       </div>
     );
   }
 }
-
-export default BarChart;

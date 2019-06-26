@@ -4,7 +4,7 @@ import generate from './generate-statistics';
 import isAMP from './is-AMP';
 import { failedPageEval, failedPageGoTo, invalidAMP, ResultsCalculator, snailURL } from './performance-data';
 
-const NAV_TIMEOUT = 120000;
+const NAV_TIMEOUT = 240000;
 // networkidle0 means that there are no more than 0 network connections for atleast 500 milliseconds
 const NAVIGATION_COMPLETE = 'networkidle0';
 
