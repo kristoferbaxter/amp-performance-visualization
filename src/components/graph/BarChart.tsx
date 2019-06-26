@@ -18,6 +18,7 @@ interface Props {
   xLabelWidth: number;
   axisOffset: number;
   frequencyInterval: number;
+  divisionInterval: number;
   barWidthRatio: number;
 }
 
@@ -57,6 +58,7 @@ export class BarChart extends Component<Props> {
     xLabelWidth: 50,
     axisOffset: 10,
     frequencyInterval: 1000,
+    divisionInterval: 1,
     barWidthRatio: 2,
   };
 
@@ -70,6 +72,7 @@ export class BarChart extends Component<Props> {
     axisOffset,
     graphChoice,
     frequencyInterval,
+    divisionInterval,
     barWidthRatio,
   }: Props): JSX.Element {
     const sortedData = sortNeededData(data, graphChoice);
@@ -80,7 +83,7 @@ export class BarChart extends Component<Props> {
     const axisY = (y: number): number => axisHeight - (y / maxValue) * axisHeight; // manipulates a y value to fit into the frame of the graph
     const barWidth = svgWidth / numOfBars / barWidthRatio; // changing the 2 to another number will manipulate the width of the bars
     const divisions = [];
-    const numOfDivisions = maxValue / 10;
+    const numOfDivisions = maxValue / divisionInterval;
     for (let i = 1; i <= numOfDivisions - 1; i++) {
       // makes an array with the x values for where the divisions should be placed
       divisions.push((maxValue * i) / numOfDivisions);
@@ -89,7 +92,7 @@ export class BarChart extends Component<Props> {
       <div class={style.graph}>
         <svg width={svgWidth} height={svgHeight}>
           {divisions.map(value => (
-            <XLabel x={xLabelWidth} y={axisY(value)} value={value} />
+            <XLabel x={xLabelWidth - axisOffset} y={axisY(value)} value={value} />
           ))}
           {divisions.map(value => (
             <XDivision minX={svgWidth - axisWidth} maxX={svgWidth} y={axisY(value)} />

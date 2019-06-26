@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import style from './Chart.css';
+import style from './XDivision.css';
 
 interface Props {
   maxX: number;

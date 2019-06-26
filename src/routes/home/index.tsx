@@ -4,7 +4,7 @@ import { ParsedData } from '../../../shared-interfaces/metrics-results';
 import { DropDown } from '../../components/DropDown';
 import { BarChart } from '../../components/graph/BarChart';
 import { ConfidenceChart } from '../../components/graph/ConfidenceChart';
-import * as style from './style.css';
+import style from './style.css';
 
 interface Props {}
 interface State {
