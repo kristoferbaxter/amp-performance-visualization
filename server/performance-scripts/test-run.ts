@@ -19,7 +19,7 @@ const urlArray: string[] = [
 // Metrics returning all -3 means the program failed to go to the page
 
 multiRunMetrics(urlArray, 1536, 750, 40).then(data => {
-  fs.writeFile('src/components/amp-metrics.json', JSON.stringify(data, null, 2), err => {
+  fs.writeFile('server/results/amp-metrics.json', JSON.stringify(data, null, 2), err => {
     if (err) {
       throw err;
     }
