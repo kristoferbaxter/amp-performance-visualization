@@ -40,22 +40,22 @@ export default async function generate(page: puppeteer.Page): Promise<Metrics> {
       );
 
       return {
-        url: document.location.href,
-        responseStart: results.responseStart - results.navigationStart,
-        loadEventEnd: results.loadEventEnd - results.navigationStart,
-        domInteractive: TEMP_OUTPUT,
-        firstPaint: TEMP_OUTPUT,
-        firstContentfulPaint: TEMP_OUTPUT,
-        firstMeaningfulPaint: TEMP_OUTPUT,
-        custom: {
-          ampJavascriptSize: ampTransferSizes,
-          installStyles: [performanceMarkArray[0], performanceMarkArray[1]],
+        graphableData: {
+          responseStart: results.responseStart - results.navigationStart,
+          loadEventEnd: results.loadEventEnd - results.navigationStart,
+          domInteractive: TEMP_OUTPUT,
+          firstPaint: TEMP_OUTPUT,
+          firstContentfulPaint: TEMP_OUTPUT,
+          firstMeaningfulPaint: TEMP_OUTPUT,
+          installStyles: performanceMarkArray[0],
+          installStylesDuration: performanceMarkArray[1] - performanceMarkArray[0],
           visible: performanceMarkArray[2],
           onFirstVisible: performanceMarkArray[3],
           makeBodyVisible: performanceMarkArray[4],
           windowLoadEvent: performanceMarkArray[5],
           firstViewportReady: performanceMarkArray[6],
         },
+        tableData: ampTransferSizes,
       };
     },
   );
