@@ -2,6 +2,7 @@ import puppeteer from 'puppeteer';
 import { AMPJavaScriptSizeEntry, Metrics, PuppeteerMetrics } from '../../shared-interfaces/metrics-results';
 
 export default async function generate(page: puppeteer.Page, customMetrics: PuppeteerMetrics): Promise<Metrics> {
+  // firstMeaningfulPaint. if the variable is named firstMeaningfulPaint it produces a shadowing error in TSLint
   const fMP: number = Math.round((customMetrics.metrics[30].value - customMetrics.metrics[32].value) * 1000);
   return await page.evaluate((firstMeaningfulPaint): Metrics => {
     // Don't have the information on how to properly retrieve these metrics
