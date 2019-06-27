@@ -1,5 +1,5 @@
 import puppeteer from 'puppeteer';
-import { Metrics } from '../../shared-interfaces/metrics-results';
+import { Metrics, PuppeteerMetrics } from '../../shared-interfaces/metrics-results';
 import generate from './generate-statistics';
 import isAMP from './is-AMP';
 import { failedPageEval, failedPageGoTo, invalidAMP, ResultsCalculator, snailURL } from './performance-data';
@@ -24,6 +24,7 @@ const getMetrics: ResultsCalculator = async (url: string, downSpeed: number, upS
     DevTools expects throughputs in bytes/s
   */
   const client = await page.target().createCDPSession();
+  await client.send('Performance.enable');
   await client.send('Network.emulateNetworkConditions', {
     offline: false,
     downloadThroughput: (downSpeed * 1024) / 8,
@@ -40,12 +41,14 @@ const getMetrics: ResultsCalculator = async (url: string, downSpeed: number, upS
     return failedPageGoTo(url);
   }
 
+  const customMetrics = (await client.send('Performance.getMetrics')) as PuppeteerMetrics;
+
   // Returning info
   let statistics: Metrics = failedPageEval(url);
 
   // Returning info
   try {
-    statistics = await generate(page);
+    statistics = await generate(page, customMetrics);
   } catch (e) {
     console.log(e);
     return failedPageEval(url);

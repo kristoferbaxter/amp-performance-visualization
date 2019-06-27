@@ -42,7 +42,7 @@ export default async function multiRunMetrics(
 
   return {
     device: DEVICE_NAME,
-    networkSpeed: `downspeed: ${downSpeed}kbps`,
+    networkSpeed: `downspeed: ${downSpeed}kbps | upspeed: ${upSpeed} | latency: ${latency}`,
     metrics: allURLArray,
   };
 }
