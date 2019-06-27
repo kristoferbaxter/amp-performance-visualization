@@ -1,5 +1,5 @@
 import { Component, h } from 'preact';
-import { ParsedData } from '../../../shared-interfaces/metrics-results';
+import { PerformanceMetrics } from '../../../shared-interfaces/metrics-results';
 import { Axis } from './Axis';
 import { Bar } from './Bar';
 import style from './Chart.css';
@@ -10,7 +10,7 @@ import { XLabel } from './XLabel';
 import { YLabel } from './YLabel';
 
 interface Props {
-  data: ParsedData[];
+  data: PerformanceMetrics[];
   svgWidth: number;
   svgHeight: number;
   axisWidth: number;
@@ -27,7 +27,7 @@ function getAverage(numArray: number[]): number {
   return sum / numArray.length;
 }
 // put the average of every metric into an array
-function aggregateMetrics(data: ParsedData[]) {
+function aggregateMetrics(data: PerformanceMetrics[]) {
   const aggregate: { [k: string]: number } = {};
   for (let i = 0; i < Object.keys(data[0]).length; i++) {
     const metrics: number[] = [];
@@ -39,7 +39,7 @@ function aggregateMetrics(data: ParsedData[]) {
   return aggregate;
 }
 // create an array with the sta deviation of each metric
-function createConfidenceArray(data: ParsedData[]) {
+function createConfidenceArray(data: PerformanceMetrics[]) {
   const confidence: { [k: string]: number } = {};
   for (let i = 0; i < Object.keys(data[0]).length; i++) {
     const metrics: number[] = [];

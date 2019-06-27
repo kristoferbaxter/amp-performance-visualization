@@ -1,6 +1,6 @@
 import { Component, h } from 'preact';
 import { data } from '../../../server/results/data';
-import { ParsedData } from '../../../shared-interfaces/metrics-results';
+import { PerformanceMetrics } from '../../../shared-interfaces/metrics-results';
 import { DropDown } from '../../components/DropDown';
 import { BarChart } from '../../components/graph/BarChart';
 import { ConfidenceChart } from '../../components/graph/ConfidenceChart';
@@ -8,10 +8,10 @@ import style from './style.css';
 
 interface Props {}
 interface State {
-  graphChoice: keyof ParsedData;
+  graphChoice: keyof PerformanceMetrics;
 }
 
-function isKeyOfParsedData(str: string): str is keyof ParsedData {
+function isKeyOfParsedData(str: string): str is keyof PerformanceMetrics {
   // TODO: This check could use the actual key names from ParsedData.
   return typeof str === 'string';
 }
@@ -33,9 +33,9 @@ export default class Home extends Component<Props, State> {
     return (
       <div class={style.home}>
         <h1>Performance Graph</h1>
-        <DropDown metrics={data.metrics} onSelection={this.updateGraph} />
-        <BarChart data={data.metrics} graphChoice={this.state.graphChoice} />
-        <ConfidenceChart data={data.metrics} />
+        <DropDown metrics={data.metrics.performance} onSelection={this.updateGraph} />
+        <BarChart data={data.metrics.performance} graphChoice={this.state.graphChoice} />
+        <ConfidenceChart data={data.metrics.performance} />
       </div>
     );
   }

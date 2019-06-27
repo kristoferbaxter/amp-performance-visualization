@@ -1,5 +1,5 @@
 import { Component, h } from 'preact';
-import { ParsedData } from '../../../shared-interfaces/metrics-results';
+import { PerformanceMetrics } from '../../../shared-interfaces/metrics-results';
 import { Axis } from './Axis';
 import { Bar } from './Bar';
 import style from './Chart.css';
@@ -9,8 +9,8 @@ import { XLabel } from './XLabel';
 import { YLabel } from './YLabel';
 
 interface Props {
-  data: ParsedData[];
-  graphChoice: keyof ParsedData;
+  data: PerformanceMetrics[];
+  graphChoice: keyof PerformanceMetrics;
   svgWidth: number;
   svgHeight: number;
   axisWidth: number;
@@ -23,7 +23,7 @@ interface Props {
 }
 
 // grabs the values of the data the user wants and sorts them from least to greatest
-function sortNeededData(data: ParsedData[], graphChoice: keyof ParsedData): number[] {
+function sortNeededData(data: PerformanceMetrics[], graphChoice: keyof PerformanceMetrics): number[] {
   const numArray: number[] = [];
   for (const metric of data) {
     numArray.push(metric[graphChoice]);
