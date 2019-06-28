@@ -30,3 +30,10 @@ export interface AMPEntry {
   url: string;
   size: number;
 }
+
+export interface PuppeteerMetrics {
+  metrics: Array<{
+    name: string;
+    value: number;
+  }>;
+}
