@@ -1,8 +1,13 @@
 import puppeteer from 'puppeteer';
-import { Metrics } from '../../shared-interfaces/metrics-results';
+import { AMPEntry, TimeMetrics } from '../../shared-interfaces/metrics-results';
 import generate from './generate-statistics';
 import isAMP from './is-AMP';
 import { failedPageEval, failedPageGoTo, invalidAMP, ResultsCalculator, snailURL } from './performance-data';
+
+export interface Metrics {
+  graphableData: TimeMetrics;
+  tableData: AMPEntry[];
+}
 
 const NAV_TIMEOUT = 240000;
 // networkidle0 means that there are no more than 0 network connections for atleast 500 milliseconds

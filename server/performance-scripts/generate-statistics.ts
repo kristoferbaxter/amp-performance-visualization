@@ -1,5 +1,6 @@
 import puppeteer from 'puppeteer';
-import { AMPJavaScriptSizeEntry, Metrics } from '../../shared-interfaces/metrics-results';
+import { AMPEntry } from '../../shared-interfaces/metrics-results';
+import { Metrics } from './json-metrics';
 
 export default async function generate(page: puppeteer.Page): Promise<Metrics> {
   return await page.evaluate(
@@ -13,7 +14,7 @@ export default async function generate(page: puppeteer.Page): Promise<Metrics> {
       const results = JSON.parse(JSON.stringify(performance.timing));
 
       // Transfer Size for all AMP Javascript Resources
-      const ampTransferSizes: AMPJavaScriptSizeEntry[] = [];
+      const ampTransferSizes: AMPEntry[] = [];
       (performance.getEntriesByType('resource') as PerformanceResourceTiming[]).forEach(
         (item: PerformanceResourceTiming): void => {
           if (item.initiatorType === 'script' && item.name.startsWith(tSizeURL)) {

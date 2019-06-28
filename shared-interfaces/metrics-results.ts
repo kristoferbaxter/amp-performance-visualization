@@ -1,6 +1,13 @@
-export interface Metrics {
-  graphableData: TimeMetrics;
-  tableData: AMPJavaScriptSizeEntry[];
+export interface TestPass {
+  device: string;
+  networkSpeed: string;
+  metrics: Results[];
+}
+
+export interface Results {
+  url: string;
+  performance: TimeMetrics[];
+  amp: AMPEntry[];
 }
 
 export interface TimeMetrics {
@@ -8,7 +15,7 @@ export interface TimeMetrics {
   loadEventEnd: number; // pageLoad
   domInteractive: number; // interactive
   firstPaint: number;
-  firstContentfulPaint: number; // use Performance.metrics injected into webpage
+  firstContentfulPaint: number; // use Performance.metrics
   firstMeaningfulPaint: number;
   installStyles: number;
   installStylesDuration: number;
@@ -19,26 +26,7 @@ export interface TimeMetrics {
   firstViewportReady: number;
 }
 
-export interface AMPJavaScriptSizeEntry {
+export interface AMPEntry {
   url: string;
   size: number;
-}
-
-export interface MultipleRuns {
-  url: string;
-  runs: Metrics[];
-}
-
-export interface Results {
-  device: string;
-  networkSpeed: string;
-  metrics: MultipleRuns[];
-}
-export interface ParsedData {
-  responseStart: number;
-  loadEventEnd: number;
-  domInteractive: number;
-  firstPaint: number;
-  firstContentfulPaint: number;
-  firstMeaningfulPaint: number;
 }
