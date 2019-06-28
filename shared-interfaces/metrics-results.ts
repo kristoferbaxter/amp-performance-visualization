@@ -1,7 +1,7 @@
 export interface TestPass {
   device: string;
   networkSpeed: string;
-  metrics: Results[];
+  results: Results[];
 }
 
 export interface Results {
