@@ -8,16 +8,16 @@ export default async function generate(page: puppeteer.Page, customMetrics: Pupp
     // Don't have the information on how to properly retrieve these metrics
     const TEMP_OUTPUT = 0;
     // to detect transfer sizes
-    const tSizeURL = 'https://cdn.ampproject.org/';
+    const TRANSFER_SIZE_URL_PREFIX = 'https://cdn.ampproject.org/';
 
-    // Performance Metric results
+    // `performance.timing` contains PerformanceResourceTiming data, which we need to generate a `Metrics` Object. However, within a Puppeteer environment, we must use stringify and parse to access it correctly.
     const results = JSON.parse(JSON.stringify(performance.timing));
 
     // Transfer Size for all AMP Javascript Resources
     const ampTransferSizes: AMPJavaScriptSizeEntry[] = [];
     (performance.getEntriesByType('resource') as PerformanceResourceTiming[]).forEach(
       (item: PerformanceResourceTiming): void => {
-        if (item.initiatorType === 'script' && item.name.startsWith(tSizeURL)) {
+        if (item.initiatorType === 'script' && item.name.startsWith(TRANSFER_SIZE_URL_PREFIX)) {
           ampTransferSizes.push({
             url: item.name,
             size: item.transferSize,
@@ -26,7 +26,7 @@ export default async function generate(page: puppeteer.Page, customMetrics: Pupp
       },
     );
 
-    // Transfer Size for all AMP Javascript Resources
+    // First Paint and First Contentful Paint Metrics
     const paintMetrics: number[] = [];
     (performance.getEntriesByType('paint') as PerformanceResourceTiming[]).forEach(
       (item: PerformanceResourceTiming): void => {
@@ -37,11 +37,11 @@ export default async function generate(page: puppeteer.Page, customMetrics: Pupp
     );
 
     // Custom AMP Performance Marks
-    const markNames: string[] = ['is', 'e_is', 'visible', 'ofv', 'mbv', 'ol', 'pc'];
+    const MARK_NAMES: string[] = ['is', 'e_is', 'visible', 'ofv', 'mbv', 'ol', 'pc'];
     const performanceMarkArray: number[] = [];
     (performance.getEntriesByType('mark') as PerformanceMark[]).forEach(
       (element: PerformanceMark): void => {
-        for (const item of markNames) {
+        for (const item of MARK_NAMES) {
           if (element.name.startsWith(item)) {
             const markTime = Math.round(element.startTime * 1000) / 1000;
             performanceMarkArray.push(markTime);
@@ -50,7 +50,7 @@ export default async function generate(page: puppeteer.Page, customMetrics: Pupp
       },
     );
 
-    const duration = Math.round((performanceMarkArray[1] - performanceMarkArray[0]) * 1000) / 1000;
+    const installStylesDuration = Math.round((performanceMarkArray[1] - performanceMarkArray[0]) * 1000) / 1000;
 
     return {
       graphableData: {
@@ -61,7 +61,7 @@ export default async function generate(page: puppeteer.Page, customMetrics: Pupp
         firstContentfulPaint: paintMetrics[1],
         firstMeaningfulPaint: fMP,
         installStyles: performanceMarkArray[0],
-        installStylesDuration: duration,
+        installStylesDuration,
         visible: performanceMarkArray[2],
         onFirstVisible: performanceMarkArray[3],
         makeBodyVisible: performanceMarkArray[4],
