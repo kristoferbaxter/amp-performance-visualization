@@ -1,16 +1,9 @@
-export interface TestPass {
-  device: string;
-  networkSpeed: string;
-  metrics: Results[];
+export interface Metrics {
+  graphableData: TimeMetrics;
+  tableData: AMPJavaScriptSizeEntry[];
 }
 
-export interface Results {
-  url: string;
-  performance: PerformanceMetrics[];
-  amp: AMPEntry[];
-}
-
-export interface PerformanceMetrics {
+export interface TimeMetrics {
   responseStart: number; // firstByte
   loadEventEnd: number; // pageLoad
   domInteractive: number; // interactive
@@ -26,28 +19,35 @@ export interface PerformanceMetrics {
   firstViewportReady: number;
 }
 
-export interface AMPEntry {
+export interface AMPJavaScriptSizeEntry {
   url: string;
   size: number;
 }
 
-export interface ParsedData {
-  performance: PerformanceMetrics[];
-  amp: AMPEntry[];
+export interface MultipleRuns {
+  url: string;
+  size: number;
 }
 
-/*export interface Results {
+export interface Results {
   device: string;
   networkSpeed: string;
   metrics: MultipleRuns[];
 }
 
-export interface MultipleRuns {
-  url: string;
-  runs: Metrics[];
+export interface PuppeteerMetrics {
+  metrics: Array<{
+    name: string;
+    value: number;
+  }>;
 }
 
-export interface Metrics {
+// export interface ParsedData {
+//   performance: PerformanceMetrics[];
+//   amp: AMPEntry[];
+// }
+
+/*export interface Metrics {
   graphableData: NumberMetrics,
   tableData: AMPJavaScriptSizeEntry[],
 }
