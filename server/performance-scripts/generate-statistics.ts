@@ -1,5 +1,6 @@
 import puppeteer from 'puppeteer';
-import { AMPJavaScriptSizeEntry, Metrics, PuppeteerMetrics } from '../../shared-interfaces/metrics-results';
+import { AMPEntry, PuppeteerMetrics } from '../../shared-interfaces/metrics-results';
+import { Metrics } from './json-metrics';
 
 export default async function generate(page: puppeteer.Page, customMetrics: PuppeteerMetrics): Promise<Metrics> {
   // firstMeaningfulPaint. if the variable is named firstMeaningfulPaint it produces a shadowing error in TSLint
@@ -14,7 +15,7 @@ export default async function generate(page: puppeteer.Page, customMetrics: Pupp
     const results = JSON.parse(JSON.stringify(performance.timing));
 
     // Transfer Size for all AMP Javascript Resources
-    const ampTransferSizes: AMPJavaScriptSizeEntry[] = [];
+    const ampTransferSizes: AMPEntry[] = [];
     (performance.getEntriesByType('resource') as PerformanceResourceTiming[]).forEach(
       (item: PerformanceResourceTiming): void => {
         if (item.initiatorType !== 'script' || !item.name.startsWith(TRANSFER_SIZE_URL_PREFIX)) {

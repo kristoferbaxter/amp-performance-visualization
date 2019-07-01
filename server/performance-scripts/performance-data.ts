@@ -1,4 +1,4 @@
-import { Metrics } from '../../shared-interfaces/metrics-results';
+import { Metrics } from './json-metrics';
 
 export type ResultsCalculator = (url: string, downSpeed: number, upSpeed: number, latency: number) => Promise<Metrics>;
 
