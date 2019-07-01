@@ -1,6 +1,6 @@
 import { Component, h } from 'preact';
 import { data } from '../../../server/results/data';
-import { PerformanceMetrics } from '../../../shared-interfaces/metrics-results';
+import { TimeMetrics } from '../../../shared-interfaces/metrics-results';
 import { DropDown } from '../../components/DropDown';
 import { BarChart } from '../../components/graph/BarChart';
 import { ConfidenceChart } from '../../components/graph/ConfidenceChart';
@@ -8,10 +8,10 @@ import style from './style.css';
 
 interface Props {}
 interface State {
-  graphChoice: keyof PerformanceMetrics;
+  graphChoice: keyof TimeMetrics;
 }
 
-function isKeyOfParsedData(str: string): str is keyof PerformanceMetrics {
+function isKeyOfParsedData(str: string): str is keyof TimeMetrics {
   // TODO: This check could use the actual key names from ParsedData.
   return typeof str === 'string';
 }
