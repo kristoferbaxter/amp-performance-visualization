@@ -93,49 +93,30 @@ export class ConfidenceChart extends Component<Props> {
     return (
       <div class={style.graph}>
         <svg width={svgWidth} height={svgHeight}>
-          <g>
-            {divisions.map(value => (
-              <XLabel x={xLabelWidth} y={axisY(value)} value={value} />
-            ))}
-          </g>
-          <g>
-            {divisions.map(value => (
-              <XDivision minX={svgWidth - axisWidth} maxX={svgWidth} y={axisY(value)} />
-            ))}
-          </g>
-          <g>
-            {valueArr.map((value, index) => (
-              <Bar
-                x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)}
-                y={axisY(value)}
-                width={barWidth}
-                height={axisHeight - axisY(value)}
-              />
-            ))}
-          </g>
-          <g>
-            {Object.values(confidence).map((value, index) => (
-              <ConfidenceLines
-                x={axisX(index + 1) + (svgWidth - axisWidth)}
-                minY={axisY(valueArr[index] - value)}
-                maxY={axisY(valueArr[index] + value)}
-                endLineLength={50}
-              />
-            ))}
-          </g>
-          <g>
-            <Axis minX={svgWidth - axisWidth} minY={axisHeight} maxX={svgWidth} maxY={axisY(maxValue)} />
-          </g>
-          <g>
-            {valueArr.map((value, index) => (
-              <ValueLabel x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisY(value)} value={Math.round(value)} />
-            ))}
-          </g>
-          <g>
-            {keyArr.map((value, index) => (
-              <YLabel x={axisX(index + 1) + (svgWidth - axisWidth)} y={axisHeight + axisOffset} value={value} />
-            ))}
-          </g>
+          {divisions.map(value => (
+            <XLabel x={xLabelWidth} y={axisY(value)} value={value} />
+          ))}
+          {divisions.map(value => (
+            <XDivision minX={svgWidth - axisWidth} maxX={svgWidth} y={axisY(value)} />
+          ))}
+          {valueArr.map((value, index) => (
+            <Bar x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisY(value)} width={barWidth} height={axisHeight - axisY(value)} />
+          ))}
+          {Object.values(confidence).map((value, index) => (
+            <ConfidenceLines
+              x={axisX(index + 1) + (svgWidth - axisWidth)}
+              minY={axisY(valueArr[index] - value)}
+              maxY={axisY(valueArr[index] + value)}
+              endLineLength={50}
+            />
+          ))}
+          <Axis minX={svgWidth - axisWidth} minY={axisHeight} maxX={svgWidth} maxY={axisY(maxValue)} />
+          {valueArr.map((value, index) => (
+            <ValueLabel x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisY(value)} value={Math.round(value)} />
+          ))}
+          {keyArr.map((value, index) => (
+            <YLabel x={axisX(index + 1) + (svgWidth - axisWidth)} y={axisHeight + axisOffset} value={value} />
+          ))}
         </svg>
       </div>
     );
