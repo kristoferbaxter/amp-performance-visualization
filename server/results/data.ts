@@ -1,5 +1,5 @@
-import { AMPEntry, ParsedData, PerformanceMetrics, Results, TestPass } from '../../shared-interfaces/metrics-results';
-import { results } from './results';
+import { AMPEntry, ParsedData, Results, TestPass, TimeMetrics } from '../../shared-interfaces/metrics-results';
+import { results } from './amp-metrics';
 
 function filterBadData(arrayOfResults: Results[]): Results[] {
   for (let i = 0; i < arrayOfResults.length; i++) {
@@ -13,7 +13,8 @@ function filterBadData(arrayOfResults: Results[]): Results[] {
 }
 
 function parseMetrics(arrayOfResults: Results[]): ParsedData {
-  const parsedGraphableData: PerformanceMetrics[] = [];
+  console.log(arrayOfResults);
+  const parsedGraphableData: TimeMetrics[] = [];
   const parsedTableData: AMPEntry[] = [];
   const goodMetrics = filterBadData(arrayOfResults);
   for (const metrics of goodMetrics) {
@@ -24,6 +25,7 @@ function parseMetrics(arrayOfResults: Results[]): ParsedData {
       parsedTableData.push(metric);
     }
   }
+  console.log(parsedGraphableData);
   return {
     performance: parsedGraphableData,
     amp: parsedTableData,
@@ -31,5 +33,7 @@ function parseMetrics(arrayOfResults: Results[]): ParsedData {
 }
 
 export const data = {
-  metrics: parseMetrics(results.metrics),
+  device: results.device,
+  networkSpeed: results.networkSpeed,
+  metrics: parseMetrics(results.results),
 };

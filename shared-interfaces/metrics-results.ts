@@ -38,10 +38,10 @@ export interface PuppeteerMetrics {
   }>;
 }
 
-// export interface ParsedData {
-//   performance: PerformanceMetrics[];
-//   amp: AMPEntry[];
-// }
+export interface ParsedData {
+  performance: TimeMetrics[];
+  amp: AMPEntry[];
+}
 
 /*export interface Metrics {
   graphableData: NumberMetrics,
