@@ -2,18 +2,26 @@ import puppeteer from 'puppeteer';
 import { AMPEntry, PuppeteerMetrics, TimeMetrics } from '../../shared-interfaces/metrics-results';
 import generate from './generate-statistics';
 import isAMP from './is-AMP';
-import { failedPageEval, failedPageGoTo, invalidAMP, ResultsCalculator, snailURL } from './performance-data';
+import { failedPageEval, failedPageGoTo, invalidAMP, snailURL } from './performance-data';
 
 export interface Metrics {
   graphableData: TimeMetrics;
   tableData: AMPEntry[];
 }
 
+export interface NetworkJSON {
+  downSpeed: number;
+  upSpeed: number;
+  latency: number;
+}
+
+type ResultsCalculator = (url: string, network: NetworkJSON) => Promise<Metrics>;
+
 const NAV_TIMEOUT = 240000;
 // networkidle0 means that there are no more than 0 network connections for atleast 500 milliseconds
 const NAVIGATION_COMPLETE = 'networkidle0';
 
-const getMetrics: ResultsCalculator = async (url: string, downSpeed: number, upSpeed: number, latency: number): Promise<Metrics> => {
+const getMetrics: ResultsCalculator = async (url: string, network: NetworkJSON): Promise<Metrics> => {
   if (!(await isAMP(url))) {
     return invalidAMP(url);
   }
@@ -32,9 +40,9 @@ const getMetrics: ResultsCalculator = async (url: string, downSpeed: number, upS
   await client.send('Performance.enable');
   await client.send('Network.emulateNetworkConditions', {
     offline: false,
-    downloadThroughput: (downSpeed * 1024) / 8,
-    uploadThroughput: (upSpeed * 1024) / 8,
-    latency,
+    downloadThroughput: (network.downSpeed * 1024) / 8,
+    uploadThroughput: (network.upSpeed * 1024) / 8,
+    latency: network.latency,
   });
 
   // waits until the page is fully loaded
@@ -64,8 +72,8 @@ const getMetrics: ResultsCalculator = async (url: string, downSpeed: number, upS
   return statistics;
 };
 
-const getResults: ResultsCalculator = async (url: string, downSpeed: number, upSpeed: number, lat: number) => {
-  const pageMetrics = getMetrics(url, downSpeed, upSpeed, lat);
+const getResults: ResultsCalculator = async (url: string, network: NetworkJSON) => {
+  const pageMetrics = getMetrics(url, network);
   const slowURL: Promise<Metrics> = new Promise(resolve => {
     setTimeout(() => {
       resolve(snailURL(url));
