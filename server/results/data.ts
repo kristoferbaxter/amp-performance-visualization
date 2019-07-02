@@ -13,7 +13,6 @@ function filterBadData(arrayOfResults: Results[]): Results[] {
 }
 
 function parseMetrics(arrayOfResults: Results[]): ParsedData {
-  console.log(arrayOfResults);
   const parsedGraphableData: TimeMetrics[] = [];
   const parsedTableData: AMPEntry[] = [];
   const goodMetrics = filterBadData(arrayOfResults);
@@ -25,7 +24,6 @@ function parseMetrics(arrayOfResults: Results[]): ParsedData {
       parsedTableData.push(metric);
     }
   }
-  console.log(parsedGraphableData);
   return {
     performance: parsedGraphableData,
     amp: parsedTableData,

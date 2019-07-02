@@ -34,6 +34,7 @@ export default class Home extends Component<Props, State> {
       <div class={style.home}>
         <h1>Performance Graph</h1>
         <DropDown metrics={data.metrics.performance} onSelection={this.updateGraph} />
+        <h2>{this.state.graphChoice}</h2>
         <BarChart data={data.metrics.performance} graphChoice={this.state.graphChoice} />
         <ConfidenceChart data={data.metrics.performance} />
       </div>

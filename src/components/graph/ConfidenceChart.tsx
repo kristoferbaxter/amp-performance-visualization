@@ -17,6 +17,7 @@ interface Props {
   axisHeight: number;
   xLabelWidth: number;
   axisOffset: number;
+  rightSideOffset: number;
 }
 // average an array of numbers
 function getAverage(numArray: number[]): number {
@@ -68,9 +69,10 @@ export class ConfidenceChart extends Component<Props> {
     axisWidth: 950,
     xLabelWidth: 45,
     axisOffset: 10,
+    rightSideOffset: 50,
   };
 
-  public render({ data, svgHeight, svgWidth, axisHeight, axisWidth, xLabelWidth, axisOffset }: Props): JSX.Element {
+  public render({ data, svgHeight, svgWidth, axisHeight, axisWidth, xLabelWidth, axisOffset, rightSideOffset }: Props): JSX.Element {
     const newData = aggregateMetrics(data);
     const confidence = createConfidenceArray(data);
     const maxDataArr = [];
@@ -86,13 +88,13 @@ export class ConfidenceChart extends Component<Props> {
     const barWidth = svgWidth / 2 / numOfBars; // changing the 2 to another number will manipulate the width of the bars
     const divisions = [];
     const numOfDivisions = maxValue / 1000;
-    for (let i = 1; i <= numOfDivisions - 1; i++) {
+    for (let i = 0; i <= numOfDivisions; i++) {
       // makes an array with the x values for where the divisions should be placed
       divisions.push((maxValue * i) / numOfDivisions);
     }
     return (
       <div class={style.graph}>
-        <svg width={svgWidth} height={svgHeight}>
+        <svg width={svgWidth} height={svgHeight} viewBox={`0 -20 ${svgWidth + rightSideOffset} ${svgHeight}`}>
           {divisions.map(value => (
             <XLabel x={xLabelWidth} y={axisY(value)} value={value} />
           ))}
