@@ -1,13 +1,15 @@
 import { Component, h } from 'preact';
 import { TimeMetrics } from '../../../shared-interfaces/metrics-results';
 import { Axis } from './Axis';
+import { AxisLabel } from './AxisLabel';
 import { Bar } from './Bar';
 import style from './Chart.css';
-import { ConfidenceLines } from './ConfidenceLines';
+import { ErrorBars } from './ErrorBars';
+import { Title } from './Title';
 import { ValueLabel } from './ValueLabel';
 import { XDivision } from './XDivision';
-import { XLabel } from './XLabel';
-import { YLabel } from './YLabel';
+import { XLabelValues } from './XLabelValues';
+import { YLabelValues } from './YLabelValues';
 
 interface Props {
   data: TimeMetrics[];
@@ -17,7 +19,9 @@ interface Props {
   axisHeight: number;
   xLabelWidth: number;
   axisOffset: number;
-  rightSideOffset: number;
+  barWidthRatio: number;
+  topOffset: number;
+  rightOffset: number;
 }
 // average an array of numbers
 function getAverage(numArray: number[]): number {
@@ -39,7 +43,7 @@ function aggregateMetrics(data: TimeMetrics[]) {
   }
   return aggregate;
 }
-// create an array with the sta deviation of each metric
+// create an array with the standard deviation of each metric
 function createConfidenceArray(data: TimeMetrics[]) {
   const confidence: { [k: string]: number } = {};
   for (let i = 0; i < Object.keys(data[0]).length; i++) {
@@ -63,16 +67,29 @@ function calculateStandardDeviation(numArray: number[]): number {
 
 export class ConfidenceChart extends Component<Props> {
   public static defaultProps = {
-    svgHeight: 1200,
+    svgHeight: 1100,
     svgWidth: 1000,
     axisHeight: 950,
     axisWidth: 950,
     xLabelWidth: 45,
-    axisOffset: 10,
-    rightSideOffset: 50,
+    axisOffset: 5,
+    barWidthRatio: 2,
+    topOffset: -20,
+    rightOffset: 50,
   };
 
-  public render({ data, svgHeight, svgWidth, axisHeight, axisWidth, xLabelWidth, axisOffset, rightSideOffset }: Props): JSX.Element {
+  public render({
+    data,
+    svgHeight,
+    svgWidth,
+    axisHeight,
+    axisWidth,
+    xLabelWidth,
+    axisOffset,
+    rightOffset,
+    topOffset,
+    barWidthRatio,
+  }: Props): JSX.Element {
     const newData = aggregateMetrics(data);
     const confidence = createConfidenceArray(data);
     const maxDataArr = [];
@@ -85,7 +102,7 @@ export class ConfidenceChart extends Component<Props> {
     const axisY = (y: number): number => axisHeight - (y / maxValue) * axisHeight; // manipulates a y value to fit into the frame of the graph
     const valueArr = Object.values(newData);
     const keyArr = Object.keys(newData);
-    const barWidth = svgWidth / 2 / numOfBars; // changing the 2 to another number will manipulate the width of the bars
+    const barWidth = svgWidth / barWidthRatio / numOfBars; // changing the 2 to another number will manipulate the width of the bars
     const divisions = [];
     const numOfDivisions = maxValue / 1000;
     for (let i = 0; i <= numOfDivisions; i++) {
@@ -94,9 +111,12 @@ export class ConfidenceChart extends Component<Props> {
     }
     return (
       <div class={style.graph}>
-        <svg width={svgWidth} height={svgHeight} viewBox={`0 -20 ${svgWidth + rightSideOffset} ${svgHeight}`}>
+        <svg width={svgWidth} height={svgHeight} viewBox={`0 ${topOffset} ${svgWidth + rightOffset} ${svgHeight}`}>
+          <Title x={axisWidth / 2 + svgWidth - axisWidth} y={-10} value={'Confidence Graph of all metrics'} />
+          <AxisLabel x={xLabelWidth - axisOffset} y={topOffset} value="Frequency" />
+          <AxisLabel x={axisWidth / 2 + svgWidth - axisWidth} y={svgHeight} value="Time Interval (seconds)" />
           {divisions.map(value => (
-            <XLabel x={xLabelWidth} y={axisY(value)} value={value} />
+            <XLabelValues x={xLabelWidth} y={axisY(value)} value={value} />
           ))}
           {divisions.map(value => (
             <XDivision minX={svgWidth - axisWidth} maxX={svgWidth} y={axisY(value)} />
@@ -105,7 +125,7 @@ export class ConfidenceChart extends Component<Props> {
             <Bar x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisY(value)} width={barWidth} height={axisHeight - axisY(value)} />
           ))}
           {Object.values(confidence).map((value, index) => (
-            <ConfidenceLines
+            <ErrorBars
               x={axisX(index + 1) + (svgWidth - axisWidth)}
               minY={axisY(valueArr[index] - value)}
               maxY={axisY(valueArr[index] + value)}
@@ -117,7 +137,7 @@ export class ConfidenceChart extends Component<Props> {
             <ValueLabel x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisY(value)} value={Math.round(value)} />
           ))}
           {keyArr.map((value, index) => (
-            <YLabel x={axisX(index + 1) + (svgWidth - axisWidth)} y={axisHeight + axisOffset} value={value} />
+            <YLabelValues x={axisX(index + 1) + (svgWidth - axisWidth)} y={axisHeight + axisOffset} value={value} />
           ))}
         </svg>
       </div>
