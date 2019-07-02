@@ -15,7 +15,7 @@
     "build:server": "tsc --project ./server",
     "prestart:server": "yarn build:server",
     "start:server": "node -r esm ./server",
-    "post  start:server": "http-server ./build -s -o",
+    "poststart:server": "http-server ./build -s -o",
     "precommit": "lint-staged"
   },
   "lint-staged": {
