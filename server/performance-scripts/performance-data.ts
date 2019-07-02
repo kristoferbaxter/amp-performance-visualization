@@ -1,7 +1,5 @@
 import { Metrics } from './json-metrics';
 
-export type ResultsCalculator = (url: string, downSpeed: number, upSpeed: number, latency: number) => Promise<Metrics>;
-
 // Failed page.evaluate
 const EVALUATE_FAILED = 0;
 // The webpage loaded too slow
