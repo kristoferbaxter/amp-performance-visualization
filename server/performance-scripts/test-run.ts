@@ -1,28 +1,39 @@
-import fs from 'fs';
-import multiRunMetrics from './metrics-from-url-array';
+import * as fs from 'fs';
+import { promisify } from 'util';
+import { NetworkJSON } from './json-metrics';
+import multiRunMetrics, { URLFileJSON } from './metrics-from-url-array';
 
-const urlArray: string[] = [
-  'https://results.amarujala.com/amp/board/up-board/up-class-10th-result-2018',
-  'https://m.timesofindia.com/home/education/news/west-bengal-hs-class-12th-results-soon-wbresults-nic-in-check-here/amp_articleshow/64488353.cms',
+const readFile = promisify(fs.readFile);
+const returnFileContent: (path: string) => Promise<string> = (location: string): Promise<string> => readFile(location, 'utf8');
 
-  'http://ww7.catnepal.com/amp/',
-  'https://m.timesofindia.com/home/education/news/maharashtra-hsc-result-2018-date-msbshse-likely-to-declare-12th-results-in-may-end/amp_articleshow/64318659.cms',
-  'https://genius.com/amp/Drake-duppy-freestyle-lyrics',
-  'https://m.bebesymas.com/ser-padres/buscas-nombre-para-tu-bebe-101-nombres-de-nina-para-inspirarte/amp',
-  'https://genius.com/amp/Kanye-west-lift-yourself-lyrics',
-  'https://amp.mon-horoscope-du-jour.com/',
-  'https://m.livehindustan.com/career/story-bihar-board-12th-result-2018-bseb-releasing-bihar-12th-result-2018-science-commerce-and-arts-today-at-4-30-pm-check-bihar-result-at-biharboard-ac-in-1998865.amp.html',
-];
-
-// Metrics returning all -1 means the url took longer than 1 minute 40 seconds to load
+// Metrics returning all -1 means the url took longer than 4 minutes to load
 // Metrics returning all -2 means the url is not AMP
 // Metrics returning all -3 means the program failed to go to the page
 
-multiRunMetrics(urlArray, 1536, 750, 40).then(data => {
-  fs.writeFile('server/results/amp-metrics.json', JSON.stringify(data, null, 2), err => {
-    if (err) {
-      throw err;
+Promise.all([returnFileContent(process.argv[2]), returnFileContent(process.argv[3])])
+  .then(([urlsFile, networkFile]) => {
+    try {
+      const parsedURLs: URLFileJSON = JSON.parse(urlsFile);
+      const parsedNetwork: NetworkJSON = JSON.parse(networkFile);
+      let numRuns: number = 3;
+      if (process.argv[4]) {
+        numRuns = Number.parseInt(process.argv[4]);
+      } else {
+        console.log('Number of Runs was not given, using default value of 3');
+      }
+
+      multiRunMetrics(parsedURLs, parsedNetwork, numRuns).then(data => {
+        fs.writeFile('server/results/amp-metrics.json', JSON.stringify(data, null, 2), err => {
+          if (err) {
+            throw err;
+          }
+          process.exit(0);
+        });
+      });
+    } catch (e) {
+      console.log('There was an exception running metrics', e);
     }
-    process.exit(0);
+  })
+  .catch(e => {
+    console.log('there was an error finding your files', e);
   });
-});
