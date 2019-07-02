@@ -20,6 +20,7 @@ interface Props {
   frequencyInterval: number;
   divisionInterval: number;
   barWidthRatio: number;
+  rightSideOffset: number;
 }
 
 // grabs the values of the data the user wants and sorts them from least to greatest
@@ -60,6 +61,7 @@ export class BarChart extends Component<Props> {
     frequencyInterval: 1000,
     divisionInterval: 1,
     barWidthRatio: 2,
+    rightSideOffset: 50,
   };
 
   public render({
@@ -74,6 +76,7 @@ export class BarChart extends Component<Props> {
     frequencyInterval,
     divisionInterval,
     barWidthRatio,
+    rightSideOffset,
   }: Props): JSX.Element {
     const sortedData = sortNeededData(data, graphChoice);
     const newData = makeFrequencyArray(sortedData, frequencyInterval);
@@ -84,13 +87,13 @@ export class BarChart extends Component<Props> {
     const barWidth = svgWidth / numOfBars / barWidthRatio; // changing the 2 to another number will manipulate the width of the bars
     const divisions = [];
     const numOfDivisions = maxValue / divisionInterval;
-    for (let i = 1; i <= numOfDivisions - 1; i++) {
+    for (let i = 0; i <= numOfDivisions; i++) {
       // makes an array with the x values for where the divisions should be placed
       divisions.push((maxValue * i) / numOfDivisions);
     }
     return (
       <div class={style.graph}>
-        <svg width={svgWidth} height={svgHeight}>
+        <svg width={svgWidth} height={svgHeight} viewBox={`0 -20 ${svgWidth + rightSideOffset} ${svgHeight}`}>
           {divisions.map(value => (
             <XLabel x={xLabelWidth - axisOffset} y={axisY(value)} value={value} />
           ))}
