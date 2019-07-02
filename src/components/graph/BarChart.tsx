@@ -62,7 +62,7 @@ function camelCaseToString(str: string) {
 
 export class BarChart extends Component<Props> {
   public static defaultProps = {
-    svgHeight: 1000,
+    svgHeight: 1050,
     svgWidth: 1000,
     axisHeight: 950,
     axisWidth: 950,
@@ -123,7 +123,11 @@ export class BarChart extends Component<Props> {
             <ValueLabel x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisY(value)} value={Math.round(value)} />
           ))}
           {newData.map((value, index) => (
-            <YLabelValues x={axisX(index + 1) + (svgWidth - axisWidth)} y={axisHeight + axisOffset} value={(index + 1) * frequencyInterval} />
+            <YLabelValues
+              x={axisX(index + 1) + (svgWidth - axisWidth)}
+              y={axisHeight + axisOffset}
+              value={`${index * frequencyInterval + 1}-${(index + 1) * frequencyInterval}`}
+            />
           ))}
         </svg>
       </div>

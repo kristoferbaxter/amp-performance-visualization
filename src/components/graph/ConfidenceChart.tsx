@@ -68,11 +68,11 @@ function calculateStandardDeviation(numArray: number[]): number {
 export class ConfidenceChart extends Component<Props> {
   public static defaultProps = {
     svgHeight: 1100,
-    svgWidth: 1000,
+    svgWidth: 1015,
     axisHeight: 950,
     axisWidth: 950,
-    xLabelWidth: 45,
-    axisOffset: 5,
+    xLabelWidth: 55,
+    axisOffset: 15,
     barWidthRatio: 2,
     topOffset: -20,
     rightOffset: 50,
