@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import style from './ConfidenceLines.css';
+import style from './ErrorBars.css';
 
 interface Props {
   x: number;
@@ -8,7 +8,7 @@ interface Props {
   endLineLength: number;
 }
 
-export const ConfidenceLines = ({ x, maxY, minY, endLineLength }: Props): JSX.Element => {
+export const ErrorBars = ({ x, maxY, minY, endLineLength }: Props): JSX.Element => {
   if (minY > 950) {
     minY = 950;
   }
