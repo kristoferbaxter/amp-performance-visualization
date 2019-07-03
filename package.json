@@ -71,7 +71,8 @@
     "preact-compat": "3.18.4",
     "preact-render-to-string": "4.1.0",
     "preact-router": "2.6.1",
-    "puppeteer": "1.17.0"
+    "puppeteer": "1.17.0",
+    "yargs": "^13.2.4"
   },
   "peerDependencies": {
     "prettier": ">1.0.0",
