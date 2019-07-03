@@ -1,5 +1,5 @@
 import { Component, h } from 'preact';
-
+import barStyle from './bars.css';
 export interface BarProps {
   x: number;
   y: number;
@@ -12,9 +12,5 @@ export interface BarProps {
 export interface BarState {}
 
 export default ({ x, y, width, height, style, filter }: BarProps, {  }: BarState): JSX.Element => {
-  return (
-    <rect x={x} y={y} width={width} height={height} style={style} filter={filter}>
-      {/* <animate attributeName="height" from="0" to={height} dur="0.3s" fill="freeze" keyPoints="1;0"/> */}
-    </rect>
-  );
+  return <rect x={x} y={y} width={width} height={height} style={style} filter={filter} class={barStyle.bar} />;
 };

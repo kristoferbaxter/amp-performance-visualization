@@ -52,11 +52,15 @@ export default class ConsolidatedDataProvider extends Component<ConsolidatedData
   }
   private async getAndProcessData() {
     try {
-      // const consolidator = consolidationWorker();
+      const consolidator = consolidationWorker();
       // const {getPerformanceMetrics} = dataWorker();
       const [baseMetricsInputData, experimentMetricsInputdata] = await getPerformanceMetrics();
       // const {baseMetrics, experimentMetrics} = await consolidator.consolidate(baseMetricsInputData, experimentMetricsInputdata, 0.5);
-      const { baseMetrics, experimentMetrics } = await consolidate(baseMetricsInputData, experimentMetricsInputdata, this.props.percentile);
+      const { baseMetrics, experimentMetrics } = await consolidator.consolidate(
+        baseMetricsInputData,
+        experimentMetricsInputdata,
+        this.props.percentile,
+      );
       this.setState({
         baseMetrics,
         experimentMetrics,
