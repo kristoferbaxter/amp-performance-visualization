@@ -1,0 +1,1161 @@
+{
+    "device": "iPhone 8",
+    "networkSpeed": "downspeed: 1536kbps | upspeed: 750 | latency: 40",
+    "results": [
+      {
+        "url": "https://results.amarujala.com/amp/board/up-board/up-class-10th-result-2018",
+        "performance": [
+          {
+            "responseStart": 3293,
+            "loadEventEnd": 4920,
+            "domInteractive": 0,
+            "firstPaint": 3515.185,
+            "firstContentfulPaint": 3515.19,
+            "firstMeaningfulPaint": 3515,
+            "installStyles": 4445.01,
+            "installStylesDuration": 44.09,
+            "visible": 4499.825,
+            "onFirstVisible": 4499.85,
+            "makeBodyVisible": 4502.285,
+            "windowLoadEvent": 4502.435,
+            "firstViewportReady": 4915.865
+          },
+          {
+            "responseStart": 2934,
+            "loadEventEnd": 4964,
+            "domInteractive": 0,
+            "firstPaint": 3291.175,
+            "firstContentfulPaint": 3291.175,
+            "firstMeaningfulPaint": 3291,
+            "installStyles": 4144.235,
+            "installStylesDuration": 50.285,
+            "visible": 4208.86,
+            "onFirstVisible": 4208.9,
+            "makeBodyVisible": 4213.565,
+            "windowLoadEvent": 4213.85,
+            "firstViewportReady": 4961.135
+          },
+          {
+            "responseStart": 3480,
+            "loadEventEnd": 5249,
+            "domInteractive": 0,
+            "firstPaint": 3811.39,
+            "firstContentfulPaint": 3811.39,
+            "firstMeaningfulPaint": 3811,
+            "installStyles": 4698.54,
+            "installStylesDuration": 47.91,
+            "visible": 4764.085,
+            "onFirstVisible": 4764.12,
+            "makeBodyVisible": 4767.68,
+            "windowLoadEvent": 4767.915,
+            "firstViewportReady": 5247.73
+          },
+          {
+            "responseStart": 3371,
+            "loadEventEnd": 4968,
+            "domInteractive": 0,
+            "firstPaint": 3745.62,
+            "firstContentfulPaint": 3745.62,
+            "firstMeaningfulPaint": 3746,
+            "installStyles": 4538.475,
+            "installStylesDuration": 31.275,
+            "visible": 4581.81,
+            "onFirstVisible": 4581.83,
+            "makeBodyVisible": 4585.19,
+            "windowLoadEvent": 4585.415,
+            "firstViewportReady": 4968.125
+          }
+        ],
+        "amp": [
+          {
+            "url": "https://cdn.ampproject.org/v0.js",
+            "size": 76842
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-ad-0.1.js",
+            "size": 19127
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-analytics-0.1.js",
+            "size": 40122
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-sidebar-0.1.js",
+            "size": 4258
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-form-0.1.js",
+            "size": 13993
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-mustache-0.2.js",
+            "size": 13019
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-consent-0.1.js",
+            "size": 11182
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-geo-0.1.js",
+            "size": 0
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-twitter-0.1.js",
+            "size": 6218
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-sticky-ad-1.0.js",
+            "size": 2836
+          },
+          {
+            "url": "https://cdn.ampproject.org/rtv/011906282130140/v0/amp-auto-lightbox-0.1.js",
+            "size": 3454
+          },
+          {
+            "url": "https://cdn.ampproject.org/rtv/011906282130140/v0/amp-ad-network-doubleclick-impl-0.1.js",
+            "size": 32345
+          },
+          {
+            "url": "https://cdn.ampproject.org/rtv/011906282130140/v0/amp-ad-exit-0.1.js",
+            "size": 5399
+          },
+          {
+            "url": "https://cdn.ampproject.org/rtv/011906282130140/v0/amp-fit-text-0.1.js",
+            "size": 2831
+          }
+        ]
+      },
+      {
+        "url": "https://m.timesofindia.com/home/education/news/west-bengal-hs-class-12th-results-soon-wbresults-nic-in-check-here/amp_articleshow/64488353.cms",
+        "performance": [
+          {
+            "responseStart": 3398,
+            "loadEventEnd": 11103,
+            "domInteractive": 0,
+            "firstPaint": 3505.645,
+            "firstContentfulPaint": 3645.68,
+            "firstMeaningfulPaint": 3794,
+            "installStyles": 5927.455,
+            "installStylesDuration": 113.84,
+            "visible": 6122.72,
+            "onFirstVisible": 6122.755,
+            "makeBodyVisible": 6131.36,
+            "windowLoadEvent": 6847.475,
+            "firstViewportReady": 11100.715
+          },
+          {
+            "responseStart": 3564,
+            "loadEventEnd": 11844,
+            "domInteractive": 0,
+            "firstPaint": 3698.555,
+            "firstContentfulPaint": 3955.03,
+            "firstMeaningfulPaint": 4188,
+            "installStyles": 6088.915,
+            "installStylesDuration": 116.065,
+            "visible": 6297.28,
+            "onFirstVisible": 6297.32,
+            "makeBodyVisible": 6323.3,
+            "windowLoadEvent": 7370.73,
+            "firstViewportReady": 11843.845
+          },
+          {
+            "responseStart": 3312,
+            "loadEventEnd": 11243,
+            "domInteractive": 0,
+            "firstPaint": 3484.425,
+            "firstContentfulPaint": 3720.05,
+            "firstMeaningfulPaint": 3936,
+            "installStyles": 5846.015,
+            "installStylesDuration": 92.815,
+            "visible": 6043.69,
+            "onFirstVisible": 6043.72,
+            "makeBodyVisible": 6074.38,
+            "windowLoadEvent": 6834.925,
+            "firstViewportReady": 11243.245
+          },
+          {
+            "responseStart": 3411,
+            "loadEventEnd": 11743,
+            "domInteractive": 0,
+            "firstPaint": 3594.84,
+            "firstContentfulPaint": 3843.72,
+            "firstMeaningfulPaint": 4020,
+            "installStyles": 5999.58,
+            "installStylesDuration": 194.55,
+            "visible": 6257.34,
+            "onFirstVisible": 6257.37,
+            "makeBodyVisible": 6267.75,
+            "windowLoadEvent": 7104.1,
+            "firstViewportReady": 11743.11
+          }
+        ],
+        "amp": [
+          {
+            "url": "https://cdn.ampproject.org/v0.js",
+            "size": 75727
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-position-observer-0.1.js",
+            "size": 4640
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-animation-0.1.js",
+            "size": 29493
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-web-push-0.1.js",
+            "size": 6920
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-ad-0.1.js",
+            "size": 19126
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-sticky-ad-1.0.js",
+            "size": 2814
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-analytics-0.1.js",
+            "size": 40123
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-social-share-0.1.js",
+            "size": 5493
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-carousel-0.1.js",
+            "size": 8918
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-lightbox-0.1.js",
+            "size": 6897
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-iframe-0.1.js",
+            "size": 9445
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-form-0.1.js",
+            "size": 13977
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-selector-0.1.js",
+            "size": 3115
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-list-0.1.js",
+            "size": 11403
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-mustache-0.2.js",
+            "size": 13044
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-bind-0.1.js",
+            "size": 15671
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-consent-0.1.js",
+            "size": 11177
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-geo-0.1.js",
+            "size": 0
+          },
+          {
+            "url": "https://cdn.ampproject.org/rtv/011906282130140/v0/amp-auto-lightbox-0.1.js",
+            "size": 3433
+          },
+          {
+            "url": "https://cdn.ampproject.org/rtv/011906282130140/v0/amp-ad-network-doubleclick-impl-0.1.js",
+            "size": 32531
+          }
+        ]
+      },
+      {
+        "url": "http://ww7.catnepal.com/amp/",
+        "performance": [
+          {
+            "responseStart": 953,
+            "loadEventEnd": 6842,
+            "domInteractive": 0,
+            "firstPaint": 1203.455,
+            "firstContentfulPaint": 1203.455,
+            "firstMeaningfulPaint": 3091,
+            "installStyles": 4708.16,
+            "installStylesDuration": 57.63,
+            "visible": 4794.71,
+            "onFirstVisible": 4794.745,
+            "makeBodyVisible": 4810.735,
+            "windowLoadEvent": 5752.06,
+            "firstViewportReady": 6833.12
+          },
+          {
+            "responseStart": 971,
+            "loadEventEnd": 6668,
+            "domInteractive": 0,
+            "firstPaint": 1225.965,
+            "firstContentfulPaint": 1225.965,
+            "firstMeaningfulPaint": 3012,
+            "installStyles": 4718.105,
+            "installStylesDuration": 76.555,
+            "visible": 4837.355,
+            "onFirstVisible": 4837.385,
+            "makeBodyVisible": 4867.625,
+            "windowLoadEvent": 5891.9,
+            "firstViewportReady": 6666.02
+          },
+          {
+            "responseStart": 948,
+            "loadEventEnd": 6581,
+            "domInteractive": 0,
+            "firstPaint": 1166.63,
+            "firstContentfulPaint": 1166.63,
+            "firstMeaningfulPaint": 2943,
+            "installStyles": 4431.58,
+            "installStylesDuration": 85.49,
+            "visible": 4581.25,
+            "onFirstVisible": 4581.28,
+            "makeBodyVisible": 4602.02,
+            "windowLoadEvent": 5726.145,
+            "firstViewportReady": 6565.505
+          },
+          {
+            "responseStart": 916,
+            "loadEventEnd": 6586,
+            "domInteractive": 0,
+            "firstPaint": 1188.31,
+            "firstContentfulPaint": 1188.31,
+            "firstMeaningfulPaint": 3008,
+            "installStyles": 4584.605,
+            "installStylesDuration": 124.91,
+            "visible": 4786.39,
+            "onFirstVisible": 4786.415,
+            "makeBodyVisible": 4807.61,
+            "windowLoadEvent": 5802.445,
+            "firstViewportReady": 6571.94
+          }
+        ],
+        "amp": [
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-accordion-0.1.js",
+            "size": 4725
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-position-observer-0.1.js",
+            "size": 4639
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-animation-0.1.js",
+            "size": 29493
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-form-0.1.js",
+            "size": 13954
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-analytics-0.1.js",
+            "size": 40120
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0.js",
+            "size": 75726
+          },
+          {
+            "url": "https://cdn.ampproject.org/rtv/011906282130140/v0/amp-auto-lightbox-0.1.js",
+            "size": 3434
+          },
+          {
+            "url": "https://cdn.ampproject.org/rtv/011906282130140/v0/amp-crypto-polyfill-0.1.js",
+            "size": 4123
+          }
+        ]
+      },
+      {
+        "url": "https://m.timesofindia.com/home/education/news/maharashtra-hsc-result-2018-date-msbshse-likely-to-declare-12th-results-in-may-end/amp_articleshow/64318659.cms",
+        "performance": [
+          {
+            "responseStart": 3409,
+            "loadEventEnd": 10126,
+            "domInteractive": 0,
+            "firstPaint": 3524.88,
+            "firstContentfulPaint": 3679.125,
+            "firstMeaningfulPaint": 3857,
+            "installStyles": 5924.775,
+            "installStylesDuration": 94.82,
+            "visible": 6091.13,
+            "onFirstVisible": 6091.16,
+            "makeBodyVisible": 6126.835,
+            "windowLoadEvent": 6636.095,
+            "firstViewportReady": 10126.855
+          },
+          {
+            "responseStart": 3462,
+            "loadEventEnd": 10196,
+            "domInteractive": 0,
+            "firstPaint": 3596.315,
+            "firstContentfulPaint": 3996.18,
+            "firstMeaningfulPaint": 3996,
+            "installStyles": 5980.145,
+            "installStylesDuration": 81.27,
+            "visible": 6130.41,
+            "onFirstVisible": 6130.445,
+            "makeBodyVisible": 6152.115,
+            "windowLoadEvent": 6665.675,
+            "firstViewportReady": 10193.55
+          },
+          {
+            "responseStart": 3419,
+            "loadEventEnd": 10326,
+            "domInteractive": 0,
+            "firstPaint": 3630.725,
+            "firstContentfulPaint": 3903.175,
+            "firstMeaningfulPaint": 3903,
+            "installStyles": 5984.635,
+            "installStylesDuration": 128.11,
+            "visible": 6209.29,
+            "onFirstVisible": 6209.33,
+            "makeBodyVisible": 6218.05,
+            "windowLoadEvent": 6878.6,
+            "firstViewportReady": 10325.335
+          },
+          {
+            "responseStart": 3336,
+            "loadEventEnd": 10153,
+            "domInteractive": 0,
+            "firstPaint": 3502.425,
+            "firstContentfulPaint": 3700.905,
+            "firstMeaningfulPaint": 3919,
+            "installStyles": 5917.945,
+            "installStylesDuration": 107.68,
+            "visible": 6133.295,
+            "onFirstVisible": 6133.325,
+            "makeBodyVisible": 6151.365,
+            "windowLoadEvent": 6917.765,
+            "firstViewportReady": 10153.085
+          }
+        ],
+        "amp": [
+          {
+            "url": "https://cdn.ampproject.org/v0.js",
+            "size": 75727
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-position-observer-0.1.js",
+            "size": 4640
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-animation-0.1.js",
+            "size": 29493
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-web-push-0.1.js",
+            "size": 6924
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-ad-0.1.js",
+            "size": 19127
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-sticky-ad-1.0.js",
+            "size": 2814
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-analytics-0.1.js",
+            "size": 40210
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-social-share-0.1.js",
+            "size": 5504
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-carousel-0.1.js",
+            "size": 8829
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-lightbox-0.1.js",
+            "size": 6921
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-iframe-0.1.js",
+            "size": 8448
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-form-0.1.js",
+            "size": 14931
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-selector-0.1.js",
+            "size": 3138
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-list-0.1.js",
+            "size": 11418
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-mustache-0.2.js",
+            "size": 13044
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-bind-0.1.js",
+            "size": 15647
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-consent-0.1.js",
+            "size": 11178
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-geo-0.1.js",
+            "size": 0
+          },
+          {
+            "url": "https://cdn.ampproject.org/rtv/011906282130140/v0/amp-auto-lightbox-0.1.js",
+            "size": 3251
+          },
+          {
+            "url": "https://cdn.ampproject.org/rtv/011906282130140/v0/amp-ad-network-doubleclick-impl-0.1.js",
+            "size": 32508
+          }
+        ]
+      },
+      {
+        "url": "https://genius.com/amp/Drake-duppy-freestyle-lyrics",
+        "performance": [
+          {
+            "responseStart": 3361,
+            "loadEventEnd": 8984,
+            "domInteractive": 0,
+            "firstPaint": 3669.53,
+            "firstContentfulPaint": 3669.53,
+            "firstMeaningfulPaint": 5317,
+            "installStyles": 5363.745,
+            "installStylesDuration": 107.85,
+            "visible": 5534.735,
+            "onFirstVisible": 5534.77,
+            "makeBodyVisible": 5553.38,
+            "windowLoadEvent": 6082.91,
+            "firstViewportReady": 8963.41
+          },
+          {
+            "responseStart": 3076,
+            "loadEventEnd": 9912,
+            "domInteractive": 0,
+            "firstPaint": 3359.355,
+            "firstContentfulPaint": 3359.36,
+            "firstMeaningfulPaint": 4928,
+            "installStyles": 5042.915,
+            "installStylesDuration": 80.39,
+            "visible": 5166.54,
+            "onFirstVisible": 5166.57,
+            "makeBodyVisible": 5180.89,
+            "windowLoadEvent": 5358.14,
+            "firstViewportReady": 9911.335
+          },
+          {
+            "responseStart": 3318,
+            "loadEventEnd": 9091,
+            "domInteractive": 0,
+            "firstPaint": 3744.085,
+            "firstContentfulPaint": 3744.085,
+            "firstMeaningfulPaint": 5349,
+            "installStyles": 5402.725,
+            "installStylesDuration": 195.47,
+            "visible": 5741.13,
+            "onFirstVisible": 5741.16,
+            "makeBodyVisible": 5781.24,
+            "windowLoadEvent": 6410.69,
+            "firstViewportReady": 9062.715
+          },
+          {
+            "responseStart": 3249,
+            "loadEventEnd": 9091,
+            "domInteractive": 0,
+            "firstPaint": 3677.78,
+            "firstContentfulPaint": 3677.78,
+            "firstMeaningfulPaint": 5292,
+            "installStyles": 5369.32,
+            "installStylesDuration": 207.895,
+            "visible": 5755.505,
+            "onFirstVisible": 5755.535,
+            "makeBodyVisible": 5785.965,
+            "windowLoadEvent": 6538.34,
+            "firstViewportReady": 9076.91
+          }
+        ],
+        "amp": [
+          {
+            "url": "https://cdn.ampproject.org/v0.js",
+            "size": 75727
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-anim-0.1.js",
+            "size": 2942
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-youtube-0.1.js",
+            "size": 9489
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-twitter-0.1.js",
+            "size": 6198
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-instagram-0.1.js",
+            "size": 2333
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-analytics-0.1.js",
+            "size": 40122
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-iframe-0.1.js",
+            "size": 8430
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-ad-0.1.js",
+            "size": 20192
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-social-share-0.1.js",
+            "size": 5507
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-accordion-0.1.js",
+            "size": 4742
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-lightbox-0.1.js",
+            "size": 6906
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-bind-0.1.js",
+            "size": 15672
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-consent-0.1.js",
+            "size": 11200
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-geo-0.1.js",
+            "size": 0
+          },
+          {
+            "url": "https://cdn.ampproject.org/rtv/011906282130140/v0/amp-auto-lightbox-0.1.js",
+            "size": 3516
+          },
+          {
+            "url": "https://cdn.ampproject.org/rtv/011906282130140/v0/amp-ad-network-doubleclick-impl-0.1.js",
+            "size": 32505
+          }
+        ]
+      },
+      {
+        "url": "https://m.bebesymas.com/ser-padres/buscas-nombre-para-tu-bebe-101-nombres-de-nina-para-inspirarte/amp",
+        "performance": [
+          {
+            "responseStart": 4131,
+            "loadEventEnd": 7696,
+            "domInteractive": 0,
+            "firstPaint": 5025.855,
+            "firstContentfulPaint": 5025.855,
+            "firstMeaningfulPaint": 5909,
+            "installStyles": 5979.405,
+            "installStylesDuration": 150.425,
+            "visible": 6334.3,
+            "onFirstVisible": 6334.335,
+            "makeBodyVisible": 6346.635,
+            "windowLoadEvent": 7696.435,
+            "firstViewportReady": 7696.595
+          },
+          {
+            "responseStart": 3828,
+            "loadEventEnd": 7111,
+            "domInteractive": 0,
+            "firstPaint": 4645.1,
+            "firstContentfulPaint": 4645.1,
+            "firstMeaningfulPaint": 5517,
+            "installStyles": 5658.385,
+            "installStylesDuration": 140.12,
+            "visible": 5950.98,
+            "onFirstVisible": 5951.015,
+            "makeBodyVisible": 5975.39,
+            "windowLoadEvent": 7106.495,
+            "firstViewportReady": 7108.765
+          },
+          {
+            "responseStart": 3971,
+            "loadEventEnd": 7393,
+            "domInteractive": 0,
+            "firstPaint": 4937.53,
+            "firstContentfulPaint": 4937.53,
+            "firstMeaningfulPaint": 5815,
+            "installStyles": 5885.68,
+            "installStylesDuration": 160.11,
+            "visible": 6237.765,
+            "onFirstVisible": 6237.795,
+            "makeBodyVisible": 6280.285,
+            "windowLoadEvent": 7388.465,
+            "firstViewportReady": 7390.255
+          },
+          {
+            "responseStart": 3893,
+            "loadEventEnd": 12064,
+            "domInteractive": 0,
+            "firstPaint": 4646.165,
+            "firstContentfulPaint": 4646.17,
+            "firstMeaningfulPaint": 5528,
+            "installStyles": 5700.78,
+            "installStylesDuration": 165.59,
+            "visible": 6046.52,
+            "onFirstVisible": 6046.545,
+            "makeBodyVisible": 6074.855,
+            "windowLoadEvent": 7402.5,
+            "firstViewportReady": 12064.02
+          }
+        ],
+        "amp": [
+          {
+            "url": "https://cdn.ampproject.org/v0.js",
+            "size": 76841
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-form-0.1.js",
+            "size": 13993
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-youtube-0.1.js",
+            "size": 9490
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-vimeo-0.1.js",
+            "size": 8561
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-vine-0.1.js",
+            "size": 1290
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-carousel-0.1.js",
+            "size": 8909
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-image-lightbox-0.1.js",
+            "size": 9491
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-twitter-0.1.js",
+            "size": 6196
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-instagram-0.1.js",
+            "size": 2333
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-facebook-0.1.js",
+            "size": 6321
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-analytics-0.1.js",
+            "size": 40140
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-anim-0.1.js",
+            "size": 1814
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-iframe-0.1.js",
+            "size": 8452
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-ad-0.1.js",
+            "size": 19169
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-social-share-0.1.js",
+            "size": 5509
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-live-list-0.1.js",
+            "size": 7829
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-geo-0.1.js",
+            "size": 0
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-sticky-ad-1.0.js",
+            "size": 3791
+          },
+          {
+            "url": "https://cdn.ampproject.org/rtv/011906282130140/v0/amp-auto-lightbox-0.1.js",
+            "size": 3432
+          },
+          {
+            "url": "https://cdn.ampproject.org/rtv/011906282130140/v0/amp-ad-network-doubleclick-impl-0.1.js",
+            "size": 32533
+          }
+        ]
+      },
+      {
+        "url": "https://genius.com/amp/Kanye-west-lift-yourself-lyrics",
+        "performance": [
+          {
+            "responseStart": 3323,
+            "loadEventEnd": 12507,
+            "domInteractive": 0,
+            "firstPaint": 3545.075,
+            "firstContentfulPaint": 3545.075,
+            "firstMeaningfulPaint": 4977,
+            "installStyles": 5259.97,
+            "installStylesDuration": 57.145,
+            "visible": 5353.9,
+            "onFirstVisible": 5353.925,
+            "makeBodyVisible": 5363.99,
+            "windowLoadEvent": 6033.085,
+            "firstViewportReady": 12505.995
+          },
+          {
+            "responseStart": 2120,
+            "loadEventEnd": 10615,
+            "domInteractive": 0,
+            "firstPaint": 2395.545,
+            "firstContentfulPaint": 2395.545,
+            "firstMeaningfulPaint": 3729,
+            "installStyles": 3996.625,
+            "installStylesDuration": 61.44,
+            "visible": 4094,
+            "onFirstVisible": 4094.03,
+            "makeBodyVisible": 4104.83,
+            "windowLoadEvent": 4302.575,
+            "firstViewportReady": 10615.11
+          },
+          {
+            "responseStart": 3330,
+            "loadEventEnd": 12130,
+            "domInteractive": 0,
+            "firstPaint": 3782.13,
+            "firstContentfulPaint": 3782.135,
+            "firstMeaningfulPaint": 5078,
+            "installStyles": 5249.245,
+            "installStylesDuration": 121.04,
+            "visible": 5408.755,
+            "onFirstVisible": 5408.785,
+            "makeBodyVisible": 5428.66,
+            "windowLoadEvent": 5999.06,
+            "firstViewportReady": 12129.62
+          },
+          {
+            "responseStart": 3300,
+            "loadEventEnd": 12197,
+            "domInteractive": 0,
+            "firstPaint": 3617.67,
+            "firstContentfulPaint": 3617.675,
+            "firstMeaningfulPaint": 5014,
+            "installStyles": 5212.975,
+            "installStylesDuration": 129.765,
+            "visible": 5425.22,
+            "onFirstVisible": 5425.25,
+            "makeBodyVisible": 5449.73,
+            "windowLoadEvent": 5871.705,
+            "firstViewportReady": 12195.97
+          }
+        ],
+        "amp": [
+          {
+            "url": "https://cdn.ampproject.org/v0.js",
+            "size": 75727
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-anim-0.1.js",
+            "size": 1788
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-youtube-0.1.js",
+            "size": 10644
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-twitter-0.1.js",
+            "size": 6198
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-analytics-0.1.js",
+            "size": 40122
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-iframe-0.1.js",
+            "size": 8429
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-ad-0.1.js",
+            "size": 19129
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-social-share-0.1.js",
+            "size": 5580
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-accordion-0.1.js",
+            "size": 4744
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-lightbox-0.1.js",
+            "size": 6920
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-bind-0.1.js",
+            "size": 15669
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-consent-0.1.js",
+            "size": 11201
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-geo-0.1.js",
+            "size": 0
+          },
+          {
+            "url": "https://cdn.ampproject.org/rtv/011906282130140/v0/amp-auto-lightbox-0.1.js",
+            "size": 4384
+          },
+          {
+            "url": "https://cdn.ampproject.org/rtv/011906282130140/v0/amp-ad-network-doubleclick-impl-0.1.js",
+            "size": 32503
+          }
+        ]
+      },
+      {
+        "url": "https://amp.mon-horoscope-du-jour.com/",
+        "performance": [
+          {
+            "responseStart": 3160,
+            "loadEventEnd": 6000,
+            "domInteractive": 0,
+            "firstPaint": 3484.715,
+            "firstContentfulPaint": 3484.72,
+            "firstMeaningfulPaint": 3485,
+            "installStyles": 4104.615,
+            "installStylesDuration": 114.27,
+            "visible": 4259.735,
+            "onFirstVisible": 4259.765,
+            "makeBodyVisible": 4276.905,
+            "windowLoadEvent": 5994.13,
+            "firstViewportReady": 5994.3
+          },
+          {
+            "responseStart": 3707,
+            "loadEventEnd": 6651,
+            "domInteractive": 0,
+            "firstPaint": 3944.56,
+            "firstContentfulPaint": 3944.565,
+            "firstMeaningfulPaint": 3945,
+            "installStyles": 4675.67,
+            "installStylesDuration": 98.905,
+            "visible": 4850.24,
+            "onFirstVisible": 4850.27,
+            "makeBodyVisible": 4872.78,
+            "windowLoadEvent": 6625.785,
+            "firstViewportReady": 6625.985
+          },
+          {
+            "responseStart": 3821,
+            "loadEventEnd": 6709,
+            "domInteractive": 0,
+            "firstPaint": 3984.43,
+            "firstContentfulPaint": 3984.435,
+            "firstMeaningfulPaint": 3984,
+            "installStyles": 4771.5,
+            "installStylesDuration": 71.125,
+            "visible": 4911.545,
+            "onFirstVisible": 4911.575,
+            "makeBodyVisible": 4952.675,
+            "windowLoadEvent": 6702.89,
+            "firstViewportReady": 6703.08
+          },
+          {
+            "responseStart": 3169,
+            "loadEventEnd": 6122,
+            "domInteractive": 0,
+            "firstPaint": 3469.92,
+            "firstContentfulPaint": 3469.92,
+            "firstMeaningfulPaint": 3470,
+            "installStyles": 4139.305,
+            "installStylesDuration": 133.925,
+            "visible": 4302.65,
+            "onFirstVisible": 4302.68,
+            "makeBodyVisible": 4330.975,
+            "windowLoadEvent": 6121.565,
+            "firstViewportReady": 6121.78
+          }
+        ],
+        "amp": [
+          {
+            "url": "https://cdn.ampproject.org/v0.js",
+            "size": 76841
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-sticky-ad-1.0.js",
+            "size": 2852
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-sidebar-0.1.js",
+            "size": 4172
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-analytics-0.1.js",
+            "size": 40122
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-ad-0.1.js",
+            "size": 19127
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-user-notification-0.1.js",
+            "size": 4529
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-web-push-0.1.js",
+            "size": 6926
+          },
+          {
+            "url": "https://cdn.ampproject.org/rtv/011906282130140/v0/amp-auto-lightbox-0.1.js",
+            "size": 3440
+          }
+        ]
+      },
+      {
+        "url": "https://m.livehindustan.com/career/story-bihar-board-12th-result-2018-bseb-releasing-bihar-12th-result-2018-science-commerce-and-arts-today-at-4-30-pm-check-bihar-result-at-biharboard-ac-in-1998865.amp.html",
+        "performance": [
+          {
+            "responseStart": 3586,
+            "loadEventEnd": 6248,
+            "domInteractive": 0,
+            "firstPaint": 3912.605,
+            "firstContentfulPaint": 3912.605,
+            "firstMeaningfulPaint": 5867,
+            "installStyles": 5455.63,
+            "installStylesDuration": 60.885,
+            "visible": 5538.13,
+            "onFirstVisible": 5538.155,
+            "makeBodyVisible": 5544.49,
+            "windowLoadEvent": 6248.51,
+            "firstViewportReady": 6248.68
+          },
+          {
+            "responseStart": 3669,
+            "loadEventEnd": 6725,
+            "domInteractive": 0,
+            "firstPaint": 4058.27,
+            "firstContentfulPaint": 4058.27,
+            "firstMeaningfulPaint": 6343,
+            "installStyles": 5545.445,
+            "installStylesDuration": 92.965,
+            "visible": 5657.985,
+            "onFirstVisible": 5658.015,
+            "makeBodyVisible": 5664.485,
+            "windowLoadEvent": 6608.96,
+            "firstViewportReady": 6714.635
+          },
+          {
+            "responseStart": 3859,
+            "loadEventEnd": 6829,
+            "domInteractive": 0,
+            "firstPaint": 4143.265,
+            "firstContentfulPaint": 4143.27,
+            "firstMeaningfulPaint": 6589,
+            "installStyles": 5780.53,
+            "installStylesDuration": 148.79,
+            "visible": 6032.305,
+            "onFirstVisible": 6032.325,
+            "makeBodyVisible": 6049.805,
+            "windowLoadEvent": 6707.39,
+            "firstViewportReady": 6828.9
+          },
+          {
+            "responseStart": 3811,
+            "loadEventEnd": 6713,
+            "domInteractive": 0,
+            "firstPaint": 4104.56,
+            "firstContentfulPaint": 4104.56,
+            "firstMeaningfulPaint": 6200,
+            "installStyles": 5704.125,
+            "installStylesDuration": 90.56,
+            "visible": 5831.41,
+            "onFirstVisible": 5831.44,
+            "makeBodyVisible": 5854.95,
+            "windowLoadEvent": 6494.145,
+            "firstViewportReady": 6711.45
+          }
+        ],
+        "amp": [
+          {
+            "url": "https://cdn.ampproject.org/v0.js",
+            "size": 76842
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-carousel-0.1.js",
+            "size": 8857
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-dailymotion-0.1.js",
+            "size": 9009
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-iframe-0.1.js",
+            "size": 8429
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-social-share-0.1.js",
+            "size": 5485
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-ad-0.1.js",
+            "size": 19126
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-analytics-0.1.js",
+            "size": 40130
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-sidebar-0.1.js",
+            "size": 4174
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-list-0.1.js",
+            "size": 11394
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-mustache-0.2.js",
+            "size": 13043
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-sticky-ad-1.0.js",
+            "size": 2838
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-consent-0.1.js",
+            "size": 12203
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-geo-0.1.js",
+            "size": 0
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-position-observer-0.1.js",
+            "size": 3510
+          },
+          {
+            "url": "https://cdn.ampproject.org/v0/amp-animation-0.1.js",
+            "size": 29533
+          },
+          {
+            "url": "https://cdn.ampproject.org/rtv/011906282130140/v0/amp-auto-lightbox-0.1.js",
+            "size": 3336
+          },
+          {
+            "url": "https://cdn.ampproject.org/rtv/011906282130140/v0/amp-ad-network-doubleclick-impl-0.1.js",
+            "size": 32323
+          }
+        ]
+      }
+    ]
+  }

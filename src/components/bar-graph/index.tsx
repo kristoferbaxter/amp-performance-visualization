@@ -1,5 +1,6 @@
 import { Component, h } from 'preact';
 import SVGLoader from '../loader';
+import { GraphableData } from './graph-types';
 
 import style from './bar-graph.css';
 
@@ -8,17 +9,15 @@ export interface GraphProps {
   width: number;
   xLabel?: string;
   loading?: boolean;
+  data?: GraphableData[];
 }
 
 export interface GraphState {}
 
-export interface GraphableData {
-  data: Array<{
-    [key: string]: number;
-  }>;
-}
-
-export default ({ height, width, xLabel, loading }: GraphProps): JSX.Element => {
+export default ({ height, width, xLabel, loading, data }: GraphProps): JSX.Element => {
+  if (data) {
+    const columns = data.length;
+  }
   return (
     <svg height={height} width={width}>
       <g>
@@ -28,7 +27,7 @@ export default ({ height, width, xLabel, loading }: GraphProps): JSX.Element => 
         </text>
         <line x1="20" y1={height - 20} x2={width} y2={height - 20} class={style.axis} />
       </g>
-      <g>{loading && <SVGLoader size={100} x={width / 2 - 50} y={height / 2 - 50} />}</g>
+      {loading && <SVGLoader size={100} x={width / 2 - 50} y={height / 2 - 50} />}
     </svg>
   );
 };
