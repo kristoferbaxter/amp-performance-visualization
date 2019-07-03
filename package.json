@@ -13,7 +13,7 @@
     "lint": "tslint --project src",
     "test": "jest ./tests",
     "build:server": "tsc --project ./server",
-    "prestart:server": "yarn build:server",
+    "prestart:server": "yarn build:server && yarn build",
     "start:server": "node -r esm ./server",
     "poststart:server": "http-server ./build -s -o",
     "precommit": "lint-staged"
