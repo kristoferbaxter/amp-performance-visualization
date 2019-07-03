@@ -5,6 +5,8 @@ import Home from '../routes/home';
 import Profile from '../routes/profile';
 import Header from './header';
 
+import './app.css';
+
 if ((module as any).hot) {
   // tslint:disable-next-line:no-var-requires
   require('preact/debug');

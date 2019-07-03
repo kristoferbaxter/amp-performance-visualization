@@ -1,14 +1,14 @@
 import { Component, h, VNode } from 'preact';
+import consolidationWorker from 'workerize-loader!./consolidator';
 import { PerformanceMarkers, PerformancePassResults } from '../../../shared-interfaces';
 import { GraphableData } from '../bar-graph/graph-types';
-// import consolidationWorker from 'workerize-loader!./consolidator';
+// import dataWorker from 'workerize-loader!../data-fetcher';
+import { getPerformanceMetrics } from '../data-fetcher';
 import { consolidate } from './consolidator';
-import { ConsolidatedDataResult } from './types';
 
 interface ConsolidatedDataProviderProps {
-  // baseMetrics: PerformancePassResults,
-  // experimentMetrics: PerformancePassResults,
   render: (data: ConsolidatedDataRenderer) => VNode;
+  percentile: number;
 }
 
 interface ConsolidatedDataProviderState {
@@ -23,23 +23,12 @@ interface ConsolidatedDataRenderer {
 }
 
 export default class ConsolidatedDataProvider extends Component<ConsolidatedDataProviderProps, ConsolidatedDataProviderState> {
-  public async componentDidMount() {
-    try {
-      // const consolidator = consolidationWorker();
-      const [baseMetricsInputData, experimentMetricsInputdata] = await Promise.all([
-        import('../../../.metrics/base.json').then(module => module.default),
-        import('../../../.metrics/experiment.json').then(module => module.default),
-      ]);
-      // const {baseMetrics, experimentMetrics} = await consolidator.consolidate(baseMetricsInputData, experimentMetricsInputdata, 0.5);
-      const { baseMetrics, experimentMetrics } = await consolidate(baseMetricsInputData, experimentMetricsInputdata, 0.5);
-      this.setState({
-        baseMetrics,
-        experimentMetrics,
-      });
-    } catch (e) {
-      this.setState({
-        error: e.message,
-      });
+  public componentDidMount() {
+    this.getAndProcessData();
+  }
+  public componentDidUpdate({ percentile }: ConsolidatedDataProviderProps) {
+    if (percentile !== this.props.percentile) {
+      this.getAndProcessData();
     }
   }
   public render() {
@@ -60,5 +49,22 @@ export default class ConsolidatedDataProvider extends Component<ConsolidatedData
       data = graphableData;
     }
     return <div>{this.props.render({ error: this.state.error, data })}</div>;
+  }
+  private async getAndProcessData() {
+    try {
+      // const consolidator = consolidationWorker();
+      // const {getPerformanceMetrics} = dataWorker();
+      const [baseMetricsInputData, experimentMetricsInputdata] = await getPerformanceMetrics();
+      // const {baseMetrics, experimentMetrics} = await consolidator.consolidate(baseMetricsInputData, experimentMetricsInputdata, 0.5);
+      const { baseMetrics, experimentMetrics } = await consolidate(baseMetricsInputData, experimentMetricsInputdata, this.props.percentile);
+      this.setState({
+        baseMetrics,
+        experimentMetrics,
+      });
+    } catch (e) {
+      this.setState({
+        error: e.message,
+      });
+    }
   }
 }
