@@ -112,7 +112,7 @@ export class ConfidenceChart extends Component<Props> {
     return (
       <div class={style.graph}>
         <svg width={svgWidth} height={svgHeight} viewBox={`0 ${topOffset} ${svgWidth + rightOffset} ${svgHeight}`}>
-          <Title x={axisWidth / 2 + svgWidth - axisWidth} y={-10} value={'Confidence Graph of all metrics'} />
+          <Title x={axisWidth / 2 + svgWidth - axisWidth} y={topOffset} value={'Confidence Graph of all metrics'} />
           <AxisLabel x={xLabelWidth - axisOffset} y={topOffset} value="Frequency" />
           <AxisLabel x={axisWidth / 2 + svgWidth - axisWidth} y={svgHeight} value="Time Interval (seconds)" />
           {divisions.map(value => (
@@ -132,7 +132,7 @@ export class ConfidenceChart extends Component<Props> {
               endLineLength={50}
             />
           ))}
-          <Axis minX={svgWidth - axisWidth} minY={axisHeight} maxX={svgWidth} maxY={axisY(maxValue)} />
+          <Axis minX={svgWidth - axisWidth} minY={axisY(maxValue)} maxX={svgWidth} maxY={axisHeight} />
           {valueArr.map((value, index) => (
             <ValueLabel x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisY(value)} value={Math.round(value)} />
           ))}
