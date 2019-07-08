@@ -1,9 +1,9 @@
 import { PerformancePassResults } from '../../../shared/interfaces';
 
 export async function getPerformanceMetrics(): Promise<PerformancePassResults[]> {
-  const { control, experiment } = await import('../../../output/config/test.json').then(module => module.default);
+  const { control, experiment } = await fetch('/config/test.json').then(data => data.json());
   return (await Promise.all([
-    import(`../../../output/results/${control}.json`).then(module => module.default),
-    import(`../../../output/results/${experiment}.json`).then(module => module.default),
+    fetch(`/results/${control}.json`).then(data => data.json()),
+    fetch(`/results/${experiment}.json`).then(data => data.json()),
   ])) as PerformancePassResults[];
 }
