@@ -1,5 +1,7 @@
-export const METRIC_COLORS = {
-  '': '#333',
+export const METRIC_COLORS: {
+  [key: string]: string;
+} = {
+  NONE: '#333',
   responseStart: '#3f51b5',
   loadEventEnd: '#ff1744',
   domInteractive: '#009688',

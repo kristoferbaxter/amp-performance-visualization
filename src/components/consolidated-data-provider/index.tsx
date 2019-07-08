@@ -1,4 +1,5 @@
 import { Component, h, VNode } from 'preact';
+// @ts-ignore
 import consolidationWorker from 'workerize-loader!./consolidator';
 import { PerformanceMarkers, PerformancePassResults } from '../../../shared/interfaces';
 import { GraphableData } from '../bar-graph/graph-types';
@@ -33,16 +34,18 @@ export default class ConsolidatedDataProvider extends Component<ConsolidatedData
       this.getAndProcessData();
     }
   }
-  public render() {
+  public render(): JSX.Element {
     let data;
     const { baseMetrics, experimentMetrics } = this.state;
-    if (baseMetrics && experimentMetrics) {
+
+    if (baseMetrics !== undefined && experimentMetrics !== undefined) {
       const graphableData: GraphableData[] = [];
+
       for (const metric in baseMetrics) {
         if (baseMetrics.hasOwnProperty(metric)) {
           const comparisonMetric = {
             name: metric,
-            values: [baseMetrics[metric], experimentMetrics[metric]],
+            values: [baseMetrics[metric as keyof PerformanceMarkers], experimentMetrics[metric as keyof PerformanceMarkers]],
           };
           graphableData.push(comparisonMetric);
         }
@@ -52,7 +55,8 @@ export default class ConsolidatedDataProvider extends Component<ConsolidatedData
     }
     return <div>{this.props.render({ error: this.state.error, data })}</div>;
   }
-  private async getAndProcessData() {
+
+  private async getAndProcessData(): Promise<void> {
     try {
       // const {getPerformanceMetrics} = dataWorker();
       const [baseMetricsInputData, experimentMetricsInputdata] = await getPerformanceMetrics();

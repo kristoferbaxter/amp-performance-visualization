@@ -1,7 +1,23 @@
-import { PerformanceMarkers, PerformancePassResults, URLPerformanceMetrics } from '../../../shared/interfaces';
+import { PerformanceMarkers, PerformancePassResults } from '../../../shared/interfaces';
 import { ConsolidatedDataResult } from './types';
 
-function groupResultByMetrics(metrics: PerformanceMarkers) {
+interface GroupedMetrics {
+  responseStart: number[];
+  loadEventEnd: number[];
+  domInteractive: number[];
+  firstPaint: number[];
+  firstContentfulPaint: number[];
+  firstMeaningfulPaint: number[];
+  installStyles: number[];
+  installStylesDuration: number[];
+  visible: number[];
+  onFirstVisible: number[];
+  makeBodyVisible: number[];
+  windowLoadEvent: number[];
+  firstViewportReady: number[];
+}
+
+function groupResultByMetrics(metrics: PerformanceMarkers[]): GroupedMetrics {
   const reducer = (accumulator: any, currentValue: PerformanceMarkers) => {
     for (const key in currentValue) {
       if (currentValue.hasOwnProperty(key)) {
@@ -52,7 +68,7 @@ function percentile(metrics: number[], p: number) {
   return metrics[lower] * (1 - weight) + metrics[upper] * weight;
 }
 
-function getPerformanceMarkersByPercentile(metrics: PerformanceMarkers, p: number): PerformanceMarkers {
+function getPerformanceMarkersByPercentile(metrics: PerformanceMarkers[], p: number): PerformanceMarkers {
   const groupedMetrics = groupResultByMetrics(metrics);
   const result: PerformanceMarkers = {
     responseStart: 0,

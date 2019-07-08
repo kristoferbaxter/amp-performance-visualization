@@ -7,6 +7,7 @@ export interface BarProps {
   height: number;
   style?: string;
   filter?: string;
+  key?: string;
 }
 
 export interface BarState {}
