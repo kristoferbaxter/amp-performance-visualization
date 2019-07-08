@@ -1,28 +1,78 @@
-import fs from 'fs';
-import multiRunMetrics from './metrics-from-url-array';
+import * as fs from 'fs';
+import { promisify } from 'util';
+import { NetworkJSON } from './json-metrics';
+import multiRunMetrics, { URLFileJSON } from './metrics-from-url-array';
 
-const urlArray: string[] = [
-  'https://results.amarujala.com/amp/board/up-board/up-class-10th-result-2018',
-  'https://m.timesofindia.com/home/education/news/west-bengal-hs-class-12th-results-soon-wbresults-nic-in-check-here/amp_articleshow/64488353.cms',
+const readFile = promisify(fs.readFile);
+const checkFile = promisify(fs.access);
+const returnFileContent: (path: string) => Promise<string> = (location: string): Promise<string> => readFile(location, 'utf8');
+const checkIfFileReadable = (path: string): Promise<void | Error> => checkFile(path, fs.constants.R_OK);
+const argv = require('yargs').argv;
 
-  'http://ww7.catnepal.com/amp/',
-  'https://m.timesofindia.com/home/education/news/maharashtra-hsc-result-2018-date-msbshse-likely-to-declare-12th-results-in-may-end/amp_articleshow/64318659.cms',
-  'https://genius.com/amp/Drake-duppy-freestyle-lyrics',
-  'https://m.bebesymas.com/ser-padres/buscas-nombre-para-tu-bebe-101-nombres-de-nina-para-inspirarte/amp',
-  'https://genius.com/amp/Kanye-west-lift-yourself-lyrics',
-  'https://amp.mon-horoscope-du-jour.com/',
-  'https://m.livehindustan.com/career/story-bihar-board-12th-result-2018-bseb-releasing-bihar-12th-result-2018-science-commerce-and-arts-today-at-4-30-pm-check-bihar-result-at-biharboard-ac-in-1998865.amp.html',
-];
+const DEFAULT_NETWORK: NetworkJSON = {
+  downSpeed: 1536,
+  upSpeed: 750,
+  latency: 40,
+};
 
-// Metrics returning all -1 means the url took longer than 1 minute 40 seconds to load
-// Metrics returning all -2 means the url is not AMP
-// Metrics returning all -3 means the program failed to go to the page
-
-multiRunMetrics(urlArray, 1536, 750, 40).then(data => {
-  fs.writeFile('server/results/amp-metrics.json', JSON.stringify(data, null, 2), err => {
+async function run() {
+  await checkIfFileReadable(argv.urls).then(err => {
     if (err) {
-      throw err;
+      console.error(err);
+      return;
     }
-    process.exit(0);
+    return;
   });
-});
+
+  let parsedNetwork: NetworkJSON;
+
+  await checkIfFileReadable(argv.network).then(err => {
+    if (err) {
+      parsedNetwork = DEFAULT_NETWORK;
+      console.log(
+        `Using default network settings: downSpeed ${parsedNetwork.downSpeed} kb/s | upSpeed ${parsedNetwork.upSpeed} kb/s | latency ${
+          parsedNetwork.latency
+        }`,
+      );
+      return;
+    }
+    returnFileContent(argv.network).then(networkFile => {
+      parsedNetwork = JSON.parse(networkFile);
+    });
+    return;
+  });
+
+  // Metrics returning all -1 means the url took longer than 4 minutes to load
+  // Metrics returning all -2 means the url is not AMP
+  // Metrics returning all -3 means the program failed to go to the page
+
+  returnFileContent(argv.urls)
+    .then(urlsFile => {
+      try {
+        const parsedURLs: URLFileJSON = JSON.parse(urlsFile);
+        let numRuns: number = 3;
+
+        if (argv.runs) {
+          numRuns = argv.runs;
+        } else {
+          console.log(`Number of Runs not specified, 3 Runs will be returned`);
+        }
+
+        multiRunMetrics(parsedURLs, parsedNetwork, numRuns).then(data => {
+          fs.writeFile('server/results/amp-metrics.json', JSON.stringify(data, null, 2), err => {
+            if (err) {
+              throw err;
+            }
+            process.exit(0);
+          });
+        });
+      } catch (e) {
+        console.log('There was an exception running metrics', e);
+      }
+    })
+    .catch(e => {
+      console.log('there was an error finding your files', e);
+    });
+}
+
+run();
