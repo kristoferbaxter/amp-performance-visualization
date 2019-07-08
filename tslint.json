@@ -31,7 +31,7 @@
         "no-regex-spaces": true,
         "no-sparse-arrays": true,
         "no-unexpected-multiline": true,
-        "valid-jsdoc": true,
+        "valid-jsdoc": false,
         "valid-typeof": true,
         "early-exit": { "severity": "warning" },
         "no-collapsible-if": { "severity": "warning" },

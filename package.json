@@ -18,7 +18,7 @@
     "start:server:config": "cp -r config output/config",
     "start:server:results": "mkdir -p output/results",
     "prestart:server": "run-s start:server:output start:server:rimraf start:server:package start:server:config start:server:results build",
-    "start:server": "node -r esm server/output/server/index.js --urls=config/urls.json",
+    "start:server": "node -r esm output/server/index.js --urls=config/urls.json",
     "build:server": "tsc -p server",
     "clear": "rimraf output && mkdir -p output",
     "poststart:server": "http-server ./build -s -o",
@@ -29,7 +29,7 @@
       "prettier --write --config ./.prettierrc",
       "git add"
     ],
-    "*.{ts,tsx}": [
+    "src/**/*.{ts,tsx}": [
       "prettier --write --config ./.prettierrc-typescript",
       "tslint --fix",
       "git add"

@@ -54,11 +54,6 @@ async function replaceVersion(version: VersionConfiguration, domCache: DOMCache,
  * @param domCache
  * @param urls
  */
-export function replace(
-  versions: VersionConfiguration[],
-  domCache: DOMCache,
-  urls: string[],
-  progressBar: ProgressBar,
-): Array<Promise<void>> {
+export function replace(versions: VersionConfiguration[], domCache: DOMCache, urls: string[], progressBar: ProgressBar): Array<Promise<void>> {
   return versions.slice().map(version => replaceVersion(version, domCache, urls, progressBar));
 }
