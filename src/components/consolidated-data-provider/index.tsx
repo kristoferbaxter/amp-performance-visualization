@@ -22,6 +22,8 @@ interface ConsolidatedDataRenderer {
   data?: GraphableData[];
 }
 
+const consolidator = consolidationWorker();
+
 export default class ConsolidatedDataProvider extends Component<ConsolidatedDataProviderProps, ConsolidatedDataProviderState> {
   public componentDidMount() {
     this.getAndProcessData();
@@ -52,7 +54,6 @@ export default class ConsolidatedDataProvider extends Component<ConsolidatedData
   }
   private async getAndProcessData() {
     try {
-      const consolidator = consolidationWorker();
       // const {getPerformanceMetrics} = dataWorker();
       const [baseMetricsInputData, experimentMetricsInputdata] = await getPerformanceMetrics();
       // const {baseMetrics, experimentMetrics} = await consolidator.consolidate(baseMetricsInputData, experimentMetricsInputdata, 0.5);

@@ -27,7 +27,7 @@ export default ({ height, width, xLabel, loading, data }: GraphProps): JSX.Eleme
     // get next closest 1000 of the highest of all value in the data to plot.
     const maxPlottableData = round_to_precision(Math.max(...data.map(dataPoints => dataPoints.values).flat()), 1000) + 1000;
     heightRatio = height / maxPlottableData;
-    columnWidth = width / (data.length + 1);
+    columnWidth = width / data.length;
   }
   return (
     <svg height={height} width={width}>
@@ -43,6 +43,7 @@ export default ({ height, width, xLabel, loading, data }: GraphProps): JSX.Eleme
         data.map((metric, dataIndex) => {
           const { name: metricName, values: metricValues } = metric;
           const barWidth = columnWidth / (metricValues.length + 1);
+          console.log({ columnWidth });
           return (
             <g transform={`translate(${Math.ceil(dataIndex * columnWidth) + 20})`} key={metricName || ''}>
               {metricValues.map((metricValue, valueIndex) => {
