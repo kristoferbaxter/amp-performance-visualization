@@ -5,12 +5,12 @@
   "repository": "https://github.com/kristoferbaxter/amp-performance-visualization",
   "author": "The AMP HTML Authors",
   "scripts": {
+    "clear": "rimraf output && mkdir -p output",
     "start:client": "per-env",
     "start:production": "npm run -s serve",
     "start:development": "npm run -s dev",
     "build:client": "preact build --no-prerender",
     "build:server": "tsc -p server",
-    "build": "run-s build:server prestart build:client",
     "dev": "preact watch",
     "lint": "tslint --project src",
     "test": "jest ./tests",
@@ -21,8 +21,7 @@
     "start:server:results": "mkdir -p output/results",
     "prestart": "run-s start:server:output start:server:rimraf start:server:package start:server:config start:server:results build:server",
     "start": "node -r esm output/server/index.js --urls=config/urls.json",
-    "clear": "rimraf output && mkdir -p output",
-    "poststart": "http-server ./build -s -o",
+    "poststart": "run-s build:client && http-server ./build -s -o",
     "precommit": "lint-staged"
   },
   "lint-staged": {
