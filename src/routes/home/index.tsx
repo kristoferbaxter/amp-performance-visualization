@@ -1,5 +1,5 @@
 import { Component, h } from 'preact';
-import { PerformancePassResults } from '../../../shared-interfaces';
+import { PerformancePassResults } from '../../../shared/interfaces';
 import BarGraph, { GraphableData } from '../../components/bar-graph';
 import ConsolidatedDataProvider from '../../components/consolidated-data-provider';
 import style from './style.css';

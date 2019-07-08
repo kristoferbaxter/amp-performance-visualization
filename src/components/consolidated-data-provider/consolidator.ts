@@ -1,4 +1,4 @@
-import { PerformanceMarkers, PerformancePassResults, URLPerformanceMetrics } from '../../../shared-interfaces';
+import { PerformanceMarkers, PerformancePassResults, URLPerformanceMetrics } from '../../../shared/interfaces';
 import { ConsolidatedDataResult } from './types';
 
 function groupResultByMetrics(metrics: PerformanceMarkers) {

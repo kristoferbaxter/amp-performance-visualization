@@ -1,6 +1,6 @@
 import { Component, h, VNode } from 'preact';
 import consolidationWorker from 'workerize-loader!./consolidator';
-import { PerformanceMarkers, PerformancePassResults } from '../../../shared-interfaces';
+import { PerformanceMarkers, PerformancePassResults } from '../../../shared/interfaces';
 import { GraphableData } from '../bar-graph/graph-types';
 // import dataWorker from 'workerize-loader!../data-fetcher';
 import { getPerformanceMetrics } from '../data-fetcher';

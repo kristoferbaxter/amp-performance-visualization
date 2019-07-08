@@ -1,4 +1,4 @@
-import { PerformanceMarkers } from '../../../shared-interfaces';
+import { PerformanceMarkers } from '../../../shared/interfaces';
 
 export interface ConsolidatedDataResult {
   baseMetrics?: PerformanceMarkers;
