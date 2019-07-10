@@ -70,7 +70,7 @@ export class BarChart extends Component<Props> {
     axisOffset: 10,
     frequencyInterval: 500,
     divisionInterval: 1,
-    barWidthRatio: 2,
+    barWidthRatio: 3,
     topOffset: -20,
     rightOffset: 50,
   };
@@ -116,7 +116,16 @@ export class BarChart extends Component<Props> {
             <XDivision minX={svgWidth - axisWidth} maxX={svgWidth} y={axisY(value)} />
           ))}
           {newData.map((value, index) => (
-            <Bar x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisY(value)} width={barWidth} height={axisHeight - axisY(value)} />
+            <Bar x={axisX(index + 1) + (svgWidth - axisWidth)} y={axisY(value)} width={barWidth} height={axisHeight - axisY(value)} color="blue" />
+          ))}
+          {newData.map((value, index) => (
+            <Bar
+              x={axisX(index + 1) - barWidth + (svgWidth - axisWidth)}
+              y={axisY(value)}
+              width={barWidth}
+              height={axisHeight - axisY(value)}
+              color={'red'}
+            />
           ))}
           <Axis minX={svgWidth - axisWidth} minY={axisY(maxValue)} maxX={svgWidth} maxY={axisHeight} />
           {newData.map((value, index) => (

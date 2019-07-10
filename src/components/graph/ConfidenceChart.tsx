@@ -73,7 +73,7 @@ export class ConfidenceChart extends Component<Props> {
     axisWidth: 950,
     xLabelWidth: 55,
     axisOffset: 15,
-    barWidthRatio: 2,
+    barWidthRatio: 3,
     topOffset: -20,
     rightOffset: 50,
   };
@@ -109,6 +109,7 @@ export class ConfidenceChart extends Component<Props> {
       // makes an array with the x values for where the divisions should be placed
       divisions.push((maxValue * i) / numOfDivisions);
     }
+    console.log({ newData });
     return (
       <div class={style.graph}>
         <svg width={svgWidth} height={svgHeight} viewBox={`0 ${topOffset} ${svgWidth + rightOffset} ${svgHeight}`}>
@@ -122,14 +123,31 @@ export class ConfidenceChart extends Component<Props> {
             <XDivision minX={svgWidth - axisWidth} maxX={svgWidth} y={axisY(value)} />
           ))}
           {valueArr.map((value, index) => (
-            <Bar x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisY(value)} width={barWidth} height={axisHeight - axisY(value)} />
+            <Bar x={axisX(index + 1) + (svgWidth - axisWidth)} y={axisY(value)} width={barWidth} height={axisHeight - axisY(value)} color={'blue'} />
+          ))}
+          {valueArr.map((value, index) => (
+            <Bar
+              x={axisX(index + 1) - barWidth + (svgWidth - axisWidth)}
+              y={axisY(value)}
+              width={barWidth}
+              height={axisHeight - axisY(value)}
+              color={'red'}
+            />
           ))}
           {Object.values(confidence).map((value, index) => (
             <ErrorBars
-              x={axisX(index + 1) + (svgWidth - axisWidth)}
+              x={axisX(index + 1) + barWidth / 2 + (svgWidth - axisWidth)}
               minY={axisY(valueArr[index] - value)}
               maxY={axisY(valueArr[index] + value)}
-              endLineLength={50}
+              endLineLength={40}
+            />
+          ))}
+          {Object.values(confidence).map((value, index) => (
+            <ErrorBars
+              x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)}
+              minY={axisY(valueArr[index] - value)}
+              maxY={axisY(valueArr[index] + value)}
+              endLineLength={40}
             />
           ))}
           <Axis minX={svgWidth - axisWidth} minY={axisY(maxValue)} maxX={svgWidth} maxY={axisHeight} />

@@ -1,5 +1,5 @@
 import { AMPEntry, ParsedData, Results, TestPass, TimeMetrics } from '../../shared-interfaces/metrics-results';
-import { results } from './amp-metrics';
+import { device, networkSpeed, results } from './amp-metrics.json';
 
 function filterBadData(arrayOfResults: Results[]): Results[] {
   for (let i = 0; i < arrayOfResults.length; i++) {
@@ -31,7 +31,7 @@ function parseMetrics(arrayOfResults: Results[]): ParsedData {
 }
 
 export const data = {
-  device: results.device,
-  networkSpeed: results.networkSpeed,
-  metrics: parseMetrics(results.results),
+  device,
+  networkSpeed,
+  metrics: parseMetrics(results),
 };
