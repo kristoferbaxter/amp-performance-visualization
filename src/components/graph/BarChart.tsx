@@ -1,16 +1,18 @@
 import { Component, h } from 'preact';
-import { ParsedData } from '../../../shared-interfaces/metrics-results';
+import { TimeMetrics } from '../../../shared-interfaces/metrics-results';
 import { Axis } from './Axis';
+import { AxisLabel } from './AxisLabel';
 import { Bar } from './Bar';
 import style from './Chart.css';
+import { Title } from './Title';
 import { ValueLabel } from './ValueLabel';
 import { XDivision } from './XDivision';
-import { XLabel } from './XLabel';
-import { YLabel } from './YLabel';
+import { XLabelValues } from './XLabelValues';
+import { YLabelValues } from './YLabelValues';
 
 interface Props {
-  data: ParsedData[];
-  graphChoice: keyof ParsedData;
+  data: TimeMetrics[];
+  graphChoice: keyof TimeMetrics;
   svgWidth: number;
   svgHeight: number;
   axisWidth: number;
@@ -20,10 +22,12 @@ interface Props {
   frequencyInterval: number;
   divisionInterval: number;
   barWidthRatio: number;
+  topOffset: number;
+  rightOffset: number;
 }
 
 // grabs the values of the data the user wants and sorts them from least to greatest
-function sortNeededData(data: ParsedData[], graphChoice: keyof ParsedData): number[] {
+function sortNeededData(data: TimeMetrics[], graphChoice: keyof TimeMetrics): number[] {
   const numArray: number[] = [];
   for (const metric of data) {
     numArray.push(metric[graphChoice]);
@@ -48,18 +52,27 @@ function makeFrequencyArray(data: number[], frequencyInterval: number): number[]
   }
   return freqArray;
 }
+function camelCaseToString(str: string) {
+  const wordArr: string[] = [];
+  for (const word of str.split(/(?=[A-Z])/)) {
+    wordArr.push(word[0].toUpperCase() + word.slice(1));
+  }
+  return wordArr.join(' ');
+}
 
 export class BarChart extends Component<Props> {
   public static defaultProps = {
-    svgHeight: 1000,
+    svgHeight: 1050,
     svgWidth: 1000,
     axisHeight: 950,
     axisWidth: 950,
     xLabelWidth: 50,
     axisOffset: 10,
-    frequencyInterval: 1000,
+    frequencyInterval: 500,
     divisionInterval: 1,
-    barWidthRatio: 2,
+    barWidthRatio: 3,
+    topOffset: -20,
+    rightOffset: 50,
   };
 
   public render({
@@ -74,6 +87,8 @@ export class BarChart extends Component<Props> {
     frequencyInterval,
     divisionInterval,
     barWidthRatio,
+    topOffset,
+    rightOffset,
   }: Props): JSX.Element {
     const sortedData = sortNeededData(data, graphChoice);
     const newData = makeFrequencyArray(sortedData, frequencyInterval);
@@ -84,28 +99,44 @@ export class BarChart extends Component<Props> {
     const barWidth = svgWidth / numOfBars / barWidthRatio; // changing the 2 to another number will manipulate the width of the bars
     const divisions = [];
     const numOfDivisions = maxValue / divisionInterval;
-    for (let i = 1; i <= numOfDivisions - 1; i++) {
+    for (let i = 0; i <= numOfDivisions; i++) {
       // makes an array with the x values for where the divisions should be placed
       divisions.push((maxValue * i) / numOfDivisions);
     }
     return (
       <div class={style.graph}>
-        <svg width={svgWidth} height={svgHeight}>
+        <svg width={svgWidth} height={svgHeight} viewBox={`0 ${topOffset} ${svgWidth + rightOffset} ${svgHeight}`}>
+          <Title x={axisWidth / 2 + svgWidth - axisWidth} y={topOffset} value={camelCaseToString(graphChoice)} />
+          <AxisLabel x={xLabelWidth - axisOffset} y={topOffset} value="Frequency" />
+          <AxisLabel x={axisWidth / 2 + svgWidth - axisWidth} y={svgHeight} value="Time Interval (seconds)" />
           {divisions.map(value => (
-            <XLabel x={xLabelWidth - axisOffset} y={axisY(value)} value={value} />
+            <XLabelValues x={xLabelWidth - axisOffset} y={axisY(value)} value={value} />
           ))}
           {divisions.map(value => (
             <XDivision minX={svgWidth - axisWidth} maxX={svgWidth} y={axisY(value)} />
           ))}
           {newData.map((value, index) => (
-            <Bar x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisY(value)} width={barWidth} height={axisHeight - axisY(value)} />
+            <Bar x={axisX(index + 1) + (svgWidth - axisWidth)} y={axisY(value)} width={barWidth} height={axisHeight - axisY(value)} color="blue" />
           ))}
-          <Axis minX={svgWidth - axisWidth} minY={axisHeight} maxX={svgWidth} maxY={axisY(maxValue)} />
+          {newData.map((value, index) => (
+            <Bar
+              x={axisX(index + 1) - barWidth + (svgWidth - axisWidth)}
+              y={axisY(value)}
+              width={barWidth}
+              height={axisHeight - axisY(value)}
+              color={'red'}
+            />
+          ))}
+          <Axis minX={svgWidth - axisWidth} minY={axisY(maxValue)} maxX={svgWidth} maxY={axisHeight} />
           {newData.map((value, index) => (
             <ValueLabel x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisY(value)} value={Math.round(value)} />
           ))}
           {newData.map((value, index) => (
-            <YLabel x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisHeight + axisOffset} value={(index + 1) * 1000} />
+            <YLabelValues
+              x={axisX(index + 1) + (svgWidth - axisWidth)}
+              y={axisHeight + axisOffset}
+              value={`${index * frequencyInterval + 1}-${(index + 1) * frequencyInterval}`}
+            />
           ))}
         </svg>
       </div>

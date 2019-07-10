@@ -1,4 +1,6 @@
 .barChartAxis {
   stroke: black;
   stroke-width: 4px;
+  fill: white;
+  fill-opacity: 0;
 }

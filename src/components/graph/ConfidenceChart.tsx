@@ -1,22 +1,27 @@
 import { Component, h } from 'preact';
-import { ParsedData } from '../../../shared-interfaces/metrics-results';
+import { TimeMetrics } from '../../../shared-interfaces/metrics-results';
 import { Axis } from './Axis';
+import { AxisLabel } from './AxisLabel';
 import { Bar } from './Bar';
 import style from './Chart.css';
-import { ConfidenceLines } from './ConfidenceLines';
+import { ErrorBars } from './ErrorBars';
+import { Title } from './Title';
 import { ValueLabel } from './ValueLabel';
 import { XDivision } from './XDivision';
-import { XLabel } from './XLabel';
-import { YLabel } from './YLabel';
+import { XLabelValues } from './XLabelValues';
+import { YLabelValues } from './YLabelValues';
 
 interface Props {
-  data: ParsedData[];
+  data: TimeMetrics[];
   svgWidth: number;
   svgHeight: number;
   axisWidth: number;
   axisHeight: number;
   xLabelWidth: number;
   axisOffset: number;
+  barWidthRatio: number;
+  topOffset: number;
+  rightOffset: number;
 }
 // average an array of numbers
 function getAverage(numArray: number[]): number {
@@ -27,7 +32,7 @@ function getAverage(numArray: number[]): number {
   return sum / numArray.length;
 }
 // put the average of every metric into an array
-function aggregateMetrics(data: ParsedData[]) {
+function aggregateMetrics(data: TimeMetrics[]) {
   const aggregate: { [k: string]: number } = {};
   for (let i = 0; i < Object.keys(data[0]).length; i++) {
     const metrics: number[] = [];
@@ -38,8 +43,8 @@ function aggregateMetrics(data: ParsedData[]) {
   }
   return aggregate;
 }
-// create an array with the sta deviation of each metric
-function createConfidenceArray(data: ParsedData[]) {
+// create an array with the standard deviation of each metric
+function createConfidenceArray(data: TimeMetrics[]) {
   const confidence: { [k: string]: number } = {};
   for (let i = 0; i < Object.keys(data[0]).length; i++) {
     const metrics: number[] = [];
@@ -62,15 +67,29 @@ function calculateStandardDeviation(numArray: number[]): number {
 
 export class ConfidenceChart extends Component<Props> {
   public static defaultProps = {
-    svgHeight: 1200,
-    svgWidth: 1000,
+    svgHeight: 1100,
+    svgWidth: 1015,
     axisHeight: 950,
     axisWidth: 950,
-    xLabelWidth: 45,
-    axisOffset: 10,
+    xLabelWidth: 55,
+    axisOffset: 15,
+    barWidthRatio: 3,
+    topOffset: -20,
+    rightOffset: 50,
   };
 
-  public render({ data, svgHeight, svgWidth, axisHeight, axisWidth, xLabelWidth, axisOffset }: Props): JSX.Element {
+  public render({
+    data,
+    svgHeight,
+    svgWidth,
+    axisHeight,
+    axisWidth,
+    xLabelWidth,
+    axisOffset,
+    rightOffset,
+    topOffset,
+    barWidthRatio,
+  }: Props): JSX.Element {
     const newData = aggregateMetrics(data);
     const confidence = createConfidenceArray(data);
     const maxDataArr = [];
@@ -83,39 +102,60 @@ export class ConfidenceChart extends Component<Props> {
     const axisY = (y: number): number => axisHeight - (y / maxValue) * axisHeight; // manipulates a y value to fit into the frame of the graph
     const valueArr = Object.values(newData);
     const keyArr = Object.keys(newData);
-    const barWidth = svgWidth / 2 / numOfBars; // changing the 2 to another number will manipulate the width of the bars
+    const barWidth = svgWidth / barWidthRatio / numOfBars; // changing the 2 to another number will manipulate the width of the bars
     const divisions = [];
     const numOfDivisions = maxValue / 1000;
-    for (let i = 1; i <= numOfDivisions - 1; i++) {
+    for (let i = 0; i <= numOfDivisions; i++) {
       // makes an array with the x values for where the divisions should be placed
       divisions.push((maxValue * i) / numOfDivisions);
     }
+    console.log({ newData });
     return (
       <div class={style.graph}>
-        <svg width={svgWidth} height={svgHeight}>
+        <svg width={svgWidth} height={svgHeight} viewBox={`0 ${topOffset} ${svgWidth + rightOffset} ${svgHeight}`}>
+          <Title x={axisWidth / 2 + svgWidth - axisWidth} y={topOffset} value={'Confidence Graph of all metrics'} />
+          <AxisLabel x={xLabelWidth - axisOffset} y={topOffset} value="Frequency" />
+          <AxisLabel x={axisWidth / 2 + svgWidth - axisWidth} y={svgHeight} value="Time Interval (seconds)" />
           {divisions.map(value => (
-            <XLabel x={xLabelWidth} y={axisY(value)} value={value} />
+            <XLabelValues x={xLabelWidth} y={axisY(value)} value={value} />
           ))}
           {divisions.map(value => (
             <XDivision minX={svgWidth - axisWidth} maxX={svgWidth} y={axisY(value)} />
           ))}
           {valueArr.map((value, index) => (
-            <Bar x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisY(value)} width={barWidth} height={axisHeight - axisY(value)} />
+            <Bar x={axisX(index + 1) + (svgWidth - axisWidth)} y={axisY(value)} width={barWidth} height={axisHeight - axisY(value)} color={'blue'} />
           ))}
-          {Object.values(confidence).map((value, index) => (
-            <ConfidenceLines
-              x={axisX(index + 1) + (svgWidth - axisWidth)}
-              minY={axisY(valueArr[index] - value)}
-              maxY={axisY(valueArr[index] + value)}
-              endLineLength={50}
+          {valueArr.map((value, index) => (
+            <Bar
+              x={axisX(index + 1) - barWidth + (svgWidth - axisWidth)}
+              y={axisY(value)}
+              width={barWidth}
+              height={axisHeight - axisY(value)}
+              color={'red'}
             />
           ))}
-          <Axis minX={svgWidth - axisWidth} minY={axisHeight} maxX={svgWidth} maxY={axisY(maxValue)} />
+          {Object.values(confidence).map((value, index) => (
+            <ErrorBars
+              x={axisX(index + 1) + barWidth / 2 + (svgWidth - axisWidth)}
+              minY={axisY(valueArr[index] - value)}
+              maxY={axisY(valueArr[index] + value)}
+              endLineLength={40}
+            />
+          ))}
+          {Object.values(confidence).map((value, index) => (
+            <ErrorBars
+              x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)}
+              minY={axisY(valueArr[index] - value)}
+              maxY={axisY(valueArr[index] + value)}
+              endLineLength={40}
+            />
+          ))}
+          <Axis minX={svgWidth - axisWidth} minY={axisY(maxValue)} maxX={svgWidth} maxY={axisHeight} />
           {valueArr.map((value, index) => (
             <ValueLabel x={axisX(index + 1) - barWidth / 2 + (svgWidth - axisWidth)} y={axisY(value)} value={Math.round(value)} />
           ))}
           {keyArr.map((value, index) => (
-            <YLabel x={axisX(index + 1) + (svgWidth - axisWidth)} y={axisHeight + axisOffset} value={value} />
+            <YLabelValues x={axisX(index + 1) + (svgWidth - axisWidth)} y={axisHeight + axisOffset} value={value} />
           ))}
         </svg>
       </div>

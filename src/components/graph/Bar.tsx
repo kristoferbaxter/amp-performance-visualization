@@ -6,6 +6,9 @@ interface Props {
   y: number;
   width: number;
   height: number;
+  color: string;
 }
 
-export const Bar = ({ x, y, width, height }: Props): JSX.Element => <rect class={style.barChartRects} x={x} y={y} width={width} height={height} />;
+export const Bar = ({ x, y, width, height, color }: Props): JSX.Element => (
+  <rect class={style.barChartRects} style={`fill:${color}`} x={x} y={y} width={width} height={height} />
+);

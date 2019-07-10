@@ -1,8 +1,8 @@
 import { Component, h } from 'preact';
-import { ParsedData } from './data';
+import { TimeMetrics } from '../../shared-interfaces/metrics-results';
 
 interface Props {
-  metrics: ParsedData[];
+  metrics: TimeMetrics[];
   onSelection: (choice: string) => void;
 }
 

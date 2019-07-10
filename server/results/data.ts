@@ -1,27 +1,37 @@
-import { Metrics } from '../../shared-interfaces/metrics-results';
-import { ParsedData } from '../../shared-interfaces/metrics-results';
-import { results } from './results';
+import { AMPEntry, ParsedData, Results, TestPass, TimeMetrics } from '../../shared-interfaces/metrics-results';
+import { device, networkSpeed, results } from './amp-metrics.json';
 
-function filterBadData(metricsArr: Metrics[]): Metrics[] {
-  return metricsArr.filter(metrics => !(metrics.responseStart <= 0));
+function filterBadData(arrayOfResults: Results[]): Results[] {
+  for (let i = 0; i < arrayOfResults.length; i++) {
+    for (const j = 0; i < arrayOfResults[i].performance.length; i++) {
+      if (arrayOfResults[i].performance[j].responseStart <= 0) {
+        arrayOfResults[i].performance.splice(j, 1);
+      }
+    }
+  }
+  return arrayOfResults;
 }
 
-function parseMetrics(metricsArr: Metrics[]): ParsedData[] {
-  const parsed: ParsedData[] = [];
-  const goodMetrics = filterBadData(metricsArr);
+function parseMetrics(arrayOfResults: Results[]): ParsedData {
+  const parsedGraphableData: TimeMetrics[] = [];
+  const parsedTableData: AMPEntry[] = [];
+  const goodMetrics = filterBadData(arrayOfResults);
   for (const metrics of goodMetrics) {
-    parsed.push({
-      responseStart: metrics.responseStart,
-      loadEventEnd: metrics.loadEventEnd,
-      domInteractive: metrics.domInteractive,
-      firstPaint: metrics.firstPaint,
-      firstContentfulPaint: metrics.firstContentfulPaint,
-      firstMeaningfulPaint: metrics.firstMeaningfulPaint,
-    } as ParsedData);
+    for (const metric of metrics.performance) {
+      parsedGraphableData.push(metric);
+    }
+    for (const metric of metrics.amp) {
+      parsedTableData.push(metric);
+    }
   }
-  return parsed;
+  return {
+    performance: parsedGraphableData,
+    amp: parsedTableData,
+  };
 }
 
 export const data = {
-  metrics: parseMetrics(results.metrics),
+  device,
+  networkSpeed,
+  metrics: parseMetrics(results),
 };
