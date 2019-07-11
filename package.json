@@ -23,7 +23,7 @@
     "prestart:client": "cp -r output/config build && cp -r output/results build",
     "prestart": "run-s start:server:output start:server:rimraf start:server:package start:server:config start:server:results build",
     "start": "node -r esm output/server/index.js --urls=config/urls.json",
-    "poststart": "yarn prestart:client && http-server ./build -s -o",
+    "poststart": "yarn prestart:client && http-server ./build -s -o -c -1",
     "precommit": "lint-staged"
   },
   "lint-staged": {

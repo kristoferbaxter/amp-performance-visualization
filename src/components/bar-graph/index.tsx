@@ -1,6 +1,6 @@
 import { Component, h } from 'preact';
 import SVGLoader from '../loader';
-import Bar from './bars';
+import Bar from './bars/Bar';
 import { METRIC_COLORS } from './constants';
 import { GraphableData } from './graph-types';
 
