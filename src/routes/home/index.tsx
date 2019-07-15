@@ -43,12 +43,12 @@ export default class Home extends Component<Props, State> {
           percentile={this.state.percentile}
           render={({ data, error }) => {
             if (!data && !error) {
-              return <BarGraph height={400} width={700} loading={!data} />;
+              return <BarGraph height={1000} width={1000} loading={!data} />;
             } else if (error) {
               return <h1>ERROR! {error}</h1>;
             }
             console.log({ data });
-            return <BarGraph height={400} width={700} data={data} />;
+            return <BarGraph height={1000} width={1000} data={data} />;
           }}
         />
       </div>

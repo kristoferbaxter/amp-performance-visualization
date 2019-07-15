@@ -1,5 +1,6 @@
 import { Component, h } from 'preact';
 import SVGLoader from '../loader';
+import { Axis } from './bars/Axis';
 import Bar from './bars/Bar';
 import { METRIC_COLORS } from './constants';
 import { GraphableData } from './graph-types';
@@ -31,13 +32,7 @@ export default ({ height, width, xLabel, loading, data }: GraphProps): JSX.Eleme
   }
   return (
     <svg height={height} width={width}>
-      <g>
-        <line x1="20" y1="0" x2="20" y2={height - 20} class={style.axis} />
-        <text x={(-1 * height) / 2} y={height} transform={`rotate(90 20, ${height - 20})`}>
-          {xLabel || 'time'}
-        </text>
-        <line x1="20" y1={height - 20} x2={width} y2={height - 20} class={style.axis} />
-      </g>
+      <Axis minX={20} minY={0} maxX={width} maxY={height} />
       {loading && <SVGLoader size={100} x={width / 2 - 50} y={height / 2 - 50} />}
       {data &&
         data.map((metric, dataIndex: number) => {
