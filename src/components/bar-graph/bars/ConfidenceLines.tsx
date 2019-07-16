@@ -9,8 +9,8 @@ interface Props {
 }
 
 export const ConfidenceLines = ({ x, maxY, minY, endLineLength }: Props): JSX.Element => {
-  if (minY > 950) {
-    minY = 950;
+  if (minY < 0) {
+    minY = 0;
   }
   return (
     <g class={style.confidenceLines}>

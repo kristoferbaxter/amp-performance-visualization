@@ -11,7 +11,7 @@ export const METRIC_COLORS: {
   installStyles: '#673ab7',
   installStylesDuration: '#f44336',
   visible: '#827717',
-  onFirstVisible: '#ff6f00',
+  onFirstVisible: '#ff6ff4',
   makeBodyVisible: '#ff6f00',
   windowLoadEvent: '#ec407a',
   firstViewportReady: '#00b0ff',
