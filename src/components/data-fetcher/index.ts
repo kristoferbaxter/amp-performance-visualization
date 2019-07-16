@@ -1,4 +1,4 @@
-import { PerformancePassResults } from '../../../shared-interfaces/metrics-results';
+import { PerformancePassResults } from '../../../shared/interfaces';
 
 export async function getPerformanceMetrics(): Promise<PerformancePassResults[]> {
   const { control, experiment } = await fetch('/config/test.json').then(data => data.json());

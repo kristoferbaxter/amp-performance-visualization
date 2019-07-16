@@ -16,5 +16,8 @@ export default function(config, env, helpers) {
   // Use any `index` file, not just index.js
   config.resolve.alias['preact-cli-entrypoint'] = resolve(process.cwd(), 'src', 'index');
 
+  // web worker HMR requires it
+  config.output.globalObject = 'self';
+
   return config;
 }
