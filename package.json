@@ -6,6 +6,7 @@
   "author": "The AMP HTML Authors",
   "scripts": {
     "clear": "rimraf output && mkdir -p output",
+    "start": "run-s start:server start:client",
     "start:client": "run-s build:client poststart",
     "start:production": "npm run -s serve",
     "start:development": "npm run -s dev",
