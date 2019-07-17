@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import { Argv } from 'mri';
 import { Configuration } from './configuration';
 
 export interface TestConfiguration {
@@ -22,6 +21,7 @@ export interface TestConfiguration {
   control: string;
   experiment: string;
   executions: number;
+  concurrency: number;
 }
 
 export interface VersionConfiguration {
@@ -35,8 +35,8 @@ let cachedVersionConfiguration: VersionConfiguration[] | null = null;
  * Retrieve the Test Configuration
  * @param args
  */
-export async function getTestConfiguration(args: Argv): Promise<TestConfiguration | null> {
-  return await new Configuration<TestConfiguration>(args.test).get();
+export async function getTestConfiguration(path: string): Promise<TestConfiguration | null> {
+  return await new Configuration<TestConfiguration>(path).get();
 }
 
 /**
@@ -51,10 +51,12 @@ export function getVersionConfiguration(TestConfiguration: TestConfiguration): V
   return (cachedVersionConfiguration = Object.keys(TestConfiguration)
     .map(key => {
       if (key !== 'executions') {
-        return {
-          name: key,
-          rtv: TestConfiguration[key],
-        };
+        if (key !== 'concurrency') {
+          return {
+            name: key,
+            rtv: TestConfiguration[key],
+          };
+        }
       }
 
       return null;

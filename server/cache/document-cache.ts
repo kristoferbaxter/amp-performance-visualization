@@ -17,8 +17,8 @@
 import filenamifyUrl from 'filenamify-url';
 import { promises as fsPromises } from 'fs';
 import * as path from 'path';
-import { ItemResponse } from './document';
 import { retrieve } from './document-retrieve';
+import { ItemResponse } from './is-amp';
 
 export class DocumentCache {
   public static CACHE_DURATION = 1 * 24 * 60 * 60 * 1000; // 1 Day in Milliseconds
