@@ -32,7 +32,6 @@ async function getMetricsFromURLs(
           getResults(url, networkPreset, `http://localhost:${polkaInstance.port}/${documentCache.encodeUrl(url)}`, progressBar),
         ),
       );
-      console.log(`Got Metrics from ${parallelCaptures.length} executions`, url, Date.now());
 
       singleUrlMetrics.push(...parallelCaptures);
     }
