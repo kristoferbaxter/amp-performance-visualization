@@ -6,7 +6,7 @@ export const METRIC_COLORS: {
   loadEventEnd: '#ff1744',
   domInteractive: '#009688',
   firstPaint: '#cddc39',
-  firstContentfulPaint: '#ff5722',
+  firstContentfulPaint: '#48e813',
   firstMeaningfulPaint: '#607d8b',
   installStyles: '#673ab7',
   installStylesDuration: '#f44336',
@@ -15,4 +15,11 @@ export const METRIC_COLORS: {
   makeBodyVisible: '#ff6f00',
   windowLoadEvent: '#ec407a',
   firstViewportReady: '#00b0ff',
+};
+export const HISTOGRAM_COLORS: {
+  [key: string]: string;
+} = {
+  NONE: '#333',
+  base: '#0e6acc',
+  experiment: '#15b034',
 };
