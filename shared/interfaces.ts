@@ -1,21 +1,21 @@
-export interface PerformancePassResults {
+export interface TestPass {
   device: string;
   networkSpeed: string;
-  results: URLPerformanceMetrics[];
+  results: Results[];
 }
 
-export interface URLPerformanceMetrics {
+export interface Results {
   url: string;
-  performance: PerformanceMarkers[];
-  amp: AMPResourceWeight[];
+  performance: TimeMetrics[];
+  amp: AMPEntry[];
 }
 
-export interface PerformanceMarkers {
-  responseStart: number;
-  loadEventEnd: number;
-  domInteractive: number;
+export interface TimeMetrics {
+  responseStart: number; // firstByte
+  loadEventEnd: number; // pageLoad
+  interactive: number; // interactive
   firstPaint: number;
-  firstContentfulPaint: number;
+  firstContentfulPaint: number; // use Performance.metrics
   firstMeaningfulPaint: number;
   installStyles: number;
   installStylesDuration: number;
@@ -26,7 +26,7 @@ export interface PerformanceMarkers {
   firstViewportReady: number;
 }
 
-export interface AMPResourceWeight {
+export interface AMPEntry {
   url: string;
   size: number;
 }

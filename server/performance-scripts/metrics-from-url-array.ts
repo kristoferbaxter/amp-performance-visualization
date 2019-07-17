@@ -1,5 +1,5 @@
 import { exec } from 'child_process';
-import { AMPEntry, Results, TestPass, TimeMetrics } from '../../shared-interfaces/metrics-results';
+import { AMPEntry, Results, TestPass, TimeMetrics } from '../../shared/interfaces';
 import { DOMCache } from '../cache/dom-cache';
 import { Polka } from '../cache/polka';
 import { NamedNetworkPreset } from '../configuration/network-configuration';

@@ -1,5 +1,5 @@
 import { Page } from 'puppeteer';
-import { AMPEntry } from '../../shared-interfaces/metrics-results';
+import { AMPEntry } from '../../shared/interfaces';
 
 export function getResources(page: Page): Promise<AMPEntry[]> {
   return page.evaluate(_ => {
