@@ -1,4 +1,4 @@
-import { PerformanceMarkers, PerformancePassResults } from '../../../shared/interfaces';
+import { TestPass, TimeMetrics } from '../../../shared/interfaces';
 import { ConsolidatedDataResult } from './types';
 
 interface GroupedMetrics {
@@ -17,8 +17,8 @@ interface GroupedMetrics {
   firstViewportReady: number[];
 }
 
-function groupResultByMetrics(metrics: PerformanceMarkers[]): GroupedMetrics {
-  const reducer = (accumulator: any, currentValue: PerformanceMarkers) => {
+function groupResultByMetrics(metrics: TimeMetrics[]): GroupedMetrics {
+  const reducer = (accumulator: any, currentValue: TimeMetrics) => {
     for (const key in currentValue) {
       if (currentValue.hasOwnProperty(key)) {
         // @ts-ignore
@@ -53,12 +53,12 @@ function filterBadData(numberArray: number[]): number[] {
   return numberArray;
 }
 
-function getPerformanceMarkersByAverage(metrics: PerformanceMarkers[]): PerformanceMarkers {
+function getTimeMetricsByAverage(metrics: TimeMetrics[]): TimeMetrics {
   const groupedMetrics = groupResultByMetrics(metrics);
-  const result: PerformanceMarkers = {
+  const result: TimeMetrics = {
     responseStart: 0,
     loadEventEnd: 0,
-    domInteractive: 0,
+    interactive: 0,
     firstPaint: 0,
     firstContentfulPaint: 0,
     firstMeaningfulPaint: 0,
@@ -79,12 +79,12 @@ function getPerformanceMarkersByAverage(metrics: PerformanceMarkers[]): Performa
   return result;
 }
 // create an array with the sta deviation of each metric
-function createConfidenceArray(metrics: PerformanceMarkers[]): PerformanceMarkers {
+function createConfidenceArray(metrics: TimeMetrics[]): TimeMetrics {
   const groupedMetrics = groupResultByMetrics(metrics);
-  const confidence: PerformanceMarkers = {
+  const confidence: TimeMetrics = {
     responseStart: 0,
     loadEventEnd: 0,
-    domInteractive: 0,
+    interactive: 0,
     firstPaint: 0,
     firstContentfulPaint: 0,
     firstMeaningfulPaint: 0,
@@ -122,13 +122,13 @@ function calculateStandardDeviation(numArray: number[]): number {
   return Math.sqrt(getAverage(indivMean));
 }
 
-export function consolidate(baseMetrics: PerformancePassResults, experimentMetrics: PerformancePassResults): ConsolidatedDataResult {
+export function consolidate(baseMetrics: TestPass, experimentMetrics: TestPass): ConsolidatedDataResult {
   const { results: baseResults } = baseMetrics;
   const { results: experimentResults } = experimentMetrics;
   const flattenedBaseResults = baseResults.map(result => result.performance).flat();
   const flattenedExperimentResults = experimentResults.map(result => result.performance).flat();
-  const p50BaseMetrics = getPerformanceMarkersByAverage(flattenedBaseResults);
-  const p50ExperimentalMetrics = getPerformanceMarkersByAverage(flattenedExperimentResults);
+  const p50BaseMetrics = getTimeMetricsByAverage(flattenedBaseResults);
+  const p50ExperimentalMetrics = getTimeMetricsByAverage(flattenedExperimentResults);
   const baseStandardDeviation = createConfidenceArray(flattenedBaseResults);
   const experimentStandardDeviation = createConfidenceArray(flattenedExperimentResults);
   return {

@@ -1,5 +1,5 @@
 import { Component, h } from 'preact';
-import { PerformanceMarkers } from '../../../shared/interfaces';
+import { TimeMetrics } from '../../../shared/interfaces';
 
 interface Props {
   onSelection: (choice: string) => void;
@@ -11,10 +11,10 @@ export class DropDown extends Component<Props> {
   };
 
   public render(): JSX.Element {
-    const metrics: PerformanceMarkers = {
+    const metrics: TimeMetrics = {
       responseStart: 0,
       loadEventEnd: 0,
-      domInteractive: 0,
+      interactive: 0,
       firstPaint: 0,
       firstContentfulPaint: 0,
       firstMeaningfulPaint: 0,

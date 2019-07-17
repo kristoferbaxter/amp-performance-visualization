@@ -1,10 +1,10 @@
-import { PerformanceMarkers, PerformancePassResults } from '../../../shared/interfaces';
+import { TestPass, TimeMetrics } from '../../../shared/interfaces';
 import { HistogramDataResult } from './types';
 
 interface GroupedMetrics {
   responseStart: number[];
   loadEventEnd: number[];
-  domInteractive: number[];
+  interactive: number[];
   firstPaint: number[];
   firstContentfulPaint: number[];
   firstMeaningfulPaint: number[];
@@ -20,8 +20,8 @@ export interface HistogramData {
   [key: string]: number;
 }
 
-function groupResultByMetrics(metrics: PerformanceMarkers[]): GroupedMetrics {
-  const reducer = (accumulator: any, currentValue: PerformanceMarkers) => {
+function groupResultByMetrics(metrics: TimeMetrics[]): GroupedMetrics {
+  const reducer = (accumulator: any, currentValue: TimeMetrics) => {
     for (const key in currentValue) {
       if (currentValue.hasOwnProperty(key)) {
         // @ts-ignore
@@ -33,7 +33,7 @@ function groupResultByMetrics(metrics: PerformanceMarkers[]): GroupedMetrics {
   return metrics.reduce(reducer, {
     responseStart: [],
     loadEventEnd: [],
-    domInteractive: [],
+    interactive: [],
     firstPaint: [],
     firstContentfulPaint: [],
     firstMeaningfulPaint: [],
@@ -55,11 +55,7 @@ function sortNeededData(data: GroupedMetrics, graphChoice: keyof GroupedMetrics)
   return numArray.sort((a, b) => a - b);
 }
 
-function getPerformanceMarkersByFrequency(
-  metrics: PerformanceMarkers[],
-  graphChoice: keyof PerformanceMarkers,
-  frequencyInterval: number = 1000,
-): HistogramData {
+function getTimeMetricsByFrequency(metrics: TimeMetrics[], graphChoice: keyof TimeMetrics, frequencyInterval: number = 1000): HistogramData {
   const groupedMetrics = groupResultByMetrics(metrics);
   const specificMetric = sortNeededData(groupedMetrics, graphChoice);
   const result: HistogramData = {};
@@ -79,17 +75,17 @@ function getPerformanceMarkersByFrequency(
   return result;
 }
 export function consolidate(
-  baseMetrics: PerformancePassResults,
-  experimentMetrics: PerformancePassResults,
-  graphChoice: keyof PerformanceMarkers,
+  baseMetrics: TestPass,
+  experimentMetrics: TestPass,
+  graphChoice: keyof TimeMetrics,
   frequencyInterval: number,
 ): HistogramDataResult {
   const { results: baseResults } = baseMetrics;
   const { results: experimentResults } = experimentMetrics;
   const flattenedBaseResults = baseResults.map(result => result.performance).flat();
   const flattenedExperimentResults = experimentResults.map(result => result.performance).flat();
-  const p50BaseFrequency = getPerformanceMarkersByFrequency(flattenedBaseResults, graphChoice, frequencyInterval);
-  const p50ExperimentalFrequency = getPerformanceMarkersByFrequency(flattenedExperimentResults, graphChoice, frequencyInterval);
+  const p50BaseFrequency = getTimeMetricsByFrequency(flattenedBaseResults, graphChoice, frequencyInterval);
+  const p50ExperimentalFrequency = getTimeMetricsByFrequency(flattenedExperimentResults, graphChoice, frequencyInterval);
   return {
     baseFrequency: p50BaseFrequency,
     experimentFrequency: p50ExperimentalFrequency,

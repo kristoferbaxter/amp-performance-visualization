@@ -1,7 +1,7 @@
 import { Component, h, VNode } from 'preact';
 // @ts-ignore
 import consolidationWorker from 'workerize-loader!./consolidator';
-import { PerformanceMarkers } from '../../../shared/interfaces';
+import { TimeMetrics } from '../../../shared/interfaces';
 import { GraphableData } from '../bar-graph/graph-types';
 // import dataWorker from 'workerize-loader!../data-fetcher';
 import { getPerformanceMetrics } from '../data-fetcher';
@@ -11,10 +11,10 @@ interface ConsolidatedDataProviderProps {
 }
 
 interface ConsolidatedDataProviderState {
-  baseMetrics?: PerformanceMarkers;
-  experimentMetrics?: PerformanceMarkers;
-  baseStandardDeviation?: PerformanceMarkers;
-  experimentStandardDeviation?: PerformanceMarkers;
+  baseMetrics?: TimeMetrics;
+  experimentMetrics?: TimeMetrics;
+  baseStandardDeviation?: TimeMetrics;
+  experimentStandardDeviation?: TimeMetrics;
   error?: string;
 }
 
@@ -46,11 +46,8 @@ export default class ConsolidatedDataProvider extends Component<ConsolidatedData
         if (baseMetrics.hasOwnProperty(metric)) {
           const comparisonMetric = {
             name: metric,
-            values: [baseMetrics[metric as keyof PerformanceMarkers], experimentMetrics[metric as keyof PerformanceMarkers]],
-            standardDeviationData: [
-              baseStandardDeviation[metric as keyof PerformanceMarkers],
-              experimentStandardDeviation[metric as keyof PerformanceMarkers],
-            ],
+            values: [baseMetrics[metric as keyof TimeMetrics], experimentMetrics[metric as keyof TimeMetrics]],
+            standardDeviationData: [baseStandardDeviation[metric as keyof TimeMetrics], experimentStandardDeviation[metric as keyof TimeMetrics]],
           };
           graphableData.push(comparisonMetric);
         }
