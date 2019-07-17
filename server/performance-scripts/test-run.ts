@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import ProgressBar from 'progress';
 import { promisify } from 'util';
-import { TestPass } from '../../shared-interfaces/metrics-results';
+import { TestPass } from '../../shared/interfaces';
 import { replace } from '../cache/document-replacement';
 import { DOMCache } from '../cache/dom-cache';
 import { isAMPDocument } from '../cache/is-amp';

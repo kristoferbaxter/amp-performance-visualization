@@ -1,5 +1,5 @@
 import puppeteer from 'puppeteer';
-import { AMPEntry, TimeMetrics } from '../../shared-interfaces/metrics-results';
+import { AMPEntry, TimeMetrics } from '../../shared/interfaces';
 import { NamedNetworkPreset } from '../configuration/network-configuration';
 import { AMPMarkers, getAMPMarkers } from '../generate-statistics/amp-markers';
 import { getResources } from '../generate-statistics/amp-resources';
