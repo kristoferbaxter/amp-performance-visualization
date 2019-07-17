@@ -6,7 +6,8 @@
         "allowJs": true,
         "strict": true,
         "moduleResolution": "node",
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "outDir": "../js-files"
     },
     "include": ["**/*.ts"]
 }
