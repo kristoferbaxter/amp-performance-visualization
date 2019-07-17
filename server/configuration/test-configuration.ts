@@ -22,6 +22,7 @@ export interface TestConfiguration {
   control: string;
   experiment: string;
   executions: number;
+  concurrency: number;
 }
 
 export interface VersionConfiguration {
@@ -50,7 +51,7 @@ export function getVersionConfiguration(TestConfiguration: TestConfiguration): V
 
   return (cachedVersionConfiguration = Object.keys(TestConfiguration)
     .map(key => {
-      if (key !== 'executions') {
+      if (key !== 'executions' && key !== 'concurrency') {
         return {
           name: key,
           rtv: TestConfiguration[key],

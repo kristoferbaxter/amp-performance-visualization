@@ -1,4 +1,5 @@
 export interface GraphableData {
-  name?: string;
+  name: string;
   values: number[];
+  standardDeviationData?: number[];
 }

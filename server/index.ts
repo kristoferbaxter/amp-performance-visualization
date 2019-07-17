@@ -79,7 +79,7 @@ import { report } from './report-results';
       complete: '=',
       incomplete: ' ',
       width: 20,
-      total: validURLs.length * versionConfiguration.length,
+      total: validURLs.length * versionConfiguration.length * TestConfiguration.executions,
     });
     const reports: string[] = [];
     for (const version of versionConfiguration) {

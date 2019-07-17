@@ -123,7 +123,7 @@ export class DocumentCache {
           responses.map(async response => {
             if (!(await this.cached(response.url))) {
               return fsPromises.writeFile(this.path(response.url), response.source, {
-                flag: 'wx',
+                flag: 'w',
                 encoding: 'utf8',
               });
             }

@@ -1,67 +1,135 @@
-import { Component, h } from 'preact';
+import { h } from 'preact';
 import SVGLoader from '../loader';
-import Bar from './bars';
-import { METRIC_COLORS } from './constants';
-import { GraphableData } from './graph-types';
+import { Axis } from './bars/Axis';
+import { ConfidenceLines } from './bars/ConfidenceLines';
+import { Title } from './bars/Title';
+import { XDivision } from './bars/XDivision';
+import { XLabel } from './bars/XLabel';
+import { YLabel } from './bars/YLabel';
 
-import style from './bar-graph.css';
+import Bar from './bars/Bar';
+import { METRIC_COLORS } from './constants';
+import { HISTOGRAM_COLORS } from './constants';
+import { GraphableData } from './graph-types';
 
 export interface GraphProps {
   height: number;
   width: number;
-  xLabel?: string;
   loading?: boolean;
   data?: GraphableData[];
 }
 
 export interface GraphState {}
 
-function round_to_precision(num: number, precision: number): number {
-  return Math.round(num / precision) * precision;
-}
-
-export default ({ height, width, xLabel, loading, data }: GraphProps): JSX.Element => {
+export default ({ height, width, loading, data }: GraphProps): JSX.Element => {
   let heightRatio = 1;
   let columnWidth = 0;
+  let numOfDivisions = 1;
+  const divisions: number[] = [];
+  let divisionInterval;
+  const viewBoxOffset = 40;
+  const bottomOffset = 130;
+  const labelOffset = 15;
+  const titleOffset = -10;
   if (data) {
     // get next closest 1000 of the highest of all value in the data to plot.
-    const maxPlottableData = round_to_precision(Math.max(...data.map(dataPoints => dataPoints.values).flat()), 1000) + 1000;
+    const maxDataArr: number[] = [];
+    data.map(metric => {
+      const { values: metricValues, standardDeviationData: standardDeviationValues }: GraphableData = metric;
+      if (standardDeviationValues) {
+        return metricValues.map((metricValue, valueIndex) => {
+          maxDataArr.push(metricValue + standardDeviationValues[valueIndex]);
+        });
+      }
+      return metricValues.map(metricValue => {
+        maxDataArr.push(metricValue);
+      });
+    });
+    const maxPlottableData =
+      Math.max.apply(null, maxDataArr) < 100
+        ? Math.ceil(Math.max.apply(null, maxDataArr) / 10) * 10
+        : Math.ceil(Math.max.apply(null, maxDataArr) / 100) * 100; // sets maxvalue to be the largest number in the confidence array raised to the nearest 1000
+    divisionInterval = Math.pow(
+      10,
+      maxPlottableData.toString().length === 1 ? maxPlottableData.toString().length - 1 : maxPlottableData.toString().length - 2,
+    );
     heightRatio = height / maxPlottableData;
-    columnWidth = width / data.length;
+    columnWidth = width / (data.length + 1);
+    numOfDivisions = maxPlottableData / divisionInterval;
+    for (let i = 0; i <= numOfDivisions; i++) {
+      divisions.push((maxPlottableData * i) / numOfDivisions);
+    }
   }
   return (
-    <svg height={height} width={width}>
-      <g>
-        <line x1="20" y1="0" x2="20" y2={height - 20} class={style.axis} />
-        <text x={(-1 * height) / 2} y={height} transform={`rotate(90 20, ${height - 20})`}>
-          {xLabel || 'time'}
-        </text>
-        <line x1="20" y1={height - 20} x2={width} y2={height - 20} class={style.axis} />
-      </g>
+    <svg height={height} width={width} viewBox={`${-viewBoxOffset} ${-viewBoxOffset} ${width + viewBoxOffset} ${height + bottomOffset}`}>
+      <Title x={width / 2} y={titleOffset} value={'Confidence Graph of all metrics'} />
+      {divisions.map(value => (
+        <g>
+          <XDivision minX={0} maxX={width} y={height - value * heightRatio} />
+          <XLabel x={-labelOffset} y={height - value * heightRatio} value={value} />
+        </g>
+      ))}
       {loading && <SVGLoader size={100} x={width / 2 - 50} y={height / 2 - 50} />}
       {data &&
         data.map((metric, dataIndex: number) => {
-          const { name: metricName, values: metricValues }: GraphableData = metric;
-          const barColor = METRIC_COLORS[metricName || METRIC_COLORS.NONE];
+          const { name: metricName, values: metricValues, standardDeviationData: standardDeviationValues }: GraphableData = metric;
+
           const barWidth = columnWidth / (metricValues.length + 1);
+          if (standardDeviationValues) {
+            return (
+              <g transform={`translate(${Math.ceil(dataIndex * columnWidth) + 20})`} key={metricName || ''}>
+                {metricValues.map((metricValue, valueIndex) => {
+                  const barColor = METRIC_COLORS[metricName || METRIC_COLORS.NONE];
+                  const barHeight = metricValue * heightRatio;
+                  return (
+                    <g key={(metricName || '') + dataIndex + valueIndex}>
+                      <Bar
+                        x={(valueIndex + 1) * barWidth + valueIndex}
+                        y={height - barHeight}
+                        width={barWidth}
+                        height={barHeight}
+                        style={`fill:${barColor}`}
+                      />
+                      <ConfidenceLines
+                        x={(valueIndex + 1) * barWidth + valueIndex + barWidth / 2}
+                        maxY={height - barHeight + standardDeviationValues[valueIndex] * heightRatio}
+                        minY={height - barHeight - standardDeviationValues[valueIndex] * heightRatio}
+                        endLineLength={barWidth}
+                      />
+                    </g>
+                  );
+                })}
+                <YLabel x={barWidth * 2} y={height + labelOffset} value={metricName || ''} />
+              </g>
+            );
+          }
+          console.log('data length: ' + data.length);
+          console.log('columnwidth:' + columnWidth);
+          console.log('dataIndex:' + dataIndex);
+          console.log('width:' + width);
           return (
-            <g transform={`translate(${Math.ceil(dataIndex * columnWidth) + 20})`} key={metricName || ''}>
+            <g transform={`translate(${Math.ceil(dataIndex * columnWidth)})`} key={metricName || ''}>
               {metricValues.map((metricValue, valueIndex) => {
+                const dataOrigin = valueIndex === 0 ? 'base' : 'experiment';
+                const barColor = METRIC_COLORS[metricName] || HISTOGRAM_COLORS[dataOrigin];
                 const barHeight = metricValue * heightRatio;
                 return (
-                  <Bar
-                    key={(metricName || '') + dataIndex + valueIndex}
-                    x={valueIndex * barWidth + valueIndex * 1}
-                    y={height - barHeight - 20}
-                    width={barWidth}
-                    height={barHeight}
-                    style={`fill:${barColor}`}
-                  />
+                  <g key={(metricName || '') + dataIndex + valueIndex}>
+                    <Bar
+                      x={(valueIndex + 1) * barWidth + valueIndex}
+                      y={height - barHeight}
+                      width={barWidth}
+                      height={barHeight}
+                      style={`fill:${barColor}`}
+                    />
+                  </g>
                 );
               })}
+              <YLabel x={barWidth * 2} y={height + labelOffset} value={metricName || ''} />
             </g>
           );
         })}
+      <Axis minX={0} minY={0} maxX={width} maxY={height} />
     </svg>
   );
 };

@@ -113,7 +113,7 @@ async function capturePage(networkPreset: NamedNetworkPreset, url: string, cache
  */
 async function captureAtNetworkPreset(
   version: VersionConfiguration,
-  executions: number,
+  TestConfiguration: TestConfiguration,
   networkPreset: NamedNetworkPreset,
   domCache: DOMCache,
   urls: string[],
@@ -127,18 +127,21 @@ async function captureAtNetworkPreset(
   for (const url of urls) {
     // We have a server running with each url available.
     // Now tell Puppeteer to run against the server.
-    const captured: URLPerformanceMetrics[] = await Promise.all(
-      Array.from({ length: executions }, _ =>
-        capturePage(networkPreset, url, `http://localhost:${polkaInstance.port}/${documentCache.encodeUrl(url)}`),
-      ),
-    );
+    const captured: Array<URLPerformanceMetrics> = [];
+    for (let iterator=0; iterator < TestConfiguration.executions; iterator = iterator + TestConfiguration.concurrency) {
+    const parallelExecutions: number = Math.min(TestConfiguration.concurrency, TestConfiguration.executions - (iterator + TestConfiguration.concurrency));
+        const parallelCaptures: Array<URLPerformanceMetrics> = await Promise.all(Array.from({ length: parallelExecutions }, _ =>
+          capturePage(networkPreset, url, `http://localhost:${polkaInstance.port}/${documentCache.encodeUrl(url)}`),
+        ));
+        captured.push(...parallelCaptures);
+        progressBar.tick(parallelExecutions, '=');
+      }
 
     URLPerformanceMetrics.push({
       url,
       amp: captured[0].amp,
       performance: captured.map(capture => capture.performance[0]),
     });
-    progressBar.tick();
   }
 
   return URLPerformanceMetrics;
@@ -161,8 +164,7 @@ export function capture(
   progressBar: ProgressBar,
 ): Promise<URLPerformanceMetrics[]> {
   // Array<Promise<Array<URLPerformanceMetrics>>>
-  return captureAtNetworkPreset(version, TestConfiguration.executions, networkPreset, domCache, urls, progressBar);
-}
+return captureAtNetworkPreset(version, TestConfiguration, networkPreset, domCache, urls, progressBar);}
 
 /*
 import puppeteer from 'puppeteer';
