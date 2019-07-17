@@ -27,7 +27,20 @@ export default class Home extends Component<Props, State> {
     return (
       <div class={style.home}>
         <h1>Performance Graph</h1>
-        <div class={style.percentileSelector} />
+        <div class={style.percentileSelector}>
+          <DropDown onSelection={this.updateGraph} />
+        </div>
+        <HistogramDataProvider
+          graphChoice={this.state.graphChoice}
+          render={({ data, error }) => {
+            if (!data && !error) {
+              return <BarGraph height={1000} width={1000} loading={!data} />;
+            } else if (error) {
+              return <h1>ERROR! {error}</h1>;
+            }
+            return <BarGraph height={1000} width={1000} data={data} />;
+          }}
+        />
         <ConsolidatedDataProvider
           render={({ data, error }) => {
             if (!data && !error) {
