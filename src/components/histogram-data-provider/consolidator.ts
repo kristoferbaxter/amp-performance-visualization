@@ -65,7 +65,7 @@ function getPerformanceMarkersByFrequency(
   const result: HistogramData = {};
   let previousInterval = 0;
   let currentInterval = frequencyInterval;
-  while (currentInterval <= specificMetric[specificMetric.length] + frequencyInterval) {
+  while (currentInterval <= specificMetric[specificMetric.length - 1] + frequencyInterval) {
     let count = 0;
     for (const num of specificMetric) {
       if (num > previousInterval && num <= currentInterval) {

@@ -9,6 +9,7 @@ import { YLabel } from './bars/YLabel';
 
 import Bar from './bars/Bar';
 import { METRIC_COLORS } from './constants';
+import { HISTOGRAM_COLORS } from './constants';
 import { GraphableData } from './graph-types';
 
 export interface GraphProps {
@@ -72,12 +73,13 @@ export default ({ height, width, loading, data }: GraphProps): JSX.Element => {
       {data &&
         data.map((metric, dataIndex: number) => {
           const { name: metricName, values: metricValues, standardDeviationData: standardDeviationValues }: GraphableData = metric;
-          const barColor = METRIC_COLORS[metricName || METRIC_COLORS.NONE];
+
           const barWidth = columnWidth / (metricValues.length + 1);
           if (standardDeviationValues) {
             return (
               <g transform={`translate(${Math.ceil(dataIndex * columnWidth) + 20})`} key={metricName || ''}>
                 {metricValues.map((metricValue, valueIndex) => {
+                  const barColor = METRIC_COLORS[metricName || METRIC_COLORS.NONE];
                   const barHeight = metricValue * heightRatio;
                   return (
                     <g key={(metricName || '') + dataIndex + valueIndex}>
@@ -102,8 +104,10 @@ export default ({ height, width, loading, data }: GraphProps): JSX.Element => {
             );
           }
           return (
-            <g transform={`translate(${Math.ceil(dataIndex * columnWidth) + 20})`} key={metricName || ''}>
+            <g transform={`translate(${Math.ceil(dataIndex * columnWidth)})`} key={metricName || ''}>
               {metricValues.map((metricValue, valueIndex) => {
+                const dataOrigin = valueIndex === 0 ? 'base' : 'experiment';
+                const barColor = METRIC_COLORS[metricName] || HISTOGRAM_COLORS[dataOrigin];
                 const barHeight = metricValue * heightRatio;
                 return (
                   <g key={(metricName || '') + dataIndex + valueIndex}>

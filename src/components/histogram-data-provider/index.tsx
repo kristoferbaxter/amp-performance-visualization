@@ -44,15 +44,12 @@ export default class HistogramDataProvider extends Component<HistogramDataProvid
             name: metric,
             values: [
               baseFrequency[metric as keyof PerformanceMarkers],
-              typeof experimentFrequency[metric as keyof PerformanceMarkers] === undefined
-                ? 0
-                : experimentFrequency[metric as keyof PerformanceMarkers],
+              experimentFrequency[metric as keyof PerformanceMarkers] !== undefined ? experimentFrequency[metric as keyof PerformanceMarkers] : 0,
             ],
           };
           graphableData.push(comparisonMetric);
         }
       }
-
       data = graphableData;
     }
     return <div>{this.props.render({ error: this.state.error, data })}</div>;
