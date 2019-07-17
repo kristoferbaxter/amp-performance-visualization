@@ -19,7 +19,7 @@ import * as path from 'path';
 
 export class Configuration<T> {
   private location: string;
-  private cached: T;
+  private cached!: T;
 
   constructor(location: string) {
     this.location = location;

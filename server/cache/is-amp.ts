@@ -14,16 +14,18 @@
  * limitations under the License.
  */
 
-import { Configuration } from './configuration';
+import { JSDOM } from 'jsdom';
 
-export interface URLConfiguration {
-  urls: string[];
+export interface ItemResponse {
+  url: string;
+  source: string;
 }
 
 /**
- * Retrieve the URL Configuration
- * @param args
+ * Is this an AMP Document?
+ * @param dom
  */
-export async function getURLConfiguration(path: string): Promise<URLConfiguration | null> {
-  return await new Configuration<URLConfiguration>(path).get();
+export function isAMPDocument(dom: JSDOM): boolean {
+  const htmlElement = dom.window.document.querySelector('html');
+  return htmlElement !== null && (htmlElement.hasAttribute('amp') || htmlElement.hasAttribute('⚡'));
 }

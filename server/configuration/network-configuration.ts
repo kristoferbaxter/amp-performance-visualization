@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import { Argv } from 'mri';
 import { Configuration } from './configuration';
 
 interface NetworkPreset {
@@ -39,8 +38,8 @@ let cachedNetworkPresets: NamedNetworkPreset[] | null = null;
  * Retrieve the Network Configuration
  * @param args
  */
-export async function getNetworkConfiguration(args: Argv): Promise<NetworkConfiguration | null> {
-  return await new Configuration<NetworkConfiguration>(args.network).get();
+export async function getNetworkConfiguration(path: string): Promise<NetworkConfiguration | null> {
+  return await new Configuration<NetworkConfiguration>(path).get();
 }
 
 /**
