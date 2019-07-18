@@ -15,7 +15,7 @@ export default class Home extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      graphChoice: 'responseStart',
+      graphChoice: 'firstPaint',
     };
   }
   public updateGraph = (choice: string) => {

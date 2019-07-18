@@ -55,13 +55,11 @@ function sortNeededData(data: GroupedMetrics, graphChoice: keyof GroupedMetrics)
   return numArray.sort((a, b) => a - b);
 }
 
-function getPerformanceMarkersByFrequency(
-  metrics: PerformanceMarkers[],
-  graphChoice: keyof PerformanceMarkers,
-  frequencyInterval: number = 1000,
-): HistogramData {
+function getPerformanceMarkersByFrequency(metrics: PerformanceMarkers[], graphChoice: keyof PerformanceMarkers): HistogramData {
   const groupedMetrics = groupResultByMetrics(metrics);
   const specificMetric = sortNeededData(groupedMetrics, graphChoice);
+  console.log(groupedMetrics);
+  const frequencyInterval = Math.pow(10, Math.ceil(specificMetric[specificMetric.length - 1].toString().length - 1));
   const result: HistogramData = {};
   let previousInterval = 0;
   let currentInterval = frequencyInterval;
@@ -82,14 +80,13 @@ export function consolidate(
   baseMetrics: PerformancePassResults,
   experimentMetrics: PerformancePassResults,
   graphChoice: keyof PerformanceMarkers,
-  frequencyInterval: number,
 ): HistogramDataResult {
   const { results: baseResults } = baseMetrics;
   const { results: experimentResults } = experimentMetrics;
   const flattenedBaseResults = baseResults.map(result => result.performance).flat();
   const flattenedExperimentResults = experimentResults.map(result => result.performance).flat();
-  const p50BaseFrequency = getPerformanceMarkersByFrequency(flattenedBaseResults, graphChoice, frequencyInterval);
-  const p50ExperimentalFrequency = getPerformanceMarkersByFrequency(flattenedExperimentResults, graphChoice, frequencyInterval);
+  const p50BaseFrequency = getPerformanceMarkersByFrequency(flattenedBaseResults, graphChoice);
+  const p50ExperimentalFrequency = getPerformanceMarkersByFrequency(flattenedExperimentResults, graphChoice);
   return {
     baseFrequency: p50BaseFrequency,
     experimentFrequency: p50ExperimentalFrequency,
