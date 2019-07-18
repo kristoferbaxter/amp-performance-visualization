@@ -6,8 +6,7 @@
   "author": "The AMP HTML Authors",
   "scripts": {
     "clear": "rimraf output && mkdir -p output",
-    "start": "run-s start:server start:client",
-    "start:client": "run-s build:client poststart",
+    "start:client": "run-s build:client",
     "start:production": "npm run -s serve",
     "start:development": "npm run -s dev",
     "build:client": "preact build --no-prerender --no-sw",
@@ -16,8 +15,10 @@
     "lint": "tslint --project src",
     "test": "jest ./tests",
     "build:server": "tsc --project ./server",
-    "prestart:server": "yarn build:server",
-    "start:server": "node -r esm ./js-files/server/performance-scripts/test-run.js",
+    "prestart": "yarn build:server",
+    "start": "node -r esm ./js-files/server/performance-scripts/test-run.js",
+    "prestart:client": " cp -r ./server/results build",
+    "poststart": "run-s start:client prestart:client && http-server ./build -s -o -c -1",
     "precommit": "lint-staged"
   },
   "lint-staged": {

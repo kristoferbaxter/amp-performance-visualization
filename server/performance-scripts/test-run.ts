@@ -72,7 +72,6 @@ async function run() {
     let index: number = 0;
 
     for (const version of versionConfiguration) {
-      console.log(versionConfiguration);
       reports.push(await multiRunMetrics(version, TestConfiguration, networks[0], domCache, validURLs, PerformanceProgressBar));
       await writeFile(reports[index++], version);
     }
