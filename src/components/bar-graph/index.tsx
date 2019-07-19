@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import { PerformanceMarkers } from '../../../shared/interfaces';
+import { TimeMetrics } from '../../../shared/interfaces';
 import SVGLoader from '../loader';
 import { Axis } from './bars/Axis';
 import { Bar } from './bars/Bar';
@@ -19,7 +19,7 @@ export interface GraphProps {
   width: number;
   loading?: boolean;
   data?: GraphableData[];
-  graphChoice?: keyof PerformanceMarkers;
+  graphChoice?: keyof TimeMetrics;
 }
 
 export interface GraphState {}

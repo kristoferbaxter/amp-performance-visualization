@@ -1,19 +1,19 @@
 import { Component, h, VNode } from 'preact';
 // @ts-ignore
 import consolidationWorker from 'workerize-loader!./consolidator';
-import { PerformanceMarkers } from '../../../shared/interfaces';
+import { TimeMetrics } from '../../../shared/interfaces';
 import { GraphableData } from '../bar-graph/graph-types';
 // import dataWorker from 'workerize-loader!../data-fetcher';
 import { getPerformanceMetrics } from '../data-fetcher';
 
 interface HistogramDataProviderProps {
   render: (data: HistogramDataRenderer) => VNode;
-  graphChoice: keyof PerformanceMarkers;
+  graphChoice: keyof TimeMetrics;
 }
 
 interface HistogramDataProviderState {
-  baseFrequency?: PerformanceMarkers;
-  experimentFrequency?: PerformanceMarkers;
+  baseFrequency?: TimeMetrics;
+  experimentFrequency?: TimeMetrics;
   error?: string;
 }
 
@@ -42,10 +42,8 @@ export default class HistogramDataProvider extends Component<HistogramDataProvid
         if (baseFrequency.hasOwnProperty(metric)) {
           const comparisonMetric = {
             name: metric,
-            baseValues: [baseFrequency[metric as keyof PerformanceMarkers]],
-            experimentValues: [
-              experimentFrequency[metric as keyof PerformanceMarkers] !== undefined ? experimentFrequency[metric as keyof PerformanceMarkers] : 0,
-            ],
+            baseValues: [baseFrequency[metric as keyof TimeMetrics]],
+            experimentValues: [experimentFrequency[metric as keyof TimeMetrics] !== undefined ? experimentFrequency[metric as keyof TimeMetrics] : 0],
           };
           graphableData.push(comparisonMetric);
         }

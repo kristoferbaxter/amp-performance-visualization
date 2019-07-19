@@ -16,7 +16,7 @@
 
 import { JSDOM } from 'jsdom';
 import ProgressBar from 'progress';
-import { VersionConfiguration } from './configuration/test-configuration';
+import { VersionConfiguration } from '../configuration/test-configuration';
 import { DOMCache } from './dom-cache';
 
 /**

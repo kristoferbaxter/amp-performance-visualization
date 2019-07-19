@@ -1,5 +1,5 @@
 {
-  "use": ["Good3G", "DSL"],
+  "use": ["Good3G", "WiFi"],
   "presets": {
     "GPRS": { "offline": false, "downloadThroughput": 6400, "uploadThroughput": 2560, "latency": 500 },
     "Regular2G": { "offline": false, "downloadThroughput": 32000, "uploadThroughput": 6400, "latency": 300 },

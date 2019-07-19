@@ -1,10 +1,9 @@
-import { PerformanceMarkers, PerformancePassResults } from '../../../shared/interfaces';
+import { TestPass, TimeMetrics } from '../../../shared/interfaces';
 import { HistogramDataResult } from './types';
 
 interface GroupedMetrics {
   responseStart: number[];
   loadEventEnd: number[];
-  domInteractive: number[];
   firstPaint: number[];
   firstContentfulPaint: number[];
   firstMeaningfulPaint: number[];
@@ -20,8 +19,8 @@ export interface HistogramData {
   [key: string]: number;
 }
 
-function groupResultByMetrics(metrics: PerformanceMarkers[]): GroupedMetrics {
-  const reducer = (accumulator: any, currentValue: PerformanceMarkers) => {
+function groupResultByMetrics(metrics: TimeMetrics[]): GroupedMetrics {
+  const reducer = (accumulator: any, currentValue: TimeMetrics) => {
     for (const key in currentValue) {
       if (currentValue.hasOwnProperty(key)) {
         // @ts-ignore
@@ -33,7 +32,6 @@ function groupResultByMetrics(metrics: PerformanceMarkers[]): GroupedMetrics {
   return metrics.reduce(reducer, {
     responseStart: [],
     loadEventEnd: [],
-    domInteractive: [],
     firstPaint: [],
     firstContentfulPaint: [],
     firstMeaningfulPaint: [],
@@ -55,7 +53,7 @@ function sortNeededData(data: GroupedMetrics, graphChoice: keyof GroupedMetrics)
   return numArray.sort((a, b) => a - b);
 }
 
-function getPerformanceMarkersByFrequency(metrics: PerformanceMarkers[], graphChoice: keyof PerformanceMarkers): HistogramData {
+function getTimeMetricsByFrequency(metrics: TimeMetrics[], graphChoice: keyof TimeMetrics): HistogramData {
   const groupedMetrics = groupResultByMetrics(metrics);
   const specificMetric = sortNeededData(groupedMetrics, graphChoice);
   const frequencyInterval = Math.pow(10, Math.ceil(specificMetric[specificMetric.length - 1]).toString().length - 1);
@@ -75,17 +73,13 @@ function getPerformanceMarkersByFrequency(metrics: PerformanceMarkers[], graphCh
   }
   return result;
 }
-export function consolidate(
-  baseMetrics: PerformancePassResults,
-  experimentMetrics: PerformancePassResults,
-  graphChoice: keyof PerformanceMarkers,
-): HistogramDataResult {
+export function consolidate(baseMetrics: TestPass, experimentMetrics: TestPass, graphChoice: keyof TimeMetrics): HistogramDataResult {
   const { results: baseResults } = baseMetrics;
   const { results: experimentResults } = experimentMetrics;
   const flattenedBaseResults = baseResults.map(result => result.performance).flat();
   const flattenedExperimentResults = experimentResults.map(result => result.performance).flat();
-  const p50BaseFrequency = getPerformanceMarkersByFrequency(flattenedBaseResults, graphChoice);
-  const p50ExperimentalFrequency = getPerformanceMarkersByFrequency(flattenedExperimentResults, graphChoice);
+  const p50BaseFrequency = getTimeMetricsByFrequency(flattenedBaseResults, graphChoice);
+  const p50ExperimentalFrequency = getTimeMetricsByFrequency(flattenedExperimentResults, graphChoice);
   return {
     baseFrequency: p50BaseFrequency,
     experimentFrequency: p50ExperimentalFrequency,

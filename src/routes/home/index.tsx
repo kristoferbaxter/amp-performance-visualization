@@ -1,5 +1,5 @@
 import { Component, h } from 'preact';
-import { PerformanceMarkers } from '../../../shared/interfaces';
+import { TimeMetrics } from '../../../shared/interfaces';
 import BarGraph from '../../components/bar-graph';
 import ConsolidatedDataProvider from '../../components/consolidated-data-provider';
 import { DropDown } from '../../components/dropDown/DropDown';
@@ -8,7 +8,7 @@ import style from './style.css';
 
 interface Props {}
 interface State {
-  graphChoice: keyof PerformanceMarkers;
+  graphChoice: keyof TimeMetrics;
 }
 
 export default class Home extends Component<Props, State> {

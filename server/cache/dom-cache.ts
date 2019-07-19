@@ -17,7 +17,7 @@
 import { JSDOM } from 'jsdom';
 import { LRUMap } from 'lru_map';
 import { DocumentCache } from './document-cache';
-import { getMetadata } from './package';
+import { getMetadata } from '../package';
 
 const LRU_MAP_MAX_SIZE = 1000;
 

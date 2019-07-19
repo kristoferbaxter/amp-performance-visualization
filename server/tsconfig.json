@@ -1,24 +1,14 @@
 {
-    "compileOnSave": true,
     "compilerOptions": {
-      "lib": [
-        "es2017",
-        "dom"
-      ],
-      "outDir": "../output",
-      "sourceMap": true,
-      "moduleResolution": "node",
-      "target": "esnext",
-      "allowJs": false,
-      "noUnusedLocals": true,
-      "strictNullChecks": true,
-      "noImplicitAny": true,
-      "noImplicitThis": true,
-      "alwaysStrict": true,
-      "incremental": true,
-      "allowSyntheticDefaultImports": true
+        "target": "ESNext",
+        "module": "ESNext",
+        "lib": ["ES2015", "dom"],
+        "allowJs": true,
+        "strict": true,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "outDir": "../output"
     },
-    "include": [
-      "**/*.ts"
-    ]
-  }
+    "include": ["**/*.ts"]
+}
+

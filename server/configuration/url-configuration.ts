@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-import { Argv } from 'mri';
 import { Configuration } from './configuration';
 
 export interface URLConfiguration {
@@ -25,6 +24,6 @@ export interface URLConfiguration {
  * Retrieve the URL Configuration
  * @param args
  */
-export async function getURLConfiguration(args: Argv): Promise<URLConfiguration | null> {
-  return await new Configuration<URLConfiguration>(args.urls).get();
+export async function getURLConfiguration(path: string): Promise<URLConfiguration | null> {
+  return await new Configuration<URLConfiguration>(path).get();
 }
