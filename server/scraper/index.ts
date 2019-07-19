@@ -1,6 +1,4 @@
-import * as fs from 'fs';
 import ProgressBar from 'progress';
-import { promisify } from 'util';
 import { TestPass } from '../../shared/interfaces';
 import { replace } from '../cache/document-replacement';
 import { DOMCache } from '../cache/dom-cache';
@@ -10,8 +8,6 @@ import { getTestConfiguration, getVersionConfiguration, TestConfiguration } from
 import { getURLConfiguration, URLConfiguration } from '../configuration/url-configuration';
 import multiRunMetrics from './metrics-from-url-array';
 import { writeFile } from './write-file';
-
-const readFile = promisify(fs.readFile);
 
 const argv = require('yargs').default({
   urls: './json-config/urls.json',
