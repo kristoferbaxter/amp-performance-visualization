@@ -1,13 +1,13 @@
 import { h } from 'preact';
+import { TimeMetrics } from '../../../shared/interfaces';
 import SVGLoader from '../loader';
 import { Axis } from './bars/Axis';
+import Bar from './bars/Bar';
 import { ConfidenceLines } from './bars/ConfidenceLines';
 import { Title } from './bars/Title';
 import { XDivision } from './bars/XDivision';
 import { XLabel } from './bars/XLabel';
 import { YLabel } from './bars/YLabel';
-
-import Bar from './bars/Bar';
 import { METRIC_COLORS } from './constants';
 import { HISTOGRAM_COLORS } from './constants';
 import { GraphableData } from './graph-types';
@@ -17,11 +17,20 @@ export interface GraphProps {
   width: number;
   loading?: boolean;
   data?: GraphableData[];
+  graphChoice?: keyof TimeMetrics;
 }
 
 export interface GraphState {}
 
-export default ({ height, width, loading, data }: GraphProps): JSX.Element => {
+function camelCaseToString(str: string) {
+  const wordArr: string[] = [];
+  for (const word of str.split(/(?=[A-Z])/)) {
+    wordArr.push(word[0].toUpperCase() + word.slice(1));
+  }
+  return wordArr.join(' ');
+}
+
+export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.Element => {
   let heightRatio = 1;
   let columnWidth = 0;
   let numOfDivisions = 1;
@@ -62,7 +71,7 @@ export default ({ height, width, loading, data }: GraphProps): JSX.Element => {
   }
   return (
     <svg height={height} width={width} viewBox={`${-viewBoxOffset} ${-viewBoxOffset} ${width + viewBoxOffset} ${height + bottomOffset}`}>
-      <Title x={width / 2} y={titleOffset} value={'Confidence Graph of all metrics'} />
+      <Title x={width / 2} y={titleOffset} value={graphChoice !== undefined ? camelCaseToString(graphChoice) : 'Confidence Graph of all metrics'} />
       {divisions.map(value => (
         <g>
           <XDivision minX={0} maxX={width} y={height - value * heightRatio} />
@@ -77,21 +86,21 @@ export default ({ height, width, loading, data }: GraphProps): JSX.Element => {
           const barWidth = columnWidth / (metricValues.length + 1);
           if (standardDeviationValues) {
             return (
-              <g transform={`translate(${Math.ceil(dataIndex * columnWidth) + 20})`} key={metricName || ''}>
+              <g transform={`translate(${(dataIndex + 1) * columnWidth})`} key={metricName || ''}>
                 {metricValues.map((metricValue, valueIndex) => {
                   const barColor = METRIC_COLORS[metricName || METRIC_COLORS.NONE];
                   const barHeight = metricValue * heightRatio;
                   return (
                     <g key={(metricName || '') + dataIndex + valueIndex}>
                       <Bar
-                        x={(valueIndex + 1) * barWidth + valueIndex}
+                        x={valueIndex * barWidth - barWidth}
                         y={height - barHeight}
                         width={barWidth}
                         height={barHeight}
                         style={`fill:${barColor}`}
                       />
                       <ConfidenceLines
-                        x={(valueIndex + 1) * barWidth + valueIndex + barWidth / 2}
+                        x={valueIndex * barWidth - barWidth + barWidth / 2}
                         maxY={height - barHeight + standardDeviationValues[valueIndex] * heightRatio}
                         minY={height - barHeight - standardDeviationValues[valueIndex] * heightRatio}
                         endLineLength={barWidth}
@@ -99,33 +108,23 @@ export default ({ height, width, loading, data }: GraphProps): JSX.Element => {
                     </g>
                   );
                 })}
-                <YLabel x={barWidth * 2} y={height + labelOffset} value={metricName || ''} />
+                <YLabel x={0} y={height + labelOffset} value={metricName || ''} />
               </g>
             );
           }
-          console.log('data length: ' + data.length);
-          console.log('columnwidth:' + columnWidth);
-          console.log('dataIndex:' + dataIndex);
-          console.log('width:' + width);
           return (
-            <g transform={`translate(${Math.ceil(dataIndex * columnWidth)})`} key={metricName || ''}>
+            <g transform={`translate(${(dataIndex + 1) * columnWidth})`} key={metricName || ''}>
               {metricValues.map((metricValue, valueIndex) => {
                 const dataOrigin = valueIndex === 0 ? 'base' : 'experiment';
                 const barColor = METRIC_COLORS[metricName] || HISTOGRAM_COLORS[dataOrigin];
                 const barHeight = metricValue * heightRatio;
                 return (
                   <g key={(metricName || '') + dataIndex + valueIndex}>
-                    <Bar
-                      x={(valueIndex + 1) * barWidth + valueIndex}
-                      y={height - barHeight}
-                      width={barWidth}
-                      height={barHeight}
-                      style={`fill:${barColor}`}
-                    />
+                    <Bar x={valueIndex * barWidth - barWidth} y={height - barHeight} width={barWidth} height={barHeight} style={`fill:${barColor}`} />
                   </g>
                 );
               })}
-              <YLabel x={barWidth * 2} y={height + labelOffset} value={metricName || ''} />
+              <YLabel x={0} y={height + labelOffset} value={metricName || ''} />
             </g>
           );
         })}

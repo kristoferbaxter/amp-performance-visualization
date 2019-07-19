@@ -38,8 +38,6 @@ export default class HistogramDataProvider extends Component<HistogramDataProvid
     const { baseFrequency, experimentFrequency } = this.state;
     if (baseFrequency !== undefined && experimentFrequency !== undefined) {
       const graphableData: GraphableData[] = [];
-      console.log(baseFrequency);
-      console.log(experimentFrequency);
       for (const metric in baseFrequency) {
         if (baseFrequency.hasOwnProperty(metric)) {
           const comparisonMetric = {
@@ -49,7 +47,6 @@ export default class HistogramDataProvider extends Component<HistogramDataProvid
               experimentFrequency[metric as keyof TimeMetrics] !== undefined ? experimentFrequency[metric as keyof TimeMetrics] : 0,
             ],
           };
-          console.log(experimentFrequency[metric as keyof TimeMetrics] !== undefined);
           graphableData.push(comparisonMetric);
         }
       }
