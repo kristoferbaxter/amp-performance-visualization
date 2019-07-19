@@ -7,7 +7,7 @@
         "strict": true,
         "moduleResolution": "node",
         "esModuleInterop": true,
-        "outDir": "../js-files"
+        "outDir": "../output"
     },
     "include": ["**/*.ts"]
 }

@@ -1,10 +1,10 @@
 import { exec } from 'child_process';
 import { AMPEntry, Results, TestPass, TimeMetrics } from '../../shared/interfaces';
 import { DOMCache } from '../cache/dom-cache';
-import { Polka } from '../cache/polka';
+import { Polka } from '../polka';
 import { NamedNetworkPreset } from '../configuration/network-configuration';
 import { TestConfiguration, VersionConfiguration } from '../configuration/test-configuration';
-import getResults, { Metrics, NetworkJSON } from './json-metrics';
+import getResults, { Metrics, NetworkJSON } from './url-scraper';
 
 const PolkaInstanceWrapper = new Polka();
 // haven't figured out how to get device info from user, so its hardcoded for now

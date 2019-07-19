@@ -12,7 +12,7 @@ let CACHED: Package | null = null;
  */
 export async function getMetadata(): Promise<Package> {
   if (CACHED === null) {
-    const contents: string = await fsPromises.readFile(path.resolve(__dirname, '..', 'package.json'), 'utf8');
+    const contents: string = await fsPromises.readFile(path.resolve(__dirname, '..', '..', 'package.json'), 'utf8');
     CACHED = JSON.parse(contents) as Package;
   }
 
