@@ -4,7 +4,6 @@ import { HistogramDataResult } from './types';
 interface GroupedMetrics {
   responseStart: number[];
   loadEventEnd: number[];
-  interactive: number[];
   firstPaint: number[];
   firstContentfulPaint: number[];
   firstMeaningfulPaint: number[];
@@ -33,7 +32,6 @@ function groupResultByMetrics(metrics: TimeMetrics[]): GroupedMetrics {
   return metrics.reduce(reducer, {
     responseStart: [],
     loadEventEnd: [],
-    interactive: [],
     firstPaint: [],
     firstContentfulPaint: [],
     firstMeaningfulPaint: [],
