@@ -15,7 +15,7 @@ export default class Home extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      graphChoice: 'firstPaint',
+      graphChoice: 'responseStart',
     };
   }
   public updateGraph = (choice: string) => {
@@ -27,6 +27,16 @@ export default class Home extends Component<Props, State> {
     return (
       <div class={style.home}>
         <h1>Performance Graph</h1>
+        <ConsolidatedDataProvider
+          render={({ data, error }) => {
+            if (!data && !error) {
+              return <BarGraph height={1000} width={1000} loading={!data} />;
+            } else if (error) {
+              return <h1>ERROR! {error}</h1>;
+            }
+            return <BarGraph height={1000} width={1000} data={data} />;
+          }}
+        />
         <div class={style.percentileSelector}>
           <DropDown onSelection={this.updateGraph} />
         </div>
@@ -38,17 +48,7 @@ export default class Home extends Component<Props, State> {
             } else if (error) {
               return <h1>ERROR! {error}</h1>;
             }
-            return <BarGraph height={1000} width={1000} data={data} />;
-          }}
-        />
-        <ConsolidatedDataProvider
-          render={({ data, error }) => {
-            if (!data && !error) {
-              return <BarGraph height={1000} width={1000} loading={!data} />;
-            } else if (error) {
-              return <h1>ERROR! {error}</h1>;
-            }
-            return <BarGraph height={1000} width={1000} data={data} />;
+            return <BarGraph height={1000} width={1000} data={data} graphChoice={this.state.graphChoice} />;
           }}
         />
       </div>
