@@ -76,8 +76,6 @@ const getMetrics: ResultsCalculator = async (
     const paintTiming: PaintMetrics = await getPaintTiming(page, puppeteerMetrics);
     const ampMarkers: AMPMarkers = await getAMPMarkers(page);
 
-    progressBar.tick();
-
     return {
       graphableData: {
         ...performanceTiming,

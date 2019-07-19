@@ -28,8 +28,10 @@ async function getMetricsFromURLs(
     for (let iterator = 0; iterator < TestConfiguration.executions; iterator += TestConfiguration.concurrency) {
       const parallelExecutions: number = Math.min(TestConfiguration.concurrency, TestConfiguration.executions - iterator);
       const parallelCaptures: Metrics[] = await Promise.all(
-        Array.from({ length: parallelExecutions }, _ =>
-          getResults(url, networkPreset, `http://localhost:${polkaInstance.port}/${documentCache.encodeUrl(url)}`, progressBar),
+        Array.from({ length: parallelExecutions }, _ => {
+          progressBar.tick();
+          return getResults(url, networkPreset, `http://localhost:${polkaInstance.port}/${documentCache.encodeUrl(url)}`, progressBar);
+          }
         ),
       );
 
