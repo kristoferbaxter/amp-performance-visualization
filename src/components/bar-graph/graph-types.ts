@@ -1,5 +1,6 @@
 export interface GraphableData {
   name: string;
-  values: number[];
+  baseValues: number[];
+  experimentValues: number[];
   standardDeviationData?: number[];
 }

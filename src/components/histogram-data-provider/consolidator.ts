@@ -58,7 +58,6 @@ function sortNeededData(data: GroupedMetrics, graphChoice: keyof GroupedMetrics)
 function getPerformanceMarkersByFrequency(metrics: PerformanceMarkers[], graphChoice: keyof PerformanceMarkers): HistogramData {
   const groupedMetrics = groupResultByMetrics(metrics);
   const specificMetric = sortNeededData(groupedMetrics, graphChoice);
-  console.log(specificMetric);
   const frequencyInterval = Math.pow(10, Math.ceil(specificMetric[specificMetric.length - 1]).toString().length - 1);
   const result: HistogramData = {};
   let previousInterval = 0;
@@ -74,7 +73,6 @@ function getPerformanceMarkersByFrequency(metrics: PerformanceMarkers[], graphCh
     previousInterval = currentInterval;
     currentInterval += frequencyInterval;
   }
-  console.log(result);
   return result;
 }
 export function consolidate(

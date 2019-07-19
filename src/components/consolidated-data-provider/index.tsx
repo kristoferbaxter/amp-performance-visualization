@@ -5,14 +5,15 @@ import { PerformanceMarkers } from '../../../shared/interfaces';
 import { GraphableData } from '../bar-graph/graph-types';
 // import dataWorker from 'workerize-loader!../data-fetcher';
 import { getPerformanceMetrics } from '../data-fetcher';
+import { GroupedMetrics } from './consolidator';
 
 interface ConsolidatedDataProviderProps {
   render: (data: ConsolidatedDataRenderer) => VNode;
 }
 
 interface ConsolidatedDataProviderState {
-  baseMetrics?: PerformanceMarkers;
-  experimentMetrics?: PerformanceMarkers;
+  baseMetrics?: GroupedMetrics;
+  experimentMetrics?: GroupedMetrics;
   baseStandardDeviation?: PerformanceMarkers;
   experimentStandardDeviation?: PerformanceMarkers;
   error?: string;
@@ -21,7 +22,6 @@ interface ConsolidatedDataProviderState {
 interface ConsolidatedDataRenderer {
   error?: string;
   data?: GraphableData[];
-  standardDeviationData?: GraphableData[];
 }
 
 const consolidator = consolidationWorker();
@@ -46,7 +46,8 @@ export default class ConsolidatedDataProvider extends Component<ConsolidatedData
         if (baseMetrics.hasOwnProperty(metric)) {
           const comparisonMetric = {
             name: metric,
-            values: [baseMetrics[metric as keyof PerformanceMarkers], experimentMetrics[metric as keyof PerformanceMarkers]],
+            baseValues: baseMetrics[metric as keyof PerformanceMarkers],
+            experimentValues: experimentMetrics[metric as keyof PerformanceMarkers],
             standardDeviationData: [
               baseStandardDeviation[metric as keyof PerformanceMarkers],
               experimentStandardDeviation[metric as keyof PerformanceMarkers],

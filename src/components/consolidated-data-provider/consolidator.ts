@@ -1,7 +1,7 @@
 import { PerformanceMarkers, PerformancePassResults } from '../../../shared/interfaces';
 import { ConsolidatedDataResult } from './types';
 
-interface GroupedMetrics {
+export interface GroupedMetrics {
   responseStart: number[];
   loadEventEnd: number[];
   domInteractive: number[];
@@ -23,6 +23,11 @@ function groupResultByMetrics(metrics: PerformanceMarkers[]): GroupedMetrics {
       if (currentValue.hasOwnProperty(key)) {
         // @ts-ignore
         accumulator[key].push(currentValue[key]);
+      }
+    }
+    for (const key in accumulator) {
+      if (accumulator.hasOwnProperty(key)) {
+        accumulator[key] = filterBadData(accumulator[key]);
       }
     }
     return accumulator;
@@ -127,8 +132,8 @@ export function consolidate(baseMetrics: PerformancePassResults, experimentMetri
   const { results: experimentResults } = experimentMetrics;
   const flattenedBaseResults = baseResults.map(result => result.performance).flat();
   const flattenedExperimentResults = experimentResults.map(result => result.performance).flat();
-  const p50BaseMetrics = getPerformanceMarkersByAverage(flattenedBaseResults);
-  const p50ExperimentalMetrics = getPerformanceMarkersByAverage(flattenedExperimentResults);
+  const p50BaseMetrics = groupResultByMetrics(flattenedBaseResults);
+  const p50ExperimentalMetrics = groupResultByMetrics(flattenedExperimentResults);
   const baseStandardDeviation = createConfidenceArray(flattenedBaseResults);
   const experimentStandardDeviation = createConfidenceArray(flattenedExperimentResults);
   return {

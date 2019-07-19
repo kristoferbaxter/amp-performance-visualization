@@ -42,8 +42,8 @@ export default class HistogramDataProvider extends Component<HistogramDataProvid
         if (baseFrequency.hasOwnProperty(metric)) {
           const comparisonMetric = {
             name: metric,
-            values: [
-              baseFrequency[metric as keyof PerformanceMarkers],
+            baseValues: [baseFrequency[metric as keyof PerformanceMarkers]],
+            experimentValues: [
               experimentFrequency[metric as keyof PerformanceMarkers] !== undefined ? experimentFrequency[metric as keyof PerformanceMarkers] : 0,
             ],
           };
