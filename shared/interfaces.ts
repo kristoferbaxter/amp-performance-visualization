@@ -13,7 +13,6 @@ export interface Results {
 export interface TimeMetrics {
   responseStart: number; // firstByte
   loadEventEnd: number; // pageLoad
-  interactive: number; // interactive
   firstPaint: number;
   firstContentfulPaint: number; // use Performance.metrics
   firstMeaningfulPaint: number;

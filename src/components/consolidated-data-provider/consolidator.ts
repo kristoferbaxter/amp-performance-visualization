@@ -4,7 +4,6 @@ import { ConsolidatedDataResult } from './types';
 interface GroupedMetrics {
   responseStart: number[];
   loadEventEnd: number[];
-  domInteractive: number[];
   firstPaint: number[];
   firstContentfulPaint: number[];
   firstMeaningfulPaint: number[];
@@ -30,7 +29,6 @@ function groupResultByMetrics(metrics: TimeMetrics[]): GroupedMetrics {
   return metrics.reduce(reducer, {
     responseStart: [],
     loadEventEnd: [],
-    domInteractive: [],
     firstPaint: [],
     firstContentfulPaint: [],
     firstMeaningfulPaint: [],
@@ -58,7 +56,6 @@ function getTimeMetricsByAverage(metrics: TimeMetrics[]): TimeMetrics {
   const result: TimeMetrics = {
     responseStart: 0,
     loadEventEnd: 0,
-    interactive: 0,
     firstPaint: 0,
     firstContentfulPaint: 0,
     firstMeaningfulPaint: 0,
@@ -84,7 +81,6 @@ function createConfidenceArray(metrics: TimeMetrics[]): TimeMetrics {
   const confidence: TimeMetrics = {
     responseStart: 0,
     loadEventEnd: 0,
-    interactive: 0,
     firstPaint: 0,
     firstContentfulPaint: 0,
     firstMeaningfulPaint: 0,

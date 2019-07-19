@@ -4,7 +4,7 @@ import { promisify } from 'util';
 import { TestPass } from '../../shared/interfaces';
 import { replace } from '../cache/document-replacement';
 import { DOMCache } from '../cache/dom-cache';
-import { isAMPDocument } from '../cache/is-amp';
+import { isAMPDocument } from './is-amp';
 import { getNetworkConfiguration, getNetworkPresets, NamedNetworkPreset, NetworkConfiguration } from '../configuration/network-configuration';
 import { getTestConfiguration, getVersionConfiguration, TestConfiguration } from '../configuration/test-configuration';
 import { getURLConfiguration, URLConfiguration } from '../configuration/url-configuration';
@@ -14,9 +14,9 @@ import { writeFile } from './write-file';
 const readFile = promisify(fs.readFile);
 
 const argv = require('yargs').default({
-  urls: './server/config/urls.json',
-  network: './server/config/network.json',
-  test: './server/config/test.json',
+  urls: './json-config/urls.json',
+  network: './json-config/network.json',
+  test: './json-config/test.json',
   runs: 3,
 }).argv;
 

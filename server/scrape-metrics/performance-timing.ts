@@ -3,7 +3,6 @@ import { Page } from 'puppeteer';
 export interface PerformanceTiming {
   responseStart: number;
   loadEventEnd: number;
-  interactive: number;
 }
 
 /**
@@ -17,7 +16,6 @@ export function getPerformanceTiming(page: Page): Promise<PerformanceTiming> {
     return {
       responseStart: results.responseStart - results.navigationStart,
       loadEventEnd: results.loadEventEnd - results.navigationStart,
-      interactive: 0,
     };
   });
 }

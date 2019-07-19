@@ -1,4 +1,4 @@
-import { Metrics } from './json-metrics';
+import { Metrics } from './url-scraper';
 
 // Failed page.evaluate
 const EVALUATE_FAILED = 0;
@@ -13,7 +13,6 @@ export const invalidAMP = (url: string): Metrics => ({
   graphableData: {
     responseStart: NOT_AMP, // firstByte
     loadEventEnd: NOT_AMP, // pageLoad
-    interactive: NOT_AMP, // interactive
     firstPaint: NOT_AMP,
     firstContentfulPaint: NOT_AMP, // use Performance.metrics injected into webpage
     firstMeaningfulPaint: NOT_AMP,
@@ -37,7 +36,6 @@ export const snailURL = (url: string): Metrics => ({
   graphableData: {
     responseStart: SLOW_URL, // firstByte
     loadEventEnd: SLOW_URL, // pageLoad
-    interactive: SLOW_URL, // interactive
     firstPaint: SLOW_URL,
     firstContentfulPaint: SLOW_URL, // use Performance.metrics injected into webpage
     firstMeaningfulPaint: SLOW_URL,
@@ -61,7 +59,6 @@ export const failedPageGoTo = (url: string): Metrics => ({
   graphableData: {
     responseStart: GO_TO_FAILED, // firstByte
     loadEventEnd: GO_TO_FAILED, // pageLoad
-    interactive: GO_TO_FAILED, // interactive
     firstPaint: GO_TO_FAILED,
     firstContentfulPaint: GO_TO_FAILED, // use Performance.metrics injected into webpage
     firstMeaningfulPaint: GO_TO_FAILED,
@@ -85,7 +82,6 @@ export const failedPageEval = (url: string): Metrics => ({
   graphableData: {
     responseStart: EVALUATE_FAILED, // firstByte
     loadEventEnd: EVALUATE_FAILED, // pageLoad
-    interactive: EVALUATE_FAILED, // interactive
     firstPaint: EVALUATE_FAILED,
     firstContentfulPaint: EVALUATE_FAILED, // use Performance.metrics injected into webpage
     firstMeaningfulPaint: EVALUATE_FAILED,

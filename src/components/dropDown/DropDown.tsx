@@ -14,7 +14,6 @@ export class DropDown extends Component<Props> {
     const metrics: TimeMetrics = {
       responseStart: 0,
       loadEventEnd: 0,
-      interactive: 0,
       firstPaint: 0,
       firstContentfulPaint: 0,
       firstMeaningfulPaint: 0,

@@ -1,12 +1,12 @@
 import puppeteer from 'puppeteer';
 import { AMPEntry, TimeMetrics } from '../../shared/interfaces';
 import { NamedNetworkPreset } from '../configuration/network-configuration';
-import { AMPMarkers, getAMPMarkers } from '../generate-statistics/amp-markers';
-import { getResources } from '../generate-statistics/amp-resources';
-import { getPaintTiming, PaintMetrics } from '../generate-statistics/paint-metrics';
-import { getPerformanceTiming, PerformanceTiming } from '../generate-statistics/performance-timing';
-import { PuppeteerMetrics } from '../generate-statistics/puppeteer-enum';
-import { failedPageEval, failedPageGoTo, invalidAMP, snailURL } from './performance-data';
+import { AMPMarkers, getAMPMarkers } from '../scrape-metrics/amp-markers';
+import { getResources } from '../scrape-metrics/amp-resources';
+import { getPaintTiming, PaintMetrics } from '../scrape-metrics/paint-metrics';
+import { getPerformanceTiming, PerformanceTiming } from '../scrape-metrics/performance-timing';
+import { PuppeteerMetrics } from '../scrape-metrics/puppeteer-enum';
+import { failedPageEval, failedPageGoTo, invalidAMP, snailURL } from './return-failed';
 
 export interface Metrics {
   graphableData: TimeMetrics;
@@ -75,8 +75,6 @@ const getMetrics: ResultsCalculator = async (
     const performanceTiming: PerformanceTiming = await getPerformanceTiming(page);
     const paintTiming: PaintMetrics = await getPaintTiming(page, puppeteerMetrics);
     const ampMarkers: AMPMarkers = await getAMPMarkers(page);
-
-    progressBar.tick();
 
     return {
       graphableData: {

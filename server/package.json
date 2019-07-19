@@ -14,7 +14,7 @@
     "test": "jest ./tests",
     "build:server": "tsc --project ./server",
     "prestart:server": "yarn build:server",
-    "start:server": "node -r esm ./js-files/server/performance-scripts/test-run.js",
+    "start:server": "node -r esm ./output/server/performance-scripts/test-run.js",
     "precommit": "lint-staged"
   },
   "lint-staged": {

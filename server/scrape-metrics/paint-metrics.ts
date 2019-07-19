@@ -1,5 +1,5 @@
 import { Page } from 'puppeteer';
-import { PuppeteerMetrics, PuppeteerMetricsList } from './puppeteer-enum';
+import { PuppeteerMetrics } from './puppeteer-enum';
 
 export interface PaintMetrics {
   firstPaint: number;
