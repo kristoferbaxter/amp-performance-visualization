@@ -27,7 +27,8 @@ import { DOMCache } from './dom-cache';
  */
 async function replaceVersion(version: VersionConfiguration, domCache: DOMCache, urls: string[], progressBar: ProgressBar): Promise<void> {
   for (const url of urls) {
-    const dom: JSDOM = await domCache.get('default', url);
+    const defaultDOM: JSDOM = await domCache.get('default', url);
+    const versionDOM: JSDOM = new JSDOM(defaultDOM.serialize());
 
     // Original: https://cdn.ampproject.org/v0.js
     // Replacement: https://cdn.ampproject.org/rtv/001906282130140/v0.js
@@ -35,15 +36,16 @@ async function replaceVersion(version: VersionConfiguration, domCache: DOMCache,
     // Original Extension: https://cdn.ampproject.org/v0/amp-animation-0.1.js
     // Replacement Extension: https://cdn.ampproject.org/rtv/001906282130140/v0/amp-animation-0.1.js
 
-    Array.from(dom.window.document.querySelectorAll('script')).forEach(script => {
+    const scripts = Array.from(versionDOM.window.document.querySelectorAll('script'));
+    for (const script of scripts) {
       if (script.src.startsWith('https://cdn.ampproject.org/v0/')) {
         script.src = script.src.replace('https://cdn.ampproject.org/v0/', `https://cdn.ampproject.org/v0/rtv/${version.rtv}/`);
       } else if (script.src === 'https://cdn.ampproject.org/v0.js') {
         script.src = `https://cdn.ampproject.org/rtv/${version.rtv}/v0.js`;
       }
-    });
+    }
 
-    await domCache.override(version.rtv, url, dom);
+    await domCache.override(version.rtv, url, versionDOM);
     progressBar.tick();
   }
 }
@@ -54,6 +56,8 @@ async function replaceVersion(version: VersionConfiguration, domCache: DOMCache,
  * @param domCache
  * @param urls
  */
-export function replace(versions: VersionConfiguration[], domCache: DOMCache, urls: string[], progressBar: ProgressBar): Array<Promise<void>> {
-  return versions.slice().map(version => replaceVersion(version, domCache, urls, progressBar));
+export async function replace(versions: VersionConfiguration[], domCache: DOMCache, urls: string[], progressBar: ProgressBar): Promise<void> {
+  for (const version of versions) {
+    await replaceVersion(version, domCache, urls, progressBar);
+  }
 }

@@ -51,7 +51,7 @@ async function run() {
       width: 20,
       total: validURLs.length * versionConfiguration.length,
     });
-    await Promise.all(replace(versionConfiguration, domCache, validURLs, ReplaceProgressBar));
+    await replace(versionConfiguration, domCache, validURLs, ReplaceProgressBar);
 
     // Metrics returning all -1 means the url took longer than 4 minutes to load
     // Metrics returning all -2 means the url is not AMP

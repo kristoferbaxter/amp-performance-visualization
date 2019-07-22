@@ -64,6 +64,7 @@ const getMetrics: ResultsCalculator = async (
       waitUntil: NAVIGATION_COMPLETE,
     });
   } catch (e) {
+    await browser.close();
     return failedPageGoTo(url);
   }
 
@@ -94,11 +95,11 @@ const getMetrics: ResultsCalculator = async (
 
 const getResults: ResultsCalculator = async (url: string, networkPreset: NamedNetworkPreset, cachedUrl: string, progressBar: ProgressBar) => {
   const pageMetrics = getMetrics(url, networkPreset, cachedUrl, progressBar);
-  const slowURL: Promise<Metrics> = new Promise(resolve => {
-    setTimeout(() => {
-      resolve(snailURL(url));
-    }, NAV_TIMEOUT - 100);
-  });
+  // const slowURL: Promise<Metrics> = new Promise(resolve => {
+  //   setTimeout(() => {
+  //     resolve(snailURL(url));
+  //   }, NAV_TIMEOUT - 100);
+  // });
   return pageMetrics;
   // return Promise.race([slowURL, pageMetrics]);
 };
