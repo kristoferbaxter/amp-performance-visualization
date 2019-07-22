@@ -35,7 +35,7 @@ export class DOMCache {
    *
    * @param type
    */
-  public async documentCache(type: string): Promise<DocumentCache> {
+  public documentCache = async (type: string): Promise<DocumentCache> => {
     if (!this.documentCaches[type]) {
       this.documentCaches[type] = new DocumentCache((await getMetadata()).version, type);
       await this.documentCaches[type].enable();
@@ -50,14 +50,14 @@ export class DOMCache {
    * @param url
    * @param dom
    */
-  public async override(type: string, url: string, dom: JSDOM): Promise<void> {
+  public override = async (type: string, url: string, dom: JSDOM): Promise<void> => {
     const domCache: DOMMap = this.domCache(type);
     domCache.set(url, dom);
 
     const documentCache: DocumentCache = await this.documentCache(type);
     const source: string = dom.serialize();
-    console.log('tell document cache to cache', type, url);
     await documentCache.set(url, source);
+    await documentCache.set(url, dom.serialize());
   }
 
   /**
@@ -65,7 +65,7 @@ export class DOMCache {
    * @param type
    * @param url
    */
-  public async get(type: string, url: string): Promise<JSDOM> {
+  public get = async (type: string, url: string): Promise<JSDOM> => {
     const domCache: DOMMap = this.domCache(type);
     if (domCache.has(url)) {
       return domCache.get(url) as JSDOM;
@@ -81,7 +81,7 @@ export class DOMCache {
    * @param type key for which DOM Cache to return.
    * @returns DOM Cache for the specified type.
    */
-  private domCache(type: string): DOMMap {
+  private domCache = (type: string): DOMMap => {
     if (this.domCaches[type]) {
       return this.domCaches[type];
     }
@@ -96,7 +96,7 @@ export class DOMCache {
    * @param source The document source to be stored.
    * @retunrs JSDOM entry stored.
    */
-  private set(domCache: DOMMap, url: string, source: string): JSDOM {
+  private set = (domCache: DOMMap, url: string, source: string): JSDOM => {
     const dom: JSDOM = new JSDOM(source);
     domCache.set(url, dom);
     return dom;
