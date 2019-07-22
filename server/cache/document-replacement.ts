@@ -35,11 +35,20 @@ async function replaceVersion(version: VersionConfiguration, domCache: DOMCache,
     // Original Extension: https://cdn.ampproject.org/v0/amp-animation-0.1.js
     // Replacement Extension: https://cdn.ampproject.org/rtv/001906282130140/v0/amp-animation-0.1.js
 
+    console.log('replaceVersion', url);
+    console.log('replaceVersion', version.rtv);
+    console.log('toReplace', Array.from(dom.window.document.querySelectorAll('script')).length);
     Array.from(dom.window.document.querySelectorAll('script')).forEach(script => {
-      if (script.src.startsWith('https://cdn.ampproject.org/v0/')) {
-        script.src = script.src.replace('https://cdn.ampproject.org/v0/', `https://cdn.ampproject.org/v0/rtv/${version.rtv}/`);
-      } else if (script.src === 'https://cdn.ampproject.org/v0.js') {
+      const src = script.src;
+      console.log(version.rtv);
+      if (src.startsWith('https://cdn.ampproject.org/v0/') && !src.includes('/rtv/')) {
+        // console.log('before', src);
+        script.src = src.replace('https://cdn.ampproject.org/v0/', `https://cdn.ampproject.org/v0/rtv/${version.rtv}/`);
+        // console.log('after', script.src);
+      } else if (src === 'https://cdn.ampproject.org/v0.js') {
+        // console.log('before', src);
         script.src = `https://cdn.ampproject.org/rtv/${version.rtv}/v0.js`;
+        console.log('after', script.src);
       }
     });
 
@@ -55,5 +64,8 @@ async function replaceVersion(version: VersionConfiguration, domCache: DOMCache,
  * @param urls
  */
 export function replace(versions: VersionConfiguration[], domCache: DOMCache, urls: string[], progressBar: ProgressBar): Array<Promise<void>> {
-  return versions.slice().map(version => replaceVersion(version, domCache, urls, progressBar));
+  return versions.slice().map(version => {
+    console.log('replace', version);
+    return replaceVersion(version, domCache, urls, progressBar)
+  });
 }

@@ -1,0 +1,2382 @@
+{
+  "device": "iPhone 8",
+  "networkSpeed": "downspeed: 196608 | upspeed: 96000 | latency: 40",
+  "results": [
+    {
+      "url": "https://m.timesofindia.com/home/education/news/west-bengal-hs-class-12th-results-soon-wbresults-nic-in-check-here/amp_articleshow/64488353.cms",
+      "performance": [
+        {
+          "responseStart": 845,
+          "loadEventEnd": 8066,
+          "firstPaint": 942.005,
+          "firstContentfulPaint": 1119.33,
+          "firstMeaningfulPaint": 1119.33,
+          "installStyles": 3327,
+          "installStylesDuration": 29,
+          "onFirstVisible": 3369,
+          "makeBodyVisible": 3374,
+          "windowLoadEvent": 8065,
+          "firstViewportReady": 3605,
+          "visible": 3369
+        },
+        {
+          "responseStart": 786,
+          "loadEventEnd": 7993,
+          "firstPaint": 890.985,
+          "firstContentfulPaint": 1035.21,
+          "firstMeaningfulPaint": 1035.214,
+          "installStyles": 3276,
+          "installStylesDuration": 42,
+          "onFirstVisible": 3333,
+          "makeBodyVisible": 3338,
+          "windowLoadEvent": 7992,
+          "firstViewportReady": 3572,
+          "visible": 3333
+        },
+        {
+          "responseStart": 856,
+          "loadEventEnd": 8103,
+          "firstPaint": 953.16,
+          "firstContentfulPaint": 1097.775,
+          "firstMeaningfulPaint": 1097.771,
+          "installStyles": 3339,
+          "installStylesDuration": 33,
+          "onFirstVisible": 3392,
+          "makeBodyVisible": 3399,
+          "windowLoadEvent": 8102,
+          "firstViewportReady": 3648,
+          "visible": 3392
+        },
+        {
+          "responseStart": 896,
+          "loadEventEnd": 8146,
+          "firstPaint": 1000.03,
+          "firstContentfulPaint": 1127.195,
+          "firstMeaningfulPaint": 1127.196,
+          "installStyles": 3375,
+          "installStylesDuration": 31,
+          "onFirstVisible": 3423,
+          "makeBodyVisible": 3428,
+          "windowLoadEvent": 8144,
+          "firstViewportReady": 3695,
+          "visible": 3423
+        },
+        {
+          "responseStart": 811,
+          "loadEventEnd": -1563816037613,
+          "firstPaint": 912.615,
+          "firstContentfulPaint": 1062.5,
+          "firstMeaningfulPaint": 1062.496,
+          "installStyles": 3310,
+          "installStylesDuration": 32,
+          "onFirstVisible": 3362,
+          "makeBodyVisible": 3369,
+          "windowLoadEvent": 0,
+          "firstViewportReady": 3658,
+          "visible": 3362
+        },
+        {
+          "responseStart": 809,
+          "loadEventEnd": 7811,
+          "firstPaint": 917.89,
+          "firstContentfulPaint": 1047.875,
+          "firstMeaningfulPaint": 1047.872,
+          "installStyles": 3297,
+          "installStylesDuration": 28,
+          "onFirstVisible": 3345,
+          "makeBodyVisible": 3352,
+          "windowLoadEvent": 7809,
+          "firstViewportReady": 3520,
+          "visible": 3345
+        },
+        {
+          "responseStart": 739,
+          "loadEventEnd": 10026,
+          "firstPaint": 855.335,
+          "firstContentfulPaint": 993.66,
+          "firstMeaningfulPaint": 993.66,
+          "installStyles": 3230,
+          "installStylesDuration": 30,
+          "onFirstVisible": 3274,
+          "makeBodyVisible": 3279,
+          "windowLoadEvent": 10024,
+          "firstViewportReady": 3482,
+          "visible": 3274
+        },
+        {
+          "responseStart": 773,
+          "loadEventEnd": 8015,
+          "firstPaint": 872.09,
+          "firstContentfulPaint": 1022.155,
+          "firstMeaningfulPaint": 1022.158,
+          "installStyles": 3259,
+          "installStylesDuration": 36,
+          "onFirstVisible": 3308,
+          "makeBodyVisible": 3313,
+          "windowLoadEvent": 8014,
+          "firstViewportReady": 3612,
+          "visible": 3308
+        },
+        {
+          "responseStart": 775,
+          "loadEventEnd": 7825,
+          "firstPaint": 875.775,
+          "firstContentfulPaint": 1002.04,
+          "firstMeaningfulPaint": 1002.041,
+          "installStyles": 3278,
+          "installStylesDuration": 34,
+          "onFirstVisible": 3327,
+          "makeBodyVisible": 3333,
+          "windowLoadEvent": 7825,
+          "firstViewportReady": 3817,
+          "visible": 3327
+        },
+        {
+          "responseStart": 753,
+          "loadEventEnd": 8012,
+          "firstPaint": 860.2,
+          "firstContentfulPaint": 997.765,
+          "firstMeaningfulPaint": 997.768,
+          "installStyles": 3243,
+          "installStylesDuration": 27,
+          "onFirstVisible": 3284,
+          "makeBodyVisible": 3288,
+          "windowLoadEvent": 8011,
+          "firstViewportReady": 3473,
+          "visible": 3284
+        },
+        {
+          "responseStart": 837,
+          "loadEventEnd": -1563816061300,
+          "firstPaint": 944.495,
+          "firstContentfulPaint": 1069.66,
+          "firstMeaningfulPaint": 1069.663,
+          "installStyles": 3330,
+          "installStylesDuration": 28,
+          "onFirstVisible": 3375,
+          "makeBodyVisible": 3379,
+          "windowLoadEvent": 0,
+          "firstViewportReady": 3607,
+          "visible": 3375
+        },
+        {
+          "responseStart": 848,
+          "loadEventEnd": 8090,
+          "firstPaint": 955.125,
+          "firstContentfulPaint": 1089.45,
+          "firstMeaningfulPaint": 1089.453,
+          "installStyles": 3351,
+          "installStylesDuration": 30,
+          "onFirstVisible": 3396,
+          "makeBodyVisible": 3400,
+          "windowLoadEvent": 8090,
+          "firstViewportReady": 3595,
+          "visible": 3396
+        },
+        {
+          "responseStart": 767,
+          "loadEventEnd": 8091,
+          "firstPaint": 872.89,
+          "firstContentfulPaint": 1005.9,
+          "firstMeaningfulPaint": 1005.902,
+          "installStyles": 3275,
+          "installStylesDuration": 41,
+          "onFirstVisible": 3330,
+          "makeBodyVisible": 3334,
+          "windowLoadEvent": 8090,
+          "firstViewportReady": 3648,
+          "visible": 3329
+        },
+        {
+          "responseStart": 798,
+          "loadEventEnd": 7839,
+          "firstPaint": 905.295,
+          "firstContentfulPaint": 1041.765,
+          "firstMeaningfulPaint": 1041.76,
+          "installStyles": 3293,
+          "installStylesDuration": 27,
+          "onFirstVisible": 3337,
+          "makeBodyVisible": 3342,
+          "windowLoadEvent": 7838,
+          "firstViewportReady": 3579,
+          "visible": 3337
+        },
+        {
+          "responseStart": 792,
+          "loadEventEnd": 11627,
+          "firstPaint": 889.6,
+          "firstContentfulPaint": 1022.275,
+          "firstMeaningfulPaint": 1022.279,
+          "installStyles": 3283,
+          "installStylesDuration": 28,
+          "onFirstVisible": 3325,
+          "makeBodyVisible": 3331,
+          "windowLoadEvent": 11626,
+          "firstViewportReady": 3612,
+          "visible": 3325
+        }
+      ],
+      "amp": [
+        {
+          "url": "https://cdn.ampproject.org/v0.js",
+          "size": 77679
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-position-observer-0.1.js",
+          "size": 3515
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-animation-0.1.js",
+          "size": 29588
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-web-push-0.1.js",
+          "size": 6927
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-ad-0.1.js",
+          "size": 19180
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-sticky-ad-1.0.js",
+          "size": 2755
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-analytics-0.1.js",
+          "size": 41234
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-social-share-0.1.js",
+          "size": 5495
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-carousel-0.1.js",
+          "size": 8775
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-lightbox-0.1.js",
+          "size": 6851
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-iframe-0.1.js",
+          "size": 8485
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-form-0.1.js",
+          "size": 13994
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-selector-0.1.js",
+          "size": 3117
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-list-0.1.js",
+          "size": 11650
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-mustache-0.2.js",
+          "size": 13087
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-bind-0.1.js",
+          "size": 15807
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-consent-0.1.js",
+          "size": 11240
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-geo-0.1.js",
+          "size": 0
+        },
+        {
+          "url": "https://cdn.ampproject.org/rtv/011907152257550/v0/amp-auto-lightbox-0.1.js",
+          "size": 2539
+        },
+        {
+          "url": "https://cdn.ampproject.org/rtv/011907152257550/v0/amp-ad-network-doubleclick-impl-0.1.js",
+          "size": 32661
+        }
+      ]
+    },
+    {
+      "url": "http://ww7.catnepal.com/amp/",
+      "performance": [
+        {
+          "responseStart": 845,
+          "loadEventEnd": 8066,
+          "firstPaint": 942.005,
+          "firstContentfulPaint": 1119.33,
+          "firstMeaningfulPaint": 1119.33,
+          "installStyles": 3327,
+          "installStylesDuration": 29,
+          "onFirstVisible": 3369,
+          "makeBodyVisible": 3374,
+          "windowLoadEvent": 8065,
+          "firstViewportReady": 3605,
+          "visible": 3369
+        },
+        {
+          "responseStart": 786,
+          "loadEventEnd": 7993,
+          "firstPaint": 890.985,
+          "firstContentfulPaint": 1035.21,
+          "firstMeaningfulPaint": 1035.214,
+          "installStyles": 3276,
+          "installStylesDuration": 42,
+          "onFirstVisible": 3333,
+          "makeBodyVisible": 3338,
+          "windowLoadEvent": 7992,
+          "firstViewportReady": 3572,
+          "visible": 3333
+        },
+        {
+          "responseStart": 856,
+          "loadEventEnd": 8103,
+          "firstPaint": 953.16,
+          "firstContentfulPaint": 1097.775,
+          "firstMeaningfulPaint": 1097.771,
+          "installStyles": 3339,
+          "installStylesDuration": 33,
+          "onFirstVisible": 3392,
+          "makeBodyVisible": 3399,
+          "windowLoadEvent": 8102,
+          "firstViewportReady": 3648,
+          "visible": 3392
+        },
+        {
+          "responseStart": 896,
+          "loadEventEnd": 8146,
+          "firstPaint": 1000.03,
+          "firstContentfulPaint": 1127.195,
+          "firstMeaningfulPaint": 1127.196,
+          "installStyles": 3375,
+          "installStylesDuration": 31,
+          "onFirstVisible": 3423,
+          "makeBodyVisible": 3428,
+          "windowLoadEvent": 8144,
+          "firstViewportReady": 3695,
+          "visible": 3423
+        },
+        {
+          "responseStart": 811,
+          "loadEventEnd": -1563816037613,
+          "firstPaint": 912.615,
+          "firstContentfulPaint": 1062.5,
+          "firstMeaningfulPaint": 1062.496,
+          "installStyles": 3310,
+          "installStylesDuration": 32,
+          "onFirstVisible": 3362,
+          "makeBodyVisible": 3369,
+          "windowLoadEvent": 0,
+          "firstViewportReady": 3658,
+          "visible": 3362
+        },
+        {
+          "responseStart": 809,
+          "loadEventEnd": 7811,
+          "firstPaint": 917.89,
+          "firstContentfulPaint": 1047.875,
+          "firstMeaningfulPaint": 1047.872,
+          "installStyles": 3297,
+          "installStylesDuration": 28,
+          "onFirstVisible": 3345,
+          "makeBodyVisible": 3352,
+          "windowLoadEvent": 7809,
+          "firstViewportReady": 3520,
+          "visible": 3345
+        },
+        {
+          "responseStart": 739,
+          "loadEventEnd": 10026,
+          "firstPaint": 855.335,
+          "firstContentfulPaint": 993.66,
+          "firstMeaningfulPaint": 993.66,
+          "installStyles": 3230,
+          "installStylesDuration": 30,
+          "onFirstVisible": 3274,
+          "makeBodyVisible": 3279,
+          "windowLoadEvent": 10024,
+          "firstViewportReady": 3482,
+          "visible": 3274
+        },
+        {
+          "responseStart": 773,
+          "loadEventEnd": 8015,
+          "firstPaint": 872.09,
+          "firstContentfulPaint": 1022.155,
+          "firstMeaningfulPaint": 1022.158,
+          "installStyles": 3259,
+          "installStylesDuration": 36,
+          "onFirstVisible": 3308,
+          "makeBodyVisible": 3313,
+          "windowLoadEvent": 8014,
+          "firstViewportReady": 3612,
+          "visible": 3308
+        },
+        {
+          "responseStart": 775,
+          "loadEventEnd": 7825,
+          "firstPaint": 875.775,
+          "firstContentfulPaint": 1002.04,
+          "firstMeaningfulPaint": 1002.041,
+          "installStyles": 3278,
+          "installStylesDuration": 34,
+          "onFirstVisible": 3327,
+          "makeBodyVisible": 3333,
+          "windowLoadEvent": 7825,
+          "firstViewportReady": 3817,
+          "visible": 3327
+        },
+        {
+          "responseStart": 753,
+          "loadEventEnd": 8012,
+          "firstPaint": 860.2,
+          "firstContentfulPaint": 997.765,
+          "firstMeaningfulPaint": 997.768,
+          "installStyles": 3243,
+          "installStylesDuration": 27,
+          "onFirstVisible": 3284,
+          "makeBodyVisible": 3288,
+          "windowLoadEvent": 8011,
+          "firstViewportReady": 3473,
+          "visible": 3284
+        },
+        {
+          "responseStart": 837,
+          "loadEventEnd": -1563816061300,
+          "firstPaint": 944.495,
+          "firstContentfulPaint": 1069.66,
+          "firstMeaningfulPaint": 1069.663,
+          "installStyles": 3330,
+          "installStylesDuration": 28,
+          "onFirstVisible": 3375,
+          "makeBodyVisible": 3379,
+          "windowLoadEvent": 0,
+          "firstViewportReady": 3607,
+          "visible": 3375
+        },
+        {
+          "responseStart": 848,
+          "loadEventEnd": 8090,
+          "firstPaint": 955.125,
+          "firstContentfulPaint": 1089.45,
+          "firstMeaningfulPaint": 1089.453,
+          "installStyles": 3351,
+          "installStylesDuration": 30,
+          "onFirstVisible": 3396,
+          "makeBodyVisible": 3400,
+          "windowLoadEvent": 8090,
+          "firstViewportReady": 3595,
+          "visible": 3396
+        },
+        {
+          "responseStart": 767,
+          "loadEventEnd": 8091,
+          "firstPaint": 872.89,
+          "firstContentfulPaint": 1005.9,
+          "firstMeaningfulPaint": 1005.902,
+          "installStyles": 3275,
+          "installStylesDuration": 41,
+          "onFirstVisible": 3330,
+          "makeBodyVisible": 3334,
+          "windowLoadEvent": 8090,
+          "firstViewportReady": 3648,
+          "visible": 3329
+        },
+        {
+          "responseStart": 798,
+          "loadEventEnd": 7839,
+          "firstPaint": 905.295,
+          "firstContentfulPaint": 1041.765,
+          "firstMeaningfulPaint": 1041.76,
+          "installStyles": 3293,
+          "installStylesDuration": 27,
+          "onFirstVisible": 3337,
+          "makeBodyVisible": 3342,
+          "windowLoadEvent": 7838,
+          "firstViewportReady": 3579,
+          "visible": 3337
+        },
+        {
+          "responseStart": 792,
+          "loadEventEnd": 11627,
+          "firstPaint": 889.6,
+          "firstContentfulPaint": 1022.275,
+          "firstMeaningfulPaint": 1022.279,
+          "installStyles": 3283,
+          "installStylesDuration": 28,
+          "onFirstVisible": 3325,
+          "makeBodyVisible": 3331,
+          "windowLoadEvent": 11626,
+          "firstViewportReady": 3612,
+          "visible": 3325
+        }
+      ],
+      "amp": [
+        {
+          "url": "https://cdn.ampproject.org/v0.js",
+          "size": 77679
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-position-observer-0.1.js",
+          "size": 3477
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-animation-0.1.js",
+          "size": 29544
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-web-push-0.1.js",
+          "size": 6928
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-ad-0.1.js",
+          "size": 19264
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-sticky-ad-1.0.js",
+          "size": 2756
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-analytics-0.1.js",
+          "size": 40431
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-social-share-0.1.js",
+          "size": 5515
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-carousel-0.1.js",
+          "size": 8781
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-lightbox-0.1.js",
+          "size": 6875
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-iframe-0.1.js",
+          "size": 8467
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-form-0.1.js",
+          "size": 14005
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-selector-0.1.js",
+          "size": 3121
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-list-0.1.js",
+          "size": 11667
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-mustache-0.2.js",
+          "size": 14003
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-bind-0.1.js",
+          "size": 15810
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-consent-0.1.js",
+          "size": 11200
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-geo-0.1.js",
+          "size": 0
+        },
+        {
+          "url": "https://cdn.ampproject.org/rtv/011907152257550/v0/amp-auto-lightbox-0.1.js",
+          "size": 2542
+        },
+        {
+          "url": "https://cdn.ampproject.org/rtv/011907152257550/v0/amp-ad-network-doubleclick-impl-0.1.js",
+          "size": 32665
+        }
+      ]
+    },
+    {
+      "url": "https://m.timesofindia.com/home/education/news/maharashtra-hsc-result-2018-date-msbshse-likely-to-declare-12th-results-in-may-end/amp_articleshow/64318659.cms",
+      "performance": [
+        {
+          "responseStart": 845,
+          "loadEventEnd": 8066,
+          "firstPaint": 942.005,
+          "firstContentfulPaint": 1119.33,
+          "firstMeaningfulPaint": 1119.33,
+          "installStyles": 3327,
+          "installStylesDuration": 29,
+          "onFirstVisible": 3369,
+          "makeBodyVisible": 3374,
+          "windowLoadEvent": 8065,
+          "firstViewportReady": 3605,
+          "visible": 3369
+        },
+        {
+          "responseStart": 786,
+          "loadEventEnd": 7993,
+          "firstPaint": 890.985,
+          "firstContentfulPaint": 1035.21,
+          "firstMeaningfulPaint": 1035.214,
+          "installStyles": 3276,
+          "installStylesDuration": 42,
+          "onFirstVisible": 3333,
+          "makeBodyVisible": 3338,
+          "windowLoadEvent": 7992,
+          "firstViewportReady": 3572,
+          "visible": 3333
+        },
+        {
+          "responseStart": 856,
+          "loadEventEnd": 8103,
+          "firstPaint": 953.16,
+          "firstContentfulPaint": 1097.775,
+          "firstMeaningfulPaint": 1097.771,
+          "installStyles": 3339,
+          "installStylesDuration": 33,
+          "onFirstVisible": 3392,
+          "makeBodyVisible": 3399,
+          "windowLoadEvent": 8102,
+          "firstViewportReady": 3648,
+          "visible": 3392
+        },
+        {
+          "responseStart": 896,
+          "loadEventEnd": 8146,
+          "firstPaint": 1000.03,
+          "firstContentfulPaint": 1127.195,
+          "firstMeaningfulPaint": 1127.196,
+          "installStyles": 3375,
+          "installStylesDuration": 31,
+          "onFirstVisible": 3423,
+          "makeBodyVisible": 3428,
+          "windowLoadEvent": 8144,
+          "firstViewportReady": 3695,
+          "visible": 3423
+        },
+        {
+          "responseStart": 811,
+          "loadEventEnd": -1563816037613,
+          "firstPaint": 912.615,
+          "firstContentfulPaint": 1062.5,
+          "firstMeaningfulPaint": 1062.496,
+          "installStyles": 3310,
+          "installStylesDuration": 32,
+          "onFirstVisible": 3362,
+          "makeBodyVisible": 3369,
+          "windowLoadEvent": 0,
+          "firstViewportReady": 3658,
+          "visible": 3362
+        },
+        {
+          "responseStart": 809,
+          "loadEventEnd": 7811,
+          "firstPaint": 917.89,
+          "firstContentfulPaint": 1047.875,
+          "firstMeaningfulPaint": 1047.872,
+          "installStyles": 3297,
+          "installStylesDuration": 28,
+          "onFirstVisible": 3345,
+          "makeBodyVisible": 3352,
+          "windowLoadEvent": 7809,
+          "firstViewportReady": 3520,
+          "visible": 3345
+        },
+        {
+          "responseStart": 739,
+          "loadEventEnd": 10026,
+          "firstPaint": 855.335,
+          "firstContentfulPaint": 993.66,
+          "firstMeaningfulPaint": 993.66,
+          "installStyles": 3230,
+          "installStylesDuration": 30,
+          "onFirstVisible": 3274,
+          "makeBodyVisible": 3279,
+          "windowLoadEvent": 10024,
+          "firstViewportReady": 3482,
+          "visible": 3274
+        },
+        {
+          "responseStart": 773,
+          "loadEventEnd": 8015,
+          "firstPaint": 872.09,
+          "firstContentfulPaint": 1022.155,
+          "firstMeaningfulPaint": 1022.158,
+          "installStyles": 3259,
+          "installStylesDuration": 36,
+          "onFirstVisible": 3308,
+          "makeBodyVisible": 3313,
+          "windowLoadEvent": 8014,
+          "firstViewportReady": 3612,
+          "visible": 3308
+        },
+        {
+          "responseStart": 775,
+          "loadEventEnd": 7825,
+          "firstPaint": 875.775,
+          "firstContentfulPaint": 1002.04,
+          "firstMeaningfulPaint": 1002.041,
+          "installStyles": 3278,
+          "installStylesDuration": 34,
+          "onFirstVisible": 3327,
+          "makeBodyVisible": 3333,
+          "windowLoadEvent": 7825,
+          "firstViewportReady": 3817,
+          "visible": 3327
+        },
+        {
+          "responseStart": 753,
+          "loadEventEnd": 8012,
+          "firstPaint": 860.2,
+          "firstContentfulPaint": 997.765,
+          "firstMeaningfulPaint": 997.768,
+          "installStyles": 3243,
+          "installStylesDuration": 27,
+          "onFirstVisible": 3284,
+          "makeBodyVisible": 3288,
+          "windowLoadEvent": 8011,
+          "firstViewportReady": 3473,
+          "visible": 3284
+        },
+        {
+          "responseStart": 837,
+          "loadEventEnd": -1563816061300,
+          "firstPaint": 944.495,
+          "firstContentfulPaint": 1069.66,
+          "firstMeaningfulPaint": 1069.663,
+          "installStyles": 3330,
+          "installStylesDuration": 28,
+          "onFirstVisible": 3375,
+          "makeBodyVisible": 3379,
+          "windowLoadEvent": 0,
+          "firstViewportReady": 3607,
+          "visible": 3375
+        },
+        {
+          "responseStart": 848,
+          "loadEventEnd": 8090,
+          "firstPaint": 955.125,
+          "firstContentfulPaint": 1089.45,
+          "firstMeaningfulPaint": 1089.453,
+          "installStyles": 3351,
+          "installStylesDuration": 30,
+          "onFirstVisible": 3396,
+          "makeBodyVisible": 3400,
+          "windowLoadEvent": 8090,
+          "firstViewportReady": 3595,
+          "visible": 3396
+        },
+        {
+          "responseStart": 767,
+          "loadEventEnd": 8091,
+          "firstPaint": 872.89,
+          "firstContentfulPaint": 1005.9,
+          "firstMeaningfulPaint": 1005.902,
+          "installStyles": 3275,
+          "installStylesDuration": 41,
+          "onFirstVisible": 3330,
+          "makeBodyVisible": 3334,
+          "windowLoadEvent": 8090,
+          "firstViewportReady": 3648,
+          "visible": 3329
+        },
+        {
+          "responseStart": 798,
+          "loadEventEnd": 7839,
+          "firstPaint": 905.295,
+          "firstContentfulPaint": 1041.765,
+          "firstMeaningfulPaint": 1041.76,
+          "installStyles": 3293,
+          "installStylesDuration": 27,
+          "onFirstVisible": 3337,
+          "makeBodyVisible": 3342,
+          "windowLoadEvent": 7838,
+          "firstViewportReady": 3579,
+          "visible": 3337
+        },
+        {
+          "responseStart": 792,
+          "loadEventEnd": 11627,
+          "firstPaint": 889.6,
+          "firstContentfulPaint": 1022.275,
+          "firstMeaningfulPaint": 1022.279,
+          "installStyles": 3283,
+          "installStylesDuration": 28,
+          "onFirstVisible": 3325,
+          "makeBodyVisible": 3331,
+          "windowLoadEvent": 11626,
+          "firstViewportReady": 3612,
+          "visible": 3325
+        }
+      ],
+      "amp": [
+        {
+          "url": "https://cdn.ampproject.org/v0.js",
+          "size": 77677
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-position-observer-0.1.js",
+          "size": 3558
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-animation-0.1.js",
+          "size": 29501
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-web-push-0.1.js",
+          "size": 6963
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-ad-0.1.js",
+          "size": 19177
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-sticky-ad-1.0.js",
+          "size": 2753
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-analytics-0.1.js",
+          "size": 40298
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-social-share-0.1.js",
+          "size": 5480
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-carousel-0.1.js",
+          "size": 8778
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-lightbox-0.1.js",
+          "size": 6872
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-iframe-0.1.js",
+          "size": 8480
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-form-0.1.js",
+          "size": 14015
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-selector-0.1.js",
+          "size": 3116
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-list-0.1.js",
+          "size": 11644
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-mustache-0.2.js",
+          "size": 14039
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-bind-0.1.js",
+          "size": 15872
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-consent-0.1.js",
+          "size": 11198
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-geo-0.1.js",
+          "size": 0
+        },
+        {
+          "url": "https://cdn.ampproject.org/rtv/011907152257550/v0/amp-auto-lightbox-0.1.js",
+          "size": 2539
+        },
+        {
+          "url": "https://cdn.ampproject.org/rtv/011907152257550/v0/amp-ad-network-doubleclick-impl-0.1.js",
+          "size": 32665
+        }
+      ]
+    },
+    {
+      "url": "https://genius.com/amp/Drake-duppy-freestyle-lyrics",
+      "performance": [
+        {
+          "responseStart": 845,
+          "loadEventEnd": 8066,
+          "firstPaint": 942.005,
+          "firstContentfulPaint": 1119.33,
+          "firstMeaningfulPaint": 1119.33,
+          "installStyles": 3327,
+          "installStylesDuration": 29,
+          "onFirstVisible": 3369,
+          "makeBodyVisible": 3374,
+          "windowLoadEvent": 8065,
+          "firstViewportReady": 3605,
+          "visible": 3369
+        },
+        {
+          "responseStart": 786,
+          "loadEventEnd": 7993,
+          "firstPaint": 890.985,
+          "firstContentfulPaint": 1035.21,
+          "firstMeaningfulPaint": 1035.214,
+          "installStyles": 3276,
+          "installStylesDuration": 42,
+          "onFirstVisible": 3333,
+          "makeBodyVisible": 3338,
+          "windowLoadEvent": 7992,
+          "firstViewportReady": 3572,
+          "visible": 3333
+        },
+        {
+          "responseStart": 856,
+          "loadEventEnd": 8103,
+          "firstPaint": 953.16,
+          "firstContentfulPaint": 1097.775,
+          "firstMeaningfulPaint": 1097.771,
+          "installStyles": 3339,
+          "installStylesDuration": 33,
+          "onFirstVisible": 3392,
+          "makeBodyVisible": 3399,
+          "windowLoadEvent": 8102,
+          "firstViewportReady": 3648,
+          "visible": 3392
+        },
+        {
+          "responseStart": 896,
+          "loadEventEnd": 8146,
+          "firstPaint": 1000.03,
+          "firstContentfulPaint": 1127.195,
+          "firstMeaningfulPaint": 1127.196,
+          "installStyles": 3375,
+          "installStylesDuration": 31,
+          "onFirstVisible": 3423,
+          "makeBodyVisible": 3428,
+          "windowLoadEvent": 8144,
+          "firstViewportReady": 3695,
+          "visible": 3423
+        },
+        {
+          "responseStart": 811,
+          "loadEventEnd": -1563816037613,
+          "firstPaint": 912.615,
+          "firstContentfulPaint": 1062.5,
+          "firstMeaningfulPaint": 1062.496,
+          "installStyles": 3310,
+          "installStylesDuration": 32,
+          "onFirstVisible": 3362,
+          "makeBodyVisible": 3369,
+          "windowLoadEvent": 0,
+          "firstViewportReady": 3658,
+          "visible": 3362
+        },
+        {
+          "responseStart": 809,
+          "loadEventEnd": 7811,
+          "firstPaint": 917.89,
+          "firstContentfulPaint": 1047.875,
+          "firstMeaningfulPaint": 1047.872,
+          "installStyles": 3297,
+          "installStylesDuration": 28,
+          "onFirstVisible": 3345,
+          "makeBodyVisible": 3352,
+          "windowLoadEvent": 7809,
+          "firstViewportReady": 3520,
+          "visible": 3345
+        },
+        {
+          "responseStart": 739,
+          "loadEventEnd": 10026,
+          "firstPaint": 855.335,
+          "firstContentfulPaint": 993.66,
+          "firstMeaningfulPaint": 993.66,
+          "installStyles": 3230,
+          "installStylesDuration": 30,
+          "onFirstVisible": 3274,
+          "makeBodyVisible": 3279,
+          "windowLoadEvent": 10024,
+          "firstViewportReady": 3482,
+          "visible": 3274
+        },
+        {
+          "responseStart": 773,
+          "loadEventEnd": 8015,
+          "firstPaint": 872.09,
+          "firstContentfulPaint": 1022.155,
+          "firstMeaningfulPaint": 1022.158,
+          "installStyles": 3259,
+          "installStylesDuration": 36,
+          "onFirstVisible": 3308,
+          "makeBodyVisible": 3313,
+          "windowLoadEvent": 8014,
+          "firstViewportReady": 3612,
+          "visible": 3308
+        },
+        {
+          "responseStart": 775,
+          "loadEventEnd": 7825,
+          "firstPaint": 875.775,
+          "firstContentfulPaint": 1002.04,
+          "firstMeaningfulPaint": 1002.041,
+          "installStyles": 3278,
+          "installStylesDuration": 34,
+          "onFirstVisible": 3327,
+          "makeBodyVisible": 3333,
+          "windowLoadEvent": 7825,
+          "firstViewportReady": 3817,
+          "visible": 3327
+        },
+        {
+          "responseStart": 753,
+          "loadEventEnd": 8012,
+          "firstPaint": 860.2,
+          "firstContentfulPaint": 997.765,
+          "firstMeaningfulPaint": 997.768,
+          "installStyles": 3243,
+          "installStylesDuration": 27,
+          "onFirstVisible": 3284,
+          "makeBodyVisible": 3288,
+          "windowLoadEvent": 8011,
+          "firstViewportReady": 3473,
+          "visible": 3284
+        },
+        {
+          "responseStart": 837,
+          "loadEventEnd": -1563816061300,
+          "firstPaint": 944.495,
+          "firstContentfulPaint": 1069.66,
+          "firstMeaningfulPaint": 1069.663,
+          "installStyles": 3330,
+          "installStylesDuration": 28,
+          "onFirstVisible": 3375,
+          "makeBodyVisible": 3379,
+          "windowLoadEvent": 0,
+          "firstViewportReady": 3607,
+          "visible": 3375
+        },
+        {
+          "responseStart": 848,
+          "loadEventEnd": 8090,
+          "firstPaint": 955.125,
+          "firstContentfulPaint": 1089.45,
+          "firstMeaningfulPaint": 1089.453,
+          "installStyles": 3351,
+          "installStylesDuration": 30,
+          "onFirstVisible": 3396,
+          "makeBodyVisible": 3400,
+          "windowLoadEvent": 8090,
+          "firstViewportReady": 3595,
+          "visible": 3396
+        },
+        {
+          "responseStart": 767,
+          "loadEventEnd": 8091,
+          "firstPaint": 872.89,
+          "firstContentfulPaint": 1005.9,
+          "firstMeaningfulPaint": 1005.902,
+          "installStyles": 3275,
+          "installStylesDuration": 41,
+          "onFirstVisible": 3330,
+          "makeBodyVisible": 3334,
+          "windowLoadEvent": 8090,
+          "firstViewportReady": 3648,
+          "visible": 3329
+        },
+        {
+          "responseStart": 798,
+          "loadEventEnd": 7839,
+          "firstPaint": 905.295,
+          "firstContentfulPaint": 1041.765,
+          "firstMeaningfulPaint": 1041.76,
+          "installStyles": 3293,
+          "installStylesDuration": 27,
+          "onFirstVisible": 3337,
+          "makeBodyVisible": 3342,
+          "windowLoadEvent": 7838,
+          "firstViewportReady": 3579,
+          "visible": 3337
+        },
+        {
+          "responseStart": 792,
+          "loadEventEnd": 11627,
+          "firstPaint": 889.6,
+          "firstContentfulPaint": 1022.275,
+          "firstMeaningfulPaint": 1022.279,
+          "installStyles": 3283,
+          "installStylesDuration": 28,
+          "onFirstVisible": 3325,
+          "makeBodyVisible": 3331,
+          "windowLoadEvent": 11626,
+          "firstViewportReady": 3612,
+          "visible": 3325
+        }
+      ],
+      "amp": [
+        {
+          "url": "https://cdn.ampproject.org/v0.js",
+          "size": 77723
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-position-observer-0.1.js",
+          "size": 3514
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-animation-0.1.js",
+          "size": 29501
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-web-push-0.1.js",
+          "size": 6925
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-ad-0.1.js",
+          "size": 19178
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-sticky-ad-1.0.js",
+          "size": 2791
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-analytics-0.1.js",
+          "size": 40298
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-social-share-0.1.js",
+          "size": 5480
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-carousel-0.1.js",
+          "size": 8780
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-lightbox-0.1.js",
+          "size": 6872
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-iframe-0.1.js",
+          "size": 8480
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-form-0.1.js",
+          "size": 14012
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-selector-0.1.js",
+          "size": 4117
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-list-0.1.js",
+          "size": 11647
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-mustache-0.2.js",
+          "size": 13063
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-bind-0.1.js",
+          "size": 15807
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-consent-0.1.js",
+          "size": 11203
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-geo-0.1.js",
+          "size": 0
+        },
+        {
+          "url": "https://cdn.ampproject.org/rtv/011907152257550/v0/amp-auto-lightbox-0.1.js",
+          "size": 2539
+        },
+        {
+          "url": "https://cdn.ampproject.org/rtv/011907152257550/v0/amp-ad-network-doubleclick-impl-0.1.js",
+          "size": 32642
+        }
+      ]
+    },
+    {
+      "url": "https://m.bebesymas.com/ser-padres/buscas-nombre-para-tu-bebe-101-nombres-de-nina-para-inspirarte/amp",
+      "performance": [
+        {
+          "responseStart": 845,
+          "loadEventEnd": 8066,
+          "firstPaint": 942.005,
+          "firstContentfulPaint": 1119.33,
+          "firstMeaningfulPaint": 1119.33,
+          "installStyles": 3327,
+          "installStylesDuration": 29,
+          "onFirstVisible": 3369,
+          "makeBodyVisible": 3374,
+          "windowLoadEvent": 8065,
+          "firstViewportReady": 3605,
+          "visible": 3369
+        },
+        {
+          "responseStart": 786,
+          "loadEventEnd": 7993,
+          "firstPaint": 890.985,
+          "firstContentfulPaint": 1035.21,
+          "firstMeaningfulPaint": 1035.214,
+          "installStyles": 3276,
+          "installStylesDuration": 42,
+          "onFirstVisible": 3333,
+          "makeBodyVisible": 3338,
+          "windowLoadEvent": 7992,
+          "firstViewportReady": 3572,
+          "visible": 3333
+        },
+        {
+          "responseStart": 856,
+          "loadEventEnd": 8103,
+          "firstPaint": 953.16,
+          "firstContentfulPaint": 1097.775,
+          "firstMeaningfulPaint": 1097.771,
+          "installStyles": 3339,
+          "installStylesDuration": 33,
+          "onFirstVisible": 3392,
+          "makeBodyVisible": 3399,
+          "windowLoadEvent": 8102,
+          "firstViewportReady": 3648,
+          "visible": 3392
+        },
+        {
+          "responseStart": 896,
+          "loadEventEnd": 8146,
+          "firstPaint": 1000.03,
+          "firstContentfulPaint": 1127.195,
+          "firstMeaningfulPaint": 1127.196,
+          "installStyles": 3375,
+          "installStylesDuration": 31,
+          "onFirstVisible": 3423,
+          "makeBodyVisible": 3428,
+          "windowLoadEvent": 8144,
+          "firstViewportReady": 3695,
+          "visible": 3423
+        },
+        {
+          "responseStart": 811,
+          "loadEventEnd": -1563816037613,
+          "firstPaint": 912.615,
+          "firstContentfulPaint": 1062.5,
+          "firstMeaningfulPaint": 1062.496,
+          "installStyles": 3310,
+          "installStylesDuration": 32,
+          "onFirstVisible": 3362,
+          "makeBodyVisible": 3369,
+          "windowLoadEvent": 0,
+          "firstViewportReady": 3658,
+          "visible": 3362
+        },
+        {
+          "responseStart": 809,
+          "loadEventEnd": 7811,
+          "firstPaint": 917.89,
+          "firstContentfulPaint": 1047.875,
+          "firstMeaningfulPaint": 1047.872,
+          "installStyles": 3297,
+          "installStylesDuration": 28,
+          "onFirstVisible": 3345,
+          "makeBodyVisible": 3352,
+          "windowLoadEvent": 7809,
+          "firstViewportReady": 3520,
+          "visible": 3345
+        },
+        {
+          "responseStart": 739,
+          "loadEventEnd": 10026,
+          "firstPaint": 855.335,
+          "firstContentfulPaint": 993.66,
+          "firstMeaningfulPaint": 993.66,
+          "installStyles": 3230,
+          "installStylesDuration": 30,
+          "onFirstVisible": 3274,
+          "makeBodyVisible": 3279,
+          "windowLoadEvent": 10024,
+          "firstViewportReady": 3482,
+          "visible": 3274
+        },
+        {
+          "responseStart": 773,
+          "loadEventEnd": 8015,
+          "firstPaint": 872.09,
+          "firstContentfulPaint": 1022.155,
+          "firstMeaningfulPaint": 1022.158,
+          "installStyles": 3259,
+          "installStylesDuration": 36,
+          "onFirstVisible": 3308,
+          "makeBodyVisible": 3313,
+          "windowLoadEvent": 8014,
+          "firstViewportReady": 3612,
+          "visible": 3308
+        },
+        {
+          "responseStart": 775,
+          "loadEventEnd": 7825,
+          "firstPaint": 875.775,
+          "firstContentfulPaint": 1002.04,
+          "firstMeaningfulPaint": 1002.041,
+          "installStyles": 3278,
+          "installStylesDuration": 34,
+          "onFirstVisible": 3327,
+          "makeBodyVisible": 3333,
+          "windowLoadEvent": 7825,
+          "firstViewportReady": 3817,
+          "visible": 3327
+        },
+        {
+          "responseStart": 753,
+          "loadEventEnd": 8012,
+          "firstPaint": 860.2,
+          "firstContentfulPaint": 997.765,
+          "firstMeaningfulPaint": 997.768,
+          "installStyles": 3243,
+          "installStylesDuration": 27,
+          "onFirstVisible": 3284,
+          "makeBodyVisible": 3288,
+          "windowLoadEvent": 8011,
+          "firstViewportReady": 3473,
+          "visible": 3284
+        },
+        {
+          "responseStart": 837,
+          "loadEventEnd": -1563816061300,
+          "firstPaint": 944.495,
+          "firstContentfulPaint": 1069.66,
+          "firstMeaningfulPaint": 1069.663,
+          "installStyles": 3330,
+          "installStylesDuration": 28,
+          "onFirstVisible": 3375,
+          "makeBodyVisible": 3379,
+          "windowLoadEvent": 0,
+          "firstViewportReady": 3607,
+          "visible": 3375
+        },
+        {
+          "responseStart": 848,
+          "loadEventEnd": 8090,
+          "firstPaint": 955.125,
+          "firstContentfulPaint": 1089.45,
+          "firstMeaningfulPaint": 1089.453,
+          "installStyles": 3351,
+          "installStylesDuration": 30,
+          "onFirstVisible": 3396,
+          "makeBodyVisible": 3400,
+          "windowLoadEvent": 8090,
+          "firstViewportReady": 3595,
+          "visible": 3396
+        },
+        {
+          "responseStart": 767,
+          "loadEventEnd": 8091,
+          "firstPaint": 872.89,
+          "firstContentfulPaint": 1005.9,
+          "firstMeaningfulPaint": 1005.902,
+          "installStyles": 3275,
+          "installStylesDuration": 41,
+          "onFirstVisible": 3330,
+          "makeBodyVisible": 3334,
+          "windowLoadEvent": 8090,
+          "firstViewportReady": 3648,
+          "visible": 3329
+        },
+        {
+          "responseStart": 798,
+          "loadEventEnd": 7839,
+          "firstPaint": 905.295,
+          "firstContentfulPaint": 1041.765,
+          "firstMeaningfulPaint": 1041.76,
+          "installStyles": 3293,
+          "installStylesDuration": 27,
+          "onFirstVisible": 3337,
+          "makeBodyVisible": 3342,
+          "windowLoadEvent": 7838,
+          "firstViewportReady": 3579,
+          "visible": 3337
+        },
+        {
+          "responseStart": 792,
+          "loadEventEnd": 11627,
+          "firstPaint": 889.6,
+          "firstContentfulPaint": 1022.275,
+          "firstMeaningfulPaint": 1022.279,
+          "installStyles": 3283,
+          "installStylesDuration": 28,
+          "onFirstVisible": 3325,
+          "makeBodyVisible": 3331,
+          "windowLoadEvent": 11626,
+          "firstViewportReady": 3612,
+          "visible": 3325
+        }
+      ],
+      "amp": [
+        {
+          "url": "https://cdn.ampproject.org/v0.js",
+          "size": 76564
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-position-observer-0.1.js",
+          "size": 4627
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-animation-0.1.js",
+          "size": 29501
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-web-push-0.1.js",
+          "size": 6925
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-ad-0.1.js",
+          "size": 19179
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-sticky-ad-1.0.js",
+          "size": 2838
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-analytics-0.1.js",
+          "size": 40297
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-social-share-0.1.js",
+          "size": 5481
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-carousel-0.1.js",
+          "size": 8785
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-lightbox-0.1.js",
+          "size": 6867
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-iframe-0.1.js",
+          "size": 8480
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-form-0.1.js",
+          "size": 14012
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-selector-0.1.js",
+          "size": 3119
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-list-0.1.js",
+          "size": 12660
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-mustache-0.2.js",
+          "size": 13066
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-bind-0.1.js",
+          "size": 15785
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-consent-0.1.js",
+          "size": 11253
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-geo-0.1.js",
+          "size": 0
+        },
+        {
+          "url": "https://cdn.ampproject.org/rtv/011907152257550/v0/amp-auto-lightbox-0.1.js",
+          "size": 2363
+        },
+        {
+          "url": "https://cdn.ampproject.org/rtv/011907152257550/v0/amp-ad-network-doubleclick-impl-0.1.js",
+          "size": 32484
+        }
+      ]
+    },
+    {
+      "url": "https://genius.com/amp/Kanye-west-lift-yourself-lyrics",
+      "performance": [
+        {
+          "responseStart": 845,
+          "loadEventEnd": 8066,
+          "firstPaint": 942.005,
+          "firstContentfulPaint": 1119.33,
+          "firstMeaningfulPaint": 1119.33,
+          "installStyles": 3327,
+          "installStylesDuration": 29,
+          "onFirstVisible": 3369,
+          "makeBodyVisible": 3374,
+          "windowLoadEvent": 8065,
+          "firstViewportReady": 3605,
+          "visible": 3369
+        },
+        {
+          "responseStart": 786,
+          "loadEventEnd": 7993,
+          "firstPaint": 890.985,
+          "firstContentfulPaint": 1035.21,
+          "firstMeaningfulPaint": 1035.214,
+          "installStyles": 3276,
+          "installStylesDuration": 42,
+          "onFirstVisible": 3333,
+          "makeBodyVisible": 3338,
+          "windowLoadEvent": 7992,
+          "firstViewportReady": 3572,
+          "visible": 3333
+        },
+        {
+          "responseStart": 856,
+          "loadEventEnd": 8103,
+          "firstPaint": 953.16,
+          "firstContentfulPaint": 1097.775,
+          "firstMeaningfulPaint": 1097.771,
+          "installStyles": 3339,
+          "installStylesDuration": 33,
+          "onFirstVisible": 3392,
+          "makeBodyVisible": 3399,
+          "windowLoadEvent": 8102,
+          "firstViewportReady": 3648,
+          "visible": 3392
+        },
+        {
+          "responseStart": 896,
+          "loadEventEnd": 8146,
+          "firstPaint": 1000.03,
+          "firstContentfulPaint": 1127.195,
+          "firstMeaningfulPaint": 1127.196,
+          "installStyles": 3375,
+          "installStylesDuration": 31,
+          "onFirstVisible": 3423,
+          "makeBodyVisible": 3428,
+          "windowLoadEvent": 8144,
+          "firstViewportReady": 3695,
+          "visible": 3423
+        },
+        {
+          "responseStart": 811,
+          "loadEventEnd": -1563816037613,
+          "firstPaint": 912.615,
+          "firstContentfulPaint": 1062.5,
+          "firstMeaningfulPaint": 1062.496,
+          "installStyles": 3310,
+          "installStylesDuration": 32,
+          "onFirstVisible": 3362,
+          "makeBodyVisible": 3369,
+          "windowLoadEvent": 0,
+          "firstViewportReady": 3658,
+          "visible": 3362
+        },
+        {
+          "responseStart": 809,
+          "loadEventEnd": 7811,
+          "firstPaint": 917.89,
+          "firstContentfulPaint": 1047.875,
+          "firstMeaningfulPaint": 1047.872,
+          "installStyles": 3297,
+          "installStylesDuration": 28,
+          "onFirstVisible": 3345,
+          "makeBodyVisible": 3352,
+          "windowLoadEvent": 7809,
+          "firstViewportReady": 3520,
+          "visible": 3345
+        },
+        {
+          "responseStart": 739,
+          "loadEventEnd": 10026,
+          "firstPaint": 855.335,
+          "firstContentfulPaint": 993.66,
+          "firstMeaningfulPaint": 993.66,
+          "installStyles": 3230,
+          "installStylesDuration": 30,
+          "onFirstVisible": 3274,
+          "makeBodyVisible": 3279,
+          "windowLoadEvent": 10024,
+          "firstViewportReady": 3482,
+          "visible": 3274
+        },
+        {
+          "responseStart": 773,
+          "loadEventEnd": 8015,
+          "firstPaint": 872.09,
+          "firstContentfulPaint": 1022.155,
+          "firstMeaningfulPaint": 1022.158,
+          "installStyles": 3259,
+          "installStylesDuration": 36,
+          "onFirstVisible": 3308,
+          "makeBodyVisible": 3313,
+          "windowLoadEvent": 8014,
+          "firstViewportReady": 3612,
+          "visible": 3308
+        },
+        {
+          "responseStart": 775,
+          "loadEventEnd": 7825,
+          "firstPaint": 875.775,
+          "firstContentfulPaint": 1002.04,
+          "firstMeaningfulPaint": 1002.041,
+          "installStyles": 3278,
+          "installStylesDuration": 34,
+          "onFirstVisible": 3327,
+          "makeBodyVisible": 3333,
+          "windowLoadEvent": 7825,
+          "firstViewportReady": 3817,
+          "visible": 3327
+        },
+        {
+          "responseStart": 753,
+          "loadEventEnd": 8012,
+          "firstPaint": 860.2,
+          "firstContentfulPaint": 997.765,
+          "firstMeaningfulPaint": 997.768,
+          "installStyles": 3243,
+          "installStylesDuration": 27,
+          "onFirstVisible": 3284,
+          "makeBodyVisible": 3288,
+          "windowLoadEvent": 8011,
+          "firstViewportReady": 3473,
+          "visible": 3284
+        },
+        {
+          "responseStart": 837,
+          "loadEventEnd": -1563816061300,
+          "firstPaint": 944.495,
+          "firstContentfulPaint": 1069.66,
+          "firstMeaningfulPaint": 1069.663,
+          "installStyles": 3330,
+          "installStylesDuration": 28,
+          "onFirstVisible": 3375,
+          "makeBodyVisible": 3379,
+          "windowLoadEvent": 0,
+          "firstViewportReady": 3607,
+          "visible": 3375
+        },
+        {
+          "responseStart": 848,
+          "loadEventEnd": 8090,
+          "firstPaint": 955.125,
+          "firstContentfulPaint": 1089.45,
+          "firstMeaningfulPaint": 1089.453,
+          "installStyles": 3351,
+          "installStylesDuration": 30,
+          "onFirstVisible": 3396,
+          "makeBodyVisible": 3400,
+          "windowLoadEvent": 8090,
+          "firstViewportReady": 3595,
+          "visible": 3396
+        },
+        {
+          "responseStart": 767,
+          "loadEventEnd": 8091,
+          "firstPaint": 872.89,
+          "firstContentfulPaint": 1005.9,
+          "firstMeaningfulPaint": 1005.902,
+          "installStyles": 3275,
+          "installStylesDuration": 41,
+          "onFirstVisible": 3330,
+          "makeBodyVisible": 3334,
+          "windowLoadEvent": 8090,
+          "firstViewportReady": 3648,
+          "visible": 3329
+        },
+        {
+          "responseStart": 798,
+          "loadEventEnd": 7839,
+          "firstPaint": 905.295,
+          "firstContentfulPaint": 1041.765,
+          "firstMeaningfulPaint": 1041.76,
+          "installStyles": 3293,
+          "installStylesDuration": 27,
+          "onFirstVisible": 3337,
+          "makeBodyVisible": 3342,
+          "windowLoadEvent": 7838,
+          "firstViewportReady": 3579,
+          "visible": 3337
+        },
+        {
+          "responseStart": 792,
+          "loadEventEnd": 11627,
+          "firstPaint": 889.6,
+          "firstContentfulPaint": 1022.275,
+          "firstMeaningfulPaint": 1022.279,
+          "installStyles": 3283,
+          "installStylesDuration": 28,
+          "onFirstVisible": 3325,
+          "makeBodyVisible": 3331,
+          "windowLoadEvent": 11626,
+          "firstViewportReady": 3612,
+          "visible": 3325
+        }
+      ],
+      "amp": [
+        {
+          "url": "https://cdn.ampproject.org/v0.js",
+          "size": 77677
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-position-observer-0.1.js",
+          "size": 3469
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-animation-0.1.js",
+          "size": 29625
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-web-push-0.1.js",
+          "size": 6924
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-ad-0.1.js",
+          "size": 19177
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-sticky-ad-1.0.js",
+          "size": 2753
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-analytics-0.1.js",
+          "size": 40304
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-social-share-0.1.js",
+          "size": 5486
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-carousel-0.1.js",
+          "size": 8766
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-lightbox-0.1.js",
+          "size": 6869
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-iframe-0.1.js",
+          "size": 8479
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-form-0.1.js",
+          "size": 14015
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-selector-0.1.js",
+          "size": 3118
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-list-0.1.js",
+          "size": 11683
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-mustache-0.2.js",
+          "size": 14039
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-bind-0.1.js",
+          "size": 15785
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-consent-0.1.js",
+          "size": 11155
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-geo-0.1.js",
+          "size": 0
+        },
+        {
+          "url": "https://cdn.ampproject.org/rtv/011907152257550/v0/amp-auto-lightbox-0.1.js",
+          "size": 2538
+        },
+        {
+          "url": "https://cdn.ampproject.org/rtv/011907152257550/v0/amp-ad-network-doubleclick-impl-0.1.js",
+          "size": 32637
+        }
+      ]
+    },
+    {
+      "url": "https://amp.mon-horoscope-du-jour.com/",
+      "performance": [
+        {
+          "responseStart": 845,
+          "loadEventEnd": 8066,
+          "firstPaint": 942.005,
+          "firstContentfulPaint": 1119.33,
+          "firstMeaningfulPaint": 1119.33,
+          "installStyles": 3327,
+          "installStylesDuration": 29,
+          "onFirstVisible": 3369,
+          "makeBodyVisible": 3374,
+          "windowLoadEvent": 8065,
+          "firstViewportReady": 3605,
+          "visible": 3369
+        },
+        {
+          "responseStart": 786,
+          "loadEventEnd": 7993,
+          "firstPaint": 890.985,
+          "firstContentfulPaint": 1035.21,
+          "firstMeaningfulPaint": 1035.214,
+          "installStyles": 3276,
+          "installStylesDuration": 42,
+          "onFirstVisible": 3333,
+          "makeBodyVisible": 3338,
+          "windowLoadEvent": 7992,
+          "firstViewportReady": 3572,
+          "visible": 3333
+        },
+        {
+          "responseStart": 856,
+          "loadEventEnd": 8103,
+          "firstPaint": 953.16,
+          "firstContentfulPaint": 1097.775,
+          "firstMeaningfulPaint": 1097.771,
+          "installStyles": 3339,
+          "installStylesDuration": 33,
+          "onFirstVisible": 3392,
+          "makeBodyVisible": 3399,
+          "windowLoadEvent": 8102,
+          "firstViewportReady": 3648,
+          "visible": 3392
+        },
+        {
+          "responseStart": 896,
+          "loadEventEnd": 8146,
+          "firstPaint": 1000.03,
+          "firstContentfulPaint": 1127.195,
+          "firstMeaningfulPaint": 1127.196,
+          "installStyles": 3375,
+          "installStylesDuration": 31,
+          "onFirstVisible": 3423,
+          "makeBodyVisible": 3428,
+          "windowLoadEvent": 8144,
+          "firstViewportReady": 3695,
+          "visible": 3423
+        },
+        {
+          "responseStart": 811,
+          "loadEventEnd": -1563816037613,
+          "firstPaint": 912.615,
+          "firstContentfulPaint": 1062.5,
+          "firstMeaningfulPaint": 1062.496,
+          "installStyles": 3310,
+          "installStylesDuration": 32,
+          "onFirstVisible": 3362,
+          "makeBodyVisible": 3369,
+          "windowLoadEvent": 0,
+          "firstViewportReady": 3658,
+          "visible": 3362
+        },
+        {
+          "responseStart": 809,
+          "loadEventEnd": 7811,
+          "firstPaint": 917.89,
+          "firstContentfulPaint": 1047.875,
+          "firstMeaningfulPaint": 1047.872,
+          "installStyles": 3297,
+          "installStylesDuration": 28,
+          "onFirstVisible": 3345,
+          "makeBodyVisible": 3352,
+          "windowLoadEvent": 7809,
+          "firstViewportReady": 3520,
+          "visible": 3345
+        },
+        {
+          "responseStart": 739,
+          "loadEventEnd": 10026,
+          "firstPaint": 855.335,
+          "firstContentfulPaint": 993.66,
+          "firstMeaningfulPaint": 993.66,
+          "installStyles": 3230,
+          "installStylesDuration": 30,
+          "onFirstVisible": 3274,
+          "makeBodyVisible": 3279,
+          "windowLoadEvent": 10024,
+          "firstViewportReady": 3482,
+          "visible": 3274
+        },
+        {
+          "responseStart": 773,
+          "loadEventEnd": 8015,
+          "firstPaint": 872.09,
+          "firstContentfulPaint": 1022.155,
+          "firstMeaningfulPaint": 1022.158,
+          "installStyles": 3259,
+          "installStylesDuration": 36,
+          "onFirstVisible": 3308,
+          "makeBodyVisible": 3313,
+          "windowLoadEvent": 8014,
+          "firstViewportReady": 3612,
+          "visible": 3308
+        },
+        {
+          "responseStart": 775,
+          "loadEventEnd": 7825,
+          "firstPaint": 875.775,
+          "firstContentfulPaint": 1002.04,
+          "firstMeaningfulPaint": 1002.041,
+          "installStyles": 3278,
+          "installStylesDuration": 34,
+          "onFirstVisible": 3327,
+          "makeBodyVisible": 3333,
+          "windowLoadEvent": 7825,
+          "firstViewportReady": 3817,
+          "visible": 3327
+        },
+        {
+          "responseStart": 753,
+          "loadEventEnd": 8012,
+          "firstPaint": 860.2,
+          "firstContentfulPaint": 997.765,
+          "firstMeaningfulPaint": 997.768,
+          "installStyles": 3243,
+          "installStylesDuration": 27,
+          "onFirstVisible": 3284,
+          "makeBodyVisible": 3288,
+          "windowLoadEvent": 8011,
+          "firstViewportReady": 3473,
+          "visible": 3284
+        },
+        {
+          "responseStart": 837,
+          "loadEventEnd": -1563816061300,
+          "firstPaint": 944.495,
+          "firstContentfulPaint": 1069.66,
+          "firstMeaningfulPaint": 1069.663,
+          "installStyles": 3330,
+          "installStylesDuration": 28,
+          "onFirstVisible": 3375,
+          "makeBodyVisible": 3379,
+          "windowLoadEvent": 0,
+          "firstViewportReady": 3607,
+          "visible": 3375
+        },
+        {
+          "responseStart": 848,
+          "loadEventEnd": 8090,
+          "firstPaint": 955.125,
+          "firstContentfulPaint": 1089.45,
+          "firstMeaningfulPaint": 1089.453,
+          "installStyles": 3351,
+          "installStylesDuration": 30,
+          "onFirstVisible": 3396,
+          "makeBodyVisible": 3400,
+          "windowLoadEvent": 8090,
+          "firstViewportReady": 3595,
+          "visible": 3396
+        },
+        {
+          "responseStart": 767,
+          "loadEventEnd": 8091,
+          "firstPaint": 872.89,
+          "firstContentfulPaint": 1005.9,
+          "firstMeaningfulPaint": 1005.902,
+          "installStyles": 3275,
+          "installStylesDuration": 41,
+          "onFirstVisible": 3330,
+          "makeBodyVisible": 3334,
+          "windowLoadEvent": 8090,
+          "firstViewportReady": 3648,
+          "visible": 3329
+        },
+        {
+          "responseStart": 798,
+          "loadEventEnd": 7839,
+          "firstPaint": 905.295,
+          "firstContentfulPaint": 1041.765,
+          "firstMeaningfulPaint": 1041.76,
+          "installStyles": 3293,
+          "installStylesDuration": 27,
+          "onFirstVisible": 3337,
+          "makeBodyVisible": 3342,
+          "windowLoadEvent": 7838,
+          "firstViewportReady": 3579,
+          "visible": 3337
+        },
+        {
+          "responseStart": 792,
+          "loadEventEnd": 11627,
+          "firstPaint": 889.6,
+          "firstContentfulPaint": 1022.275,
+          "firstMeaningfulPaint": 1022.279,
+          "installStyles": 3283,
+          "installStylesDuration": 28,
+          "onFirstVisible": 3325,
+          "makeBodyVisible": 3331,
+          "windowLoadEvent": 11626,
+          "firstViewportReady": 3612,
+          "visible": 3325
+        }
+      ],
+      "amp": [
+        {
+          "url": "https://cdn.ampproject.org/v0.js",
+          "size": 77720
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-position-observer-0.1.js",
+          "size": 3472
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-animation-0.1.js",
+          "size": 29581
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-web-push-0.1.js",
+          "size": 6924
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-ad-0.1.js",
+          "size": 19177
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-sticky-ad-1.0.js",
+          "size": 2754
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-analytics-0.1.js",
+          "size": 40298
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-social-share-0.1.js",
+          "size": 5480
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-carousel-0.1.js",
+          "size": 8785
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-lightbox-0.1.js",
+          "size": 6866
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-iframe-0.1.js",
+          "size": 8482
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-form-0.1.js",
+          "size": 14015
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-selector-0.1.js",
+          "size": 4116
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-list-0.1.js",
+          "size": 11668
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-mustache-0.2.js",
+          "size": 13140
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-bind-0.1.js",
+          "size": 15786
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-consent-0.1.js",
+          "size": 11159
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-geo-0.1.js",
+          "size": 0
+        },
+        {
+          "url": "https://cdn.ampproject.org/rtv/011907152257550/v0/amp-auto-lightbox-0.1.js",
+          "size": 2539
+        },
+        {
+          "url": "https://cdn.ampproject.org/rtv/011907152257550/v0/amp-ad-network-doubleclick-impl-0.1.js",
+          "size": 32641
+        }
+      ]
+    },
+    {
+      "url": "https://m.livehindustan.com/career/story-bihar-board-12th-result-2018-bseb-releasing-bihar-12th-result-2018-science-commerce-and-arts-today-at-4-30-pm-check-bihar-result-at-biharboard-ac-in-1998865.amp.html",
+      "performance": [
+        {
+          "responseStart": 845,
+          "loadEventEnd": 8066,
+          "firstPaint": 942.005,
+          "firstContentfulPaint": 1119.33,
+          "firstMeaningfulPaint": 1119.33,
+          "installStyles": 3327,
+          "installStylesDuration": 29,
+          "onFirstVisible": 3369,
+          "makeBodyVisible": 3374,
+          "windowLoadEvent": 8065,
+          "firstViewportReady": 3605,
+          "visible": 3369
+        },
+        {
+          "responseStart": 786,
+          "loadEventEnd": 7993,
+          "firstPaint": 890.985,
+          "firstContentfulPaint": 1035.21,
+          "firstMeaningfulPaint": 1035.214,
+          "installStyles": 3276,
+          "installStylesDuration": 42,
+          "onFirstVisible": 3333,
+          "makeBodyVisible": 3338,
+          "windowLoadEvent": 7992,
+          "firstViewportReady": 3572,
+          "visible": 3333
+        },
+        {
+          "responseStart": 856,
+          "loadEventEnd": 8103,
+          "firstPaint": 953.16,
+          "firstContentfulPaint": 1097.775,
+          "firstMeaningfulPaint": 1097.771,
+          "installStyles": 3339,
+          "installStylesDuration": 33,
+          "onFirstVisible": 3392,
+          "makeBodyVisible": 3399,
+          "windowLoadEvent": 8102,
+          "firstViewportReady": 3648,
+          "visible": 3392
+        },
+        {
+          "responseStart": 896,
+          "loadEventEnd": 8146,
+          "firstPaint": 1000.03,
+          "firstContentfulPaint": 1127.195,
+          "firstMeaningfulPaint": 1127.196,
+          "installStyles": 3375,
+          "installStylesDuration": 31,
+          "onFirstVisible": 3423,
+          "makeBodyVisible": 3428,
+          "windowLoadEvent": 8144,
+          "firstViewportReady": 3695,
+          "visible": 3423
+        },
+        {
+          "responseStart": 811,
+          "loadEventEnd": -1563816037613,
+          "firstPaint": 912.615,
+          "firstContentfulPaint": 1062.5,
+          "firstMeaningfulPaint": 1062.496,
+          "installStyles": 3310,
+          "installStylesDuration": 32,
+          "onFirstVisible": 3362,
+          "makeBodyVisible": 3369,
+          "windowLoadEvent": 0,
+          "firstViewportReady": 3658,
+          "visible": 3362
+        },
+        {
+          "responseStart": 809,
+          "loadEventEnd": 7811,
+          "firstPaint": 917.89,
+          "firstContentfulPaint": 1047.875,
+          "firstMeaningfulPaint": 1047.872,
+          "installStyles": 3297,
+          "installStylesDuration": 28,
+          "onFirstVisible": 3345,
+          "makeBodyVisible": 3352,
+          "windowLoadEvent": 7809,
+          "firstViewportReady": 3520,
+          "visible": 3345
+        },
+        {
+          "responseStart": 739,
+          "loadEventEnd": 10026,
+          "firstPaint": 855.335,
+          "firstContentfulPaint": 993.66,
+          "firstMeaningfulPaint": 993.66,
+          "installStyles": 3230,
+          "installStylesDuration": 30,
+          "onFirstVisible": 3274,
+          "makeBodyVisible": 3279,
+          "windowLoadEvent": 10024,
+          "firstViewportReady": 3482,
+          "visible": 3274
+        },
+        {
+          "responseStart": 773,
+          "loadEventEnd": 8015,
+          "firstPaint": 872.09,
+          "firstContentfulPaint": 1022.155,
+          "firstMeaningfulPaint": 1022.158,
+          "installStyles": 3259,
+          "installStylesDuration": 36,
+          "onFirstVisible": 3308,
+          "makeBodyVisible": 3313,
+          "windowLoadEvent": 8014,
+          "firstViewportReady": 3612,
+          "visible": 3308
+        },
+        {
+          "responseStart": 775,
+          "loadEventEnd": 7825,
+          "firstPaint": 875.775,
+          "firstContentfulPaint": 1002.04,
+          "firstMeaningfulPaint": 1002.041,
+          "installStyles": 3278,
+          "installStylesDuration": 34,
+          "onFirstVisible": 3327,
+          "makeBodyVisible": 3333,
+          "windowLoadEvent": 7825,
+          "firstViewportReady": 3817,
+          "visible": 3327
+        },
+        {
+          "responseStart": 753,
+          "loadEventEnd": 8012,
+          "firstPaint": 860.2,
+          "firstContentfulPaint": 997.765,
+          "firstMeaningfulPaint": 997.768,
+          "installStyles": 3243,
+          "installStylesDuration": 27,
+          "onFirstVisible": 3284,
+          "makeBodyVisible": 3288,
+          "windowLoadEvent": 8011,
+          "firstViewportReady": 3473,
+          "visible": 3284
+        },
+        {
+          "responseStart": 837,
+          "loadEventEnd": -1563816061300,
+          "firstPaint": 944.495,
+          "firstContentfulPaint": 1069.66,
+          "firstMeaningfulPaint": 1069.663,
+          "installStyles": 3330,
+          "installStylesDuration": 28,
+          "onFirstVisible": 3375,
+          "makeBodyVisible": 3379,
+          "windowLoadEvent": 0,
+          "firstViewportReady": 3607,
+          "visible": 3375
+        },
+        {
+          "responseStart": 848,
+          "loadEventEnd": 8090,
+          "firstPaint": 955.125,
+          "firstContentfulPaint": 1089.45,
+          "firstMeaningfulPaint": 1089.453,
+          "installStyles": 3351,
+          "installStylesDuration": 30,
+          "onFirstVisible": 3396,
+          "makeBodyVisible": 3400,
+          "windowLoadEvent": 8090,
+          "firstViewportReady": 3595,
+          "visible": 3396
+        },
+        {
+          "responseStart": 767,
+          "loadEventEnd": 8091,
+          "firstPaint": 872.89,
+          "firstContentfulPaint": 1005.9,
+          "firstMeaningfulPaint": 1005.902,
+          "installStyles": 3275,
+          "installStylesDuration": 41,
+          "onFirstVisible": 3330,
+          "makeBodyVisible": 3334,
+          "windowLoadEvent": 8090,
+          "firstViewportReady": 3648,
+          "visible": 3329
+        },
+        {
+          "responseStart": 798,
+          "loadEventEnd": 7839,
+          "firstPaint": 905.295,
+          "firstContentfulPaint": 1041.765,
+          "firstMeaningfulPaint": 1041.76,
+          "installStyles": 3293,
+          "installStylesDuration": 27,
+          "onFirstVisible": 3337,
+          "makeBodyVisible": 3342,
+          "windowLoadEvent": 7838,
+          "firstViewportReady": 3579,
+          "visible": 3337
+        },
+        {
+          "responseStart": 792,
+          "loadEventEnd": 11627,
+          "firstPaint": 889.6,
+          "firstContentfulPaint": 1022.275,
+          "firstMeaningfulPaint": 1022.279,
+          "installStyles": 3283,
+          "installStylesDuration": 28,
+          "onFirstVisible": 3325,
+          "makeBodyVisible": 3331,
+          "windowLoadEvent": 11626,
+          "firstViewportReady": 3612,
+          "visible": 3325
+        }
+      ],
+      "amp": [
+        {
+          "url": "https://cdn.ampproject.org/v0.js",
+          "size": 77725
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-position-observer-0.1.js",
+          "size": 3475
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-animation-0.1.js",
+          "size": 29504
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-web-push-0.1.js",
+          "size": 6924
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-ad-0.1.js",
+          "size": 19259
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-sticky-ad-1.0.js",
+          "size": 2755
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-analytics-0.1.js",
+          "size": 40304
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-social-share-0.1.js",
+          "size": 5475
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-carousel-0.1.js",
+          "size": 8778
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-lightbox-0.1.js",
+          "size": 6871
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-iframe-0.1.js",
+          "size": 8484
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-form-0.1.js",
+          "size": 14017
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-selector-0.1.js",
+          "size": 3093
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-list-0.1.js",
+          "size": 11642
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-mustache-0.2.js",
+          "size": 13064
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-bind-0.1.js",
+          "size": 15867
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-consent-0.1.js",
+          "size": 12182
+        },
+        {
+          "url": "https://cdn.ampproject.org/v0/amp-geo-0.1.js",
+          "size": 0
+        },
+        {
+          "url": "https://cdn.ampproject.org/rtv/011907152257550/v0/amp-auto-lightbox-0.1.js",
+          "size": 2539
+        },
+        {
+          "url": "https://cdn.ampproject.org/rtv/011907152257550/v0/amp-ad-network-doubleclick-impl-0.1.js",
+          "size": 32639
+        }
+      ]
+    }
+  ]
+}

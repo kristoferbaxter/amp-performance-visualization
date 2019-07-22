@@ -124,6 +124,10 @@ function calculateStandardDeviation(numArray: number[]): number {
 }
 
 export function consolidate(baseMetrics: TestPass, experimentMetrics: TestPass): ConsolidatedDataResult {
+  console.log('Base Metrics');
+  console.log(baseMetrics);
+  console.log('Experiment Metrics');
+  console.log(experimentMetrics);
   const { results: baseResults } = baseMetrics;
   const { results: experimentResults } = experimentMetrics;
   const flattenedBaseResults = baseResults.map(result => result.performance).flat();

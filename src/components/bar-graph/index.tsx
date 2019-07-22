@@ -42,6 +42,7 @@ export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.
   const bottomOffset = 130;
   const labelOffset = 15;
   const titleOffset = -10;
+  const dataRadius = 4;
   if (data) {
     // get next closest 1000 of the highest of all value in the data to plot.
     const maxDataArr: number[] = [];
@@ -90,26 +91,32 @@ export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.
             standardDeviationData: standardDeviationValues,
           }: GraphableData = metric;
 
-          const barWidth = columnWidth / (baseValues.length + 1);
+          const metricWidth = columnWidth / (baseValues.length + 1);
           if (standardDeviationValues) {
             return (
               <g transform={`translate(${(dataIndex + 1) * columnWidth})`} key={metricName || ''}>
                 {baseValues.map((metricValue: number, valueIndex: number) => {
                   const barColor = METRIC_COLORS[metricName || METRIC_COLORS.NONE];
-                  const barHeight = metricValue * heightRatio;
+                  const pointHeight = metricValue * heightRatio;
                   return (
                     <g key={(metricName || '') + dataIndex + valueIndex}>
-                      <DataPoint x={-barWidth} y={height - barHeight} radius={5} style={`fill:${barColor}`} />
-                      <SeparationLine x={0} y={0} height={height} />
+                      <DataPoint
+                        x={(valueIndex * metricWidth - columnWidth) / 2}
+                        y={height - pointHeight}
+                        radius={dataRadius}
+                        style={`fill:${barColor}`}
+                      />
+                      <SeparationLine x={-columnWidth / 2} y={0} height={height} />
                     </g>
                   );
                 })}
                 {experimentValues.map((metricValue: number, valueIndex: number) => {
                   const barColor = METRIC_COLORS[metricName || METRIC_COLORS.NONE];
-                  const barHeight = metricValue * heightRatio;
+                  const pointHeight = metricValue * heightRatio;
                   return (
                     <g key={(metricName || '') + dataIndex + valueIndex}>
-                      <DataPoint x={valueIndex * barWidth - barWidth} y={height - barHeight} radius={5} style={`fill:${barColor}`} />
+                      <DataPoint x={(valueIndex * metricWidth) / 2} y={height - pointHeight} radius={dataRadius} style={`fill:${barColor}`} />
+                      <SeparationLine x={0} y={0} height={height} />
                     </g>
                   );
                 })}
@@ -126,7 +133,7 @@ export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.
                 const barHeight = metricValue * heightRatio;
                 return (
                   <g key={(metricName || '') + dataIndex + valueIndex}>
-                    <Bar x={-barWidth} y={height - barHeight} width={barWidth} height={barHeight} style={`fill:${barColor}`} />
+                    <Bar x={-metricWidth} y={height - barHeight} width={metricWidth} height={barHeight} style={`fill:${barColor}`} />
                   </g>
                 );
               })}
@@ -136,7 +143,7 @@ export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.
                 const barHeight = metricValue * heightRatio;
                 return (
                   <g key={(metricName || '') + dataIndex + valueIndex}>
-                    <Bar x={0} y={height - barHeight} width={barWidth - 10} height={barHeight} style={`fill:${barColor}`} />
+                    <Bar x={0} y={height - barHeight} width={metricWidth - 10} height={barHeight} style={`fill:${barColor}`} />
                   </g>
                 );
               })}
