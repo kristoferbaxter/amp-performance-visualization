@@ -9,7 +9,7 @@
     "build:scraper": "tsc --project ./server",
     "postbuild:scraper": "cp package.json ./output/package.json",
     "build:client": "preact build --no-prerender --no-sw",
-    "postbuild:client": "cp -r ./server/results build && cp -r ./json-config build",
+    "postbuild:client": "cp -r ./server/results build && cp -r ./config build",
     "start:scraper": "node -r esm ./output/server/scraper/index.js",
     "start:client": "http-server ./build -s -o -c-1",
     "start": "run-s build:scraper start:scraper build:client start:client",

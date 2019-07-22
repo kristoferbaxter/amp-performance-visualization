@@ -10,7 +10,7 @@ const NOT_AMP = -2;
 const GO_TO_FAILED = -3;
 
 export const invalidAMP = (url: string): Metrics => ({
-  graphableData: {
+  performanceData: {
     responseStart: NOT_AMP, // firstByte
     loadEventEnd: NOT_AMP, // pageLoad
     firstPaint: NOT_AMP,
@@ -24,7 +24,7 @@ export const invalidAMP = (url: string): Metrics => ({
     windowLoadEvent: NOT_AMP,
     firstViewportReady: NOT_AMP,
   },
-  tableData: [
+  ampEntries: [
     {
       url,
       size: NOT_AMP,
@@ -33,7 +33,7 @@ export const invalidAMP = (url: string): Metrics => ({
 });
 
 export const snailURL = (url: string): Metrics => ({
-  graphableData: {
+  performanceData: {
     responseStart: SLOW_URL, // firstByte
     loadEventEnd: SLOW_URL, // pageLoad
     firstPaint: SLOW_URL,
@@ -47,7 +47,7 @@ export const snailURL = (url: string): Metrics => ({
     windowLoadEvent: SLOW_URL,
     firstViewportReady: SLOW_URL,
   },
-  tableData: [
+  ampEntries: [
     {
       url,
       size: SLOW_URL,
@@ -56,7 +56,7 @@ export const snailURL = (url: string): Metrics => ({
 });
 
 export const failedPageGoTo = (url: string): Metrics => ({
-  graphableData: {
+  performanceData: {
     responseStart: GO_TO_FAILED, // firstByte
     loadEventEnd: GO_TO_FAILED, // pageLoad
     firstPaint: GO_TO_FAILED,
@@ -70,7 +70,7 @@ export const failedPageGoTo = (url: string): Metrics => ({
     windowLoadEvent: GO_TO_FAILED,
     firstViewportReady: GO_TO_FAILED,
   },
-  tableData: [
+  ampEntries: [
     {
       url,
       size: GO_TO_FAILED,
@@ -79,7 +79,7 @@ export const failedPageGoTo = (url: string): Metrics => ({
 });
 
 export const failedPageEval = (url: string): Metrics => ({
-  graphableData: {
+  performanceData: {
     responseStart: EVALUATE_FAILED, // firstByte
     loadEventEnd: EVALUATE_FAILED, // pageLoad
     firstPaint: EVALUATE_FAILED,
@@ -93,7 +93,7 @@ export const failedPageEval = (url: string): Metrics => ({
     windowLoadEvent: EVALUATE_FAILED,
     firstViewportReady: EVALUATE_FAILED,
   },
-  tableData: [
+  ampEntries: [
     {
       url,
       size: EVALUATE_FAILED,

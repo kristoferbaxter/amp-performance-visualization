@@ -10,9 +10,9 @@ import multiRunMetrics from './metrics-from-url-array';
 import { writeFile } from './write-file';
 
 const argv = require('yargs').default({
-  urls: './json-config/urls.json',
-  network: './json-config/network.json',
-  test: './json-config/test.json',
+  urls: './config/urls.json',
+  network: './config/network.json',
+  test: './config/test.json',
   runs: 3,
 }).argv;
 
