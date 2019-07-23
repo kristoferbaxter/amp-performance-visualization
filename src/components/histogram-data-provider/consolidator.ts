@@ -56,7 +56,7 @@ function sortNeededData(data: GroupedMetrics, graphChoice: keyof GroupedMetrics)
 function getTimeMetricsByFrequency(metrics: TimeMetrics[], graphChoice: keyof TimeMetrics): HistogramData {
   const groupedMetrics = groupResultByMetrics(metrics);
   const specificMetric = sortNeededData(groupedMetrics, graphChoice);
-  const frequencyInterval = Math.pow(10, Math.ceil(specificMetric[specificMetric.length - 1]).toString().length - 1);
+  const frequencyInterval = Math.pow(10, Math.ceil(specificMetric[specificMetric.length - 1] - specificMetric[0]).toString().length - 1);
   const result: HistogramData = {};
   let previousInterval = 0;
   let currentInterval = frequencyInterval;

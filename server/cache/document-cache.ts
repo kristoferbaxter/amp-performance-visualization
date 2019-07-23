@@ -68,7 +68,6 @@ export class DocumentCache {
         source,
       },
     ]);
-    console.log('set document cache', this.location, url);
   }
 
   /**

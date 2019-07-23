@@ -32,6 +32,8 @@ function camelCaseToString(str: string) {
   return wordArr.join(' ');
 }
 
+function displayValue(valueArr: number[], index: number) {}
+
 export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.Element => {
   let heightRatio = 1;
   let columnWidth = 0;
@@ -47,11 +49,15 @@ export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.
     // get next closest 1000 of the highest of all value in the data to plot.
     const maxDataArr: number[] = [];
     data.map(metric => {
-      const { baseValues: baseValues, experimentValues: experimentValues, standardDeviationData: standardDeviationValues }: GraphableData = metric;
-      if (standardDeviationValues) {
-        maxDataArr.push(Math.max(...baseValues) + standardDeviationValues[0]);
-        maxDataArr.push(Math.max(...experimentValues) + standardDeviationValues[1]);
-        return maxDataArr;
+      const {
+        baseValues: baseValues,
+        experimentValues: experimentValues,
+        standardDeviationData: standardDeviationValues,
+        averageData: averageValues,
+      }: GraphableData = metric;
+      if (standardDeviationValues && averageValues) {
+        maxDataArr.push(averageValues[0] + standardDeviationValues[0]);
+        maxDataArr.push(averageValues[1] + standardDeviationValues[1]);
       }
       maxDataArr.push(Math.max(...baseValues));
       maxDataArr.push(Math.max(...experimentValues));
@@ -61,6 +67,7 @@ export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.
       Math.max.apply(null, maxDataArr) < 100
         ? Math.ceil(Math.max.apply(null, maxDataArr) / 10) * 10
         : Math.ceil(Math.max.apply(null, maxDataArr) / 100) * 100; // sets maxvalue to be the largest number in the confidence array raised to the nearest 1000
+    console.log(maxPlottableData);
     divisionInterval = Math.pow(
       10,
       maxPlottableData.toString().length === 1 ? maxPlottableData.toString().length - 1 : maxPlottableData.toString().length - 2,
@@ -69,7 +76,7 @@ export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.
     columnWidth = width / (data.length + 1);
     numOfDivisions = maxPlottableData / divisionInterval;
     for (let i = 0; i <= numOfDivisions; i++) {
-      divisions.push((maxPlottableData * i) / numOfDivisions);
+      divisions.push(Math.round((maxPlottableData * i) / numOfDivisions));
     }
   }
   return (
@@ -89,12 +96,24 @@ export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.
             baseValues: baseValues,
             experimentValues: experimentValues,
             standardDeviationData: standardDeviationValues,
+            averageData: averageValues,
           }: GraphableData = metric;
 
           const metricWidth = columnWidth / (baseValues.length + 1);
-          if (standardDeviationValues) {
+          if (standardDeviationValues && averageValues) {
             return (
               <g transform={`translate(${(dataIndex + 1) * columnWidth})`} key={metricName || ''}>
+                {averageValues.map((metricValue: number, valueIndex: number) => {
+                  return (
+                    <ConfidenceLines
+                      key={(metricName || '') + dataIndex + valueIndex}
+                      x={(valueIndex * columnWidth) / 2 - columnWidth / 4}
+                      maxY={height - (metricValue + standardDeviationValues[valueIndex]) * heightRatio}
+                      minY={height - (metricValue - standardDeviationValues[valueIndex]) * heightRatio}
+                      endLineLength={columnWidth / 2}
+                    />
+                  );
+                })}
                 {baseValues.map((metricValue: number, valueIndex: number) => {
                   const barColor = METRIC_COLORS[metricName || METRIC_COLORS.NONE];
                   const pointHeight = metricValue * heightRatio;
@@ -115,8 +134,14 @@ export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.
                   const pointHeight = metricValue * heightRatio;
                   return (
                     <g key={(metricName || '') + dataIndex + valueIndex}>
-                      <DataPoint x={(valueIndex * metricWidth) / 2} y={height - pointHeight} radius={dataRadius} style={`fill:${barColor}`} />
-                      <SeparationLine x={0} y={0} height={height} />
+                      <DataPoint
+                        x={(valueIndex * metricWidth) / 2}
+                        y={height - pointHeight}
+                        radius={dataRadius}
+                        style={`fill:${barColor}`}
+                        filter={`filter:hue-rotate(180deg)`}
+                      />
+                      <SeparationLine x={columnWidth / 2} y={0} height={height} />
                     </g>
                   );
                 })}
@@ -131,9 +156,10 @@ export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.
                 const dataOrigin = 'base';
                 const barColor = METRIC_COLORS[metricName] || HISTOGRAM_COLORS[dataOrigin];
                 const barHeight = metricValue * heightRatio;
+                const barWidth = metricWidth - 5;
                 return (
                   <g key={(metricName || '') + dataIndex + valueIndex}>
-                    <Bar x={-metricWidth} y={height - barHeight} width={metricWidth} height={barHeight} style={`fill:${barColor}`} />
+                    <Bar x={-barWidth} y={height - barHeight} width={barWidth} height={barHeight} style={`fill:${barColor}`} />
                   </g>
                 );
               })}
@@ -141,9 +167,10 @@ export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.
                 const dataOrigin = 'experiment';
                 const barColor = METRIC_COLORS[metricName] || HISTOGRAM_COLORS[dataOrigin];
                 const barHeight = metricValue * heightRatio;
+                const barWidth = metricWidth - 5;
                 return (
                   <g key={(metricName || '') + dataIndex + valueIndex}>
-                    <Bar x={0} y={height - barHeight} width={metricWidth - 10} height={barHeight} style={`fill:${barColor}`} />
+                    <Bar x={0} y={height - barHeight} width={barWidth} height={barHeight} style={`fill:${barColor}`} />
                   </g>
                 );
               })}

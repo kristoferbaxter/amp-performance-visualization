@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import style from './XDivision.css';
+import style from './SeparationLine.css';
 
 interface Props {
   x: number;
@@ -7,4 +7,4 @@ interface Props {
   height: number;
 }
 
-export const SeparationLine = ({ x, y, height }: Props): JSX.Element => <line class={style.divisions} x1={x} y1={y} x2={x} y2={y + height} />;
+export const SeparationLine = ({ x, y, height }: Props): JSX.Element => <line class={style.separationLine} x1={x} y1={y} x2={x} y2={y + height} />;

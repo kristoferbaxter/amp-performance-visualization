@@ -13,6 +13,7 @@
     "start:scraper": "node -r esm ./output/server/scraper/index.js",
     "start:client": "http-server ./build -s -o -c-1",
     "start": "run-s build:scraper start:scraper build:client start:client",
+    "client": "run-s build:client start:client",
     "lint": "tslint --project src",
     "test": "jest ./tests",
     "precommit": "lint-staged"

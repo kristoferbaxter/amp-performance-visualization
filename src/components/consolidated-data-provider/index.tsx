@@ -14,7 +14,9 @@ interface ConsolidatedDataProviderProps {
 interface ConsolidatedDataProviderState {
   baseMetrics?: GroupedMetrics;
   experimentMetrics?: GroupedMetrics;
+  baseAverage?: TimeMetrics;
   baseStandardDeviation?: TimeMetrics;
+  experimentAverage?: TimeMetrics;
   experimentStandardDeviation?: TimeMetrics;
   error?: string;
 }
@@ -32,12 +34,14 @@ export default class ConsolidatedDataProvider extends Component<ConsolidatedData
   }
   public render(): JSX.Element {
     let data;
-    const { baseMetrics, experimentMetrics, baseStandardDeviation, experimentStandardDeviation } = this.state;
+    const { baseMetrics, experimentMetrics, baseAverage, baseStandardDeviation, experimentAverage, experimentStandardDeviation } = this.state;
 
     if (
       baseMetrics !== undefined &&
       experimentMetrics !== undefined &&
+      baseAverage !== undefined &&
       baseStandardDeviation !== undefined &&
+      experimentAverage !== undefined &&
       experimentStandardDeviation !== undefined
     ) {
       const graphableData: GraphableData[] = [];
@@ -49,6 +53,7 @@ export default class ConsolidatedDataProvider extends Component<ConsolidatedData
             baseValues: baseMetrics[metric as keyof TimeMetrics],
             experimentValues: experimentMetrics[metric as keyof TimeMetrics],
             standardDeviationData: [baseStandardDeviation[metric as keyof TimeMetrics], experimentStandardDeviation[metric as keyof TimeMetrics]],
+            averageData: [baseAverage[metric as keyof TimeMetrics], experimentAverage[metric as keyof TimeMetrics]],
           };
           graphableData.push(comparisonMetric);
         }
@@ -64,14 +69,20 @@ export default class ConsolidatedDataProvider extends Component<ConsolidatedData
       // const {getPerformanceMetrics} = dataWorker();
       const [baseMetricsInputData, experimentMetricsInputdata] = await getPerformanceMetrics();
       // const {baseMetrics, experimentMetrics} = await consolidator.consolidate(baseMetricsInputData, experimentMetricsInputdata, 0.5);
-      const { baseMetrics, experimentMetrics, baseStandardDeviation, experimentStandardDeviation } = await consolidator.consolidate(
-        baseMetricsInputData,
-        experimentMetricsInputdata,
-      );
+      const {
+        baseMetrics,
+        experimentMetrics,
+        baseAverage,
+        baseStandardDeviation,
+        experimentAverage,
+        experimentStandardDeviation,
+      } = await consolidator.consolidate(baseMetricsInputData, experimentMetricsInputdata);
       this.setState({
         baseMetrics,
         experimentMetrics,
+        baseAverage,
         baseStandardDeviation,
+        experimentAverage,
         experimentStandardDeviation,
       });
     } catch (e) {

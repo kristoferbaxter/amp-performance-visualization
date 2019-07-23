@@ -3,4 +3,5 @@ export interface GraphableData {
   baseValues: number[];
   experimentValues: number[];
   standardDeviationData?: number[];
+  averageData?: number[];
 }
