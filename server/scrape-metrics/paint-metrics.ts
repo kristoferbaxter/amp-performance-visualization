@@ -28,7 +28,7 @@ export function getPaintTiming(page: Page, puppeteerMetrics: PuppeteerMetrics): 
 
   const firstMeaningfulPaint = getFMP(puppeteerMetrics);
 
-  return page.evaluate((firstMeaningfulPaint: number) => {
+  return page.evaluate(() => {
     const paintMetrics: number[] = [];
     (performance.getEntriesByType('paint') as PerformanceResourceTiming[]).forEach(
       (item: PerformanceResourceTiming): void => {
