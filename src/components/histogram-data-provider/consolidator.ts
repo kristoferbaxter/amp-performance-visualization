@@ -53,10 +53,34 @@ function sortNeededData(data: GroupedMetrics, graphChoice: keyof GroupedMetrics)
   return numArray.sort((a, b) => a - b);
 }
 
-function getTimeMetricsByFrequency(metrics: TimeMetrics[], graphChoice: keyof TimeMetrics): HistogramData {
+function filterBadData(numberArray: number[]): number[] {
+  for (let i = 0; i < numberArray.length; i++) {
+    while (numberArray[i] < 0) {
+      numberArray.splice(i, 1);
+    }
+  }
+  return numberArray;
+}
+
+function getFrequencyInterval(baseMetrics: TimeMetrics[], experimentMetrics: TimeMetrics[], graphChoice: keyof TimeMetrics): number {
+  const groupedBaseMetrics = groupResultByMetrics(baseMetrics);
+  const specificBaseMetric = filterBadData(sortNeededData(groupedBaseMetrics, graphChoice));
+  const groupedExpMetrics = groupResultByMetrics(experimentMetrics);
+  const specificExpMetric = filterBadData(sortNeededData(groupedExpMetrics, graphChoice));
+  const basefrequencyInterval = Math.pow(
+    10,
+    Math.ceil(specificBaseMetric[specificBaseMetric.length - 1] - specificBaseMetric[0]).toString().length - 1,
+  );
+  const experimentalFrequencyInterval = Math.pow(
+    10,
+    Math.ceil(specificExpMetric[specificExpMetric.length - 1] - specificExpMetric[0]).toString().length - 1,
+  );
+  return basefrequencyInterval < experimentalFrequencyInterval ? basefrequencyInterval : experimentalFrequencyInterval;
+}
+
+function getTimeMetricsByFrequency(metrics: TimeMetrics[], graphChoice: keyof TimeMetrics, frequencyInterval: number): HistogramData {
   const groupedMetrics = groupResultByMetrics(metrics);
-  const specificMetric = sortNeededData(groupedMetrics, graphChoice);
-  const frequencyInterval = Math.pow(10, Math.ceil(specificMetric[specificMetric.length - 1] - specificMetric[0]).toString().length - 1);
+  const specificMetric = filterBadData(sortNeededData(groupedMetrics, graphChoice));
   const result: HistogramData = {};
   let previousInterval = 0;
   let currentInterval = frequencyInterval;
@@ -78,10 +102,11 @@ export function consolidate(baseMetrics: TestPass, experimentMetrics: TestPass, 
   const { results: experimentResults } = experimentMetrics;
   const flattenedBaseResults = baseResults.map(result => result.performance).flat();
   const flattenedExperimentResults = experimentResults.map(result => result.performance).flat();
-  const p50BaseFrequency = getTimeMetricsByFrequency(flattenedBaseResults, graphChoice);
-  const p50ExperimentalFrequency = getTimeMetricsByFrequency(flattenedExperimentResults, graphChoice);
+  const frequencyInterval = getFrequencyInterval(flattenedBaseResults, flattenedExperimentResults, graphChoice);
+  const baseFrequency = getTimeMetricsByFrequency(flattenedBaseResults, graphChoice, frequencyInterval);
+  const experimentalFrequency = getTimeMetricsByFrequency(flattenedExperimentResults, graphChoice, frequencyInterval);
   return {
-    baseFrequency: p50BaseFrequency,
-    experimentFrequency: p50ExperimentalFrequency,
+    baseFrequency,
+    experimentFrequency: experimentalFrequency,
   };
 }

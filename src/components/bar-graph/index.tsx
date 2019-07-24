@@ -67,7 +67,6 @@ export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.
       Math.max.apply(null, maxDataArr) < 100
         ? Math.ceil(Math.max.apply(null, maxDataArr) / 10) * 10
         : Math.ceil(Math.max.apply(null, maxDataArr) / 100) * 100; // sets maxvalue to be the largest number in the confidence array raised to the nearest 1000
-    console.log(maxPlottableData);
     divisionInterval = Math.pow(
       10,
       maxPlottableData.toString().length === 1 ? maxPlottableData.toString().length - 1 : maxPlottableData.toString().length - 2,
@@ -98,7 +97,6 @@ export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.
             standardDeviationData: standardDeviationValues,
             averageData: averageValues,
           }: GraphableData = metric;
-
           const metricWidth = columnWidth / (baseValues.length + 1);
           if (standardDeviationValues && averageValues) {
             return (
