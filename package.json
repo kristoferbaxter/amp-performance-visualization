@@ -14,7 +14,8 @@
     "start:client": "http-server ./build -s -o -c-1",
     "start": "run-s build:scraper start:scraper build:client start:client",
     "lint": "tslint --project src",
-    "test": "-s build:scraper ava output/server/tests/*.js --verbose",
+    "test": "run-s build:scraper ava",
+    "ava": "node -r esm ./node_modules/.bin/ava output/server/tests/*.js --verbose",
     "precommit": "lint-staged"
   },
   "lint-staged": {
