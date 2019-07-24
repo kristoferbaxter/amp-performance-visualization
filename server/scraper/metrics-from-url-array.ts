@@ -51,17 +51,17 @@ export default async function multiRunMetrics(
   urls: string[],
   progressBar: ProgressBar,
 ): Promise<TestPass> {
-  const awaitedMetrics: Metrics[][] = await getMetricsFromURLs(version, networkPreset, domCache, urls, progressBar, TestConfiguration);
+  const metricsFromURLArray: Metrics[][] = await getMetricsFromURLs(version, networkPreset, domCache, urls, progressBar, TestConfiguration);
 
   const results: Results[] = urls.map(
     (url: string, index: number): Results => {
-      const performance: TimeMetrics[] = awaitedMetrics[index].map(metric => metric.graphableData);
-      const amp: AMPEntry[] = awaitedMetrics[index][0].tableData;
-      return {
-        url,
-        performance,
-        amp,
-      };
+      const performance: TimeMetrics[] = metricsFromURLArray[index].map(metric => metric.performanceData);
+        const amp: AMPEntry[] = metricsFromURLArray[index][0].ampEntries;
+        return {
+          url,
+          performance,
+          amp,
+        };
     },
   );
 

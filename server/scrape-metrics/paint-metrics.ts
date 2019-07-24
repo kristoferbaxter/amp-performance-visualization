@@ -8,9 +8,12 @@ export interface PaintMetrics {
 }
 
 export function getPaintTiming(page: Page, puppeteerMetrics: PuppeteerMetrics): Promise<PaintMetrics> {
+
   function getFMP(puppeteer: PuppeteerMetrics): number {
     let fmp: number = 0;
     let navStart: number = 0;
+
+    //Finding metric values
     for (const metric of puppeteer.metrics) {
       if (metric.name === 'FirstMeaningfulPaint') {
         fmp = metric.value * 1000;
@@ -19,6 +22,7 @@ export function getPaintTiming(page: Page, puppeteerMetrics: PuppeteerMetrics): 
       }
     }
 
+    //If metrics aren't found 0 will be returned
     if (fmp === 0 && navStart === 0) {
       return 0;
     }
@@ -28,6 +32,7 @@ export function getPaintTiming(page: Page, puppeteerMetrics: PuppeteerMetrics): 
 
   const firstMeaningfulPaint = getFMP(puppeteerMetrics);
 
+  //Passing firstMeaningfulPaint so it can be returned along with other paint metrics
   return page.evaluate((firstMeaningfulPaint: number) => {
     const paintMetrics: number[] = [];
     (performance.getEntriesByType('paint') as PerformanceResourceTiming[]).forEach(

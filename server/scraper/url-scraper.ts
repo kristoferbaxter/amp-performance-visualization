@@ -9,8 +9,8 @@ import { PuppeteerMetrics } from '../scrape-metrics/puppeteer-enum';
 import { failedPageEval, failedPageGoTo, invalidAMP, snailURL } from './return-failed';
 
 export interface Metrics {
-  graphableData: TimeMetrics;
-  tableData: AMPEntry[];
+  performanceData: TimeMetrics;
+  ampEntries: AMPEntry[];
 }
 
 export interface NetworkJSON {
@@ -78,12 +78,12 @@ const getMetrics: ResultsCalculator = async (
     const ampMarkers: AMPMarkers = await getAMPMarkers(page);
 
     return {
-      graphableData: {
+      performanceData: {
         ...performanceTiming,
         ...paintTiming,
         ...ampMarkers,
       },
-      tableData: resources,
+      ampEntries: resources,
     };
   } catch (e) {
     console.log(e);
