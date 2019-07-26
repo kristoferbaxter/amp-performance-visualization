@@ -32,8 +32,6 @@ function camelCaseToString(str: string) {
   return wordArr.join(' ');
 }
 
-function displayValue(valueArr: number[], index: number) {}
-
 export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.Element => {
   let heightRatio = 1;
   let columnWidth = 0;
@@ -101,17 +99,6 @@ export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.
           if (standardDeviationValues && averageValues) {
             return (
               <g transform={`translate(${(dataIndex + 1) * columnWidth})`} key={metricName || ''}>
-                {averageValues.map((metricValue: number, valueIndex: number) => {
-                  return (
-                    <ConfidenceLines
-                      key={(metricName || '') + dataIndex + valueIndex}
-                      x={(valueIndex * columnWidth) / 2 - columnWidth / 4}
-                      maxY={height - (metricValue + standardDeviationValues[valueIndex]) * heightRatio}
-                      minY={height - (metricValue - standardDeviationValues[valueIndex]) * heightRatio}
-                      endLineLength={columnWidth / 2}
-                    />
-                  );
-                })}
                 {baseValues.map((metricValue: number, valueIndex: number) => {
                   const barColor = METRIC_COLORS[metricName || METRIC_COLORS.NONE];
                   const pointHeight = metricValue * heightRatio;
@@ -132,18 +119,31 @@ export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.
                   const pointHeight = metricValue * heightRatio;
                   return (
                     <g key={(metricName || '') + dataIndex + valueIndex}>
+                      <filter id="colorChange">
+                        <feColorMatrix type="hueRotate" values="45" />
+                      </filter>
                       <DataPoint
                         x={(valueIndex * metricWidth) / 2}
                         y={height - pointHeight}
                         radius={dataRadius}
                         style={`fill:${barColor}`}
-                        filter={`filter:hue-rotate(180deg)`}
+                        filter={'url(#colorChange)'}
                       />
                       <SeparationLine x={columnWidth / 2} y={0} height={height} />
                     </g>
                   );
                 })}
-
+                {averageValues.map((metricValue: number, valueIndex: number) => {
+                  return (
+                    <ConfidenceLines
+                      key={(metricName || '') + dataIndex + valueIndex}
+                      x={(valueIndex * columnWidth) / 2 - columnWidth / 4}
+                      maxY={height - (metricValue + standardDeviationValues[valueIndex]) * heightRatio}
+                      minY={height - (metricValue - standardDeviationValues[valueIndex]) * heightRatio}
+                      endLineLength={columnWidth / 2}
+                    />
+                  );
+                })}
                 <YLabel x={0} y={height + labelOffset} value={metricName || ''} />
               </g>
             );

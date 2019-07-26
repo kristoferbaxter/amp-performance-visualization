@@ -7,7 +7,7 @@ export const METRIC_COLORS: {
   domInteractive: '#009688',
   firstPaint: '#cddc39',
   firstContentfulPaint: '#48e813',
-  firstMeaningfulPaint: '#607d8b',
+  firstMeaningfulPaint: '#23dcbe',
   installStyles: '#673ab7',
   installStylesDuration: '#f44336',
   visible: '#827717',
