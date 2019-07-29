@@ -3,5 +3,5 @@ import { TestPass } from '../../shared/interfaces';
 import { VersionConfiguration } from '../configuration/test-configuration';
 
 export async function writeFile(report: TestPass, version: VersionConfiguration): Promise<void> {
-  await fsPromises.writeFile(`server/results/${version.rtv}.json`, JSON.stringify(report, null, 2));
+  return fsPromises.writeFile(`server/results/${version.rtv}.json`, JSON.stringify(report, null, 2));
 }

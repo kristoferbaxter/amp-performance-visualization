@@ -64,12 +64,13 @@ async function run(): Promise<void> {
       total: validURLs.length * versionConfiguration.length * TestConfiguration.executions,
     });
 
-    const reports: TestPass[] = [];
-    let index: number = 0;
+    //const reports: TestPass[] = [];
+    //let index: number = 0;
 
     for (const version of versionConfiguration) {
-      reports.push(await multiRunMetrics(version, TestConfiguration, networks[0], domCache, validURLs, PerformanceProgressBar));
-      await writeFile(reports[index++], version);
+      const result: TestPass = await multiRunMetrics(version, TestConfiguration, networks[0], domCache, validURLs, PerformanceProgressBar);
+      // reports.push(result);
+      await writeFile(result, version);
     }
     process.exit(0);
   } catch (reason) {

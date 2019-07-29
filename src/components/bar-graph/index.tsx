@@ -2,8 +2,10 @@ import { h } from 'preact';
 import { TimeMetrics } from '../../../shared/interfaces';
 import SVGLoader from '../loader';
 import { Axis } from './bars/Axis';
-import Bar from './bars/Bar';
+import { Bar } from './bars/Bar';
 import { ConfidenceLines } from './bars/ConfidenceLines';
+import { DataPoint } from './bars/DataPoint';
+import { SeparationLine } from './bars/SeparationLine';
 import { Title } from './bars/Title';
 import { XDivision } from './bars/XDivision';
 import { XLabel } from './bars/XLabel';
@@ -30,6 +32,8 @@ function camelCaseToString(str: string) {
   return wordArr.join(' ');
 }
 
+function displayValue(valueArr: number[], index: number) {}
+
 export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.Element => {
   let heightRatio = 1;
   let columnWidth = 0;
@@ -40,19 +44,24 @@ export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.
   const bottomOffset = 130;
   const labelOffset = 15;
   const titleOffset = -10;
+  const dataRadius = 4;
   if (data) {
     // get next closest 1000 of the highest of all value in the data to plot.
     const maxDataArr: number[] = [];
     data.map(metric => {
-      const { values: metricValues, standardDeviationData: standardDeviationValues }: GraphableData = metric;
-      if (standardDeviationValues) {
-        return metricValues.map((metricValue, valueIndex) => {
-          maxDataArr.push(metricValue + standardDeviationValues[valueIndex]);
-        });
+      const {
+        baseValues: baseValues,
+        experimentValues: experimentValues,
+        standardDeviationData: standardDeviationValues,
+        averageData: averageValues,
+      }: GraphableData = metric;
+      if (standardDeviationValues && averageValues) {
+        maxDataArr.push(averageValues[0] + standardDeviationValues[0]);
+        maxDataArr.push(averageValues[1] + standardDeviationValues[1]);
       }
-      return metricValues.map(metricValue => {
-        maxDataArr.push(metricValue);
-      });
+      maxDataArr.push(Math.max(...baseValues));
+      maxDataArr.push(Math.max(...experimentValues));
+      return maxDataArr;
     });
     const maxPlottableData =
       Math.max.apply(null, maxDataArr) < 100
@@ -66,7 +75,7 @@ export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.
     columnWidth = width / (data.length + 1);
     numOfDivisions = maxPlottableData / divisionInterval;
     for (let i = 0; i <= numOfDivisions; i++) {
-      divisions.push((maxPlottableData * i) / numOfDivisions);
+      divisions.push(Math.round((maxPlottableData * i) / numOfDivisions));
     }
   }
   return (
@@ -81,46 +90,85 @@ export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.
       {loading && <SVGLoader size={100} x={width / 2 - 50} y={height / 2 - 50} />}
       {data &&
         data.map((metric, dataIndex: number) => {
-          const { name: metricName, values: metricValues, standardDeviationData: standardDeviationValues }: GraphableData = metric;
-
-          const barWidth = columnWidth / (metricValues.length + 1);
-          if (standardDeviationValues) {
+          const {
+            name: metricName,
+            baseValues: baseValues,
+            experimentValues: experimentValues,
+            standardDeviationData: standardDeviationValues,
+            averageData: averageValues,
+          }: GraphableData = metric;
+          const metricWidth = columnWidth / (baseValues.length + 1);
+          if (standardDeviationValues && averageValues) {
             return (
               <g transform={`translate(${(dataIndex + 1) * columnWidth})`} key={metricName || ''}>
-                {metricValues.map((metricValue, valueIndex) => {
+                {averageValues.map((metricValue: number, valueIndex: number) => {
+                  return (
+                    <ConfidenceLines
+                      key={(metricName || '') + dataIndex + valueIndex}
+                      x={(valueIndex * columnWidth) / 2 - columnWidth / 4}
+                      maxY={height - (metricValue + standardDeviationValues[valueIndex]) * heightRatio}
+                      minY={height - (metricValue - standardDeviationValues[valueIndex]) * heightRatio}
+                      endLineLength={columnWidth / 2}
+                    />
+                  );
+                })}
+                {baseValues.map((metricValue: number, valueIndex: number) => {
                   const barColor = METRIC_COLORS[metricName || METRIC_COLORS.NONE];
-                  const barHeight = metricValue * heightRatio;
+                  const pointHeight = metricValue * heightRatio;
                   return (
                     <g key={(metricName || '') + dataIndex + valueIndex}>
-                      <Bar
-                        x={valueIndex * barWidth - barWidth}
-                        y={height - barHeight}
-                        width={barWidth}
-                        height={barHeight}
+                      <DataPoint
+                        x={(valueIndex * metricWidth - columnWidth) / 2}
+                        y={height - pointHeight}
+                        radius={dataRadius}
                         style={`fill:${barColor}`}
                       />
-                      <ConfidenceLines
-                        x={valueIndex * barWidth - barWidth + barWidth / 2}
-                        maxY={height - barHeight + standardDeviationValues[valueIndex] * heightRatio}
-                        minY={height - barHeight - standardDeviationValues[valueIndex] * heightRatio}
-                        endLineLength={barWidth}
-                      />
+                      <SeparationLine x={-columnWidth / 2} y={0} height={height} />
                     </g>
                   );
                 })}
+                {experimentValues.map((metricValue: number, valueIndex: number) => {
+                  const barColor = METRIC_COLORS[metricName || METRIC_COLORS.NONE];
+                  const pointHeight = metricValue * heightRatio;
+                  return (
+                    <g key={(metricName || '') + dataIndex + valueIndex}>
+                      <DataPoint
+                        x={(valueIndex * metricWidth) / 2}
+                        y={height - pointHeight}
+                        radius={dataRadius}
+                        style={`fill:${barColor}`}
+                        filter={`filter:hue-rotate(180deg)`}
+                      />
+                      <SeparationLine x={columnWidth / 2} y={0} height={height} />
+                    </g>
+                  );
+                })}
+
                 <YLabel x={0} y={height + labelOffset} value={metricName || ''} />
               </g>
             );
           }
           return (
             <g transform={`translate(${(dataIndex + 1) * columnWidth})`} key={metricName || ''}>
-              {metricValues.map((metricValue, valueIndex) => {
-                const dataOrigin = valueIndex === 0 ? 'base' : 'experiment';
+              {baseValues.map((metricValue: number, valueIndex: number) => {
+                const dataOrigin = 'base';
                 const barColor = METRIC_COLORS[metricName] || HISTOGRAM_COLORS[dataOrigin];
                 const barHeight = metricValue * heightRatio;
+                const barWidth = metricWidth - 5;
                 return (
                   <g key={(metricName || '') + dataIndex + valueIndex}>
-                    <Bar x={valueIndex * barWidth - barWidth} y={height - barHeight} width={barWidth} height={barHeight} style={`fill:${barColor}`} />
+                    <Bar x={-barWidth} y={height - barHeight} width={barWidth} height={barHeight} style={`fill:${barColor}`} />
+                  </g>
+                );
+              })}
+              {experimentValues.map((metricValue: number, valueIndex: number) => {
+                const dataOrigin = 'experiment';
+                const barColor = METRIC_COLORS[metricName] || HISTOGRAM_COLORS[dataOrigin];
+                const barHeight = metricValue * heightRatio;
+                const barWidth = metricWidth - 5;
+                return (
+                  <g key={(metricName || '') + dataIndex + valueIndex}>
+                    <Bar x={0} y={height - barHeight} width={barWidth} height={barHeight} style={`fill:${barColor}`} />
                   </g>
                 );
               })}

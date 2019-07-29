@@ -55,6 +55,8 @@ export class DOMCache {
     domCache.set(url, dom);
 
     const documentCache: DocumentCache = await this.documentCache(type);
+    const source: string = dom.serialize();
+    await documentCache.set(url, source);
     await documentCache.set(url, dom.serialize());
   }
 

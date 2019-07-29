@@ -6,6 +6,7 @@ interface Props {
   maxY: number;
   minY: number;
   endLineLength: number;
+  key?: string;
 }
 
 export const ConfidenceLines = ({ x, maxY, minY, endLineLength }: Props): JSX.Element => {

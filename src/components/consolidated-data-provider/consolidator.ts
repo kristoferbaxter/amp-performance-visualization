@@ -1,7 +1,7 @@
 import { TestPass, TimeMetrics } from '../../../shared/interfaces';
 import { ConsolidatedDataResult } from './types';
 
-interface GroupedMetrics {
+export interface GroupedMetrics {
   responseStart: number[];
   loadEventEnd: number[];
   firstPaint: number[];
@@ -22,6 +22,11 @@ function groupResultByMetrics(metrics: TimeMetrics[]): GroupedMetrics {
       if (currentValue.hasOwnProperty(key)) {
         // @ts-ignore
         accumulator[key].push(currentValue[key]);
+      }
+    }
+    for (const key in accumulator) {
+      if (accumulator.hasOwnProperty(key)) {
+        accumulator[key] = filterBadData(accumulator[key]);
       }
     }
     return accumulator;
@@ -123,14 +128,18 @@ export function consolidate(baseMetrics: TestPass, experimentMetrics: TestPass):
   const { results: experimentResults } = experimentMetrics;
   const flattenedBaseResults = baseResults.map(result => result.performance).flat();
   const flattenedExperimentResults = experimentResults.map(result => result.performance).flat();
-  const p50BaseMetrics = getTimeMetricsByAverage(flattenedBaseResults);
-  const p50ExperimentalMetrics = getTimeMetricsByAverage(flattenedExperimentResults);
+  const p50BaseMetrics = groupResultByMetrics(flattenedBaseResults);
+  const p50ExperimentalMetrics = groupResultByMetrics(flattenedExperimentResults);
+  const baseAverage = getTimeMetricsByAverage(flattenedBaseResults);
+  const experimentAverage = getTimeMetricsByAverage(flattenedExperimentResults);
   const baseStandardDeviation = createConfidenceArray(flattenedBaseResults);
   const experimentStandardDeviation = createConfidenceArray(flattenedExperimentResults);
   return {
     baseMetrics: p50BaseMetrics,
     experimentMetrics: p50ExperimentalMetrics,
+    baseAverage,
     baseStandardDeviation,
+    experimentAverage,
     experimentStandardDeviation,
   };
 }

@@ -12,6 +12,6 @@ export interface BarProps {
 
 export interface BarState {}
 
-export default ({ x, y, width, height, style, filter }: BarProps, {  }: BarState): JSX.Element => {
+export const Bar = ({ x, y, width, height, style, filter }: BarProps, {  }: BarState): JSX.Element => {
   return <rect x={x} y={y} width={width} height={height} style={style} filter={filter} class={barStyle.bar} />;
 };
