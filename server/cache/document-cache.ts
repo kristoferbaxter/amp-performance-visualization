@@ -90,6 +90,13 @@ export class DocumentCache {
   }
 
   /**
+   * Returns enabled value
+   */
+  public getEnabled(): boolean | null {
+    return this.enabled;
+  }
+
+  /**
    * Get the Cache Path for a url.
    * @param url
    */

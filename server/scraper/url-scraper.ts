@@ -19,7 +19,7 @@ export interface NetworkJSON {
   latency: number;
 }
 
-type ResultsCalculator = (url: string, networkPreset: NamedNetworkPreset, cachedUrl: string, progressBar: ProgressBar) => Promise<Metrics>;
+type ResultsCalculator = (url: string, networkPreset: NamedNetworkPreset, progressBar: ProgressBar) => Promise<Metrics>;
 
 const NAV_TIMEOUT = 240000;
 // networkidle0 means that there are no more than 0 network connections for atleast 500 milliseconds
@@ -33,7 +33,6 @@ const WINDOW_RESOLUTION = {
 const getMetrics: ResultsCalculator = async (
   url: string,
   networkPreset: NamedNetworkPreset,
-  cachedUrl: string,
   progressBar: ProgressBar,
 ): Promise<Metrics> => {
   const browser = await puppeteer.launch({
@@ -93,8 +92,8 @@ const getMetrics: ResultsCalculator = async (
   }
 };
 
-const getResults: ResultsCalculator = async (url: string, networkPreset: NamedNetworkPreset, cachedUrl: string, progressBar: ProgressBar) => {
-  const pageMetrics = getMetrics(url, networkPreset, cachedUrl, progressBar);
+const getResults: ResultsCalculator = async (url: string, networkPreset: NamedNetworkPreset, progressBar: ProgressBar) => {
+  const pageMetrics = getMetrics(url, networkPreset, progressBar);
   // const slowURL: Promise<Metrics> = new Promise(resolve => {
   //   setTimeout(() => {
   //     resolve(snailURL(url));

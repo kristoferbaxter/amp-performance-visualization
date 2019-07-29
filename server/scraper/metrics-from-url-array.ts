@@ -20,7 +20,7 @@ async function getMetricsFromURLs(
 ): Promise<Metrics[][]> {
   const documentCache = await domCache.documentCache(version.rtv);
   const documentCacheLocation = documentCache.location;
-  const polkaInstance = await PolkaInstanceWrapper.get(version.rtv, documentCacheLocation);
+  // const polkaInstance = await PolkaInstanceWrapper.get(version.rtv, documentCacheLocation);
 
   let singleUrlMetrics: Metrics[] = [];
   const metricsFromURLArray: Metrics[][] = [];
@@ -30,7 +30,7 @@ async function getMetricsFromURLs(
       const parallelCaptures: Metrics[] = await Promise.all(
         Array.from({ length: parallelExecutions }, _ => {
           progressBar.tick();
-          return getResults(url, networkPreset, `http://localhost:${polkaInstance.port}/${documentCache.encodeUrl(url)}`, progressBar);
+          return getResults(url, networkPreset, progressBar);
           }
         ),
       );
