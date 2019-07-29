@@ -1,11 +1,11 @@
 import { TimeMetrics } from '../../../shared/interfaces';
-import { GroupedMetrics } from './consolidator';
+import { ConsolidatedData, GroupedMetrics } from './consolidator';
 
 export interface ConsolidatedDataResult {
   baseMetrics?: GroupedMetrics;
   experimentMetrics?: GroupedMetrics;
-  baseAverage?: TimeMetrics;
-  baseStandardDeviation?: TimeMetrics;
-  experimentAverage?: TimeMetrics;
-  experimentStandardDeviation?: TimeMetrics;
+  baseAverage?: ConsolidatedData;
+  baseStandardDeviation?: ConsolidatedData;
+  experimentAverage?: ConsolidatedData;
+  experimentStandardDeviation?: ConsolidatedData;
 }

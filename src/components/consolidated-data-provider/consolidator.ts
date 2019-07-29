@@ -8,7 +8,6 @@ export interface GroupedMetrics {
   firstContentfulPaint: number[];
   firstMeaningfulPaint: number[];
   installStyles: number[];
-  installStylesDuration: number[];
   visible: number[];
   onFirstVisible: number[];
   makeBodyVisible: number[];
@@ -16,10 +15,24 @@ export interface GroupedMetrics {
   firstViewportReady: number[];
 }
 
+export interface ConsolidatedData {
+  responseStart: number;
+  loadEventEnd: number;
+  firstPaint: number;
+  firstContentfulPaint: number;
+  firstMeaningfulPaint: number;
+  installStyles: number;
+  visible: number;
+  onFirstVisible: number;
+  makeBodyVisible: number;
+  windowLoadEvent: number;
+  firstViewportReady: number;
+}
+
 function groupResultByMetrics(metrics: TimeMetrics[]): GroupedMetrics {
   const reducer = (accumulator: any, currentValue: TimeMetrics) => {
     for (const key in currentValue) {
-      if (currentValue.hasOwnProperty(key)) {
+      if (accumulator.hasOwnProperty(key)) {
         // @ts-ignore
         accumulator[key].push(currentValue[key]);
       }
@@ -38,7 +51,6 @@ function groupResultByMetrics(metrics: TimeMetrics[]): GroupedMetrics {
     firstContentfulPaint: [],
     firstMeaningfulPaint: [],
     installStyles: [],
-    installStylesDuration: [],
     visible: [],
     onFirstVisible: [],
     makeBodyVisible: [],
@@ -56,16 +68,15 @@ function filterBadData(numberArray: number[]): number[] {
   return numberArray;
 }
 
-function getTimeMetricsByAverage(metrics: TimeMetrics[]): TimeMetrics {
+function getTimeMetricsByAverage(metrics: TimeMetrics[]): ConsolidatedData {
   const groupedMetrics = groupResultByMetrics(metrics);
-  const result: TimeMetrics = {
+  const result: ConsolidatedData = {
     responseStart: 0,
     loadEventEnd: 0,
     firstPaint: 0,
     firstContentfulPaint: 0,
     firstMeaningfulPaint: 0,
     installStyles: 0,
-    installStylesDuration: 0,
     visible: 0,
     onFirstVisible: 0,
     makeBodyVisible: 0,
@@ -81,16 +92,15 @@ function getTimeMetricsByAverage(metrics: TimeMetrics[]): TimeMetrics {
   return result;
 }
 // create an array with the sta deviation of each metric
-function createConfidenceArray(metrics: TimeMetrics[]): TimeMetrics {
+function createConfidenceArray(metrics: TimeMetrics[]): ConsolidatedData {
   const groupedMetrics = groupResultByMetrics(metrics);
-  const confidence: TimeMetrics = {
+  const confidence: ConsolidatedData = {
     responseStart: 0,
     loadEventEnd: 0,
     firstPaint: 0,
     firstContentfulPaint: 0,
     firstMeaningfulPaint: 0,
     installStyles: 0,
-    installStylesDuration: 0,
     visible: 0,
     onFirstVisible: 0,
     makeBodyVisible: 0,

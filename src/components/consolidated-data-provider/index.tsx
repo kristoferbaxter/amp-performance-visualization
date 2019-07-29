@@ -5,7 +5,7 @@ import { TimeMetrics } from '../../../shared/interfaces';
 import { GraphableData } from '../bar-graph/graph-types';
 // import dataWorker from 'workerize-loader!../data-fetcher';
 import { getPerformanceMetrics } from '../data-fetcher';
-import { GroupedMetrics } from './consolidator';
+import { ConsolidatedData, GroupedMetrics } from './consolidator';
 
 interface ConsolidatedDataProviderProps {
   render: (data: ConsolidatedDataRenderer) => VNode;
@@ -50,8 +50,8 @@ export default class ConsolidatedDataProvider extends Component<ConsolidatedData
         if (baseMetrics.hasOwnProperty(metric)) {
           const comparisonMetric = {
             name: metric,
-            baseValues: baseMetrics[metric as keyof TimeMetrics],
-            experimentValues: experimentMetrics[metric as keyof TimeMetrics],
+            baseValues: baseMetrics[metric as keyof ConsolidatedData],
+            experimentValues: experimentMetrics[metric as keyof ConsolidatedData],
             standardDeviationData: [baseStandardDeviation[metric as keyof TimeMetrics], experimentStandardDeviation[metric as keyof TimeMetrics]],
             averageData: [baseAverage[metric as keyof TimeMetrics], experimentAverage[metric as keyof TimeMetrics]],
           };

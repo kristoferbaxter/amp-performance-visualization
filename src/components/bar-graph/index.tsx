@@ -61,10 +61,8 @@ export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.
       maxDataArr.push(Math.max(...experimentValues));
       return maxDataArr;
     });
-    const maxPlottableData =
-      Math.max.apply(null, maxDataArr) < 100
-        ? Math.ceil(Math.max.apply(null, maxDataArr) / 10) * 10
-        : Math.ceil(Math.max.apply(null, maxDataArr) / 100) * 100; // sets maxvalue to be the largest number in the confidence array raised to the nearest 1000
+    const maxData = Math.max.apply(null, maxDataArr); // sets maxvalue to be the largest number in the confidence array raised to the nearest 1000
+    const maxPlottableData = Math.ceil(maxData / Math.pow(10, maxData.toString().length - 2)) * Math.pow(10, maxData.toString().length - 2);
     divisionInterval = Math.pow(
       10,
       maxPlottableData.toString().length === 1 ? maxPlottableData.toString().length - 1 : maxPlottableData.toString().length - 2,
