@@ -56,3 +56,7 @@ export function getNetworkPresets(NetworkConfiguration: NetworkConfiguration): N
     ...NetworkConfiguration.presets[name],
   })));
 }
+
+export function setCachedNetworkPresets(NamedNetworkPresets: NamedNetworkPreset[]){
+  cachedNetworkPresets = NamedNetworkPresets;
+}

@@ -63,3 +63,7 @@ export function getVersionConfiguration(TestConfiguration: TestConfiguration): V
     })
     .filter(Boolean) as VersionConfiguration[]);
 }
+
+export function setCachedVersionConfiguration(VersionConfigurations: VersionConfiguration[]){
+  cachedVersionConfiguration = VersionConfigurations;
+}

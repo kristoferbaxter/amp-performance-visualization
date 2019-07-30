@@ -16,7 +16,7 @@ const argv = require('yargs').default({
   runs: 3,
 }).argv;
 
-async function run() {
+async function run(): Promise<void> {
   try {
     const URLConfiguration: URLConfiguration | null = await getURLConfiguration(argv.urls);
     const NetworkConfiguration: NetworkConfiguration | null = await getNetworkConfiguration(argv.network);
