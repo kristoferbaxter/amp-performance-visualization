@@ -65,7 +65,9 @@ export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.
     const maxPlottableData = Math.ceil(maxData / Math.pow(10, maxData.toString().length - 2)) * Math.pow(10, maxData.toString().length - 2);
     divisionInterval = Math.pow(
       10,
-      maxPlottableData.toString().length === 1 ? maxPlottableData.toString().length - 1 : maxPlottableData.toString().length - 2,
+      maxPlottableData / Math.pow(10, maxPlottableData.toString().length - 1) <= 1.8
+        ? maxPlottableData.toString().length - 2
+        : maxPlottableData.toString().length - 1,
     );
     heightRatio = height / maxPlottableData;
     columnWidth = width / (data.length + 1);
