@@ -13,11 +13,7 @@ test('File written', async t => {
 
   await fsPromises.writeFile(`server/results/${versions[0].rtv}.json`, JSON.stringify(report, null, 2));
 
-  try {
-    await fsPromises.access(`server/results/${versions[0].rtv}.json`);
-  } catch(err) {
-    console.log(err);
-  }
+  await fsPromises.access(`server/results/${versions[0].rtv}.json`);
 
   //Satisfying Ava's requirement for atleast one assertion
   t.is(true, true);
