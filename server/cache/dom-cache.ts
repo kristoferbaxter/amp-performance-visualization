@@ -76,6 +76,15 @@ export class DOMCache {
     return this.set(domCache, url, source);
   }
 
+  //Visible for testing
+  get docCache() {
+    return this.documentCaches;
+  }
+  
+  get domMapCache() {
+    return this.domCaches;
+  }
+
   /**
    * Derive the DOM Cache (or create it) for the specified type.
    * @param type key for which DOM Cache to return.

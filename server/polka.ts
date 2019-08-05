@@ -54,4 +54,8 @@ export class Polka {
 
     return this.polkas[type] as PolkaInfo;
   }
+
+  get polka() {
+    return this.polkas;
+  }
 }
