@@ -6,7 +6,7 @@ import { getResources } from '../scrape-metrics/amp-resources';
 import { getPaintTiming, PaintMetrics } from '../scrape-metrics/paint-metrics';
 import { getPerformanceTiming, PerformanceTiming } from '../scrape-metrics/performance-timing';
 import { PuppeteerMetrics } from '../scrape-metrics/puppeteer-enum';
-import { failedPageEval, failedPageGoTo, invalidAMP, snailURL } from './return-failed';
+import { failedPageEval, failedPageGoTo } from './return-failed';
 
 export interface Metrics {
   performanceData: TimeMetrics;
