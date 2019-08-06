@@ -44,7 +44,6 @@ export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.
   const titleOffset = -10;
   const dataRadius = 4;
   if (data) {
-    // get next closest 1000 of the highest of all value in the data to plot.
     const maxDataArr: number[] = [];
     data.map(metric => {
       const {
@@ -61,12 +60,12 @@ export default ({ height, width, loading, data, graphChoice }: GraphProps): JSX.
       maxDataArr.push(Math.max(...experimentValues));
       return maxDataArr;
     });
-    const maxData = Math.max.apply(null, maxDataArr); // sets maxvalue to be the largest number in the confidence array raised to the nearest 1000
-    const maxPlottableData = Math.ceil(maxData / Math.pow(10, maxData.toString().length - 2)) * Math.pow(10, maxData.toString().length - 2);
+    const maxData = Math.max.apply(null, maxDataArr);
+    const maxPlottableData = Math.ceil(maxData / Math.pow(10, maxData.toString().length - 2)) * Math.pow(10, maxData.toString().length - 2); // sets maxValue to be the largest number in the confidence array raised to the nearest 10^ length of the largest number -2
     divisionInterval = Math.pow(
       10,
-      maxPlottableData.toString().length === 1 ? maxPlottableData.toString().length - 1 : maxPlottableData.toString().length - 2,
-    );
+      maxPlottableData.toString().length <= 2 ? maxPlottableData.toString().length - 1 : maxPlottableData.toString().length - 2,
+    ); // divisionInterval is 10^ the length of the largest number minus 2 unless the largest number is one digit, in which case it's -1
     heightRatio = height / maxPlottableData;
     columnWidth = width / (data.length + 1);
     numOfDivisions = maxPlottableData / divisionInterval;

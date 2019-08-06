@@ -3,7 +3,6 @@ import { Component, h, VNode } from 'preact';
 import consolidationWorker from 'workerize-loader!./consolidator';
 import { TimeMetrics } from '../../../shared/interfaces';
 import { GraphableData } from '../bar-graph/graph-types';
-// import dataWorker from 'workerize-loader!../data-fetcher';
 import { getPerformanceMetrics } from '../data-fetcher';
 import { ConsolidatedData, GroupedMetrics } from './consolidator';
 
@@ -66,9 +65,7 @@ export default class ConsolidatedDataProvider extends Component<ConsolidatedData
 
   private async getAndProcessData(): Promise<void> {
     try {
-      // const {getPerformanceMetrics} = dataWorker();
       const [baseMetricsInputData, experimentMetricsInputdata] = await getPerformanceMetrics();
-      // const {baseMetrics, experimentMetrics} = await consolidator.consolidate(baseMetricsInputData, experimentMetricsInputdata, 0.5);
       const {
         baseMetrics,
         experimentMetrics,

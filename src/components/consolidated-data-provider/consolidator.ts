@@ -138,15 +138,15 @@ export function consolidate(baseMetrics: TestPass, experimentMetrics: TestPass):
   const { results: experimentResults } = experimentMetrics;
   const flattenedBaseResults = baseResults.map(result => result.performance).flat();
   const flattenedExperimentResults = experimentResults.map(result => result.performance).flat();
-  const p50BaseMetrics = groupResultByMetrics(flattenedBaseResults);
-  const p50ExperimentalMetrics = groupResultByMetrics(flattenedExperimentResults);
+  const groupedBaseMetrics = groupResultByMetrics(flattenedBaseResults);
+  const groupedExperimentalMetrics = groupResultByMetrics(flattenedExperimentResults);
   const baseAverage = getTimeMetricsByAverage(flattenedBaseResults);
   const experimentAverage = getTimeMetricsByAverage(flattenedExperimentResults);
   const baseStandardDeviation = createConfidenceArray(flattenedBaseResults);
   const experimentStandardDeviation = createConfidenceArray(flattenedExperimentResults);
   return {
-    baseMetrics: p50BaseMetrics,
-    experimentMetrics: p50ExperimentalMetrics,
+    baseMetrics: groupedBaseMetrics,
+    experimentMetrics: groupedExperimentalMetrics,
     baseAverage,
     baseStandardDeviation,
     experimentAverage,

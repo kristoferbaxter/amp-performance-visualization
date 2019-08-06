@@ -1,4 +1,4 @@
-import { Component, h } from 'preact';
+import { h } from 'preact';
 import barStyle from './bars.css';
 export interface BarProps {
   x: number;

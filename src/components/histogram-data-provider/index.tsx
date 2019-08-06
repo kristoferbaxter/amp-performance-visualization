@@ -3,7 +3,6 @@ import { Component, h, VNode } from 'preact';
 import consolidationWorker from 'workerize-loader!./consolidator';
 import { TimeMetrics } from '../../../shared/interfaces';
 import { GraphableData } from '../bar-graph/graph-types';
-// import dataWorker from 'workerize-loader!../data-fetcher';
 import { getPerformanceMetrics } from '../data-fetcher';
 
 interface HistogramDataProviderProps {
@@ -55,9 +54,7 @@ export default class HistogramDataProvider extends Component<HistogramDataProvid
 
   private async getAndProcessData(): Promise<void> {
     try {
-      // const {getPerformanceMetrics} = dataWorker();
       const [baseFrequencyInputData, experimentFrequencyInputdata] = await getPerformanceMetrics();
-      // const {baseFrequency, experimentFrequency} = await consolidator.consolidate(baseFrequencyInputData, experimentFrequencyInputdata, 0.5);
       const { baseFrequency, experimentFrequency } = await consolidator.consolidate(
         baseFrequencyInputData,
         experimentFrequencyInputdata,

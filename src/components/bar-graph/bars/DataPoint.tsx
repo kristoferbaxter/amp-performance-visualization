@@ -1,4 +1,4 @@
-import { Component, h } from 'preact';
+import { h } from 'preact';
 export interface DataPointProps {
   x: number;
   y: number;
