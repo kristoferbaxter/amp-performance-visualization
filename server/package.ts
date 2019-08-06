@@ -18,3 +18,8 @@ export async function getMetadata(): Promise<Package> {
 
   return CACHED;
 }
+
+//Visible for testing
+export function getCached(){
+  return CACHED;
+}

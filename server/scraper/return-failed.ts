@@ -2,58 +2,8 @@ import { Metrics } from './url-scraper';
 
 // Failed page.evaluate
 const EVALUATE_FAILED = 0;
-// The webpage loaded too slow
-const SLOW_URL = -1;
-// The url entered is not amp
-const NOT_AMP = -2;
 // page.goto has failed
-const GO_TO_FAILED = -3;
-
-export const invalidAMP = (url: string): Metrics => ({
-  performanceData: {
-    responseStart: NOT_AMP, // firstByte
-    loadEventEnd: NOT_AMP, // pageLoad
-    firstPaint: NOT_AMP,
-    firstContentfulPaint: NOT_AMP, // use Performance.metrics injected into webpage
-    firstMeaningfulPaint: NOT_AMP,
-    installStyles: NOT_AMP,
-    installStylesDuration: NOT_AMP,
-    visible: NOT_AMP,
-    onFirstVisible: NOT_AMP,
-    makeBodyVisible: NOT_AMP,
-    windowLoadEvent: NOT_AMP,
-    firstViewportReady: NOT_AMP,
-  },
-  ampEntries: [
-    {
-      url,
-      size: NOT_AMP,
-    },
-  ],
-});
-
-export const snailURL = (url: string): Metrics => ({
-  performanceData: {
-    responseStart: SLOW_URL, // firstByte
-    loadEventEnd: SLOW_URL, // pageLoad
-    firstPaint: SLOW_URL,
-    firstContentfulPaint: SLOW_URL, // use Performance.metrics injected into webpage
-    firstMeaningfulPaint: SLOW_URL,
-    installStyles: SLOW_URL,
-    installStylesDuration: SLOW_URL,
-    visible: SLOW_URL,
-    onFirstVisible: SLOW_URL,
-    makeBodyVisible: SLOW_URL,
-    windowLoadEvent: SLOW_URL,
-    firstViewportReady: SLOW_URL,
-  },
-  ampEntries: [
-    {
-      url,
-      size: SLOW_URL,
-    },
-  ],
-});
+const GO_TO_FAILED = -1;
 
 export const failedPageGoTo = (url: string): Metrics => ({
   performanceData: {

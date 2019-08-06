@@ -57,6 +57,7 @@ export function getNetworkPresets(NetworkConfiguration: NetworkConfiguration): N
   })));
 }
 
+//Visible for testing
 export function setCachedNetworkPresets(NamedNetworkPresets: NamedNetworkPreset[]){
   cachedNetworkPresets = NamedNetworkPresets;
 }

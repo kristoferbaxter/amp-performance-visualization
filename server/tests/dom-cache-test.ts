@@ -1,42 +1,31 @@
 import test from 'ava';
 import {DOMCache} from '../cache/dom-cache'
 import { VersionConfiguration } from '../configuration/test-configuration';
-import { getMetadata } from '../package';
-import { LRUMap } from 'lru_map';
 import { JSDOM } from 'jsdom';
-import { DocumentCache } from '../cache/document-cache';
-import { retrieve } from '../cache/document-retrieve';
+import { promises as fsPromises } from 'fs';
 
-type DOMMap = LRUMap<string, JSDOM>;
-  class DOMTestCache {
-    public domCaches: {
-      [key: string]: DOMMap;
-    } = {};
-    public documentCaches: {
-      [key: string]: DocumentCache;
-    } = {};
-  }
 
 test('documentCache correct', async t =>{
   const versions: VersionConfiguration[] = [{name:'v1', rtv:'1234'}, {name: 'v2', rtv: '4321'}];
   const docCache = new DOMCache();
-  const docCacheExpected = new DOMTestCache();
 
-  docCacheExpected.documentCaches = {[versions[0].rtv]: new DocumentCache((await getMetadata()).version, versions[0].rtv)};
-  await docCacheExpected.documentCaches[versions[0].rtv].enable();
+  await docCache.documentCache(versions[0].rtv);
 
-  t.deepEqual(await docCache.documentCache(versions[0].rtv), docCacheExpected.documentCaches[versions[0].rtv]);
+  await fsPromises.access(docCache.docCache[versions[0].rtv].location);
+  
+  //Satisfying Ava's requirement for atleast one assertion
+  t.is(true, true);
 })
 
 test('override and get methods correct', async t => {
-  const urls = ['https://amp.dev/'];
+  const urls = ['https://amp.dev/', 'https://www.nytimes.com/'];
   const docCache = new DOMCache();
   //test JSDOM
-  const dom: JSDOM = new JSDOM("<html><body></body></html>");
-  console.log('after source')
-  await docCache.override('default', urls[0], dom);
-  t.is(
-    (await docCache.get('default', urls[0])).serialize(), 
-    dom.serialize()
-  )
+  const dom1: JSDOM = new JSDOM("<html><body></body></html>");
+
+  await docCache.get('v1', urls[1]);
+  await fsPromises.access(docCache.docCache['v1'].location);
+
+  await docCache.override('default', urls[0], dom1);
+  t.is((await docCache.get('default', urls[0])).serialize(), dom1.serialize())
 })

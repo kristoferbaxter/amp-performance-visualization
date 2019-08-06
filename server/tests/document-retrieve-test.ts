@@ -15,25 +15,25 @@ test('Source retrieved via Network', async t => {
     follow: 2,
     timeout: 20 * 1000,
   };
-  const sources: Array<string> = [];
-  const urlSources: Array<string> = [];
+  const responses: Array<string> = [];
+  const expectedResponses: Array<string> = [];
 
   
   
   (await retrieve(urls)).forEach(async (response: Response): Promise<void> => {
     const awaitedSource: string = await response.text();
-    sources.push(awaitedSource);
+    responses.push(awaitedSource);
   });
 
   const responseArray: Array<Response> = (await Promise.all(urls.map(url => fetch(url, OPTIONS))));
 
   for (const response of responseArray) {
     const awaitedExpectedSource: string = await response.text();
-    urlSources.push(awaitedExpectedSource);
+    expectedResponses.push(awaitedExpectedSource);
   }
 
-  sources.forEach((source,index)=> {
-    t.is(source, urlSources[index]);
+  responses.forEach((source,index)=> {
+    t.is(source, expectedResponses[index]);
   });
 
 });
