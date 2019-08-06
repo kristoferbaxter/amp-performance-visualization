@@ -1,19 +1,14 @@
 import { Component, h } from 'preact';
-import { data } from '../../../server/results/data';
-import { ParsedData } from '../../../shared-interfaces/metrics-results';
-import { DropDown } from '../../components/DropDown';
-import { BarChart } from '../../components/graph/BarChart';
-import { ConfidenceChart } from '../../components/graph/ConfidenceChart';
+import { TimeMetrics } from '../../../shared/interfaces';
+import BarGraph from '../../components/bar-graph';
+import ConsolidatedDataProvider from '../../components/consolidated-data-provider';
+import { DropDown } from '../../components/dropDown/DropDown';
+import HistogramDataProvider from '../../components/histogram-data-provider';
 import style from './style.css';
 
 interface Props {}
 interface State {
-  graphChoice: keyof ParsedData;
-}
-
-function isKeyOfParsedData(str: string): str is keyof ParsedData {
-  // TODO: This check could use the actual key names from ParsedData.
-  return typeof str === 'string';
+  graphChoice: keyof TimeMetrics;
 }
 
 export default class Home extends Component<Props, State> {
@@ -24,18 +19,38 @@ export default class Home extends Component<Props, State> {
     };
   }
   public updateGraph = (choice: string) => {
-    // Validate that choice is a keyof ParsedData.
-    if (isKeyOfParsedData(choice)) {
-      this.setState({ graphChoice: choice });
-    }
+    // @ts-ignore
+    this.setState({ graphChoice: choice });
   };
+  public async componentDidMount() {}
   public render() {
     return (
       <div class={style.home}>
         <h1>Performance Graph</h1>
-        <DropDown metrics={data.metrics} onSelection={this.updateGraph} />
-        <BarChart data={data.metrics} graphChoice={this.state.graphChoice} />
-        <ConfidenceChart data={data.metrics} />
+        <ConsolidatedDataProvider
+          render={({ data, error }) => {
+            if (!data && !error) {
+              return <BarGraph height={1000} width={1000} loading={!data} />;
+            } else if (error) {
+              return <h1>ERROR! {error}</h1>;
+            }
+            return <BarGraph height={1000} width={1000} data={data} />;
+          }}
+        />
+        <div class={style.percentileSelector}>
+          <DropDown onSelection={this.updateGraph} />
+        </div>
+        <HistogramDataProvider
+          graphChoice={this.state.graphChoice}
+          render={({ data, error }) => {
+            if (!data && !error) {
+              return <BarGraph height={1000} width={1000} loading={!data} />;
+            } else if (error) {
+              return <h1>ERROR! {error}</h1>;
+            }
+            return <BarGraph height={1000} width={1000} data={data} graphChoice={this.state.graphChoice} />;
+          }}
+        />
       </div>
     );
   }
